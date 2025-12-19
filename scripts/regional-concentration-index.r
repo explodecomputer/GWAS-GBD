@@ -26,7 +26,9 @@ gwas_attention <- fread(here("Data/Ncase_merged_dataset_exclude_Injuries.csv")) 
   select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
   filter(!duplicated(cause_id))
 
-gbd1 <- fread(here("Data/april2025/by_sdi_and_sex_3years/IHME-GBD_2021_DATA-f187b5da-1.csv"))
+gbd1 <- fread(here("Data/december2025/gbd_gwas_paper_data_2.csv")) %>%
+  rename(sex_name = sex, year = year_id)
+
 temp1 <- inner_join(gbd1, gwas_attention)
 o1 <- group_by(temp1, location_name, sex_name, year) %>%
   do(get_ci(.))
@@ -39,7 +41,7 @@ o1$location_name <- factor(o1$location_name, levels = c(
 
 
 o1 %>%
-  dplyr::filter(year == 2019) %>%
+  dplyr::filter(year == 2023, !is.na(location_name)) %>%
 ggplot(., aes(x = ci, y = sex_name)) +
   geom_point(
     aes(colour = sex_name),
@@ -59,10 +61,11 @@ ggplot(., aes(x = ci, y = sex_name)) +
 
 
 ##
-length(unique(gbd1$cause_id))
-length(unique(gbd2$cause_id))
 
-gbd2 <- fread(here("Data/april2025/by_sdi_and_year/IHME-GBD_2021_DATA-45f67a86-1.csv"))
+gbd2 <- fread(here("Data/december2025/gbd_gwas_paper_data_3.csv")) %>%
+  rename(sex_name = sex, year = year_id)
+str(gbd2)
+
 temp2 <- inner_join(gbd2, gwas_attention)
 o2 <- group_by(temp2, location_name, sex_name, year) %>%
   do(get_ci(.))
@@ -70,6 +73,7 @@ o2$location_name <- factor(o2$location_name, levels = c(
   "High SDI", "High-middle SDI", "Middle SDI",
   "Low-middle SDI", "Low SDI", "Global"
 ))
+o2 <- subset(o2, !is.na(o2$location_name))
 
 o2 %>%
 ggplot(., aes(y = ci, x = year)) +
@@ -87,7 +91,7 @@ ggplot(., aes(y = ci, x = year)) +
 ggsave(here("figures/ci_by_year.pdf"), width = 10, height = 4)
 
 o1 %>%
-  dplyr::filter(year == 2021) %>%
+  dplyr::filter(year == 2023, !is.na(location_name)) %>%
 ggplot(., aes(y = ci, x = sex_name)) +
   geom_errorbar(colour="grey", aes(
     ymin = ci_lci,
@@ -102,14 +106,15 @@ ggplot(., aes(y = ci, x = sex_name)) +
 ggsave(here("figures/ci_by_sex.pdf"), width = 10, height = 4)
 
 
-gbd3 <- fread(here("Data/april2025/by_country/IHME-GBD_2021_DATA-84f55027-1.csv"))
+gbd3 <- fread(here("Data/december2025/gbd_gwas_paper_data_4.csv")) %>%
+  rename(sex_name = sex, year = year_id)
 temp3 <- inner_join(gbd3, gwas_attention)
 o3 <- group_by(temp3, location_name, sex_name, year) %>%
   do(get_ci(.))
 
 # Get the highest and lowest countries CI
-o3 %>% ungroup() %>% filter(year == 2021, sex_name == "Both") %>% arrange(desc(ci)) %>% select(location_name, ci, ci_se, daly_sum) %>% as.data.frame
-o3 %>% filter(year == 2021, sex_name == "Both") %>% arrange(ci)
+o3 %>% ungroup() %>% filter(year == 2023, sex_name == "Both") %>% arrange(desc(ci)) %>% select(location_name, ci, ci_se, daly_sum) %>% as.data.frame
+o3 %>% filter(year == 2023, sex_name == "Both") %>% arrange(ci)
 
 ggplot(o3, aes(x=daly_sum, y=ci)) +
 geom_point() +
@@ -117,7 +122,7 @@ scale_x_log10()
 
 
 
-o3 %>% ungroup() %>% filter(year == 2021, sex_name == "Both") %>% arrange(desc(ci)) %>% mutate(rank=1:n()) %>%
+o3 %>% ungroup() %>% filter(year == 2023, sex_name == "Both") %>% arrange(desc(ci)) %>% mutate(rank=1:n()) %>%
 ggplot(., aes(x=rank, y=ci)) +
   geom_point() +
   geom_errorbar(aes(ymin=ci_lci, ymax=ci_uci), width=0) +
@@ -142,45 +147,45 @@ do.call(addMapLegend, c(mapParams, legendLabels="all", legendWidth=0.5, legendIn
 dev.off()
 
 
-spdf <- joinCountryData2Map(o3 %>% filter(year == 2019), joinCode="NAME", nameJoinColumn="location_name")
-mapDevice('pdf', file="figures/map2019.pdf")
+spdf <- joinCountryData2Map(o3 %>% filter(year == 2023), joinCode="NAME", nameJoinColumn="location_name")
+mapDevice('pdf', file="figures/map2023.pdf")
 mapParams <- mapCountryData(spdf, nameColumnToPlot="ci", colourPalette = colourPalette, mapTitle="", addLegend=FALSE, catMethod=seq(min(o3$ci), max(o3$ci), length=10))
 
 do.call(addMapLegend, c(mapParams, legendLabels="all", legendWidth=0.5, legendIntervals="data", legendMar = 2))
 dev.off()
-
-spdf <- joinCountryData2Map(o3 %>% filter(year == 2021), joinCode="NAME", nameJoinColumn="location_name")
-mapDevice('pdf', file="figures/map2021.pdf")
-mapParams <- mapCountryData(spdf, nameColumnToPlot="ci", colourPalette = colourPalette, mapTitle="", addLegend=FALSE, catMethod=seq(min(o3$ci), max(o3$ci), length=10))
-
-do.call(addMapLegend, c(mapParams, legendLabels="all", legendWidth=0.5, legendIntervals="data", legendMar = 2))
-dev.off()
-
-
 
 
 ## Lorenz curves
 
+temp2 <- bind_rows(
+  temp2, 
+  group_by(temp2, sex_name, year, cause_name) %>%
+  summarise(location_name = "Global",
+            val = sum(val, na.rm=TRUE),
+            total_attention_score = first(total_attention_score))
+)
+
+
 
 # Gini index
 gini <- ci(
-  ineqvar = subset(temp1, location_name == "Global")$total_attention_score,
-  outcome = subset(temp1, location_name == "Global")$total_attention_score, method = "direct"
+  ineqvar = subset(temp2, location_name == "Global")$total_attention_score,
+  outcome = subset(temp2, location_name == "Global")$total_attention_score, method = "direct"
 )
-
-sdi_low <- subset(temp1, location_name == "Low SDI" & sex_name=="Both" & year==2019)
+gini
+sdi_low <- subset(temp2, location_name == "Low SDI" & sex_name=="Both" & year==2023)
 ci_low <- ci(
   ineqvar = sdi_low$total_attention_score,
   outcome = sdi_low$val, method = "direct"
 )
 
-sdi_high <- subset(temp1, location_name == "High SDI" & sex_name=="Both" & year==2019)
+sdi_high <- subset(temp2, location_name == "High SDI" & sex_name=="Both" & year==2023)
 ci_high <- ci(
   ineqvar = sdi_high$total_attention_score,
   outcome = sdi_high$val, method = "direct"
 )
 
-global <- subset(temp1, location_name == "Global" & sex_name=="Both" & year==2019)
+global <- subset(temp2, location_name == "Global" & sex_name=="Both" & year==2023)
 ci_global <- ci(
   ineqvar = global$total_attention_score,
   outcome = global$val, method = "direct"
@@ -220,17 +225,29 @@ ggplot(aes(x = xCoord, y = cumdist, group = group), data = dat) +
 ggsave(here("figures/lorenz_curve.pdf"), width = 6, height = 6)
 
 
+# gbd4 <- fread(here("Data/april2025/by_sdi_and_age/IHME-GBD_2021_DATA-2c936676-1.csv"))
 
-gbd4 <- fread(here("Data/april2025/by_sdi_and_age/IHME-GBD_2021_DATA-2c936676-1.csv"))
+gbd4 <- fread(here("Data/december2025/gbd_gwas_paper_data_1.csv")) %>%
+  rename(sex_name = sex, year = year_id, age_name = age_group_name, age_id = age_group_id)
 table(gbd4$age_name) %>% as.data.frame
 table(gbd4$age_id) %>% as.data.frame
 temp4 <- inner_join(gbd4, gwas_attention)
 temp4$age_group <- gsub(" years", "", temp4$age_name)
 temp4$age_group <- gsub(" year", "", temp4$age_group)
+temp4$age_group <- gsub(" to ", "-", temp4$age_group)
 temp4$age_group <- factor(temp4$age_group, levels = c("<1", "2-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90-94"))
 
 table(gbd4$age_id, gbd4$location_id, gbd4$year)
 
+temp4 <- filter(temp4, grepl("SDI", location_name))
+temp4 <- bind_rows(
+  temp4,
+  group_by(temp4, cause_name, sex_name, age_name, age_group, age_id, year) %>%
+    summarise(location_name = "Global", nloc = n(),
+              val = sum(val, na.rm=TRUE),
+              total_attention_score = first(total_attention_score))
+)
+table(temp4$nloc)
 o4 <- temp4 %>%
   # filter(age_group != "<1") %>%
   group_by(location_name, age_name, age_group, age_id, year) %>%
@@ -244,7 +261,7 @@ o4$location_name <- factor(o4$location_name, levels = c(
 ))
 
 o4 %>%
-  dplyr::filter(year == 2019) %>%
+  dplyr::filter(year == 2023) %>%
   ggplot(., aes(y = ci, x = age_group)) +
     geom_errorbar(colour="grey", aes(
       ymin = ci_lci,
