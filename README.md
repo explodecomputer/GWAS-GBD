@@ -59,9 +59,9 @@ The matching process was done via EFO terms of the GBD or its descendants with G
 
 |   | Matching process         |Terms no|
 |---|------------------------- |------- |
-| 1 | EFO term-based matching	 |   153  |
-| 2 | String-based matching	   |   95   |
-| 3 | Unmatched GBD conditions |   78   |
+| 1 | EFO term-based matching	 |   135  |
+| 2 | String-based matching	   |   105  |
+| 3 | Unmatched GBD conditions |   68   |
 
 
 ## B. Terms aggregation
