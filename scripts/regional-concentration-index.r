@@ -29,16 +29,25 @@ gwas_attention <- fread(here("Data/Ncase_merged_dataset_exclude_Injuries.csv")) 
 gbd1 <- fread(here("Data/december2025/gbd_gwas_paper_data_2.csv")) %>%
   rename(sex_name = sex, year = year_id)
 
-temp1 <- inner_join(gbd1, gwas_attention)
+temp1 <- inner_join(gbd1, gwas_attention) %>% filter(grepl("SDI", location_name ))
+tempglobal <-   group_by(temp1, cause_name, year, sex_name) %>%
+    summarise(nloc= n(), location_name = "Global",
+              total_attention_score = first(total_attention_score),
+              val = sum(val, na.rm=TRUE)) %>% ungroup
+tempglobal
+
+temp1 <- bind_rows(
+  temp1 %>% filter(grepl("SDI", location_name)), 
+  tempglobal
+) %>% ungroup()
+
+
 o1 <- group_by(temp1, location_name, sex_name, year) %>%
   do(get_ci(.))
 o1$location_name <- factor(o1$location_name, levels = c(
   "High SDI", "High-middle SDI", "Middle SDI",
   "Low-middle SDI", "Low SDI", "Global"
 ))
-
-
-
 
 o1 %>%
   dplyr::filter(year == 2023, !is.na(location_name)) %>%
@@ -66,7 +75,21 @@ gbd2 <- fread(here("Data/december2025/gbd_gwas_paper_data_3.csv")) %>%
   rename(sex_name = sex, year = year_id)
 str(gbd2)
 
-temp2 <- inner_join(gbd2, gwas_attention)
+temp2 <- inner_join(gbd2, gwas_attention) %>% filter(grepl("SDI", location_name ))
+
+tempglobal <-   group_by(temp2, cause_name, year, sex_name) %>%
+    summarise(nloc= n(), location_name = "Global",
+              total_attention_score = first(total_attention_score),
+              val = sum(val, na.rm=TRUE)) %>% ungroup
+tempglobal
+
+temp2 <- bind_rows(
+  temp2 %>% filter(grepl("SDI", location_name)), 
+  tempglobal
+) %>% ungroup()
+table(temp2$nloc)
+table(temp2$location_name)
+temp2
 o2 <- group_by(temp2, location_name, sex_name, year) %>%
   do(get_ci(.))
 o2$location_name <- factor(o2$location_name, levels = c(
@@ -74,6 +97,7 @@ o2$location_name <- factor(o2$location_name, levels = c(
   "Low-middle SDI", "Low SDI", "Global"
 ))
 o2 <- subset(o2, !is.na(o2$location_name))
+
 
 o2 %>%
 ggplot(., aes(y = ci, x = year)) +
