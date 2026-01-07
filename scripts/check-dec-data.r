@@ -23,6 +23,11 @@ table(december1$year)
 table(april1$cause_name)
 table(december1$cause_name)
 
+old_causes <- unique(april1$cause_name)
+new_causes <- unique(december1$cause_name)
+old_causes[!old_causes %in% new_causes]
+new_causes[!new_causes %in% old_causes]
+
 table(april1$age_name)
 table(december1$age_group_name)
 

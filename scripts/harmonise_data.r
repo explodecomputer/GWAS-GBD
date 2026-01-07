@@ -19,6 +19,7 @@ library(openxlsx)
 # Read in relevant datasets 
 
 ## Create a new column for disease names to facilitate partial matching in attention
+# attention is created in generate_attention_scores.R
 attention <- attention %>%
   mutate(MAPPED_TRAIT_NAME = tolower(trimws(gsub("[^a-zA-Z0-9 ]", "", DISEASE_TRAIT))))
 

@@ -8,11 +8,12 @@ library(data.table)
 library(tidyr)
 library(stringr)
 library(here)
+library(readxl)
 
 # Create EFO count
 
 ## Read in GWAS catalog data
-a <- read.table("gwas_catalog_v1.0.2.1-studies_r2024-06-07.csv")
+a <- read_excel(here("data/gwas_catalog_v1.0.2.1-studies_r2024-06-07.xlsx"))
 
 ## Visualise association count
 hist(a$`ASSOCIATION COUNT`, breaks=100)
@@ -67,7 +68,7 @@ attention <- a %>%
     weighted_n = sum(1 / n_efo),
     nhits = sum(`ASSOCIATION COUNT`),
     weighted_nhits = sum(`ASSOCIATION COUNT` / n_efo),
-    weighted_attention_score_impact_factor = sum((1 / n_efo) * `Impact facto>
+    weighted_attention_score_impact_factor = sum((1 / n_efo) * `Impact factor`),
      DISEASE_TRAIT = first(`DISEASE/TRAIT`),
     PUBMEDID = paste(unique(PUBMEDID), collapse = ", ")
   )
