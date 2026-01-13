@@ -28,6 +28,14 @@ new_causes <- unique(december1$cause_name)
 old_causes[!old_causes %in% new_causes]
 new_causes[!new_causes %in% old_causes]
 
+# which EFO mapped terms are missing?
+# a <- Second_part_GBD$`GBD term`[!Second_part_GBD$`GBD term` %in% new_causes]
+# b <- First_part_GBD$`GBD term`[!First_part_GBD$`GBD term` %in% new_causes]
+# any(b %in% a)
+# c(a,b)
+all_in <- c(Second_part_GBD$`GBD term`, First_part_GBD$`GBD term`)
+new_causes[!new_causes %in% all_in] # these are all injuries or the level 1 totals or the ones I just added
+
 table(april1$age_name)
 table(december1$age_group_name)
 

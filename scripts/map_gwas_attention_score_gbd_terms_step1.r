@@ -66,6 +66,11 @@ gbd_long$MAPPED_TRAIT_URI <- str_squish(gbd_long$MAPPED_TRAIT_URI)
 
 (head(gbd_long$MAPPED_TRAIT_URI, 20))
 
+## check which ones are in gbd_long
+gbd_terms <- unique(gbd_long$`GBD term`) #224
+# new_causes[!new_causes %in% gbd_terms]
+# gbd_terms[!gbd_terms %in% new_causes]
+
 ## Function to clean and standardize MAPPED_TRAIT_URI column in GWAS attention score file 
 clean_mapped_trait_uri <- function(uri) {
   # Convert to lowercase

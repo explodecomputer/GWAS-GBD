@@ -51,8 +51,8 @@ clean_mapped_trait_uri <- function(uri) {
 }
 
 ## Read data files
-ontology <- get_OBO("/Users/rayanaloliet/Desktop/GWAS Catalog/efo-obo.txt")
-
+# ontology <- get_OBO("/Users/rayanaloliet/Desktop/GWAS Catalog/efo-obo.txt")
+ontology <- get_OBO(here("data/efo-obo.txt"))
 file_path <- here("data", "Second_part_GBD.xlsx") 
 Second_part_GBD <- read_excel(file_path)
 
