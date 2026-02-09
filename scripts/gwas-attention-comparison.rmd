@@ -1,0 +1,102 @@
+---
+title: "GWAS Attention Score Comparison"
+author: ""
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.width = 10, fig.height = 6)
+```
+
+## Introduction
+
+This document compares the old and new GWAS attention scores to assess changes in the methodology and their impact on disease prioritization.
+
+## Load Libraries
+
+```{r libraries}
+library(here)
+library(dplyr)
+library(data.table)
+library(rineq)
+library(ggplot2)
+```
+
+## Load Data
+
+We load both the new and old attention score datasets.
+
+```{r load-data}
+# Load the new dataset
+gwas_attention_new <- fread(here("Data/merged_dataset_exclude_Injuries_2023.csv")) %>%
+  select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
+  filter(!duplicated(cause_id))
+
+# Load the old dataset for comparison
+gwas_attention_old <- fread(here("Data/Ncase_merged_dataset_exclude_Injuries.csv")) %>%
+  select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
+  filter(!duplicated(cause_id))
+```
+
+## Merge Datasets
+
+```{r merge-data}
+merged <- merge(gwas_attention_new, gwas_attention_old, by = "cause_id", suffixes = c("_new", "_old"))
+merged
+```
+
+## Correlation Analysis
+
+Calculate the Pearson correlation between old and new attention scores:
+
+```{r correlation}
+cor(merged$total_attention_score_new, merged$total_attention_score_old, method = "pearson")
+```
+
+This is really high - but it's because there are some really large values -
+
+```{r scatter-full}
+ggplot(merged, aes(x = total_attention_score_old, y = total_attention_score_new)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Correlation between Old and New Attention Scores",
+       x = "Old Attention Score",
+       y = "New Attention Score") +
+  theme_minimal()
+```
+
+
+Examining the relationship for smaller attention scores:
+
+```{r scatter-zoomed}
+ggplot(merged, aes(x = total_attention_score_old, y = total_attention_score_new)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Correlation between Old and New Attention Scores (Zoomed In)",
+       x = "Old Attention Score",
+       y = "New Attention Score") +
+  theme_minimal() +
+  xlim(0, 1e7) +
+  ylim(0, 1e7)
+```
+
+There are a number of new attention scores that are zero but were previously non-zero - Identify diseases those diseases
+
+```{r new-diseases-count}
+sum(merged$total_attention_score_new == 0 & merged$total_attention_score_old > 0)
+
+```
+
+List of studies that now have zero attention scores
+
+```{r new-diseases-list}
+merged %>%
+  filter(total_attention_score_new == 0 & total_attention_score_old > 0) %>%
+  select(cause_name_new, cause_id)
+```

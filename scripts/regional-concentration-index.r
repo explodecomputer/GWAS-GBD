@@ -22,14 +22,16 @@ get_ci <- function(x) {
   l
 }
 
-gwas_attention <- fread(here("Data/Ncase_merged_dataset_exclude_Injuries.csv")) %>%
+gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.csv")) %>%
   select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
   filter(!duplicated(cause_id))
 
 gbd1 <- fread(here("Data/december2025/gbd_gwas_paper_data_2.csv")) %>%
   rename(sex_name = sex, year = year_id)
 
-temp1 <- inner_join(gbd1, gwas_attention) %>% filter(grepl("SDI", location_name ))
+temp1 <- inner_join(gbd1, gwas_attention, by="cause_name") %>% filter(grepl("SDI", location_name ))
+
+length(unique(temp1$cause_name))
 tempglobal <-   group_by(temp1, cause_name, year, sex_name) %>%
     summarise(nloc= n(), location_name = "Global",
               total_attention_score = first(total_attention_score),
@@ -75,7 +77,7 @@ gbd2 <- fread(here("Data/december2025/gbd_gwas_paper_data_3.csv")) %>%
   rename(sex_name = sex, year = year_id)
 str(gbd2)
 
-temp2 <- inner_join(gbd2, gwas_attention) %>% filter(grepl("SDI", location_name ))
+temp2 <- inner_join(gbd2, gwas_attention, by="cause_name") %>% filter(grepl("SDI", location_name ))
 
 tempglobal <-   group_by(temp2, cause_name, year, sex_name) %>%
     summarise(nloc= n(), location_name = "Global",
@@ -112,7 +114,7 @@ ggplot(., aes(y = ci, x = year)) +
   theme_bw() +
   theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
   labs(x="Year", y="Concentration index")
-ggsave(here("figures/ci_by_year.pdf"), width = 10, height = 4)
+ggsave(here("figures/ci_by_year2.pdf"), width = 10, height = 4)
 
 o1 %>%
   dplyr::filter(year == 2023, !is.na(location_name)) %>%
@@ -132,7 +134,7 @@ ggsave(here("figures/ci_by_sex.pdf"), width = 10, height = 4)
 
 gbd3 <- fread(here("Data/december2025/gbd_gwas_paper_data_4.csv")) %>%
   rename(sex_name = sex, year = year_id)
-temp3 <- inner_join(gbd3, gwas_attention)
+temp3 <- inner_join(gbd3, gwas_attention, by="cause_name")
 o3 <- group_by(temp3, location_name, sex_name, year) %>%
   do(get_ci(.))
 
@@ -337,3 +339,6 @@ reg %>% arrange(pval_adj)
 
 reg %>% arrange(slope) %>% filter(year == 2021, pval_adj < 0.05) %>% select(cause_name, slope, location_name) %>% as.data.frame
 
+
+gwas_attention2 <- subset(gwas_attention, cause_name %in% temp1$cause_name)
+table(gwas_attention2$total_attention_score > 0)
