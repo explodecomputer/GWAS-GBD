@@ -22,9 +22,18 @@ get_ci <- function(x) {
   l
 }
 
-gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.csv")) %>%
-  select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
+gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
+  filter(analysis_type == "all") %>%
+  select(cause_name, cause_id, total_attention_score) %>%
   filter(!duplicated(cause_id))
+
+table(gwas_attention$total_attention_score == 0)
+table(duplicated(gwas_attention$cause_id))
+table(duplicated(gwas_attention$cause_name))
+
+temp <- subset(gwas_attention, total_attention_score == 0)
+
+sort(temp$cause_name)
 
 gbd1 <- fread(here("Data/december2025/gbd_gwas_paper_data_2.csv")) %>%
   rename(sex_name = sex, year = year_id)
@@ -114,7 +123,7 @@ ggplot(., aes(y = ci, x = year)) +
   theme_bw() +
   theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
   labs(x="Year", y="Concentration index")
-ggsave(here("figures/ci_by_year2.pdf"), width = 10, height = 4)
+ggsave(here("figures/ci_by_year.pdf"), width = 10, height = 4)
 
 o1 %>%
   dplyr::filter(year == 2023, !is.na(location_name)) %>%
