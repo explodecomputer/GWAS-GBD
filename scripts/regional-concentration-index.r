@@ -25,6 +25,9 @@ get_ci <- function(x) {
 gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
   filter(analysis_type == "all") %>%
   select(cause_name, cause_id, total_attention_score) %>%
+
+gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_3.csv")) %>%
+  select(cause_name = cause_name, cause_id, total_attention_score) %>%
   filter(!duplicated(cause_id))
 
 table(gwas_attention$total_attention_score == 0)
@@ -172,10 +175,10 @@ o3 %>% filter(year == 2021, sex_name == "Both") %>% arrange(ci)
 o3 %>% ungroup() %>% filter(year == 2021, sex_name == "Both") %>% filter(ci_lci > 0)
 
 
-colourPalette <- brewer.pal(5,'RdPu')
+colourPalette <- brewer.pal(7, "BrBG")
 
 spdf <- joinCountryData2Map(o3 %>% filter(year == 1990), joinCode="NAME", nameJoinColumn="location_name")
-mapDevice('pdf', file="figures/map1990.pdf")
+mapDevice('pdf', file="map1990.pdf")
 mapParams <- mapCountryData(spdf, nameColumnToPlot="ci", colourPalette = colourPalette, mapTitle="", addLegend=FALSE, catMethod=seq(min(o3$ci), max(o3$ci), length=10))
 
 do.call(addMapLegend, c(mapParams, legendLabels="all", legendWidth=0.5, legendIntervals="data", legendMar = 2))
@@ -183,8 +186,8 @@ dev.off()
 
 
 spdf <- joinCountryData2Map(o3 %>% filter(year == 2023), joinCode="NAME", nameJoinColumn="location_name")
-mapDevice('pdf', file="figures/map2023.pdf")
-mapParams <- mapCountryData(spdf, nameColumnToPlot="ci", colourPalette = colourPalette, mapTitle="", addLegend=FALSE, catMethod=seq(min(o3$ci), max(o3$ci), length=10))
+mapDevice('pdf', file="map2023.pdf")
+mapParams <- mapCountryData(spdf, nameColumnToPlot="ci", colourPalette = colourPalette, mapTitle="", addLegend=FALSE, catMethod=seq(min(o3$ci), max(o3$ci), length=10))#
 
 do.call(addMapLegend, c(mapParams, legendLabels="all", legendWidth=0.5, legendIntervals="data", legendMar = 2))
 dev.off()
@@ -260,7 +263,7 @@ ggplot(aes(x = xCoord, y = cumdist, group = group), data = dat) +
 ggsave(here("figures/lorenz_curve.pdf"), width = 6, height = 6)
 
 
-# gbd4 <- fread(here("Data/april2025/by_sdi_and_age/IHME-GBD_2021_DATA-2c936676-1.csv"))
+ gbd4 <- fread(here("Data/april2025/by_sdi_and_age/IHME-GBD_2021_DATA-2c936676-1.csv"))
 
 gbd4 <- fread(here("Data/december2025/gbd_gwas_paper_data_1.csv")) %>%
   rename(sex_name = sex, year = year_id, age_name = age_group_name, age_id = age_group_id)
@@ -270,7 +273,7 @@ temp4 <- inner_join(gbd4, gwas_attention)
 temp4$age_group <- gsub(" years", "", temp4$age_name)
 temp4$age_group <- gsub(" year", "", temp4$age_group)
 temp4$age_group <- gsub(" to ", "-", temp4$age_group)
-temp4$age_group <- factor(temp4$age_group, levels = c("<1", "2-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90-94"))
+temp4$age_group <- factor(temp4$age_group, levels = c("<1", "2-4", "5-9", "10-14", "15-19", "20-24", "25-29", "30-34", "35-39", "40-44", "45-49", "50-54", "55-59", "60-64", "65-69", "70-74", "75-79", "80-84", "85-89", "90-94"))#
 
 table(gbd4$age_id, gbd4$location_id, gbd4$year)
 
@@ -295,22 +298,43 @@ o4$location_name <- factor(o4$location_name, levels = c(
   "Low-middle SDI", "Low SDI", "Global"
 ))
 
-o4 %>%
-  dplyr::filter(year == 2023) %>%
-  ggplot(., aes(y = ci, x = age_group)) +
-    geom_errorbar(colour="grey", aes(
-      ymin = ci_lci,
-      ymax = ci_uci),
-    width = 0) +
-    geom_hline(yintercept = 0, linetype = "dashed") + 
-    facet_grid(. ~ location_name) +
-    geom_point(aes(size=daly_prop)) +
-    theme_bw() +
-    theme(axis.text.x=element_text(angle=90, vjust=0.5, hjust=1, size=6), legend.position = "inside", legend.position.inside=c(0.08,0.2)) +
-    labs(x="Age group", y="Concentration index", size="DALY proportion") +
-    ylim(-0.7, 0.7)
-ggsave(here("figures/ci_by_age.pdf"), width = 10, height = 4)
+o4 %>% 
+  dplyr::filter(year == 2023) %>% 
+  ggplot(aes(y = ci, x = age_group)) + 
+  
+  geom_errorbar(
+    aes(ymin = ci_lci, ymax = ci_uci),
+    colour = "grey",
+    width = 0
+  ) + 
+  
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  
+  geom_point(aes(size = daly_prop, color = age_group)) + 
+  
+  facet_grid(. ~ location_name) + 
+  
+  scale_color_viridis_d(option = "viridis") + 
+  
+  guides(color = guide_legend(ncol = 2)) +
+  
+  theme_bw() + 
+  theme(
+    axis.text.x = element_blank(),   # removes age labels
+    axis.ticks.x = element_blank(),
+    legend.position = "right"
+  ) + 
+  
+  labs(
+    x = NULL,
+    y = "Concentration index",
+    size = "DALY proportion",
+    color = "Age group"
+  ) + 
+  
+  ylim(-0.7, 0.7)
 
+ggsave(here("figures/ci_by_age.pdf"), width = 10, height = 4)
 
 # Which traits have the biggest change in DALY by age group?
 reg <- group_by(temp4, cause_name, year, location_name) %>%
@@ -351,3 +375,6 @@ reg %>% arrange(slope) %>% filter(year == 2021, pval_adj < 0.05) %>% select(caus
 
 gwas_attention2 <- subset(gwas_attention, cause_name %in% temp1$cause_name)
 table(gwas_attention2$total_attention_score > 0)
+
+filtered_data <- gwas_attention2[gwas_attention2$total_attention_score == 0, ]
+write.csv(filtered_data, "traits_zero_attention_score.csv", row.names = FALSE)

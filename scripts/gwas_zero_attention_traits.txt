@@ -1,0 +1,70 @@
+cause_name	cause_id	total_attention_score
+Acute hepatitis B	402	0
+Acute hepatitis C	403	0
+Acute hepatitis E	404	0
+African trypanosomiasis	350	0
+Alcoholic cardiomyopathy	938	0
+Amphetamine use disorders	564	0
+Asbestosis	512	0
+Ascariasis	361	0
+Burkitt lymphoma	1006	0
+Chlamydial infection	395	0
+Chronic hepatitis C including cirrhosis	523	0
+Cirrhosis and other chronic liver diseases	521	0
+Coal workers pneumoconiosis	513	0
+Cystic echinococcosis	353	0
+Cysticercosis	352	0
+Dietary iron deficiency	390	0
+Digestive congenital anomalies	651	0
+Dysthymia	569	0
+Edentulism	684	0
+Extensively drug-resistant tuberculosis	947	0
+Food-borne trematodiases	364	0
+G6PD deficiency	616	0
+Gallbladder and biliary tract cancer	453	0
+Genital herpes	398	0
+Gonococcal infection	396	0
+Guinea worm disease	936	0
+Hemolytic disease and other neonatal jaundice	384	0
+Hepatoblastoma	1005	0
+HIV/AIDS - Extensively drug-resistant Tuberculosis	950	0
+HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance	949	0
+Idiopathic developmental intellectual disability	582	0
+Indirect maternal deaths	375	0
+Invasive Non-typhoidal Salmonella (iNTS)	959	0
+Iodine deficiency	388	0
+Klinefelter syndrome	647	0
+Late maternal deaths	376	0
+Latent tuberculosis infection	954	0
+Liver cancer due to other causes	421	0
+Malignant neoplasm of bone and articular cartilage	1012	0
+Maternal deaths aggravated by HIV/AIDS	741	0
+Maternal sepsis and other maternal infections	368	0
+Multidrug-resistant tuberculosis without extensive drug resistance	946	0
+Near vision loss	1000	0
+Neonatal encephalopathy due to birth asphyxia and trauma	382	0
+Neural tube defects	642	0
+Non-rheumatic calcific aortic valve disease	968	0
+Non-rheumatic degenerative mitral valve disease	969	0
+Onchocerciasis	355	0
+Other hemoglobinopathies and hemolytic anemias	618	0
+Other neonatal disorders	385	0
+Other non-rheumatic valve diseases	970	0
+Other sexually transmitted infections	399	0
+Paratyphoid fever	320	0
+Periodontal diseases	683	0
+Premenstrual syndrome	609	0
+Protein-energy malnutrition	387	0
+Rabies	359	0
+Scabies	658	0
+Schistosomiasis	351	0
+Sexually transmitted infections excluding HIV	393	0
+Silicosis	511	0
+Sudden infant death syndrome	686	0
+Syphilis	394	0
+Thalassemias trait	837	0
+Trichomoniasis	397	0
+Trichuriasis	362	0
+Turner syndrome	646	0
+Vascular intestinal disorders	533	0
+Zika virus	935	0
