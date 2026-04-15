@@ -45,7 +45,7 @@ for(i in unique(temp$time_strata)) {
             yr1 = i,
             yr2 = j,
             n = sum(!is.na(merged_temp$total_attention_score.x) & !is.na(merged_temp$total_attention_score.y)), 
-            cor = cor(merged_temp$total_attention_score.x, merged_temp$total_attention_score.y, method = "pearson", use = "complete.obs")
+            cor = cor(rank(merged_temp$total_attention_score.x), rank(merged_temp$total_attention_score.y), method = "pearson", use = "complete.obs")
         )
         }, error = function(e) {
             tibble(
@@ -71,6 +71,9 @@ l %>% ggplot(aes(x = yr1, y = yr2, fill = cor)) +
          fill = "Correlation")
     
 # by year
+
+hist(temp$total_attention_score, breaks=100)
+
 
 
 temp <- gwas_attention2 %>%
@@ -110,11 +113,12 @@ l %>% ggplot(aes(x = yr1, y = yr2, fill = cor)) +
     geom_tile() +
     scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0, limits = c(-1, 1)) +
     theme_minimal() +
+    theme(legend.position="bottom") +
     labs(title = "Correlation of Total Attention Scores between Time Strata",
-         x = "Time Strata 1",
-         y = "Time Strata 2",
-         fill = "Correlation")
-    
+         x = "Year (3yr sliding window)",
+         y = "Year (3yr sliding window)",
+         fill = "Correlation between attention scores")
+ggsave(here("figures/correlation_attention_by_year.pdf"), width = 8, height = 9)
 
 
 

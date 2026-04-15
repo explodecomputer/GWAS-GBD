@@ -351,3 +351,152 @@ reg %>% arrange(slope) %>% filter(year == 2021, pval_adj < 0.05) %>% select(caus
 
 gwas_attention2 <- subset(gwas_attention, cause_name %in% temp1$cause_name)
 table(gwas_attention2$total_attention_score > 0)
+
+
+
+get_ci <- function(x) {
+  out <- ci(
+    ineqvar = x$total_attention_score,
+    outcome = x$val, method = "direct"
+  )
+  l <- tibble(
+    ci = out$concentration_index,
+    ci_se = sqrt(out$variance),
+    ci_lci = ci - 1.96 * ci_se,
+    ci_uci = ci + 1.96 * ci_se,
+    daly_sum = sum(x$val, na.rm=TRUE)
+  )
+  l
+}
+
+gwas_attention4 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
+  filter(analysis_type == "sliding_3yr") %>%
+  select(cause_name, cause_id, total_attention_score, analysis_type, time_strata)
+
+all_causes <- select(gwas_attention, cause_name, cause_id)
+gwas_attention4 <- group_by(gwas_attention4, time_strata) %>%
+  do({
+    time_strata <- unique(.$time_strata)
+    analysis_type <- unique(.$analysis_type)
+    temp <- left_join(all_causes, ., by=c("cause_name", "cause_id"))
+    temp[is.na(temp$total_attention_score), "total_attention_score"] <- 0
+    temp$time_strata <- time_strata
+    temp$analysis_type <- analysis_type
+    temp
+  }) %>% ungroup()
+
+table(table(gwas_attention4$cause_name))
+
+gini_over_time <- group_by(gwas_attention4, time_strata) %>%
+  summarise(
+    n_zero = sum(total_attention_score == 0),
+    gini = ci(
+      ineqvar = total_attention_score,
+      outcome = total_attention_score, method = "direct"
+    )$concentration_index
+  )
+
+gini_over_time %>%
+  ggplot(aes(x = time_strata, y = gini)) +
+  geom_point() +
+  geom_smooth(se=TRUE, method="lm") +
+  theme_bw() +
+  labs(x="Time strata", y="Gini index of GWAS attention score") +
+  ylim(c(0, 1))
+ggsave(here("figures/gini_over_time_fullscale.pdf"), width = 6, height = 6)
+
+gini_over_time %>%
+  ggplot(aes(x = time_strata, y = gini)) +
+  geom_point() +
+  geom_smooth(se=TRUE, method="lm") +
+  theme_bw() +
+  labs(x="Time strata", y="Gini index of GWAS attention score")
+ggsave(here("figures/gini_over_time.pdf"), width = 6, height = 6)
+
+gini_over_time %>%
+  ggplot(aes(x = time_strata, y = n_zero)) +
+  geom_point() +
+  geom_smooth(se=TRUE, method="lm") +
+  theme_bw() +
+  labs(x="Time strata", y="Number of zero attention scores")
+
+gini_over_time %>%
+  ggplot(aes(x = n_zero, y = gini)) +
+  geom_point(aes(colour=(time_strata))) +
+  geom_smooth(se=TRUE, method="lm") +
+  theme_bw() +
+  labs(x="Number of zero attention scores", y="Gini index of GWAS attention score", colour="Year")
+ggsave(here("figures/gini_vs_nzero.pdf"), width = 6, height = 6)
+
+gbd <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.csv")) %>%
+    filter(age_name == "All ages", sex_name == "Both", year == 2023, location_name %in% c("High SDI", "Low SDI")) %>%
+    select(cause_name = `Cause Name`, cause_id, DALY, location_name) %>% 
+    group_by(location_name) %>%
+    mutate(importance = rank(DALY)) %>%
+    ungroup() %>%
+    group_by(cause_name) %>%
+    mutate(high_sdi_bias = importance[1] - importance[2])
+gbd
+
+gwas_attention42 <- left_join(gwas_attention4, gbd, by=c("cause_name", "cause_id")) %>% filter(location_name == "High SDI")
+
+gini_over_time <- group_by(gwas_attention4, time_strata) %>%
+  summarise(
+    n_zero = sum(total_attention_score == 0),
+    gini = ci(
+      ineqvar = total_attention_score,
+      outcome = total_attention_score, method = "direct"
+    )$concentration_index,
+    high_sdi_bias = mean(high_sdi_bias * rank(total_attention_score), na.rm=TRUE)
+  )
+
+gini_over_time %>%
+  ggplot(aes(x = time_strata, y = high_sdi_bias)) +
+  geom_point() +
+  geom_smooth(se=TRUE, method="lm")
+
+
+# get CI by year and location but using yearly attention scores
+
+gbd2 <- fread(here("Data/december2025/gbd_gwas_paper_data_3.csv")) %>%
+  rename(sex_name = sex, year = year_id)
+str(gbd2)
+
+temp2 <- inner_join(gbd2, gwas_attention4, by=c("cause_name", "cause_id", "year"="time_strata")) %>% filter(grepl("SDI", location_name ))
+
+tempglobal <- group_by(temp2, cause_name, year, sex_name) %>%
+    summarise(nloc= n(), location_name = "Global",
+              total_attention_score = first(total_attention_score),
+              val = sum(val, na.rm=TRUE)) %>% ungroup
+tempglobal
+
+temp2 <- bind_rows(
+  temp2 %>% filter(grepl("SDI", location_name)), 
+  tempglobal
+) %>% ungroup()
+table(temp2$nloc)
+table(temp2$location_name)
+temp2
+o2 <- group_by(temp2, location_name, sex_name, year) %>%
+  do(get_ci(.))
+o2$location_name <- factor(o2$location_name, levels = c(
+  "High SDI", "High-middle SDI", "Middle SDI",
+  "Low-middle SDI", "Low SDI", "Global"
+))
+o2 <- subset(o2, !is.na(o2$location_name))
+
+
+o2 %>%
+ggplot(., aes(y = ci, x = year)) +
+  geom_errorbar(colour="grey", aes(
+    ymin = ci_lci,
+    ymax = ci_uci),
+  width = 0) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  facet_grid(. ~ location_name) +
+  geom_smooth(se=FALSE) +
+  geom_point() +
+  theme_bw() +
+  theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
+  labs(x="Year", y="Concentration index (using 3-year attention score windows)")
+ggsave(here("figures/ci_by_year_and_gwasyear.pdf"), width = 10, height = 4)
