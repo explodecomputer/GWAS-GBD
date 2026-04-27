@@ -63,13 +63,16 @@ l <- bind_rows(l)
 
 l %>% ggplot(aes(x = yr1, y = yr2, fill = cor)) +
     geom_tile() +
+    geom_text(aes(label = round(cor, 2) * 100), size = 2.5) +
     scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0, limits = c(-1, 1)) +
     theme_minimal() +
-    labs(title = "Correlation of Total Attention Scores between Time Strata",
-         x = "Time Strata 1",
-         y = "Time Strata 2",
-         fill = "Correlation")
-    
+    labs(x = "Year (3yr sliding window)",
+         y = "Year (3yr sliding window)",
+         fill = "Correlation between attention scores") +
+    theme(legend.position="none")
+
+ggsave(here("figures/correlation_attention_by_year.pdf"), width = 8, height = 9)
+
 # by year
 
 hist(temp$total_attention_score, breaks=100)
@@ -118,7 +121,6 @@ l %>% ggplot(aes(x = yr1, y = yr2, fill = cor)) +
          x = "Year (3yr sliding window)",
          y = "Year (3yr sliding window)",
          fill = "Correlation between attention scores")
-ggsave(here("figures/correlation_attention_by_year.pdf"), width = 8, height = 9)
 
 
 

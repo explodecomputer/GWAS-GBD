@@ -24,12 +24,8 @@ get_ci <- function(x) {
 
 gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
   filter(analysis_type == "all") %>%
-  select(cause_name, cause_id, total_attention_score) %>%
-
-gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_3.csv")) %>%
-  select(cause_name = cause_name, cause_id, total_attention_score) %>%
-  filter(!duplicated(cause_id))
-
+  select(cause_name, cause_id, total_attention_score)
+  
 table(gwas_attention$total_attention_score == 0)
 table(duplicated(gwas_attention$cause_id))
 table(duplicated(gwas_attention$cause_name))
@@ -300,38 +296,29 @@ o4$location_name <- factor(o4$location_name, levels = c(
 
 o4 %>% 
   dplyr::filter(year == 2023) %>% 
-  ggplot(aes(y = ci, x = age_group)) + 
-  
+  ggplot(aes(y = ci, x = age_group)) +   
   geom_errorbar(
     aes(ymin = ci_lci, ymax = ci_uci),
     colour = "grey",
     width = 0
   ) + 
-  
-  geom_hline(yintercept = 0, linetype = "dashed") + 
-  
-  geom_point(aes(size = daly_prop, color = age_group)) + 
-  
+  geom_hline(yintercept = 0, linetype = "dashed") +   
+  geom_point(aes(size = daly_prop)) + 
   facet_grid(. ~ location_name) + 
-  
-  scale_color_viridis_d(option = "viridis") + 
-  
   guides(color = guide_legend(ncol = 2)) +
-  
+  scale_x_discrete(labels = c("<1", "", "5-9", "", "15-19", "", "25-29", "", "35-39", "", "45-49", "", "55-59", "", "65-69", "", "75-79", "", "85-89", "")) +
+
   theme_bw() + 
   theme(
-    axis.text.x = element_blank(),   # removes age labels
-    axis.ticks.x = element_blank(),
-    legend.position = "right"
+    axis.text.x = element_text(angle=90, hjust=1, vjust=0.5, size=8),   # rotates age labels
+    legend.position = c(0.08, 0.2)  # places legend inside the plot
   ) + 
-  
   labs(
     x = NULL,
     y = "Concentration index",
     size = "DALY proportion",
     color = "Age group"
-  ) + 
-  
+  ) +   
   ylim(-0.7, 0.7)
 
 ggsave(here("figures/ci_by_age.pdf"), width = 10, height = 4)
@@ -525,5 +512,78 @@ ggplot(., aes(y = ci, x = year)) +
   theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
   labs(x="Year", y="Concentration index (using 3-year attention score windows)")
 ggsave(here("figures/ci_by_year_and_gwasyear.pdf"), width = 10, height = 4)
+
+
+## Now keep gbd year fixed
+
+o2 <- lapply(c(1990, 2000, 2010, 2020), function(y) {
+
+gbd2 <- fread(here("Data/december2025/gbd_gwas_paper_data_3.csv")) %>%
+  filter(year_id == y, !grepl("COVID", cause_name)) %>%
+  rename(sex_name = sex)
+str(gbd2)
+
+temp2 <- inner_join(gbd2, gwas_attention4, by=c("cause_name", "cause_id")) %>% filter(grepl("SDI", location_name ))
+
+tempglobal <- group_by(temp2, cause_name, time_strata, sex_name) %>%
+    summarise(nloc= n(), location_name = "Global",
+              total_attention_score = first(total_attention_score),
+              val = sum(val, na.rm=TRUE)) %>% ungroup
+tempglobal
+
+temp2 <- bind_rows(
+  temp2 %>% filter(grepl("SDI", location_name)), 
+  tempglobal
+) %>% ungroup()
+table(temp2$nloc)
+table(temp2$location_name)
+temp2
+o2 <- group_by(temp2, location_name, sex_name, time_strata) %>%
+  do(get_ci(.))
+o2$location_name <- factor(o2$location_name, levels = c(
+  "High SDI", "High-middle SDI", "Middle SDI",
+  "Low-middle SDI", "Low SDI", "Global"
+))
+o2 <- subset(o2, !is.na(o2$location_name)) %>% mutate(gbd_year = y)
+o2
+}) %>% bind_rows()
+
+o2 %>%
+ggplot(., aes(y = ci, x = time_strata)) +
+  geom_errorbar(colour="grey", aes(
+    ymin = ci_lci,
+    ymax = ci_uci),
+  width = 0) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  facet_grid(gbd_year ~ location_name) +
+  geom_smooth(se=FALSE) +
+  geom_point() +
+  theme_bw() +
+  theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
+  labs(x="Year", y="Concentration index (using 3-year attention score windows)")
+ggsave(here("figures/ci_by_year_and_gwasyear_gbd2023.pdf"), width = 10, height = 4)
+
+
+o2 %>%
+ggplot(., aes(y = ci, x = time_strata)) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  facet_grid(. ~ location_name) +
+  geom_smooth(se=FALSE, aes(colour=as.factor(gbd_year)), method="lm") +
+  theme_bw() +
+  theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
+  labs(x="Year", y="Concentration index (using 3-year attention score windows)") +
+  scale_colour_brewer(name = "GBD Year", type="seq")
+
+
+o2 %>%
+ggplot(., aes(y = ci, x = time_strata)) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  facet_grid(. ~ gbd_year) +
+  geom_smooth(se=FALSE, aes(colour=as.factor(location_name))) +
+  theme_bw() +
+  theme(axis.text.x=element_text(angle=90, vjust=0.5)) +
+  labs(x="Year", y="Concentration index (using 3-year attention score windows)") +
+  scale_colour_brewer(name = "GBD Year", type="qual")
+
 
 
