@@ -7,7 +7,7 @@ gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.
   select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
   filter(!duplicated(cause_id))
 
-gwas_attention2 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
+gwas_attention2 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_5.csv")) %>%
   select(cause_name, cause_id, total_attention_score, analysis_type, time_strata) %>%
   filter(!duplicated(paste(cause_id, analysis_type, time_strata)))
 

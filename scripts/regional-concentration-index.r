@@ -259,7 +259,7 @@ ggplot(aes(x = xCoord, y = cumdist, group = group), data = dat) +
 ggsave(here("figures/lorenz_curve.pdf"), width = 6, height = 6)
 
 
- gbd4 <- fread(here("Data/april2025/by_sdi_and_age/IHME-GBD_2021_DATA-2c936676-1.csv"))
+gbd4 <- fread(here("Data/april2025/by_sdi_and_age/IHME-GBD_2021_DATA-2c936676-1.csv"))
 
 gbd4 <- fread(here("Data/december2025/gbd_gwas_paper_data_1.csv")) %>%
   rename(sex_name = sex, year = year_id, age_name = age_group_name, age_id = age_group_id)
@@ -366,21 +366,6 @@ table(gwas_attention2$total_attention_score > 0)
 filtered_data <- gwas_attention2[gwas_attention2$total_attention_score == 0, ]
 write.csv(filtered_data, "traits_zero_attention_score.csv", row.names = FALSE)
 
-get_ci <- function(x) {
-  out <- ci(
-    ineqvar = x$total_attention_score,
-    outcome = x$val, method = "direct"
-  )
-  l <- tibble(
-    ci = out$concentration_index,
-    ci_se = sqrt(out$variance),
-    ci_lci = ci - 1.96 * ci_se,
-    ci_uci = ci + 1.96 * ci_se,
-    daly_sum = sum(x$val, na.rm=TRUE)
-  )
-  l
-}
-
 gwas_attention4 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
   filter(analysis_type == "sliding_3yr") %>%
   select(cause_name, cause_id, total_attention_score, analysis_type, time_strata)
@@ -452,7 +437,7 @@ gbd
 
 gwas_attention42 <- left_join(gwas_attention4, gbd, by=c("cause_name", "cause_id")) %>% filter(location_name == "High SDI")
 
-gini_over_time <- group_by(gwas_attention4, time_strata) %>%
+gini_over_time <- group_by(gwas_attention42, time_strata) %>%
   summarise(
     n_zero = sum(total_attention_score == 0),
     gini = ci(
