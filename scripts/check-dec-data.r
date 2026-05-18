@@ -183,4 +183,13 @@ dat4 %>%
         geom_abline(slope=1, intercept=0, color='red')
 
 
+### checking numbers
 
+gbd_output <- fread(here("data/december2025/gbd_gwas_paper_data_2.csv"))
+rayan_latest <- fread(here("data/merged_dataset_exclude_Injuries_2023_updated_5.csv"))
+
+unique_gbd <- unique(gbd_output$cause_name)
+unique_rayan <- unique(rayan_latest$cause_name)
+
+unique_rayan[!unique_rayan %in% unique_gbd]
+unique_gbd[!unique_gbd %in% unique_rayan]
