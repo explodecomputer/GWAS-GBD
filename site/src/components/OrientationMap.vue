@@ -1,19 +1,19 @@
 <!--
-  Cross-country orientation panel (issue 005).
-  Shows ALL countries ranked by under-attended burden share in a scrollable sidebar.
-  Clicking a bar highlights it and emits select-country.
-  When highlightedCountry changes, the panel auto-scrolls to keep it visible.
+  Cross-country orientation panel.
+  Shows ALL countries in a scrollable sidebar with a three-way sort toggle.
+  Clicking a bar navigates directly to the country story.
 -->
 <template>
   <section class="orientation-panel" aria-label="Cross-country orientation">
     <h2 class="panel-title">Country orientation</h2>
-    <p class="panel-subtitle-text">under-attended burden share, 2023</p>
-    <p class="panel-desc">
-      Click a bar to filter opportunities.<br>
-      Click again to clear.
-    </p>
+    <div class="sort-toggle">
+      <button :class="{ active: sortMode === 'burden' }"    @click="emit('update:sortMode', 'burden')">Burden share</button>
+      <button :class="{ active: sortMode === 'alignment' }" @click="emit('update:sortMode', 'alignment')">Alignment</button>
+      <button :class="{ active: sortMode === 'alpha' }"     @click="emit('update:sortMode', 'alpha')">A–Z</button>
+    </div>
+    <p class="panel-desc">Click a country to open its story.</p>
     <div class="rank-chart-scroll" ref="scrollEl">
-      <div class="rank-chart" ref="chartEl" aria-label="Country ranking by under-attended burden share"></div>
+      <div class="rank-chart" ref="chartEl" aria-label="Country ranking"></div>
     </div>
   </section>
 </template>
@@ -21,23 +21,42 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue'
 import * as d3 from 'd3'
+import { opportunityColor, metricDomain, metricValue } from '../lib/colorScale.js'
 
 const props = defineProps({
-  summaries:          { type: Array,  default: () => [] },
-  highlightedCountry: { type: Number, default: null },
+  summaries: { type: Array, default: () => [] },
+  sortMode:  { type: String, default: 'alignment' },
 })
-const emit = defineEmits(['select-country'])
+const emit = defineEmits(['select-country', 'update:sortMode'])
 
-const chartEl = ref(null)
+const chartEl  = ref(null)
 const scrollEl = ref(null)
 
-const ROW_H  = 22
-const VAL_W  = 32   // px reserved for the % label after the bar
-const PAD_L  = 4    // left margin inside SVG
+const ROW_H = 22
+const VAL_W = 32
+const PAD_L = 4
 
-// Max chars before truncating country name (proportional to labelW)
 function truncate(name, maxChars) {
   return name.length > maxChars ? name.slice(0, maxChars - 1) + '…' : name
+}
+
+function activeMode() {
+  return props.sortMode === 'alpha' ? 'alignment' : props.sortMode
+}
+
+function getSorted() {
+  const base = [...props.summaries].filter(s => s.under_attended_burden_share != null)
+  if (props.sortMode === 'alpha') return base.sort((a, b) => a.location_name.localeCompare(b.location_name))
+  if (props.sortMode === 'alignment') {
+    return base.filter(s => s.share_alignment != null).sort((a, b) => a.share_alignment - b.share_alignment)
+  }
+  return base.sort((a, b) => b.under_attended_burden_share - a.under_attended_burden_share)
+}
+
+function valFn(d) {
+  return props.sortMode === 'alignment'
+    ? (d.share_alignment ?? 0)
+    : (d.under_attended_burden_share ?? 0)
 }
 
 let lastWidth = 0
@@ -46,34 +65,30 @@ function draw() {
   if (!chartEl.value) return
   const el = chartEl.value
 
-  // Use the scroll container's width so bars fill the available space
   const containerW = scrollEl.value?.getBoundingClientRect().width || 220
-  if (containerW === lastWidth && el.children.length > 0) return  // skip same-width redraws
+  if (containerW === lastWidth && el.children.length > 0) return
   lastWidth = containerW
 
   el.innerHTML = ''
 
-  const sorted = [...props.summaries]
-    .filter(s => s.under_attended_burden_share != null)
-    .sort((a, b) => b.under_attended_burden_share - a.under_attended_burden_share)
-
+  const sorted = getSorted()
   if (sorted.length === 0) return
 
-  const width    = containerW - 2   // tiny inset for border
+  const mode = activeMode()
+  const [dMin, dMax] = metricDomain(props.summaries, mode)
+
+  const width    = containerW - 2
   const labelW   = Math.min(120, Math.floor(width * 0.50))
   const barAreaW = Math.max(20, width - PAD_L - labelW - VAL_W - 4)
   const height   = sorted.length * ROW_H + 4
 
-  const svg = d3.select(el)
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
+  const svg = d3.select(el).append('svg').attr('width', width).attr('height', height)
 
   const x = d3.scaleLinear()
-    .domain([0, d3.max(sorted, d => d.under_attended_burden_share)])
+    .domain([0, d3.max(sorted, valFn)])
     .range([0, barAreaW])
 
-  const maxChars = Math.floor(labelW / 6.2)  // approx chars at font-size 11px
+  const maxChars = Math.floor(labelW / 6.2)
 
   const rows = svg.selectAll('g.row')
     .data(sorted, d => d.location_id)
@@ -83,74 +98,38 @@ function draw() {
     .style('cursor', 'pointer')
     .on('click', (event, d) => { event.stopPropagation(); emit('select-country', d.location_id) })
 
-  // Hover highlight
   rows
-    .on('mouseenter', function() { d3.select(this).select('rect').attr('opacity', 1) })
-    .on('mouseleave', function(_, d) {
-      d3.select(this).select('rect').attr('opacity', d.location_id === props.highlightedCountry ? 1 : 0.75)
-    })
+    .on('mouseenter', function() { d3.select(this).select('.bar-fill').attr('opacity', 1) })
+    .on('mouseleave', function() { d3.select(this).select('.bar-fill').attr('opacity', 0.75) })
 
-  // Label
   rows.append('text')
-    .attr('x', labelW - 4)
-    .attr('y', ROW_H / 2)
-    .attr('text-anchor', 'end')
-    .attr('dominant-baseline', 'middle')
-    .attr('font-size', 11)
-    .attr('fill', d => d.location_id === props.highlightedCountry ? '#1a56db' : '#374151')
-    .attr('font-weight', d => d.location_id === props.highlightedCountry ? '700' : '400')
+    .attr('x', labelW - 4).attr('y', ROW_H / 2)
+    .attr('text-anchor', 'end').attr('dominant-baseline', 'middle')
+    .attr('font-size', 11).attr('fill', '#374151')
     .text(d => truncate(d.location_name, maxChars))
 
-  // Bar background track
   rows.append('rect')
-    .attr('x', labelW)
-    .attr('y', 4)
-    .attr('height', ROW_H - 8)
-    .attr('width', barAreaW)
-    .attr('rx', 2)
-    .attr('fill', '#e5e7eb')
+    .attr('x', labelW).attr('y', 4)
+    .attr('height', ROW_H - 8).attr('width', barAreaW)
+    .attr('rx', 2).attr('fill', '#e5e7eb')
 
-  // Bar fill
   rows.append('rect')
     .attr('class', 'bar-fill')
-    .attr('x', labelW)
-    .attr('y', 4)
-    .attr('height', ROW_H - 8)
-    .attr('rx', 2)
-    .attr('width', d => x(d.under_attended_burden_share))
-    .attr('fill', d => d.location_id === props.highlightedCountry ? '#1a56db' : '#60a5fa')
-    .attr('opacity', d => d.location_id === props.highlightedCountry ? 1 : 0.75)
+    .attr('x', labelW).attr('y', 4)
+    .attr('height', ROW_H - 8).attr('rx', 2)
+    .attr('width', d => x(valFn(d)))
+    .attr('fill', d => opportunityColor(metricValue(d, mode), dMin, dMax, mode))
+    .attr('opacity', 0.85)
 
-  // Value label
   rows.append('text')
-    .attr('x', labelW + barAreaW + 3)
-    .attr('y', ROW_H / 2)
+    .attr('x', labelW + barAreaW + 3).attr('y', ROW_H / 2)
     .attr('dominant-baseline', 'middle')
-    .attr('font-size', 10)
-    .attr('fill', '#6b7280')
-    .text(d => (d.under_attended_burden_share * 100).toFixed(0) + '%')
-}
-
-function scrollToHighlighted() {
-  if (!scrollEl.value || !props.highlightedCountry) return
-  const sorted = [...props.summaries]
-    .filter(s => s.under_attended_burden_share != null)
-    .sort((a, b) => b.under_attended_burden_share - a.under_attended_burden_share)
-  const idx = sorted.findIndex(d => d.location_id === props.highlightedCountry)
-  if (idx < 0) return
-  const targetTop = idx * ROW_H
-  const el = scrollEl.value
-  // Scroll so the row is in the middle of the visible area
-  el.scrollTop = targetTop - el.clientHeight / 2 + ROW_H / 2
+    .attr('font-size', 10).attr('fill', '#6b7280')
+    .text(d => (valFn(d) * 100).toFixed(0) + '%')
 }
 
 onMounted(draw)
-
-watch(() => props.summaries, draw)
-watch(() => props.highlightedCountry, () => {
-  draw()
-  scrollToHighlighted()
-})
+watch(() => [props.summaries, props.sortMode], () => { lastWidth = 0; draw() })
 
 let ro
 onMounted(() => {
