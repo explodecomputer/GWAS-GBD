@@ -12,24 +12,32 @@
       <section>
         <h3>What this explorer does</h3>
         <p>
-          The explorer helps cohort study designers discover
-          <strong>country-condition opportunities</strong> — pairings where a condition
-          carries meaningful local disease burden but receives comparatively little
-          global GWAS attention. It is not a recommendation to study any specific condition;
-          it surfaces opportunities for further evaluation.
+          GWAS attention does not always align with disease burden, and alignment shifts globally.
+          This explorer aims to help identify traits that are particularly under-represented by
+          current global GWAS coverage on a per-country basis. Such information may help with
+          designing current and future cohort studies.
         </p>
       </section>
 
       <section>
         <h3>Key terms</h3>
         <dl>
+          <dt>GWAS</dt>
+          <dd>Genome-Wide Association Study. A study design that scans the genome for genetic
+              variants associated with a trait or disease across large numbers of participants.</dd>
+
+          <dt>GBD</dt>
+          <dd>Global Burden of Disease. A systematic effort led by IHME to quantify health loss
+              from hundreds of diseases, injuries, and risk factors across countries and over time.</dd>
+
+          <dt>DALY</dt>
+          <dd>Disability-Adjusted Life Year. One DALY represents one year of healthy life lost,
+              combining years of life lost due to premature death and years lived with disability.
+              Disease burden in this explorer is measured in DALYs for all ages and both sexes.</dd>
+
           <dt>Condition</dt>
           <dd>A health condition included in the prepared GBD-GWAS analysis set after exclusions,
               mapping, and aggregation. The explorer does not expose the full GBD hierarchy.</dd>
-
-          <dt>Disease burden</dt>
-          <dd>DALY count for all ages and both sexes for a selected country and year.
-              Rates, age-standardised values, and sex-specific values are out of scope.</dd>
 
           <dt>GWAS attention</dt>
           <dd>An all-time score representing how much GWAS research has been mapped to a condition
@@ -88,7 +96,20 @@
               does not mean absence of biological plausibility.</li>
           <li>Cohort recruitment feasibility, sample-size estimation, ethics review, and
               local data availability are outside the scope of this tool.</li>
+          <li>This is one perspective on the suitability of conditions or countries for study.
+              Findings should be integrated into broader contextual considerations before
+              informing study design decisions.</li>
         </ul>
+      </section>
+
+      <section>
+        <h3>Citation</h3>
+        <p>
+          Alolayet R, Chong AHW, Aldridge RW, Davey Smith G, Hemani G, Walker JG.
+          The (mis-)alignment of genetic association studies to global health needs.
+          <em>medRxiv</em> 2026.02.09.26345919.
+          doi: <a href="https://doi.org/10.64898/2026.02.09.26345919" target="_blank" rel="noopener">10.64898/2026.02.09.26345919</a>
+        </p>
       </section>
     </div>
   </div>
