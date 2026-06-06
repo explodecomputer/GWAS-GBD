@@ -10,12 +10,14 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
-    "vue": "^3.5.13",
-    "d3": "^7.9.0"
+    "d3": "^7.9.0",
+    "topojson-client": "^3.1.0",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
+    "@playwright/test": "^1.50.0",
     "@vitejs/plugin-vue": "^5.2.3",
     "vite": "^6.3.5",
-    "@playwright/test": "^1.50.0"
+    "world-atlas": "^2.0.2"
   }
 }

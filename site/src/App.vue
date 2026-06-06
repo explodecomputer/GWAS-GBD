@@ -22,22 +22,30 @@
         <div v-if="view === 'opportunity'" class="overview-layout">
           <OrientationMap
             :summaries="summaries2023"
-            :highlighted-country="highlightedCountry"
+            :sort-mode="sortMode"
+            @update:sort-mode="sortMode = $event"
             @select-country="onMapCountry"
           />
-          <OpportunityTable
-            :opportunities="opportunities"
-            :countries="countries"
-            :conditions="conditions"
-            :country-filter="countryFilter"
-            :condition-filter="conditionFilter"
-            :sort-by="sortBy"
-            :sort-dir="sortDir"
-            @open-country="onOpenCountry"
-            @update:country-filter="v => { countryFilter = v; if (!v) highlightedCountry = null }"
-            @update:condition-filter="conditionFilter = $event"
-            @sort="onSort"
-          />
+          <div class="overview-right">
+            <WorldMap
+              :summaries="summaries2023"
+              :sort-mode="sortMode"
+              @select-country="onMapCountry"
+            />
+            <OpportunityTable
+              :opportunities="opportunities"
+              :countries="countries"
+              :conditions="conditions"
+              :country-filter="countryFilter"
+              :condition-filter="conditionFilter"
+              :sort-by="sortBy"
+              :sort-dir="sortDir"
+              @open-country="onOpenCountry"
+              @update:country-filter="countryFilter = $event"
+              @update:condition-filter="conditionFilter = $event"
+              @sort="onSort"
+            />
+          </div>
         </div>
 
         <CountryStory
@@ -62,6 +70,7 @@
 import { ref, computed, onMounted } from 'vue'
 import OpportunityTable from './components/OpportunityTable.vue'
 import OrientationMap from './components/OrientationMap.vue'
+import WorldMap from './components/WorldMap.vue'
 import CountryStory from './components/CountryStory.vue'
 import DocPanel from './components/DocPanel.vue'
 import { parseUrlState, pushUrlState } from './lib/state.js'
@@ -71,9 +80,9 @@ const view             = ref('opportunity')
 const selectedCountry  = ref(null)   // location_id
 const selectedCondition = ref(null)  // cause_id
 const selectedYear     = ref(2023)
+const sortMode           = ref('alignment')
 const countryFilter      = ref('')
 const conditionFilter    = ref('')
-const highlightedCountry = ref(null)  // location_id highlighted in orientation panel
 const sortBy             = ref('mismatch_share')
 const sortDir            = ref('desc')
 const showDoc            = ref(false)
@@ -164,14 +173,10 @@ function onOpenCountry({ locationId, causeId }) {
 }
 
 function onMapCountry(locationId) {
-  // Toggle: clicking the already-highlighted country clears the filter
-  if (highlightedCountry.value === locationId) {
-    highlightedCountry.value = null
-    countryFilter.value = ''
-  } else {
-    highlightedCountry.value = locationId
-    countryFilter.value = countries.value.find(c => c.location_id === locationId)?.location_name ?? ''
-  }
+  selectedCountry.value   = locationId
+  selectedCondition.value = null
+  view.value              = 'country'
+  syncUrl()
 }
 
 function onChangeCountry(locationId) {

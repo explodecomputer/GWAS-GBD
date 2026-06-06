@@ -33,7 +33,16 @@
             :data-highlighted="row.cause_id === highlightId ? 'true' : undefined"
           >
             <td>{{ row.cause_name }}</td>
-            <td class="num-cell">{{ fmtPct(row.mismatch_share) }}</td>
+            <td class="num-cell">
+              <span class="mismatch-bar-wrap">
+                <span
+                  class="mismatch-bar"
+                  :style="{ width: barWidth(row.mismatch_share) }"
+                  :class="mismatchClass(row.mismatch_share)"
+                ></span>
+                <span class="mismatch-label">{{ fmtPct(row.mismatch_share) }}</span>
+              </span>
+            </td>
             <td class="num-cell">{{ fmtPct(row.burden_share) }}</td>
             <td class="num-cell">{{ fmtPct(row.attention_share) }}</td>
             <td class="num-cell">{{ fmtDalys(row.dalys) }}</td>
@@ -49,7 +58,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { fmtPct, fmtDalys } from '../lib/fmt.js'
+import { fmtPct, fmtDalys, mismatchClass } from '../lib/fmt.js'
 
 const props = defineProps({
   conditions:  { type: Array, default: () => [] },  // all conditions for country+year
@@ -62,4 +71,7 @@ const rows = computed(() =>
     .filter(c => c.burden_share > c.attention_share)
     .sort((a, b) => b.mismatch_share - a.mismatch_share)
 )
+
+const maxMismatch = computed(() => Math.max(...rows.value.map(r => r.mismatch_share), 0.01))
+const barWidth = (ms) => Math.round((ms / maxMismatch.value) * 100) + '%'
 </script>

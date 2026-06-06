@@ -111,9 +111,26 @@ body {
   position: sticky;
   top: 68px;          /* below the fixed header */
 }
-.panel-title       { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 2px; }
-.panel-subtitle-text { font-size: 11px; color: #6b7280; margin-bottom: 4px; }
-.panel-desc        { font-size: 11px; color: #9ca3af; margin-bottom: 8px; line-height: 1.4; }
+.panel-title { font-size: 13px; font-weight: 700; color: #1e3a5f; margin-bottom: 6px; }
+.panel-desc  { font-size: 11px; color: #9ca3af; margin-bottom: 8px; line-height: 1.4; }
+
+.sort-toggle { display: flex; gap: 3px; flex-wrap: wrap; margin-bottom: 6px; }
+.sort-toggle button {
+  font-size: 10px;
+  padding: 2px 7px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.6;
+}
+.sort-toggle button.active {
+  background: #1e3a5f;
+  border-color: #1e3a5f;
+  color: #fff;
+}
 .rank-chart-scroll {
   overflow-y: auto;
   max-height: calc(100vh - 220px);
@@ -124,6 +141,32 @@ body {
 .rank-chart-scroll::-webkit-scrollbar       { width: 4px; }
 .rank-chart-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 2px; }
 .rank-chart svg text { font-family: inherit; }
+
+/* ── Overview right column ───────────────────────────────────────────────── */
+.overview-right { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 12px; }
+
+/* ── World map ───────────────────────────────────────────────────────────── */
+.world-map-section {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.world-map-wrap { position: relative; width: 100%; }
+.map-tooltip {
+  position: absolute;
+  background: #1f2937;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,.2);
+}
+.map-tooltip .tt-name { font-weight: 700; margin-bottom: 4px; }
+.map-tooltip .tt-row  { display: flex; gap: 10px; justify-content: space-between; }
 
 /* ── Opportunity table ───────────────────────────────────────────────────── */
 .opportunity-table-section { flex: 1; min-width: 0; margin-top: 0; }
