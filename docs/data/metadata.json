@@ -1,0 +1,12 @@
+{
+  "build_time": "2026-06-06T13:21:53Z",
+  "burden_source": "IHME GBD 2023 (gbd_gwas_paper_data_4.csv)",
+  "attention_source": "GWAS Catalog, curated GBD-GWAS alignment (merged_dataset_exclude_Injuries_2023_updated_6.csv)",
+  "burden_definition": "DALY count, all ages, both sexes",
+  "attention_definition": "All-time mapped attention score from curated GBD-GWAS alignment",
+  "eligibility_threshold": 0.01,
+  "years": [1990, 2023],
+  "n_countries": 194,
+  "n_conditions": 274,
+  "n_eligible_opps": 7075
+}
