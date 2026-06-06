@@ -280,3 +280,45 @@ gbd_gwas_merged %>% ggplot(aes(x = time_strata, y = total_attention_score_std2, 
 gbd_gwas_merged %>% ggplot(aes(x = time_strata, y = total_attention_score_std2, group=cause_name)) +
     geom_smooth(se=FALSE, method="lm") +
     facet_grid(. ~ gbd_cat)
+
+###
+
+
+library(data.table)
+library(dplyr)
+library(here)
+library(rineq)
+
+
+a <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv"))
+dim(a)
+str(a)
+
+b <- subset(a, analysis_type == "all")
+dim(b)
+head(b)
+hist(b$total_attention_score, breaks=100)
+
+
+g <- fread(here("Data/GBD_combined_dataset_EFO_6.csv"))
+hist(g$total_attention_score, breaks=1000)
+
+hist(g$weighted_nhits, breaks=1000)
+hist(g$weighted_n, breaks=1000)
+hist(g$weighted_attention_score_impact_factor, breaks=1000)
+
+plot(weighted_attention_score_impact_factor ~ weighted_n, data=g)
+
+pairs(g[,-1])
+
+hist()
+g$as <- scale(g$total_attention_score)[,1] + scale(g$weighted_nhits)[,1] + scale(g$weighted_n)[,1] + scale(g$weighted_attention_score_impact_factor)[,1]
+hist(g$as, breaks=1000)
+
+
+rineq::ci(b$total_attention_score, b$total_attention_score, method="direct")
+rineq::ci(g$total_attention_score, g$total_attention_score, method="direct")
+rineq::ci(g$weighted_n, g$weighted_n, method="direct")
+rineq::ci(g$weighted_nhits, g$weighted_nhits, method="direct")
+rineq::ci(g$weighted_attention_score_impact_factor, g$weighted_attention_score_impact_factor, method="direct")
+rineq::ci(g$as   , g$as, method="direct")
