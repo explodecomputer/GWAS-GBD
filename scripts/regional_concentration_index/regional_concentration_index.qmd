@@ -1,0 +1,559 @@
+---
+title: "Regional concentration index analysis"
+subtitle: "Trial Quarto migration from scripts/regional-concentration-index.ipynb"
+format:
+  html:
+    toc: true
+    number-sections: true
+    df-print: paged
+execute:
+  echo: false
+  warning: false
+  message: false
+  cache: true
+---
+
+```{r setup, cache=FALSE}
+source(here::here("scripts/regional_concentration_index/R/packages.R"))
+source(here::here("scripts/regional_concentration_index/R/data_loaders.R"))
+source(here::here("scripts/regional_concentration_index/R/metrics.R"))
+source(here::here("scripts/regional_concentration_index/R/analysis_sets.R"))
+source(here::here("scripts/regional_concentration_index/R/plots.R"))
+
+helper_files <- list.files(
+  here::here("scripts/regional_concentration_index/R"),
+  pattern = "\\.R$",
+  full.names = TRUE
+)
+knitr::opts_chunk$set(
+  cache.extra = paste(tools::md5sum(helper_files), collapse = "")
+)
+
+gwas_attention <- load_gwas_attention()
+all_causes <- gwas_attention %>%
+  select(cause_name, cause_id)
+gwas_attention_windows <- load_gwas_attention_windows(all_causes)
+```
+
+## Analysis aim
+
+This report examines whether inequality in GWAS attention is aligned with disease burden. The primary descriptive statistic is the concentration index of GWAS attention when diseases are ranked by DALY burden.
+
+The notebook metric is retained as `concentration_index`. This migration also reports:
+
+```text
+alignment_ratio = concentration_index / attention_gini
+```
+
+This ratio can be read as the share of GWAS attention inequality that is aligned with the disease-burden ranking. Values near 1 indicate that GWAS attention inequality is strongly ordered by burden; values near 0 indicate that attention inequality is not ordered by burden; negative values indicate concentration among lower-burden diseases.
+
+As a proportional-allocation sensitivity analysis, this report also calculates:
+
+```text
+share_distance = 0.5 * sum(abs(attention_share - daly_share))
+share_alignment = 1 - share_distance
+```
+
+This asks a different question: how close the share of GWAS attention is to the share of DALYs.
+
+## GWAS attention data
+
+```{r attention-summary}
+tibble(
+  n_causes = nrow(gwas_attention),
+  n_unique_cause_ids = n_distinct(gwas_attention$cause_id),
+  n_zero_attention = sum(gwas_attention$total_attention_score == 0),
+  n_nonzero_attention = sum(gwas_attention$total_attention_score > 0)
+)
+```
+
+```{r zero-attention-table}
+gwas_attention %>%
+  filter(total_attention_score == 0) %>%
+  arrange(cause_name) %>%
+  select(cause_name, cause_id, total_attention_score)
+```
+
+## Main SDI comparison
+
+```{r main-sdi-analysis}
+alignment_by_year <- prepare_year_alignment(gwas_attention)
+alignment_by_year_no_covid <- prepare_year_alignment(gwas_attention, exclude_covid = TRUE)
+alignment_by_year_covid_sensitivity <- bind_rows(
+  alignment_by_year %>% mutate(sensitivity = "Original"),
+  alignment_by_year_no_covid %>% mutate(sensitivity = "Excluding COVID")
+)
+
+alignment_by_year %>%
+  filter(year == 2023, sex_name == "Both") %>%
+  arrange(location_name) %>%
+  select(
+    location_name,
+    concentration_index,
+    concentration_index_lci,
+    concentration_index_uci,
+    attention_gini,
+    alignment_ratio,
+    share_distance,
+    share_alignment,
+    n_causes,
+    daly_sum
+  )
+```
+
+```{r main-sdi-plot, fig.width=10, fig.height=4}
+plot_alignment_over_time(alignment_by_year, y_var = "concentration_index")
+```
+
+```{r main-sdi-covid-sensitivity-table}
+alignment_by_year_covid_sensitivity %>%
+  filter(year >= 2019, sex_name == "Both") %>%
+  select(
+    location_name,
+    year,
+    sensitivity,
+    concentration_index,
+    alignment_ratio,
+    n_causes
+  ) %>%
+  arrange(location_name, year, sensitivity)
+```
+
+```{r main-sdi-covid-sensitivity-plot, fig.width=10, fig.height=4}
+plot_alignment_sensitivity_over_time(
+  alignment_by_year_covid_sensitivity,
+  y_var = "concentration_index"
+)
+```
+
+```{r main-sdi-covid-sensitivity-delta, fig.width=7, fig.height=4}
+plot_covid_sensitivity_delta(alignment_by_year_covid_sensitivity)
+```
+
+```{r main-sdi-ratio-plot, fig.width=10, fig.height=4}
+plot_alignment_over_time(alignment_by_year, y_var = "alignment_ratio")
+```
+
+```{r main-sdi-share-comparison, fig.width=7, fig.height=4}
+plot_sdi_alignment_metric_comparison(alignment_by_year, year_value = 2023)
+```
+
+```{r main-sdi-share-trends, fig.width=10, fig.height=4}
+plot_sdi_alignment_metric_trends(alignment_by_year)
+```
+
+## Sex-specific analysis
+
+```{r sex-analysis}
+alignment_by_sex <- prepare_sex_alignment(gwas_attention)
+
+alignment_by_sex %>%
+  filter(year == 2023) %>%
+  arrange(location_name, sex_name) %>%
+  select(
+    location_name,
+    sex_name,
+    concentration_index,
+    concentration_index_lci,
+    concentration_index_uci,
+    alignment_ratio,
+    n_causes
+  )
+```
+
+```{r sex-plot, fig.width=7, fig.height=6}
+plot_alignment_by_sex(alignment_by_sex)
+```
+
+## Country-level analysis
+
+```{r country-analysis}
+alignment_by_country <- prepare_country_alignment(gwas_attention)
+
+alignment_by_country %>%
+  filter(year == 2023, sex_name == "Both") %>%
+  arrange(desc(concentration_index)) %>%
+  select(
+    location_name,
+    concentration_index,
+    concentration_index_lci,
+    concentration_index_uci,
+    alignment_ratio,
+    daly_sum
+  ) %>%
+  head(20)
+```
+
+```{r country-rank-plot, fig.width=10, fig.height=4}
+plot_country_ranked_alignment(alignment_by_country, year_value = 2023)
+```
+
+```{r country-size-plot, fig.width=6, fig.height=4}
+alignment_by_country %>%
+  filter(year == 2023, sex_name == "Both") %>%
+  ggplot(aes(x = daly_sum, y = concentration_index)) +
+  geom_point() +
+  scale_x_log10() +
+  theme_report() +
+  labs(x = "Total DALYs", y = "Concentration index")
+```
+
+## Lorenz curves
+
+```{r lorenz-data}
+lorenz_data <- prepare_lorenz_data(gwas_attention)
+```
+
+```{r lorenz-plot, fig.width=6, fig.height=6}
+plot_lorenz_curves(lorenz_data)
+```
+
+## Age-specific analysis
+
+```{r age-analysis}
+alignment_by_age <- prepare_age_alignment(gwas_attention)
+
+alignment_by_age %>%
+  filter(year == 2023) %>%
+  arrange(location_name, age_id) %>%
+  select(
+    location_name,
+    age_name,
+    concentration_index,
+    concentration_index_lci,
+    concentration_index_uci,
+    alignment_ratio,
+    daly_prop
+  )
+```
+
+```{r age-plot, fig.width=10, fig.height=4}
+plot_age_alignment(alignment_by_age)
+```
+
+## GWAS attention inequality over time
+
+```{r attention-gini}
+gini_over_time <- prepare_attention_gini_over_time(gwas_attention_windows)
+
+gini_over_time
+```
+
+```{r attention-gini-plot, fig.width=6, fig.height=5}
+plot_gini_over_time(gini_over_time, y_var = "attention_gini")
+```
+
+```{r attention-gini-fullscale-plot, fig.width=6, fig.height=5}
+plot_attention_gini_fullscale(gini_over_time)
+```
+
+```{r zero-count-plot, fig.width=6, fig.height=5}
+plot_gini_over_time(gini_over_time, y_var = "n_zero")
+```
+
+## Burden and attention in the same year
+
+```{r yearly-attention-analysis}
+alignment_yearly_attention <- prepare_year_alignment_with_yearly_attention(gwas_attention_windows)
+
+alignment_yearly_attention %>%
+  filter(year == 2023, sex_name == "Both") %>%
+  arrange(location_name) %>%
+  select(
+    location_name,
+    concentration_index,
+    concentration_index_lci,
+    concentration_index_uci,
+    attention_gini,
+    alignment_ratio
+  )
+```
+
+```{r yearly-attention-plot, fig.width=10, fig.height=4}
+plot_alignment_over_time(alignment_yearly_attention, y_var = "concentration_index")
+```
+
+## Fixed GBD year with changing GWAS attention year
+
+```{r fixed-gbd-year-analysis}
+alignment_fixed_gbd_year <- prepare_fixed_gbd_year_alignment(gwas_attention_windows)
+
+alignment_fixed_gbd_year %>%
+  filter(sex_name == "Both", time_strata == 2023) %>%
+  arrange(gbd_year, location_name) %>%
+  select(
+    gbd_year,
+    location_name,
+    concentration_index,
+    concentration_index_lci,
+    concentration_index_uci,
+    alignment_ratio
+  )
+```
+
+```{r fixed-gbd-year-plot, fig.width=10, fig.height=6}
+plot_fixed_gbd_year_alignment(alignment_fixed_gbd_year)
+```
+
+## High-SDI and Low-SDI burden priority
+
+```{r sdi-bias}
+sdi_bias <- get_high_low_sdi_bias(load_gbd_sdi_year(), year_value = 1990)
+
+sdi_bias %>%
+  count(priority_group = high_sdi_bias_group)
+```
+
+```{r sdi-bias-plot, fig.width=6, fig.height=5}
+p_sdi_priority_rank <- sdi_bias %>%
+  ggplot(aes(x = `High SDI`, y = `Low SDI`, colour = high_sdi_bias_group)) +
+  geom_point() +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
+  scale_colour_brewer(type = "qual") +
+  theme_report() +
+  labs(
+    x = "DALY rank in High SDI",
+    y = "DALY rank in Low SDI",
+    colour = "Priority group"
+  )
+
+p_sdi_priority_rank
+```
+
+```{r sdi-bias-group-trends, fig.width=7, fig.height=6}
+sdi_bias_group_trends <- prepare_sdi_bias_group_trends(gwas_attention_windows)
+
+p_sdi_priority_trends <- plot_sdi_bias_group_trends(sdi_bias_group_trends)
+
+p_sdi_priority_trends
+```
+
+```{r sdi-bias-attention-rank-data}
+sdi_bias_attention_rank <- prepare_sdi_bias_attention_rank(gwas_attention)
+```
+
+```{r low-sdi-bias-attention-rank-plot, fig.width=9, fig.height=7}
+p_low_sdi_priority_attention_rank <- plot_low_sdi_attention_rank_lollipop(sdi_bias_attention_rank)
+
+p_low_sdi_priority_attention_rank
+```
+
+```{r low-sdi-bias-attention-rank-table}
+sdi_bias_attention_rank %>%
+  filter(comparison == "Most Low-SDI priority traits", is_highlighted) %>%
+  arrange(attention_rank_percentile, total_attention_score, cause_name) %>%
+  select(
+    cause_name,
+    total_attention_score,
+    attention_rank,
+    attention_rank_percentile,
+    attention_status,
+    high_sdi_priority_score = high_sdi_bias
+  )
+```
+
+```{r high-sdi-bias-attention-rank-plot, fig.width=9, fig.height=7}
+p_high_sdi_priority_attention_rank <- plot_high_sdi_attention_rank_lollipop(sdi_bias_attention_rank)
+
+p_high_sdi_priority_attention_rank
+```
+
+```{r high-sdi-bias-attention-rank-table}
+sdi_bias_attention_rank %>%
+  filter(comparison == "Most High-SDI priority traits", is_highlighted) %>%
+  arrange(attention_rank_percentile, total_attention_score, cause_name) %>%
+  select(
+    cause_name,
+    total_attention_score,
+    attention_rank,
+    attention_rank_percentile,
+    attention_status,
+    high_sdi_priority_score = high_sdi_bias
+  )
+```
+
+```{r sdi-priority-four-panel, fig.width=16, fig.height=12}
+sdi_priority_four_panel <- save_sdi_priority_four_panel(
+  p_sdi_priority_rank,
+  p_sdi_priority_trends,
+  p_low_sdi_priority_attention_rank,
+  p_high_sdi_priority_attention_rank
+)
+
+sdi_priority_four_panel
+```
+
+## Zero-attention disease burden trends
+
+```{r zero-attention-daly}
+zero_attention_dalys <- prepare_zero_attention_dalys(gwas_attention)
+
+zero_attention_dalys
+```
+
+```{r zero-attention-daly-plot, fig.width=8, fig.height=8}
+plot_zero_attention_dalys(zero_attention_dalys)
+```
+
+```{r figure-exports, include=FALSE, eval=!identical(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"), "1")}
+dir.create(here("figures"), showWarnings = FALSE, recursive = TRUE)
+
+ggsave(
+  here("figures/ci_by_year.pdf"),
+  plot_alignment_over_time(alignment_by_year, y_var = "concentration_index"),
+  width = 10,
+  height = 4
+)
+
+ggsave(
+  here("figures/ci_by_sex.pdf"),
+  plot_alignment_by_sex(alignment_by_sex),
+  width = 10,
+  height = 4
+)
+
+country_map_data <- alignment_by_country %>%
+  rename(ci = concentration_index)
+colour_palette <- brewer.pal(7, "BrBG")
+map_breaks <- seq(
+  min(country_map_data$ci, na.rm = TRUE),
+  max(country_map_data$ci, na.rm = TRUE),
+  length = 10
+)
+
+spdf_1990 <- joinCountryData2Map(
+  country_map_data %>% filter(year == 1990),
+  joinCode = "NAME",
+  nameJoinColumn = "location_name"
+)
+pdf(here("figures/map1990.pdf"))
+map_params <- mapCountryData(
+  spdf_1990,
+  nameColumnToPlot = "ci",
+  colourPalette = colour_palette,
+  mapTitle = "",
+  addLegend = FALSE,
+  catMethod = map_breaks
+)
+do.call(addMapLegend, c(
+  map_params,
+  legendLabels = "all",
+  legendWidth = 0.5,
+  legendIntervals = "data",
+  legendMar = 2
+))
+dev.off()
+
+spdf_2023 <- joinCountryData2Map(
+  country_map_data %>% filter(year == 2023),
+  joinCode = "NAME",
+  nameJoinColumn = "location_name"
+)
+pdf(here("figures/map2023.pdf"))
+map_params <- mapCountryData(
+  spdf_2023,
+  nameColumnToPlot = "ci",
+  colourPalette = colour_palette,
+  mapTitle = "",
+  addLegend = FALSE,
+  catMethod = map_breaks
+)
+do.call(addMapLegend, c(
+  map_params,
+  legendLabels = "all",
+  legendWidth = 0.5,
+  legendIntervals = "data",
+  legendMar = 2
+))
+dev.off()
+
+ggsave(
+  here("figures/lorenz_curve.pdf"),
+  plot_lorenz_curves(lorenz_data),
+  width = 6,
+  height = 6
+)
+
+ggsave(
+  here("figures/ci_by_age.pdf"),
+  plot_age_alignment(alignment_by_age),
+  width = 10,
+  height = 4
+)
+
+ggsave(
+  here("figures/gini_over_time_fullscale.pdf"),
+  plot_attention_gini_fullscale(gini_over_time),
+  width = 6,
+  height = 6
+)
+
+ggsave(
+  here("figures/gini_over_time.pdf"),
+  plot_gini_over_time(gini_over_time, y_var = "attention_gini"),
+  width = 6,
+  height = 6
+)
+
+ggsave(
+  here("figures/gini_vs_nzero.pdf"),
+  gini_over_time %>%
+    ggplot(aes(x = n_zero, y = attention_gini)) +
+    geom_point(aes(colour = time_strata)) +
+    geom_smooth(se = TRUE, method = "lm") +
+    theme_report() +
+    labs(
+      x = "Number of zero attention scores",
+      y = "Gini index of GWAS attention score",
+      colour = "Year"
+    ),
+  width = 6,
+  height = 6
+)
+
+ggsave(
+  here("figures/ci_by_year_and_gwasyear.pdf"),
+  plot_alignment_over_time(alignment_yearly_attention, y_var = "concentration_index") +
+    labs(y = "Concentration index (using 3-year attention score windows)"),
+  width = 10,
+  height = 4
+)
+
+ggsave(
+  here("figures/ci_by_year_and_gwasyear_gbd2023.pdf"),
+  plot_fixed_gbd_year_alignment(alignment_fixed_gbd_year) +
+    labs(y = "Concentration index (using 3-year attention score windows)"),
+  width = 10,
+  height = 4
+)
+
+top_disease_trends_export <- prepare_top_disease_trends(gwas_attention_windows)
+ggsave(
+  here("figures/daly_trends_top_diseases.pdf"),
+  plot_top_disease_trends(top_disease_trends_export),
+  width = 10,
+  height = 6
+)
+
+ggsave(
+  here("figures/daly_gwas_trends_by_sdi_relevance.pdf"),
+  p_sdi_priority_trends,
+  width = 7,
+  height = 6
+)
+
+ggsave(
+  here("figures/daly_trends_zero_attention_traits.png"),
+  plot_zero_attention_dalys(zero_attention_dalys),
+  width = 8,
+  height = 8
+)
+```
+
+## Reproducibility notes
+
+This Quarto migration keeps `scripts/regional-concentration-index.ipynb` unchanged. The report sources reusable code from `scripts/regional_concentration_index/R/` and can be rendered from the repository root with:
+
+```bash
+quarto render scripts/regional_concentration_index/regional_concentration_index.qmd --output-dir outputs
+```
