@@ -115,9 +115,19 @@ if (!is.null(ontology_labels) && !is.null(embed_server_url)) {
     error = function(e) { message("  ", conditionMessage(e)); FALSE }
   )
   if (server_ok) {
-    ont_meta_emb <- ontology_labels %>%
-      distinct(ontology_id, label) %>%
-      rename(synonyms = label)   # ontology_labels has one row per (id, label/synonym)
+    # Build embedding metadata directly from the OBO object:
+    # primary label + all synonyms concatenated into one string per term.
+    ont_meta_emb <- data.frame(
+      ontology_id = toupper(gsub("_", ":", gsub("^efo:", "", ont$id,
+                                                ignore.case = TRUE))),
+      label       = coalesce(ont$name, ""),
+      synonyms    = vapply(ont$id, function(id) {
+        s <- if (!is.null(ont$synonym)) ont$synonym[[id]] else NULL
+        if (is.null(s) || length(s) == 0) NA_character_
+        else paste(s, collapse = " ")
+      }, character(1)),
+      stringsAsFactors = FALSE
+    )
     candidates <- add_embedding_candidates(
       existing_candidates    = candidates,
       gbd_context            = gbd_context,
