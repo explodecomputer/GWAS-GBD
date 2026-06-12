@@ -42,6 +42,26 @@ test.describe('Opportunity view', () => {
     expect(filteredRows).toBeLessThan(allRows)
     expect(filteredRows).toBeGreaterThan(0)
   })
+
+  test('condition link filters table to that condition', async ({ page }) => {
+    await page.goto(BASE)
+    await page.getByTestId('opportunity-table').waitFor({ timeout: 10000 })
+
+    const firstCondition = page.getByTestId('condition-filter-link').first()
+    const conditionName = (await firstCondition.innerText()).replace(/\s+/g, ' ').trim()
+
+    await firstCondition.click()
+
+    await expect(page.getByTestId('condition-filter')).toHaveValue(conditionName)
+    await expect(page.getByTestId('opportunity-table')).toBeVisible()
+    await expect(page.getByTestId('summary-panel')).toHaveCount(0)
+
+    const visibleConditionNames = await page.getByTestId('condition-filter-link').evaluateAll(nodes =>
+      nodes.slice(0, 10).map(node => node.textContent.replace(/\s+/g, ' ').trim())
+    )
+    expect(visibleConditionNames.length).toBeGreaterThan(0)
+    expect(visibleConditionNames.every(name => name === conditionName)).toBeTruthy()
+  })
 })
 
 test.describe('Country story navigation', () => {

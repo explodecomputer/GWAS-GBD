@@ -16,7 +16,8 @@ source(here("site/R/validate.R"))
 OUT_DIR       <- here("site/public/data")
 COUNTRY_DIR   <- file.path(OUT_DIR, "country")
 GBD_PATH      <- here("Data/december2025/gbd_gwas_paper_data_4.csv")
-ATTENTION_PATH <- here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv")
+ATTENTION_SOURCE <- "merged_dataset_exclude_Injuries_2023_updated_6.csv"
+ATTENTION_PATH <- here("Data", ATTENTION_SOURCE)
 ELIGIBILITY_THRESHOLD <- 0.01
 
 dir.create(COUNTRY_DIR, recursive = TRUE, showWarnings = FALSE)
@@ -149,7 +150,10 @@ message("Writing metadata.json...")
 meta <- list(
   build_time            = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
   burden_source         = "IHME GBD 2023 (gbd_gwas_paper_data_4.csv)",
-  attention_source      = "GWAS Catalog, curated GBD-GWAS alignment (merged_dataset_exclude_Injuries_2023_updated_6.csv)",
+  attention_source      = sprintf(
+    "GWAS Catalog, curated GBD-GWAS alignment (%s)",
+    ATTENTION_SOURCE
+  ),
   burden_definition     = "DALY count, all ages, both sexes",
   attention_definition  = "All-time mapped attention score from curated GBD-GWAS alignment",
   eligibility_threshold = ELIGIBILITY_THRESHOLD,

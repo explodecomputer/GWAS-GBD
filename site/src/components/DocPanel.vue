@@ -7,7 +7,7 @@
     <div class="doc-panel">
       <button class="doc-close" @click="$emit('close')" aria-label="Close">✕</button>
 
-      <h2>About the GWAS Opportunity Explorer</h2>
+      <h2>About the GWAS-GBD Explorer</h2>
 
       <section>
         <h3>What this explorer does</h3>
@@ -45,10 +45,10 @@
               it does not measure GWAS activity performed within the selected country.</dd>
 
           <dt>Mismatch share</dt>
-          <dd>Disease burden share minus GWAS attention share. Eligible opportunities are ranked
+          <dd>Disease burden share minus GWAS attention share. Low attention conditions are ranked
               by mismatch share by default.</dd>
 
-          <dt>Eligible opportunity</dt>
+          <dt>Low attention condition</dt>
           <dd>A country-condition pair where the condition carries at least
               {{ props.metadata?.eligibility_threshold != null ? (props.metadata.eligibility_threshold * 100).toFixed(0) : 1 }}%
               of the country's disease burden and its burden share is greater than its attention share.</dd>
@@ -91,7 +91,7 @@
         <h3>Caveats</h3>
         <ul>
           <li>GWAS attention is global evidence, not a measure of GWAS activity within the selected country.</li>
-          <li>A high mismatch share signals a potential opportunity, not a recommendation.</li>
+          <li>A high mismatch share signals a low attention condition, not a recommendation.</li>
           <li>Zero-attention conditions are labelled and included; absence of GWAS evidence
               does not mean absence of biological plausibility.</li>
           <li>Cohort recruitment feasibility, sample-size estimation, ethics review, and

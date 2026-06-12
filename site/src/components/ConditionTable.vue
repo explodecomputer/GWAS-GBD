@@ -8,6 +8,14 @@
     <p class="section-desc">
       Conditions where disease burden share exceeds global GWAS attention share.
     </p>
+    <dl class="column-definitions" aria-label="Column definitions">
+      <div><dt>Condition:</dt><dd>GBD study term</dd></div>
+      <div><dt>Mismatch share:</dt><dd>burden share minus GWAS attention share</dd></div>
+      <div><dt>Burden share:</dt><dd>share of the country's DALYs</dd></div>
+      <div><dt>GWAS attention share:</dt><dd>share of mapped global GWAS attention</dd></div>
+      <div><dt>DALYs:</dt><dd>healthy life years lost</dd></div>
+      <div><dt>Zero attention:</dt><dd>no mapped GWAS attention</dd></div>
+    </dl>
 
     <div v-if="rows.length === 0" class="empty-state">No under-attended conditions found.</div>
 
@@ -18,7 +26,7 @@
             <th>Condition</th>
             <th class="num-th">Mismatch share</th>
             <th class="num-th">Burden share</th>
-            <th class="num-th">Attention share</th>
+            <th class="num-th">GWAS attention share</th>
             <th class="num-th">DALYs</th>
             <th class="num-th">Zero attention</th>
           </tr>

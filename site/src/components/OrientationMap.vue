@@ -5,13 +5,13 @@
 -->
 <template>
   <section class="orientation-panel" aria-label="Cross-country orientation">
-    <h2 class="panel-title">Country orientation</h2>
+    <h2 class="panel-title">Country</h2>
+    <p class="panel-desc">Alignment between country's disease burden and global GWAS attention.</p>
     <div class="sort-toggle">
       <button :class="{ active: sortMode === 'burden' }"    @click="emit('update:sortMode', 'burden')">Burden share</button>
       <button :class="{ active: sortMode === 'alignment' }" @click="emit('update:sortMode', 'alignment')">Alignment</button>
       <button :class="{ active: sortMode === 'alpha' }"     @click="emit('update:sortMode', 'alpha')">A–Z</button>
     </div>
-    <p class="panel-desc">Click a country to open its story.</p>
     <div class="rank-chart-scroll" ref="scrollEl">
       <div class="rank-chart" ref="chartEl" aria-label="Country ranking"></div>
     </div>

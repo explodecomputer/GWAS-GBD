@@ -1,5 +1,5 @@
 {
-  "build_time": "2026-06-06T13:21:53Z",
+  "build_time": "2026-06-12T09:20:56Z",
   "burden_source": "IHME GBD 2023 (gbd_gwas_paper_data_4.csv)",
   "attention_source": "GWAS Catalog, curated GBD-GWAS alignment (merged_dataset_exclude_Injuries_2023_updated_6.csv)",
   "burden_definition": "DALY count, all ages, both sexes",

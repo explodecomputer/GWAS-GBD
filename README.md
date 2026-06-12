@@ -1,5 +1,82 @@
 # Project Title: GBD-GWAS
 
+## Website
+
+The interactive website is a Vite/Vue app in `site/`. The production build is
+written to `docs/`, which is the static site directory used for publishing.
+
+### Render the website locally
+
+Install the frontend dependencies once:
+
+```bash
+npm install --prefix site
+```
+
+Start the development server with hot reload:
+
+```bash
+make dev
+```
+
+This runs `npm run dev` inside `site/`. Vite will print the local URL to open in
+your browser.
+
+To preview the production build instead:
+
+```bash
+make build
+make preview
+```
+
+### Update the website
+
+Use this workflow when changing the site or refreshing its data:
+
+1. Edit the Vue app, styles, or supporting code under `site/src/`.
+2. If source data changed, regenerate the static JSON artifacts:
+
+   ```bash
+   make artifacts
+   ```
+
+   This runs `Rscript site/R/build.R` and writes JSON files under
+   `site/public/data/`.
+
+3. Build the production site:
+
+   ```bash
+   make build
+   ```
+
+   The Vite build writes the publishable files to `docs/`.
+
+4. Check the production build locally:
+
+   ```bash
+   make preview
+   ```
+
+5. Run the browser smoke tests after building:
+
+   ```bash
+   make test-e2e
+   ```
+
+For a full data-to-site refresh, run:
+
+```bash
+make all
+```
+
+By default the Vite base path is `/GWAS-GBD/`, which matches GitHub Pages-style
+project hosting. For a custom domain or root-hosted preview, override it while
+building:
+
+```bash
+cd site && VITE_BASE=/ npm run build
+```
+
 # Project Plan:
 
 This study integrates metadata from the GWAS Catalog and the Global Burden of Disease (GBD) studies to evaluate the role of genome-wide association studies (GWAS) in addressing global health outcomes. Combining data from these two sources—specifically, "traits" in GWAS and "health conditions" in the GBD study—is a complex process due to differences in disease mapping between them. Hence, we employed multiple methods to align the two datasets, we first used Experimental Factor Ontology (EFO) terms to match manually mapped EFO terms from the GBD with the corresponding traits in the GWAS Catalog. For cases where no direct match was found, we applied a string-based matching function to identify similarities between GWAS traits and GBD health conditions. This helped maximize coverage of GBD conditions and address misalignments between diseases and their mapped EFO terms. Also, we conducted manual curation of GWAS traits to identify any remaining semantic relationships with GBD health conditions, ensuring a more comprehensive alignment between the two datasets.
@@ -113,7 +190,5 @@ Negative rank difference: Indicates the disease receives more attention than its
 Rank difference close to 0: Implies that the attention given to the disease is proportional to its burden, indicating a balanced attention-to-burden ratio.
 
 Note: Health conditions with zero GWAS attention were excluded from the analysis to avoid artificial ranks and distortion of the rank difference
-
-
 
 

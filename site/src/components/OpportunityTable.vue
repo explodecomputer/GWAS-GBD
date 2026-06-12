@@ -1,5 +1,5 @@
 <template>
-  <section class="opportunity-table-section" aria-label="Eligible country-condition opportunities">
+  <section class="opportunity-table-section" aria-label="Low attention country-condition outcomes">
     <div class="table-controls">
       <div class="filter-row">
         <label class="filter-label">
@@ -32,9 +32,18 @@
           </select>
         </label>
 
-        <span class="row-count">{{ filtered.length.toLocaleString() }} opportunities</span>
+        <span class="row-count">{{ filtered.length.toLocaleString() }} low attention conditions</span>
       </div>
     </div>
+    <dl class="column-definitions" aria-label="Column definitions">
+      <div><dt>Country:</dt><dd>GBD admin0 location</dd></div>
+      <div><dt>Condition:</dt><dd>GBD study term</dd></div>
+      <div><dt>Mismatch share:</dt><dd>burden share minus GWAS attention share</dd></div>
+      <div><dt>Burden share:</dt><dd>share of the country's DALYs</dd></div>
+      <div><dt>GWAS attention share:</dt><dd>share of mapped global GWAS attention</dd></div>
+      <div><dt>DALYs:</dt><dd>healthy life years lost</dd></div>
+      <div><dt>Zero attention:</dt><dd>no mapped GWAS attention</dd></div>
+    </dl>
 
     <div class="table-scroll">
       <table class="opp-table" data-testid="opportunity-table">
@@ -42,11 +51,9 @@
           <tr>
             <th @click="setSort('location_name')" :class="thClass('location_name')">Country</th>
             <th @click="setSort('cause_name')"    :class="thClass('cause_name')">Condition</th>
-            <th @click="setSort('mismatch_share')" :class="thClass('mismatch_share')">
-              Mismatch share <span class="col-hint" title="Burden share − GWAS attention share">ⓘ</span>
-            </th>
+            <th @click="setSort('mismatch_share')" :class="thClass('mismatch_share')">Mismatch share</th>
             <th @click="setSort('burden_share')"  :class="thClass('burden_share')">Burden share</th>
-            <th @click="setSort('attention_share')" :class="thClass('attention_share')">Attention share</th>
+            <th @click="setSort('attention_share')" :class="thClass('attention_share')">GWAS attention share</th>
             <th @click="setSort('dalys')"          :class="thClass('dalys')">DALYs</th>
             <th class="col-flag">Zero attention</th>
           </tr>
@@ -61,7 +68,16 @@
             data-testid="opportunity-row"
           >
             <td class="country-link-cell">{{ row.location_name }}</td>
-            <td class="condition-cell">{{ row.cause_name }}</td>
+            <td class="condition-cell">
+              <button
+                type="button"
+                class="condition-link"
+                data-testid="condition-filter-link"
+                @click.stop="filterToCondition(row)"
+              >
+                {{ row.cause_name }}
+              </button>
+            </td>
             <td class="num-cell">
               <span class="mismatch-bar-wrap">
                 <span
@@ -141,6 +157,13 @@ function setSort(col) {
   const dir = props.sortBy === col && props.sortDir === 'desc' ? 'asc' : 'desc'
   page.value = 0
   emit('sort', { by: col, dir })
+}
+
+function filterToCondition(row) {
+  page.value = 0
+  emit('update:countryFilter', '')
+  emit('update:conditionFilter', row.cause_name)
+  emit('sort', { by: 'mismatch_share', dir: 'desc' })
 }
 
 function thClass(col) {

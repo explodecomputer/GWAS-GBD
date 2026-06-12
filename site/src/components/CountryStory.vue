@@ -88,7 +88,7 @@
         <p class="section-desc">
           Points below the diagonal have more local burden than global GWAS attention.
           <span class="legend">
-            <span class="dot eligible"></span> Eligible opportunity &nbsp;
+            <span class="dot eligible"></span> High country burden, low global attention &nbsp;
             <span class="dot zero"></span> Zero attention &nbsp;
             <span class="dot other"></span> Other condition &nbsp;
             <span class="dot highlight"></span> Selected condition
