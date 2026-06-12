@@ -22,7 +22,7 @@ get_ci <- function(x) {
   l
 }
 
-gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
+gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
   filter(analysis_type == "all") %>%
   select(cause_name, cause_id, total_attention_score)
   
@@ -366,7 +366,7 @@ table(gwas_attention2$total_attention_score > 0)
 filtered_data <- gwas_attention2[gwas_attention2$total_attention_score == 0, ]
 write.csv(filtered_data, "traits_zero_attention_score.csv", row.names = FALSE)
 
-gwas_attention4 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_4.csv")) %>%
+gwas_attention4 <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
   filter(analysis_type == "sliding_3yr") %>%
   select(cause_name, cause_id, total_attention_score, analysis_type, time_strata)
 
@@ -425,7 +425,7 @@ gini_over_time %>%
   labs(x="Number of zero attention scores", y="Gini index of GWAS attention score", colour="Year")
 ggsave(here("figures/gini_vs_nzero.pdf"), width = 6, height = 6)
 
-gbd <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.csv")) %>%
+gbd <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
     filter(age_name == "All ages", sex_name == "Both", year == 2023, location_name %in% c("High SDI", "Low SDI")) %>%
     select(cause_name = `Cause Name`, cause_id, DALY, location_name) %>% 
     group_by(location_name) %>%

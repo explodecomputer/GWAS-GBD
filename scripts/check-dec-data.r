@@ -185,8 +185,8 @@ dat4 %>%
 
 ### checking numbers
 
-gbd_output <- fread(here("data/december2025/gbd_gwas_paper_data_2.csv"))
-rayan_latest <- fread(here("data/merged_dataset_exclude_Injuries_2023_updated_5.csv"))
+gbd_output <- fread(here("Data/december2025/gbd_gwas_paper_data_2.csv"))
+rayan_latest <- fread(here("Data/merged_dataset_exclude_Injuries.csv"))
 
 unique_gbd <- unique(gbd_output$cause_name)
 unique_rayan <- unique(rayan_latest$cause_name)

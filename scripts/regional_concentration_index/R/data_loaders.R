@@ -1,5 +1,6 @@
 load_gwas_attention <- function(
-    path = here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv"),
+    # path = here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv"),
+    path = here("Data/merged_dataset_exclude_Injuries.csv"),
     analysis_type_value = "all") {
   fread(path) %>%
     filter(analysis_type == analysis_type_value) %>%
@@ -8,7 +9,8 @@ load_gwas_attention <- function(
 
 load_gwas_attention_windows <- function(
     all_causes,
-    path = here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv")) {
+    # path = here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv")) {
+    path = here("Data/merged_dataset_exclude_Injuries.csv")) {
   windows <- fread(path) %>%
     filter(analysis_type == "sliding_3yr") %>%
     select(cause_name, cause_id, total_attention_score, analysis_type, time_strata)

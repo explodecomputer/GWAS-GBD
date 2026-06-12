@@ -401,23 +401,122 @@ plot_high_sdi_attention_rank_lollipop <- function(plot_data) {
   )
 }
 
+plot_sdi_attention_rank_lollipop_facets <- function(plot_data) {
+  selected <- plot_data %>%
+    filter(is_highlighted) %>%
+    mutate(
+      `SDI priority traits` = case_when(
+        comparison == "Most Low-SDI priority traits" ~ "Low-SDI priority traits",
+        comparison == "Most High-SDI priority traits" ~ "High-SDI priority traits",
+        TRUE ~ comparison
+      ),
+      cause_label = cause_name,
+      attention_label = if_else(
+        total_attention_score == 0,
+        "0",
+        format(total_attention_score, big.mark = ",", trim = TRUE)
+      )
+    ) %>%
+    arrange(`SDI priority traits`, attention_rank_percentile, total_attention_score, cause_name)
+
+  background <- plot_data %>%
+    mutate(
+      `SDI priority traits` = case_when(
+        comparison == "Most Low-SDI priority traits" ~ "Low-SDI priority traits",
+        comparison == "Most High-SDI priority traits" ~ "High-SDI priority traits",
+        TRUE ~ comparison
+      ),
+      cause_label = "All mapped traits"
+    )
+
+  cause_levels <- c("All mapped traits", selected$cause_name)
+
+  ggplot() +
+    geom_point(
+      data = background,
+      aes(x = attention_rank_percentile, y = factor(cause_label, levels = cause_levels)),
+      colour = "grey70",
+      alpha = 0.45,
+      size = 1.2,
+      position = position_jitter(height = 0.08, width = 0)
+    ) +
+    geom_segment(
+      data = selected,
+      aes(
+        x = 0,
+        xend = attention_rank_percentile,
+        y = factor(cause_label, levels = cause_levels),
+        yend = factor(cause_label, levels = cause_levels)
+      ),
+      colour = "grey80"
+    ) +
+    geom_point(
+      data = selected,
+      aes(
+        x = attention_rank_percentile,
+        y = factor(cause_label, levels = cause_levels),
+        colour = attention_status
+      ),
+      size = 2.2
+    ) +
+    geom_text(
+      data = selected %>% filter(total_attention_score > 0),
+      aes(
+        x = attention_rank_percentile,
+        y = factor(cause_label, levels = cause_levels),
+        label = attention_label
+      ),
+      hjust = -0.2,
+      size = 2.6,
+      colour = "grey30"
+    ) +
+    facet_grid(`SDI priority traits` ~ ., scales = "free_y", space = "free_y") +
+    scale_x_continuous(
+      labels = scales::percent_format(accuracy = 1),
+      limits = c(0, 1.10),
+      expand = expansion(mult = c(0.01, 0.01))
+    ) +
+    scale_colour_manual(values = c(
+      "Zero attention" = "#b2182b",
+      "Non-zero attention" = "#2166ac"
+    )) +
+    theme_report() +
+    theme(
+      axis.text.x = element_text(angle = 0),
+      panel.grid.major.y = element_blank(),
+      strip.text.y = element_text(angle = 270)
+    ) +
+    labs(
+      x = "GWAS attention rank percentile",
+      y = NULL,
+      colour = NULL,
+      title = "SDI priority traits in GWAS attention rank"
+    )
+}
+
 save_sdi_priority_four_panel <- function(
     rank_plot,
     trend_plot,
-    low_attention_plot,
-    high_attention_plot,
+    attention_rank_plot,
     path = here("figures/sdi_priority_four_panel.pdf")) {
-  combined <- cowplot::plot_grid(
+  left_column <- cowplot::plot_grid(
     rank_plot,
     trend_plot,
-    low_attention_plot,
-    high_attention_plot,
-    labels = c("A", "B", "C", "D"),
-    ncol = 2,
-    align = "hv"
+    labels = c("A", "B"),
+    ncol = 1,
+    align = "v"
   )
 
-  ggsave(path, combined, width = 16, height = 12)
+  combined <- cowplot::plot_grid(
+    left_column,
+    attention_rank_plot,
+    labels = c("", "C"),
+    ncol = 2,
+    rel_widths = c(0.9, 1.1),
+    align = "h"
+  )
+
+  ggsave(path, combined, width = 16, height = 10)
   combined
 }
 

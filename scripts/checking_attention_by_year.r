@@ -3,11 +3,11 @@ library(data.table)
 library(dplyr)
 library(ggplot2)
 
-gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.csv")) %>%
+gwas_attention <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
   select(cause_name = `Cause Name`, cause_id, total_attention_score) %>%
   filter(!duplicated(cause_id))
 
-gwas_attention2 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_5.csv")) %>%
+gwas_attention2 <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
   select(cause_name, cause_id, total_attention_score, analysis_type, time_strata) %>%
   filter(!duplicated(paste(cause_id, analysis_type, time_strata)))
 
@@ -129,7 +129,7 @@ l %>% ggplot(aes(x = yr1, y = yr2, fill = cor)) +
 # There are still 69 terms with zero attention
 
 # Read in the new dataset
-gwas_attention2 <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_2.csv")) %>%
+gwas_attention2 <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
   select(cause_name = `Cause Name`, cause_id, total_attention_score, analysis_type, time_strata) %>%
   filter(!duplicated(paste(cause_id, analysis_type, time_strata)))
  
@@ -176,7 +176,7 @@ group_by(temp, cause_name) %>%
         geom_smooth(se=FALSE, method="lm")
 
 
-gbd <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated.csv")) %>%
+gbd <- fread(here("Data/merged_dataset_exclude_Injuries.csv")) %>%
     filter(age_name == "All ages", sex_name == "Both", year == 2023, location_name %in% c("High SDI", "Low SDI")) %>%
     select(cause_name = `Cause Name`, cause_id, DALY, location_name) %>% 
     group_by(location_name) %>%
@@ -290,7 +290,7 @@ library(here)
 library(rineq)
 
 
-a <- fread(here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv"))
+a <- fread(here("Data/merged_dataset_exclude_Injuries.csv"))
 dim(a)
 str(a)
 
@@ -300,7 +300,7 @@ head(b)
 hist(b$total_attention_score, breaks=100)
 
 
-g <- fread(here("Data/GBD_combined_dataset_EFO_6.csv"))
+g <- fread(here("Data/GBD_combined_dataset_EFO.csv"))
 hist(g$total_attention_score, breaks=1000)
 
 hist(g$weighted_nhits, breaks=1000)
