@@ -22,15 +22,15 @@ plot_alignment_by_sex <- function(alignment) {
     labs(x = "Concentration index", y = NULL, colour = NULL)
 }
 
-plot_alignment_over_time <- function(alignment, y_var = "concentration_index") {
+plot_alignment_over_time <- function(alignment, y_var = "concentration_index", lci_var = "concentration_index_lci", uci_var = "concentration_index_uci") {
   alignment %>%
     ggplot(aes(y = .data[[y_var]], x = year)) +
     geom_hline(yintercept = 0, linetype = "dashed") +
     geom_point() +
     geom_errorbar(
       aes(
-        ymin = concentration_index_lci,
-        ymax = concentration_index_uci
+        ymin = .data[[lci_var]],
+        ymax = .data[[uci_var]]
       ),
       colour = "grey",
       width = 0

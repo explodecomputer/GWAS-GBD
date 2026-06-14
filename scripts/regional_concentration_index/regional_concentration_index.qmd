@@ -268,16 +268,24 @@ alignment_yearly_attention %>%
   arrange(location_name) %>%
   select(
     location_name,
-    concentration_index,
-    concentration_index_lci,
-    concentration_index_uci,
+    concentration_index_rev,
+    concentration_index_rev_lci,
+    concentration_index_rev_uci,
     attention_gini,
     alignment_ratio
   )
 ```
 
 ```{r yearly-attention-plot, fig.width=10, fig.height=4}
-plot_alignment_over_time(alignment_yearly_attention, y_var = "concentration_index")
+plot_alignment_over_time(alignment_yearly_attention, y_var = "concentration_index_rev", lci_var = "concentration_index_rev_lci", uci_var = "concentration_index_rev_uci")
+```
+
+```{r yearly-attention-plot2, fig.width=10, fig.height=4}
+plot_alignment_over_time(alignment_yearly_attention, y_var = "concentration_index", lci_var = "concentration_index_lci", uci_var = "concentration_index_uci")
+```
+
+```{r yearly-attention-plot3, fig.width=10, fig.height=4}
+plot_alignment_over_time(alignment_yearly_attention, y_var = "alignment_ratio", lci_var = "concentration_index_rev_lci", uci_var = "concentration_index_rev_uci")
 ```
 
 ## Fixed GBD year with changing GWAS attention year

@@ -16,7 +16,7 @@ source(here("site/R/validate.R"))
 OUT_DIR       <- here("site/public/data")
 COUNTRY_DIR   <- file.path(OUT_DIR, "country")
 GBD_PATH      <- here("Data/december2025/gbd_gwas_paper_data_4.csv")
-ATTENTION_SOURCE <- "merged_dataset_exclude_Injuries_2023_updated_6.csv"
+ATTENTION_SOURCE <- "merged_dataset_exclude_Injuries.csv"
 ATTENTION_PATH <- here("Data", ATTENTION_SOURCE)
 ELIGIBILITY_THRESHOLD <- 0.01
 

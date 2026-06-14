@@ -35,11 +35,23 @@ get_alignment_metrics <- function(data) {
   gini_value <- attention_gini$concentration_index
   share_metrics <- get_share_alignment(data)
 
+  burden_ci_rev <- safe_ci(
+    ineqvar = data$total_attention_score,
+    outcome = data$val
+  )
+  ci_value_rev <- burden_ci_rev$concentration_index
+  ci_se_rev <- sqrt(burden_ci_rev$variance)
+
+
   tibble(
     concentration_index = ci_value,
     concentration_index_se = ci_se,
     concentration_index_lci = ci_value - 1.96 * ci_se,
     concentration_index_uci = ci_value + 1.96 * ci_se,
+    concentration_index_rev = ci_value_rev,
+    concentration_index_rev_se = ci_se_rev,
+    concentration_index_rev_lci = ci_value_rev - 1.96 * ci_se_rev,
+    concentration_index_rev_uci = ci_value_rev + 1.96 * ci_se_rev,
     attention_gini = gini_value,
     alignment_ratio = ci_value / gini_value,
     share_distance = share_metrics$share_distance,
