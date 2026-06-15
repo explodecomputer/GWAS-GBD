@@ -120,6 +120,14 @@ alignment_by_year %>%
 plot_alignment_over_time(alignment_by_year, y_var = "concentration_index")
 ```
 
+Also try the reverse concentration index, which ranks diseases by GWAS attention and measures the concentration of DALY burden. In the original we're asking "Is GWAS attention concentrated among high-burden diseases?" In the reverse, we're asking "Is DALY burden concentrated among high-attention diseases?"
+
+```{r main-sdi-plot-rev, fig.width=10, fig.height=4}
+plot_alignment_over_time(alignment_by_year, y_var = "concentration_index_rev",
+                         lci_var = "concentration_index_rev_lci",
+                         uci_var = "concentration_index_rev_uci")
+```
+
 ```{r main-sdi-covid-sensitivity-table}
 alignment_by_year_covid_sensitivity %>%
   filter(year >= 2019, sex_name == "Both") %>%

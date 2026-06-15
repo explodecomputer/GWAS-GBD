@@ -81,12 +81,13 @@ compute_attention_score_outputs <- function(attention,
                                             master_map,
                                             gbd_hierarchy_path,
                                             gbd_universe,
+                                            exclude_causes,
                                             rollup_fn = rollup_hierarchy,
                                             temporal_fn = build_temporal_scores_from_master) {
   leaf_scores <- map_attention_to_gbd_leaves_from_master(
     attention,
     master_map,
-    EXCLUDE_CAUSES
+    exclude_causes
   )
 
   all_scores_raw <- rollup_fn(leaf_scores, gbd_hierarchy_path)
@@ -96,7 +97,7 @@ compute_attention_score_outputs <- function(attention,
   temporal_scores <- temporal_fn(
     attention,
     master_map,
-    EXCLUDE_CAUSES,
+    exclude_causes,
     gbd_hierarchy_path
   )
 
@@ -138,6 +139,8 @@ run_attention_score_pipeline <- function(inputs,
   message("Step 0: Deriving GBD universe (non-injury leaf terms at levels 3/4)...")
   gbd_universe <- derive_universe_fn(inputs$gbd_hierarchy)
   message("  GBD universe: ", nrow(gbd_universe), " terms")
+  excluded_causes <- derive_excluded_causes(inputs$gbd_hierarchy, gbd_universe)
+  message("  Excluded causes (aggregates + injuries): ", length(excluded_causes))
 
   message("Step 1: Loading GWAS attention data...")
   citescore <- load_citescore(inputs$citescore)
@@ -170,6 +173,7 @@ run_attention_score_pipeline <- function(inputs,
     master_map = master_map,
     gbd_hierarchy_path = inputs$gbd_hierarchy,
     gbd_universe = gbd_universe,
+    exclude_causes = excluded_causes,
     rollup_fn = rollup_fn,
     temporal_fn = temporal_fn
   )

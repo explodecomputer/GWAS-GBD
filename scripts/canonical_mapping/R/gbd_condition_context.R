@@ -52,13 +52,15 @@ library(readxl)
 #'   is_residual, cause_id, alias, excluded_alias, scope_note
 build_gbd_condition_context <- function(hierarchy_path,
                                          exclude_causes = character(0),
+                                         outline_pattern = "^[AB]",
                                          include_levels = c(3L, 4L)) {
   h <- .load_gbd_hierarchy(hierarchy_path)
 
   h <- h %>%
     filter(
       (is.null(include_levels) | gbd_level %in% include_levels),
-      !cause_name %in% exclude_causes
+      !cause_name %in% exclude_causes,
+      is.null(outline_pattern) | is.na(outline) | grepl(outline_pattern, outline)
     )
 
   # Siblings: all conditions sharing the same parent (excluding self)

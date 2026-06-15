@@ -47,11 +47,7 @@ write.csv(universe$terms,
 
 # ── Step 2: GBD condition context (Issue 013) ─────────────────────────────
 message("Step 2: Building GBD condition context...")
-.pf <- new.env(parent = baseenv())
-source(here("scripts/attention_scores/pipeline_functions.R"), local = .pf)
-gbd_context <- build_gbd_condition_context(hierarchy_path,
-                                            exclude_causes = .pf$EXCLUDE_CAUSES)
-rm(.pf)
+gbd_context <- build_gbd_condition_context(hierarchy_path)
 message(sprintf("  Conditions: %d (%d residual)",
                 nrow(gbd_context), sum(gbd_context$is_residual)))
 write.csv(gbd_context,

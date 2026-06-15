@@ -6,81 +6,6 @@ library(readxl)
 library(ontologyIndex)
 library(data.table)
 
-# ── Exclusion list (69 terms) ──────────────────────────────────────────────
-# 32 high-level aggregates (levels 0-2) + 37 injury terms (levels 3-4).
-# Defined once here; used in load_gbd_efo_maps and map_attention_to_gbd_leaves.
-EXCLUDE_CAUSES <- c(
-  "All causes",
-  "Communicable, maternal, neonatal, and nutritional diseases",
-  "HIV/AIDS and sexually transmitted infections",
-  "Respiratory infections and tuberculosis",
-  "Enteric infections",
-  "Neglected tropical diseases and malaria",
-  "Other infectious diseases",
-  "Maternal and neonatal disorders",
-  "Nutritional deficiencies",
-  "Non-communicable diseases",
-  "Neoplasms",
-  "Cardiovascular diseases",
-  "Chronic respiratory diseases",
-  "Digestive diseases",
-  "Neurological disorders",
-  "Mental disorders",
-  "Substance use disorders",
-  "Diabetes and kidney diseases",
-  "Skin and subcutaneous diseases",
-  "Sense organ diseases",
-  "Musculoskeletal disorders",
-  "Other non-communicable diseases",
-  "Injuries",
-  "Transport injuries",
-  "Unintentional injuries",
-  "Self-harm and interpersonal violence",
-  "Other COVID-19 pandemic-related outcomes",
-  "Total cancers",
-  "Total burden related to hepatitis B",
-  "Total burden related to hepatitis C",
-  "Total burden related to Non-alcoholic fatty liver disease (NAFLD)",
-  "Total Cancers excluding Non-melanoma skin cancer",
-  # 37 injury level 3-4 terms
-  "Road injuries",
-  "Pedestrian road injuries",
-  "Cyclist road injuries",
-  "Motorcyclist road injuries",
-  "Motor vehicle road injuries",
-  "Other road injuries",
-  "Other transport injuries",
-  "Falls",
-  "Drowning",
-  "Fire, heat, and hot substances",
-  "Poisonings",
-  "Poisoning by carbon monoxide",
-  "Poisoning by other means",
-  "Exposure to mechanical forces",
-  "Unintentional firearm injuries",
-  "Other exposure to mechanical forces",
-  "Adverse effects of medical treatment",
-  "Animal contact",
-  "Venomous animal contact",
-  "Non-venomous animal contact",
-  "Foreign body",
-  "Pulmonary aspiration and foreign body in airway",
-  "Foreign body in eyes",
-  "Foreign body in other body part",
-  "Environmental heat and cold exposure",
-  "Exposure to forces of nature",
-  "Other unintentional injuries",
-  "Self-harm",
-  "Self-harm by firearm",
-  "Self-harm by other specified means",
-  "Interpersonal violence",
-  "Physical violence by firearm",
-  "Physical violence by sharp object",
-  "Sexual violence",
-  "Physical violence by other means",
-  "Conflict and terrorism",
-  "Police conflict and executions"
-)
 
 # ── GBD universe derivation ───────────────────────────────────────────────
 # Returns the canonical set of non-injury leaf terms at levels 3/4.
@@ -120,6 +45,22 @@ derive_gbd_universe <- function(hierarchy_path) {
     filter(!cause_name %in% parent_name) %>%
     select(cause_name, cause_id, level) %>%
     arrange(cause_name)
+}
+
+# Returns all GBD cause names that are NOT in the universe — i.e. aggregate
+# terms (levels 0-2) and injury terms (C/D outline at levels 3/4).
+# Pass the already-derived universe to avoid re-reading the XLSX.
+derive_excluded_causes <- function(hierarchy_path,
+                                   universe = derive_gbd_universe(hierarchy_path)) {
+  sheet_names <- excel_sheets(hierarchy_path)
+  cause_sheet <- grep("cause hierarchy", sheet_names, ignore.case = TRUE,
+                      value = TRUE)[1]
+  h <- read_xlsx(hierarchy_path, sheet = cause_sheet)
+  names(h) <- trimws(names(h))
+  cause_name_col <- grep("^[Cc]ause.?[Nn]ame$", names(h), value = TRUE)[1]
+  all_names <- unique(trimws(as.character(h[[cause_name_col]])))
+  all_names <- all_names[nzchar(all_names) & !is.na(all_names)]
+  setdiff(all_names, universe$cause_name)
 }
 
 # ── Internal URI normalisation ─────────────────────────────────────────────

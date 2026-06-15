@@ -55,32 +55,31 @@ Acute hepatitis,400,2086,sliding_3yr,2008
 Acute hepatitis,400,6697,sliding_3yr,2009
 Acute hepatitis,400,28546,sliding_3yr,2010
 Acute hepatitis,400,33727,sliding_3yr,2011
-Acute hepatitis,400,30616,sliding_3yr,2012
-Acute hepatitis,400,6681,sliding_3yr,2013
-Acute hepatitis,400,6875,sliding_3yr,2014
+Acute hepatitis,400,29116,sliding_3yr,2012
+Acute hepatitis,400,5181,sliding_3yr,2013
+Acute hepatitis,400,5375,sliding_3yr,2014
 Acute hepatitis,400,5375,sliding_3yr,2015
-Acute hepatitis,400,13110,sliding_3yr,2016
-Acute hepatitis,400,7735,sliding_3yr,2017
-Acute hepatitis,400,9054,sliding_3yr,2018
-Acute hepatitis,400,6878,sliding_3yr,2019
-Acute hepatitis,400,17674,sliding_3yr,2020
-Acute hepatitis,400,25750,sliding_3yr,2021
-Acute hepatitis,400,185641,sliding_3yr,2022
-Acute hepatitis,400,195944,sliding_3yr,2023
-Acute hepatitis,400,186549,sliding_3yr,2024
+Acute hepatitis,400,12613,sliding_3yr,2016
+Acute hepatitis,400,7238,sliding_3yr,2017
+Acute hepatitis,400,8557,sliding_3yr,2018
+Acute hepatitis,400,2589,sliding_3yr,2019
+Acute hepatitis,400,13385,sliding_3yr,2020
+Acute hepatitis,400,21385,sliding_3yr,2021
+Acute hepatitis,400,176790,sliding_3yr,2022
+Acute hepatitis,400,181374,sliding_3yr,2023
+Acute hepatitis,400,172055,sliding_3yr,2024
 Acute hepatitis,400,2086,year,2009
 Acute hepatitis,400,4611,year,2011
 Acute hepatitis,400,23935,year,2012
 Acute hepatitis,400,5181,year,2013
-Acute hepatitis,400,1500,year,2014
 Acute hepatitis,400,5375,year,2016
-Acute hepatitis,400,7735,year,2018
+Acute hepatitis,400,7238,year,2018
 Acute hepatitis,400,1319,year,2020
-Acute hepatitis,400,5559,year,2021
+Acute hepatitis,400,1270,year,2021
 Acute hepatitis,400,10796,year,2022
-Acute hepatitis,400,9395,year,2023
-Acute hepatitis,400,165450,year,2024
-Acute hepatitis,400,21099,year,2025
+Acute hepatitis,400,9319,year,2023
+Acute hepatitis,400,156675,year,2024
+Acute hepatitis,400,15380,year,2025
 Acute hepatitis A,401,3824,all,
 Acute hepatitis A,401,69,sliding_3yr,2016
 Acute hepatitis A,401,69,sliding_3yr,2017
@@ -697,22 +696,21 @@ Autism spectrum disorders,575,5720206,year,2022
 Autism spectrum disorders,575,284597,year,2023
 Autism spectrum disorders,575,97013,year,2024
 Autism spectrum disorders,575,6413,year,2025
-Bacterial skin diseases,980,30432,sliding_3yr,2016
-Bacterial skin diseases,980,30432,sliding_3yr,2017
-Bacterial skin diseases,980,30432,sliding_3yr,2018
-Bacterial skin diseases,980,891310,sliding_3yr,2019
-Bacterial skin diseases,980,912980,sliding_3yr,2020
-Bacterial skin diseases,980,925176,sliding_3yr,2021
-Bacterial skin diseases,980,400580,sliding_3yr,2022
-Bacterial skin diseases,980,615490,sliding_3yr,2023
-Bacterial skin diseases,980,644829,sliding_3yr,2024
-Bacterial skin diseases,980,30432,year,2018
-Bacterial skin diseases,980,891310,year,2021
-Bacterial skin diseases,980,21670,year,2022
+Bacterial skin diseases,980,25912,sliding_3yr,2016
+Bacterial skin diseases,980,25912,sliding_3yr,2017
+Bacterial skin diseases,980,25912,sliding_3yr,2018
+Bacterial skin diseases,980,875124,sliding_3yr,2019
+Bacterial skin diseases,980,875124,sliding_3yr,2020
+Bacterial skin diseases,980,887320,sliding_3yr,2021
+Bacterial skin diseases,980,365184,sliding_3yr,2022
+Bacterial skin diseases,980,452288,sliding_3yr,2023
+Bacterial skin diseases,980,454670,sliding_3yr,2024
+Bacterial skin diseases,980,25912,year,2018
+Bacterial skin diseases,980,875124,year,2021
 Bacterial skin diseases,980,12196,year,2023
-Bacterial skin diseases,980,366714,year,2024
-Bacterial skin diseases,980,236580,year,2025
-Bacterial skin diseases,980,41535,year,2026
+Bacterial skin diseases,980,352988,year,2024
+Bacterial skin diseases,980,87104,year,2025
+Bacterial skin diseases,980,14578,year,2026
 Benign and in situ cervical and uterine neoplasms,966,57129,all,
 Benign and in situ cervical and uterine neoplasms,966,10966,sliding_3yr,2016
 Benign and in situ cervical and uterine neoplasms,966,10966,sliding_3yr,2017
@@ -832,15 +830,15 @@ Blindness and vision loss,981,152173,sliding_3yr,2012
 Blindness and vision loss,981,185151,sliding_3yr,2013
 Blindness and vision loss,981,159784,sliding_3yr,2014
 Blindness and vision loss,981,223902,sliding_3yr,2015
-Blindness and vision loss,981,510768,sliding_3yr,2016
-Blindness and vision loss,981,1022053,sliding_3yr,2017
-Blindness and vision loss,981,2160843,sliding_3yr,2018
-Blindness and vision loss,981,7107768,sliding_3yr,2019
-Blindness and vision loss,981,6996994,sliding_3yr,2020
-Blindness and vision loss,981,6071449,sliding_3yr,2021
-Blindness and vision loss,981,4217859,sliding_3yr,2022
-Blindness and vision loss,981,4623325,sliding_3yr,2023
-Blindness and vision loss,981,8819660,sliding_3yr,2024
+Blindness and vision loss,981,510677,sliding_3yr,2016
+Blindness and vision loss,981,1021962,sliding_3yr,2017
+Blindness and vision loss,981,2160752,sliding_3yr,2018
+Blindness and vision loss,981,7086833,sliding_3yr,2019
+Blindness and vision loss,981,6976059,sliding_3yr,2020
+Blindness and vision loss,981,6050471,sliding_3yr,2021
+Blindness and vision loss,981,4092567,sliding_3yr,2022
+Blindness and vision loss,981,4425240,sliding_3yr,2023
+Blindness and vision loss,981,8596266,sliding_3yr,2024
 Blindness and vision loss,981,96,year,2005
 Blindness and vision loss,981,96,year,2006
 Blindness and vision loss,981,827,year,2009
@@ -852,15 +850,15 @@ Blindness and vision loss,981,16208,year,2014
 Blindness and vision loss,981,71112,year,2015
 Blindness and vision loss,981,72464,year,2016
 Blindness and vision loss,981,80326,year,2017
-Blindness and vision loss,981,357978,year,2018
+Blindness and vision loss,981,357887,year,2018
 Blindness and vision loss,981,583749,year,2019
 Blindness and vision loss,981,1219116,year,2020
-Blindness and vision loss,981,5304903,year,2021
+Blindness and vision loss,981,5283968,year,2021
 Blindness and vision loss,981,472975,year,2022
-Blindness and vision loss,981,293571,year,2023
-Blindness and vision loss,981,3451313,year,2024
-Blindness and vision loss,981,878441,year,2025
-Blindness and vision loss,981,4489906,year,2026
+Blindness and vision loss,981,293528,year,2023
+Blindness and vision loss,981,3326064,year,2024
+Blindness and vision loss,981,805648,year,2025
+Blindness and vision loss,981,4464554,year,2026
 Brain and central nervous system cancer,477,66829,all,
 Brain and central nervous system cancer,477,5291,sliding_3yr,2007
 Brain and central nervous system cancer,477,5291,sliding_3yr,2008
@@ -971,35 +969,27 @@ Cannabis use disorders,565,12064,year,2019
 Cannabis use disorders,565,20916,year,2020
 Cannabis use disorders,565,360327,year,2023
 Cannabis use disorders,565,14808,year,2024
-Cardiomyopathy and myocarditis,499,2444,sliding_3yr,2009
-Cardiomyopathy and myocarditis,499,3630,sliding_3yr,2010
-Cardiomyopathy and myocarditis,499,7980,sliding_3yr,2011
-Cardiomyopathy and myocarditis,499,5536,sliding_3yr,2012
-Cardiomyopathy and myocarditis,499,4350,sliding_3yr,2013
-Cardiomyopathy and myocarditis,499,664,sliding_3yr,2014
-Cardiomyopathy and myocarditis,499,760,sliding_3yr,2015
-Cardiomyopathy and myocarditis,499,20139,sliding_3yr,2016
-Cardiomyopathy and myocarditis,499,19475,sliding_3yr,2017
-Cardiomyopathy and myocarditis,499,25093,sliding_3yr,2018
-Cardiomyopathy and myocarditis,499,61503,sliding_3yr,2019
-Cardiomyopathy and myocarditis,499,81889,sliding_3yr,2020
-Cardiomyopathy and myocarditis,499,78448,sliding_3yr,2021
-Cardiomyopathy and myocarditis,499,320475,sliding_3yr,2022
-Cardiomyopathy and myocarditis,499,343245,sliding_3yr,2023
-Cardiomyopathy and myocarditis,499,407399,sliding_3yr,2024
-Cardiomyopathy and myocarditis,499,2444,year,2011
-Cardiomyopathy and myocarditis,499,1186,year,2012
-Cardiomyopathy and myocarditis,499,4350,year,2013
-Cardiomyopathy and myocarditis,499,664,year,2016
+Cardiomyopathy and myocarditis,499,332,sliding_3yr,2014
+Cardiomyopathy and myocarditis,499,428,sliding_3yr,2015
+Cardiomyopathy and myocarditis,499,8145,sliding_3yr,2016
+Cardiomyopathy and myocarditis,499,7813,sliding_3yr,2017
+Cardiomyopathy and myocarditis,499,10574,sliding_3yr,2018
+Cardiomyopathy and myocarditis,499,13451,sliding_3yr,2019
+Cardiomyopathy and myocarditis,499,22271,sliding_3yr,2020
+Cardiomyopathy and myocarditis,499,19623,sliding_3yr,2021
+Cardiomyopathy and myocarditis,499,146797,sliding_3yr,2022
+Cardiomyopathy and myocarditis,499,142552,sliding_3yr,2023
+Cardiomyopathy and myocarditis,499,169568,sliding_3yr,2024
+Cardiomyopathy and myocarditis,499,332,year,2016
 Cardiomyopathy and myocarditis,499,96,year,2017
-Cardiomyopathy and myocarditis,499,19379,year,2018
-Cardiomyopathy and myocarditis,499,5714,year,2020
-Cardiomyopathy and myocarditis,499,55789,year,2021
-Cardiomyopathy and myocarditis,499,20386,year,2022
-Cardiomyopathy and myocarditis,499,2273,year,2023
-Cardiomyopathy and myocarditis,499,297816,year,2024
-Cardiomyopathy and myocarditis,499,43156,year,2025
-Cardiomyopathy and myocarditis,499,66427,year,2026
+Cardiomyopathy and myocarditis,499,7717,year,2018
+Cardiomyopathy and myocarditis,499,2857,year,2020
+Cardiomyopathy and myocarditis,499,10594,year,2021
+Cardiomyopathy and myocarditis,499,8820,year,2022
+Cardiomyopathy and myocarditis,499,209,year,2023
+Cardiomyopathy and myocarditis,499,137768,year,2024
+Cardiomyopathy and myocarditis,499,4575,year,2025
+Cardiomyopathy and myocarditis,499,27225,year,2026
 Caries of deciduous teeth,681,657650,all,
 Caries of deciduous teeth,681,3000,sliding_3yr,2009
 Caries of deciduous teeth,681,11363,sliding_3yr,2010
@@ -1206,45 +1196,43 @@ Chronic hepatitis C including cirrhosis,523,14893,year,2021
 Chronic hepatitis C including cirrhosis,523,10573,year,2022
 Chronic hepatitis C including cirrhosis,523,153622,year,2024
 Chronic hepatitis C including cirrhosis,523,12464,year,2025
-Chronic kidney disease,589,293,sliding_3yr,2005
-Chronic kidney disease,589,293,sliding_3yr,2006
-Chronic kidney disease,589,9408,sliding_3yr,2007
-Chronic kidney disease,589,107415,sliding_3yr,2008
-Chronic kidney disease,589,113754,sliding_3yr,2009
-Chronic kidney disease,589,257069,sliding_3yr,2010
-Chronic kidney disease,589,162004,sliding_3yr,2011
-Chronic kidney disease,589,241368,sliding_3yr,2012
-Chronic kidney disease,589,115101,sliding_3yr,2013
-Chronic kidney disease,589,220293,sliding_3yr,2014
-Chronic kidney disease,589,137713,sliding_3yr,2015
-Chronic kidney disease,589,478154,sliding_3yr,2016
-Chronic kidney disease,589,646869,sliding_3yr,2017
-Chronic kidney disease,589,721841,sliding_3yr,2018
-Chronic kidney disease,589,512921,sliding_3yr,2019
-Chronic kidney disease,589,330694,sliding_3yr,2020
-Chronic kidney disease,589,303139,sliding_3yr,2021
-Chronic kidney disease,589,2533219,sliding_3yr,2022
-Chronic kidney disease,589,2564816,sliding_3yr,2023
-Chronic kidney disease,589,2594305,sliding_3yr,2024
-Chronic kidney disease,589,293,year,2007
-Chronic kidney disease,589,9115,year,2009
-Chronic kidney disease,589,98300,year,2010
-Chronic kidney disease,589,6339,year,2011
-Chronic kidney disease,589,152430,year,2012
-Chronic kidney disease,589,3235,year,2013
-Chronic kidney disease,589,85703,year,2014
-Chronic kidney disease,589,26163,year,2015
-Chronic kidney disease,589,108427,year,2016
-Chronic kidney disease,589,3123,year,2017
-Chronic kidney disease,589,366604,year,2018
-Chronic kidney disease,589,277142,year,2019
-Chronic kidney disease,589,78095,year,2020
-Chronic kidney disease,589,157684,year,2021
-Chronic kidney disease,589,94915,year,2022
-Chronic kidney disease,589,50540,year,2023
-Chronic kidney disease,589,2387764,year,2024
-Chronic kidney disease,589,126512,year,2025
-Chronic kidney disease,589,80029,year,2026
+Chronic kidney disease,589,188,sliding_3yr,2005
+Chronic kidney disease,589,188,sliding_3yr,2006
+Chronic kidney disease,589,4436,sliding_3yr,2007
+Chronic kidney disease,589,8012,sliding_3yr,2008
+Chronic kidney disease,589,12149,sliding_3yr,2009
+Chronic kidney disease,589,29731,sliding_3yr,2010
+Chronic kidney disease,589,25967,sliding_3yr,2011
+Chronic kidney disease,589,41576,sliding_3yr,2012
+Chronic kidney disease,589,44957,sliding_3yr,2013
+Chronic kidney disease,589,86337,sliding_3yr,2014
+Chronic kidney disease,589,66591,sliding_3yr,2015
+Chronic kidney disease,589,292733,sliding_3yr,2016
+Chronic kidney disease,589,320739,sliding_3yr,2017
+Chronic kidney disease,589,331431,sliding_3yr,2018
+Chronic kidney disease,589,123993,sliding_3yr,2019
+Chronic kidney disease,589,86978,sliding_3yr,2020
+Chronic kidney disease,589,126073,sliding_3yr,2021
+Chronic kidney disease,589,248862,sliding_3yr,2022
+Chronic kidney disease,589,239637,sliding_3yr,2023
+Chronic kidney disease,589,214266,sliding_3yr,2024
+Chronic kidney disease,589,188,year,2007
+Chronic kidney disease,589,4248,year,2009
+Chronic kidney disease,589,3764,year,2010
+Chronic kidney disease,589,4137,year,2011
+Chronic kidney disease,589,21830,year,2012
+Chronic kidney disease,589,19746,year,2014
+Chronic kidney disease,589,25211,year,2015
+Chronic kidney disease,589,41380,year,2016
+Chronic kidney disease,589,251353,year,2018
+Chronic kidney disease,589,69386,year,2019
+Chronic kidney disease,589,10692,year,2020
+Chronic kidney disease,589,43915,year,2021
+Chronic kidney disease,589,32371,year,2022
+Chronic kidney disease,589,49787,year,2023
+Chronic kidney disease,589,166704,year,2024
+Chronic kidney disease,589,23146,year,2025
+Chronic kidney disease,589,24416,year,2026
 Chronic kidney disease due to diabetes mellitus type 1,997,241737,all,
 Chronic kidney disease due to diabetes mellitus type 1,997,94,sliding_3yr,2005
 Chronic kidney disease due to diabetes mellitus type 1,997,94,sliding_3yr,2006
@@ -1619,38 +1607,38 @@ Congenital birth defects,641,1635,sliding_3yr,2007
 Congenital birth defects,641,11613,sliding_3yr,2008
 Congenital birth defects,641,12713,sliding_3yr,2009
 Congenital birth defects,641,14730,sliding_3yr,2010
-Congenital birth defects,641,15852,sliding_3yr,2011
-Congenital birth defects,641,18814,sliding_3yr,2012
-Congenital birth defects,641,20204,sliding_3yr,2013
-Congenital birth defects,641,13852,sliding_3yr,2014
-Congenital birth defects,641,31783,sliding_3yr,2015
-Congenital birth defects,641,47087,sliding_3yr,2016
-Congenital birth defects,641,59767,sliding_3yr,2017
-Congenital birth defects,641,61570,sliding_3yr,2018
-Congenital birth defects,641,121139,sliding_3yr,2019
-Congenital birth defects,641,236882,sliding_3yr,2020
-Congenital birth defects,641,270307,sliding_3yr,2021
-Congenital birth defects,641,291810,sliding_3yr,2022
-Congenital birth defects,641,241595,sliding_3yr,2023
-Congenital birth defects,641,184968,sliding_3yr,2024
+Congenital birth defects,641,10302,sliding_3yr,2011
+Congenital birth defects,641,12062,sliding_3yr,2012
+Congenital birth defects,641,13452,sliding_3yr,2013
+Congenital birth defects,641,11691,sliding_3yr,2014
+Congenital birth defects,641,28351,sliding_3yr,2015
+Congenital birth defects,641,43038,sliding_3yr,2016
+Congenital birth defects,641,56677,sliding_3yr,2017
+Congenital birth defects,641,52297,sliding_3yr,2018
+Congenital birth defects,641,111919,sliding_3yr,2019
+Congenital birth defects,641,226947,sliding_3yr,2020
+Congenital birth defects,641,269028,sliding_3yr,2021
+Congenital birth defects,641,244049,sliding_3yr,2022
+Congenital birth defects,641,185600,sliding_3yr,2023
+Congenital birth defects,641,128676,sliding_3yr,2024
 Congenital birth defects,641,1635,year,2009
 Congenital birth defects,641,9978,year,2010
 Congenital birth defects,641,1100,year,2011
 Congenital birth defects,641,3652,year,2012
-Congenital birth defects,641,11100,year,2013
-Congenital birth defects,641,4062,year,2014
+Congenital birth defects,641,5550,year,2013
+Congenital birth defects,641,2860,year,2014
 Congenital birth defects,641,5042,year,2015
-Congenital birth defects,641,4748,year,2016
-Congenital birth defects,641,21993,year,2017
-Congenital birth defects,641,20346,year,2018
+Congenital birth defects,641,3789,year,2016
+Congenital birth defects,641,19520,year,2017
+Congenital birth defects,641,19729,year,2018
 Congenital birth defects,641,17428,year,2019
-Congenital birth defects,641,23796,year,2020
-Congenital birth defects,641,79915,year,2021
-Congenital birth defects,641,133171,year,2022
+Congenital birth defects,641,15140,year,2020
+Congenital birth defects,641,79351,year,2021
+Congenital birth defects,641,132456,year,2022
 Congenital birth defects,641,57221,year,2023
-Congenital birth defects,641,101418,year,2024
-Congenital birth defects,641,82956,year,2025
-Congenital birth defects,641,594,year,2026
+Congenital birth defects,641,54372,year,2024
+Congenital birth defects,641,74007,year,2025
+Congenital birth defects,641,297,year,2026
 Congenital heart anomalies,643,49136,all,
 Congenital heart anomalies,643,5550,sliding_3yr,2011
 Congenital heart anomalies,643,7860,sliding_3yr,2012
@@ -1775,116 +1763,116 @@ Dengue,357,3745,sliding_3yr,2009
 Dengue,357,3745,sliding_3yr,2010
 Dengue,357,3745,sliding_3yr,2011
 Dengue,357,3745,year,2011
-Depressive disorders,567,18352,sliding_3yr,2006
-Depressive disorders,567,26266,sliding_3yr,2007
-Depressive disorders,567,87996,sliding_3yr,2008
-Depressive disorders,567,82418,sliding_3yr,2009
-Depressive disorders,567,114808,sliding_3yr,2010
-Depressive disorders,567,230540,sliding_3yr,2011
-Depressive disorders,567,217766,sliding_3yr,2012
-Depressive disorders,567,178552,sliding_3yr,2013
-Depressive disorders,567,1179652,sliding_3yr,2014
-Depressive disorders,567,1262122,sliding_3yr,2015
-Depressive disorders,567,4717942,sliding_3yr,2016
-Depressive disorders,567,9368801,sliding_3yr,2017
-Depressive disorders,567,15841627,sliding_3yr,2018
-Depressive disorders,567,28801087,sliding_3yr,2019
-Depressive disorders,567,49171842,sliding_3yr,2020
-Depressive disorders,567,65071284,sliding_3yr,2021
-Depressive disorders,567,60866745,sliding_3yr,2022
-Depressive disorders,567,37602209,sliding_3yr,2023
-Depressive disorders,567,15290552,sliding_3yr,2024
-Depressive disorders,567,18352,year,2008
-Depressive disorders,567,7914,year,2009
-Depressive disorders,567,61730,year,2010
-Depressive disorders,567,12774,year,2011
-Depressive disorders,567,40304,year,2012
-Depressive disorders,567,177462,year,2013
-Depressive disorders,567,1090,year,2015
-Depressive disorders,567,1178562,year,2016
-Depressive disorders,567,82470,year,2017
-Depressive disorders,567,3456910,year,2018
-Depressive disorders,567,5829421,year,2019
-Depressive disorders,567,6555296,year,2020
-Depressive disorders,567,16416370,year,2021
-Depressive disorders,567,26200176,year,2022
-Depressive disorders,567,22454738,year,2023
-Depressive disorders,567,12211831,year,2024
-Depressive disorders,567,2935640,year,2025
-Depressive disorders,567,143081,year,2026
+Depressive disorders,567,9176,sliding_3yr,2006
+Depressive disorders,567,13133,sliding_3yr,2007
+Depressive disorders,567,39690,sliding_3yr,2008
+Depressive disorders,567,36901,sliding_3yr,2009
+Depressive disorders,567,53096,sliding_3yr,2010
+Depressive disorders,567,115270,sliding_3yr,2011
+Depressive disorders,567,108883,sliding_3yr,2012
+Depressive disorders,567,89106,sliding_3yr,2013
+Depressive disorders,567,575507,sliding_3yr,2014
+Depressive disorders,567,616742,sliding_3yr,2015
+Depressive disorders,567,2157439,sliding_3yr,2016
+Depressive disorders,567,4471773,sliding_3yr,2017
+Depressive disorders,567,7708186,sliding_3yr,2018
+Depressive disorders,567,14374566,sliding_3yr,2019
+Depressive disorders,567,24585188,sliding_3yr,2020
+Depressive disorders,567,32534073,sliding_3yr,2021
+Depressive disorders,567,30160770,sliding_3yr,2022
+Depressive disorders,567,18526383,sliding_3yr,2023
+Depressive disorders,567,7365001,sliding_3yr,2024
+Depressive disorders,567,9176,year,2008
+Depressive disorders,567,3957,year,2009
+Depressive disorders,567,26557,year,2010
+Depressive disorders,567,6387,year,2011
+Depressive disorders,567,20152,year,2012
+Depressive disorders,567,88731,year,2013
+Depressive disorders,567,375,year,2015
+Depressive disorders,567,575132,year,2016
+Depressive disorders,567,41235,year,2017
+Depressive disorders,567,1541072,year,2018
+Depressive disorders,567,2889466,year,2019
+Depressive disorders,567,3277648,year,2020
+Depressive disorders,567,8207452,year,2021
+Depressive disorders,567,13100088,year,2022
+Depressive disorders,567,11226533,year,2023
+Depressive disorders,567,5834149,year,2024
+Depressive disorders,567,1465701,year,2025
+Depressive disorders,567,65151,year,2026
 Dermatitis,654,3576,sliding_3yr,2007
 Dermatitis,654,3576,sliding_3yr,2008
 Dermatitis,654,21043,sliding_3yr,2009
 Dermatitis,654,20795,sliding_3yr,2010
 Dermatitis,654,29044,sliding_3yr,2011
 Dermatitis,654,11577,sliding_3yr,2012
-Dermatitis,654,68959,sliding_3yr,2013
-Dermatitis,654,60710,sliding_3yr,2014
-Dermatitis,654,61928,sliding_3yr,2015
-Dermatitis,654,1843889,sliding_3yr,2016
-Dermatitis,654,2449939,sliding_3yr,2017
-Dermatitis,654,2453491,sliding_3yr,2018
-Dermatitis,654,1375849,sliding_3yr,2019
-Dermatitis,654,813113,sliding_3yr,2020
-Dermatitis,654,1804899,sliding_3yr,2021
-Dermatitis,654,1439474,sliding_3yr,2022
-Dermatitis,654,2772615,sliding_3yr,2023
-Dermatitis,654,1945427,sliding_3yr,2024
+Dermatitis,654,68713,sliding_3yr,2013
+Dermatitis,654,60464,sliding_3yr,2014
+Dermatitis,654,61073,sliding_3yr,2015
+Dermatitis,654,920861,sliding_3yr,2016
+Dermatitis,654,1223886,sliding_3yr,2017
+Dermatitis,654,1228047,sliding_3yr,2018
+Dermatitis,654,714374,sliding_3yr,2019
+Dermatitis,654,454663,sliding_3yr,2020
+Dermatitis,654,1440863,sliding_3yr,2021
+Dermatitis,654,1160122,sliding_3yr,2022
+Dermatitis,654,1835270,sliding_3yr,2023
+Dermatitis,654,915364,sliding_3yr,2024
 Dermatitis,654,3576,year,2009
 Dermatitis,654,17467,year,2011
 Dermatitis,654,3328,year,2012
 Dermatitis,654,8249,year,2013
-Dermatitis,654,60710,year,2015
-Dermatitis,654,1218,year,2017
-Dermatitis,654,1842671,year,2018
-Dermatitis,654,606050,year,2019
+Dermatitis,654,60464,year,2015
+Dermatitis,654,609,year,2017
+Dermatitis,654,920252,year,2018
+Dermatitis,654,303025,year,2019
 Dermatitis,654,4770,year,2020
-Dermatitis,654,765029,year,2021
+Dermatitis,654,406579,year,2021
 Dermatitis,654,43314,year,2022
-Dermatitis,654,996556,year,2023
-Dermatitis,654,399604,year,2024
-Dermatitis,654,1376455,year,2025
-Dermatitis,654,169368,year,2026
-Diabetes mellitus,587,115302,sliding_3yr,2005
-Diabetes mellitus,587,237631,sliding_3yr,2006
-Diabetes mellitus,587,285540,sliding_3yr,2007
-Diabetes mellitus,587,351712,sliding_3yr,2008
-Diabetes mellitus,587,371797,sliding_3yr,2009
-Diabetes mellitus,587,583048,sliding_3yr,2010
-Diabetes mellitus,587,717170,sliding_3yr,2011
-Diabetes mellitus,587,718630,sliding_3yr,2012
-Diabetes mellitus,587,472933,sliding_3yr,2013
-Diabetes mellitus,587,600595,sliding_3yr,2014
-Diabetes mellitus,587,884855,sliding_3yr,2015
-Diabetes mellitus,587,4887623,sliding_3yr,2016
-Diabetes mellitus,587,6021000,sliding_3yr,2017
-Diabetes mellitus,587,8555964,sliding_3yr,2018
-Diabetes mellitus,587,13199718,sliding_3yr,2019
-Diabetes mellitus,587,17638748,sliding_3yr,2020
-Diabetes mellitus,587,30451799,sliding_3yr,2021
-Diabetes mellitus,587,27524224,sliding_3yr,2022
-Diabetes mellitus,587,26528169,sliding_3yr,2023
-Diabetes mellitus,587,12586399,sliding_3yr,2024
-Diabetes mellitus,587,115302,year,2007
-Diabetes mellitus,587,122329,year,2008
-Diabetes mellitus,587,47909,year,2009
-Diabetes mellitus,587,181474,year,2010
-Diabetes mellitus,587,142414,year,2011
-Diabetes mellitus,587,259160,year,2012
-Diabetes mellitus,587,315596,year,2013
-Diabetes mellitus,587,143874,year,2014
-Diabetes mellitus,587,13463,year,2015
-Diabetes mellitus,587,443258,year,2016
-Diabetes mellitus,587,428134,year,2017
-Diabetes mellitus,587,4016231,year,2018
-Diabetes mellitus,587,1576635,year,2019
-Diabetes mellitus,587,2963098,year,2020
-Diabetes mellitus,587,8659985,year,2021
-Diabetes mellitus,587,6015665,year,2022
-Diabetes mellitus,587,15776149,year,2023
-Diabetes mellitus,587,5732410,year,2024
-Diabetes mellitus,587,5019610,year,2025
-Diabetes mellitus,587,1834379,year,2026
+Dermatitis,654,990970,year,2023
+Dermatitis,654,125838,year,2024
+Dermatitis,654,718462,year,2025
+Dermatitis,654,71064,year,2026
+Diabetes mellitus,587,62534,sliding_3yr,2005
+Diabetes mellitus,587,131278,sliding_3yr,2006
+Diabetes mellitus,587,167300,sliding_3yr,2007
+Diabetes mellitus,587,195503,sliding_3yr,2008
+Diabetes mellitus,587,207746,sliding_3yr,2009
+Diabetes mellitus,587,310892,sliding_3yr,2010
+Diabetes mellitus,587,396699,sliding_3yr,2011
+Diabetes mellitus,587,387649,sliding_3yr,2012
+Diabetes mellitus,587,261837,sliding_3yr,2013
+Diabetes mellitus,587,276938,sliding_3yr,2014
+Diabetes mellitus,587,419068,sliding_3yr,2015
+Diabetes mellitus,587,2608363,sliding_3yr,2016
+Diabetes mellitus,587,3204929,sliding_3yr,2017
+Diabetes mellitus,587,4484066,sliding_3yr,2018
+Diabetes mellitus,587,6903850,sliding_3yr,2019
+Diabetes mellitus,587,8987279,sliding_3yr,2020
+Diabetes mellitus,587,15380361,sliding_3yr,2021
+Diabetes mellitus,587,12821979,sliding_3yr,2022
+Diabetes mellitus,587,12016050,sliding_3yr,2023
+Diabetes mellitus,587,5049944,sliding_3yr,2024
+Diabetes mellitus,587,62534,year,2007
+Diabetes mellitus,587,68744,year,2008
+Diabetes mellitus,587,36022,year,2009
+Diabetes mellitus,587,90737,year,2010
+Diabetes mellitus,587,80987,year,2011
+Diabetes mellitus,587,139168,year,2012
+Diabetes mellitus,587,176544,year,2013
+Diabetes mellitus,587,71937,year,2014
+Diabetes mellitus,587,13356,year,2015
+Diabetes mellitus,587,191645,year,2016
+Diabetes mellitus,587,214067,year,2017
+Diabetes mellitus,587,2202651,year,2018
+Diabetes mellitus,587,788211,year,2019
+Diabetes mellitus,587,1493204,year,2020
+Diabetes mellitus,587,4622435,year,2021
+Diabetes mellitus,587,2871640,year,2022
+Diabetes mellitus,587,7886286,year,2023
+Diabetes mellitus,587,2064053,year,2024
+Diabetes mellitus,587,2065711,year,2025
+Diabetes mellitus,587,920180,year,2026
 Diabetes mellitus type 1,975,2171026,all,
 Diabetes mellitus type 1,975,9857,sliding_3yr,2005
 Diabetes mellitus type 1,975,25016,sliding_3yr,2006
@@ -2031,14 +2019,14 @@ Drug use disorders,561,240,sliding_3yr,2007
 Drug use disorders,561,948,sliding_3yr,2008
 Drug use disorders,561,708,sliding_3yr,2009
 Drug use disorders,561,708,sliding_3yr,2010
-Drug use disorders,561,28752,sliding_3yr,2011
-Drug use disorders,561,28752,sliding_3yr,2012
-Drug use disorders,561,28752,sliding_3yr,2013
+Drug use disorders,561,14376,sliding_3yr,2011
+Drug use disorders,561,14376,sliding_3yr,2012
+Drug use disorders,561,14376,sliding_3yr,2013
 Drug use disorders,561,3757,sliding_3yr,2015
 Drug use disorders,561,3757,sliding_3yr,2016
-Drug use disorders,561,92351,sliding_3yr,2017
-Drug use disorders,561,128291,sliding_3yr,2018
-Drug use disorders,561,156096,sliding_3yr,2019
+Drug use disorders,561,56711,sliding_3yr,2017
+Drug use disorders,561,92651,sliding_3yr,2018
+Drug use disorders,561,120456,sliding_3yr,2019
 Drug use disorders,561,265501,sliding_3yr,2020
 Drug use disorders,561,723449,sliding_3yr,2021
 Drug use disorders,561,710452,sliding_3yr,2022
@@ -2046,9 +2034,9 @@ Drug use disorders,561,512453,sliding_3yr,2023
 Drug use disorders,561,14808,sliding_3yr,2024
 Drug use disorders,561,240,year,2008
 Drug use disorders,561,708,year,2010
-Drug use disorders,561,28752,year,2013
+Drug use disorders,561,14376,year,2013
 Drug use disorders,561,3757,year,2017
-Drug use disorders,561,88594,year,2019
+Drug use disorders,561,52954,year,2019
 Drug use disorders,561,39697,year,2020
 Drug use disorders,561,27805,year,2021
 Drug use disorders,561,197999,year,2022
@@ -2078,34 +2066,31 @@ Dysthymia,569,3169,year,2025
 Eating disorders,572,1033,sliding_3yr,2008
 Eating disorders,572,1033,sliding_3yr,2009
 Eating disorders,572,1033,sliding_3yr,2010
-Eating disorders,572,1531,sliding_3yr,2011
-Eating disorders,572,7573,sliding_3yr,2012
-Eating disorders,572,7941,sliding_3yr,2013
-Eating disorders,572,6410,sliding_3yr,2014
-Eating disorders,572,8012,sliding_3yr,2015
-Eating disorders,572,14007,sliding_3yr,2016
-Eating disorders,572,314362,sliding_3yr,2017
-Eating disorders,572,762561,sliding_3yr,2018
+Eating disorders,572,151,sliding_3yr,2011
+Eating disorders,572,6193,sliding_3yr,2012
+Eating disorders,572,6193,sliding_3yr,2013
+Eating disorders,572,6042,sliding_3yr,2014
+Eating disorders,572,7644,sliding_3yr,2015
+Eating disorders,572,13827,sliding_3yr,2016
+Eating disorders,572,314182,sliding_3yr,2017
+Eating disorders,572,762381,sliding_3yr,2018
 Eating disorders,572,1066616,sliding_3yr,2019
 Eating disorders,572,9066173,sliding_3yr,2020
 Eating disorders,572,11930114,sliding_3yr,2021
-Eating disorders,572,11639510,sliding_3yr,2022
-Eating disorders,572,3340515,sliding_3yr,2023
-Eating disorders,572,33402,sliding_3yr,2024
+Eating disorders,572,11634688,sliding_3yr,2022
+Eating disorders,572,3334776,sliding_3yr,2023
+Eating disorders,572,14992,sliding_3yr,2024
 Eating disorders,572,1033,year,2010
-Eating disorders,572,1531,year,2013
+Eating disorders,572,151,year,2013
 Eating disorders,572,6042,year,2014
-Eating disorders,572,368,year,2015
 Eating disorders,572,7644,year,2017
-Eating disorders,572,6363,year,2018
+Eating disorders,572,6183,year,2018
 Eating disorders,572,300355,year,2019
 Eating disorders,572,455843,year,2020
 Eating disorders,572,310418,year,2021
 Eating disorders,572,8299912,year,2022
 Eating disorders,572,3319784,year,2023
-Eating disorders,572,19814,year,2024
-Eating disorders,572,917,year,2025
-Eating disorders,572,12671,year,2026
+Eating disorders,572,14992,year,2024
 Ebola,843,0,all,
 Ectopic pregnancy,374,22931,all,
 Ectopic pregnancy,374,331,sliding_3yr,2016
@@ -2169,21 +2154,21 @@ Endocarditis,503,1411,year,2021
 Endocarditis,503,1211,year,2023
 Endocarditis,503,8930,year,2024
 Endocarditis,503,1975,year,2025
-"Endocrine, metabolic, blood, and immune disorders",619,16718,sliding_3yr,2016
-"Endocrine, metabolic, blood, and immune disorders",619,16718,sliding_3yr,2017
-"Endocrine, metabolic, blood, and immune disorders",619,16718,sliding_3yr,2018
-"Endocrine, metabolic, blood, and immune disorders",619,146383,sliding_3yr,2019
-"Endocrine, metabolic, blood, and immune disorders",619,152077,sliding_3yr,2020
-"Endocrine, metabolic, blood, and immune disorders",619,152077,sliding_3yr,2021
-"Endocrine, metabolic, blood, and immune disorders",619,287777,sliding_3yr,2022
-"Endocrine, metabolic, blood, and immune disorders",619,899413,sliding_3yr,2023
-"Endocrine, metabolic, blood, and immune disorders",619,939479,sliding_3yr,2024
-"Endocrine, metabolic, blood, and immune disorders",619,16718,year,2018
-"Endocrine, metabolic, blood, and immune disorders",619,146383,year,2021
+"Endocrine, metabolic, blood, and immune disorders",619,5502,sliding_3yr,2016
+"Endocrine, metabolic, blood, and immune disorders",619,5502,sliding_3yr,2017
+"Endocrine, metabolic, blood, and immune disorders",619,5502,sliding_3yr,2018
+"Endocrine, metabolic, blood, and immune disorders",619,103841,sliding_3yr,2019
+"Endocrine, metabolic, blood, and immune disorders",619,109535,sliding_3yr,2020
+"Endocrine, metabolic, blood, and immune disorders",619,109535,sliding_3yr,2021
+"Endocrine, metabolic, blood, and immune disorders",619,188578,sliding_3yr,2022
+"Endocrine, metabolic, blood, and immune disorders",619,719201,sliding_3yr,2023
+"Endocrine, metabolic, blood, and immune disorders",619,747195,sliding_3yr,2024
+"Endocrine, metabolic, blood, and immune disorders",619,5502,year,2018
+"Endocrine, metabolic, blood, and immune disorders",619,103841,year,2021
 "Endocrine, metabolic, blood, and immune disorders",619,5694,year,2022
-"Endocrine, metabolic, blood, and immune disorders",619,282083,year,2024
-"Endocrine, metabolic, blood, and immune disorders",619,617330,year,2025
-"Endocrine, metabolic, blood, and immune disorders",619,40066,year,2026
+"Endocrine, metabolic, blood, and immune disorders",619,182884,year,2024
+"Endocrine, metabolic, blood, and immune disorders",619,536317,year,2025
+"Endocrine, metabolic, blood, and immune disorders",619,27994,year,2026
 Endometriosis,607,2526648,all,
 Endometriosis,607,8189,sliding_3yr,2008
 Endometriosis,607,8189,sliding_3yr,2009
@@ -2261,20 +2246,20 @@ Extensively drug-resistant tuberculosis,947,67,year,2016
 Extensively drug-resistant tuberculosis,947,79,year,2019
 Extensively drug-resistant tuberculosis,947,250,year,2020
 Eye cancer,1008,535,sliding_3yr,2015
-Eye cancer,1008,1063,sliding_3yr,2016
-Eye cancer,1008,3916,sliding_3yr,2017
-Eye cancer,1008,3381,sliding_3yr,2018
+Eye cancer,1008,887,sliding_3yr,2016
+Eye cancer,1008,3740,sliding_3yr,2017
+Eye cancer,1008,3205,sliding_3yr,2018
 Eye cancer,1008,8899,sliding_3yr,2019
 Eye cancer,1008,6046,sliding_3yr,2020
 Eye cancer,1008,6046,sliding_3yr,2021
-Eye cancer,1008,2202,sliding_3yr,2022
-Eye cancer,1008,4628,sliding_3yr,2023
-Eye cancer,1008,4628,sliding_3yr,2024
+Eye cancer,1008,1468,sliding_3yr,2022
+Eye cancer,1008,3894,sliding_3yr,2023
+Eye cancer,1008,3894,sliding_3yr,2024
 Eye cancer,1008,535,year,2017
-Eye cancer,1008,528,year,2018
+Eye cancer,1008,352,year,2018
 Eye cancer,1008,2853,year,2019
 Eye cancer,1008,6046,year,2021
-Eye cancer,1008,2202,year,2024
+Eye cancer,1008,1468,year,2024
 Eye cancer,1008,2426,year,2025
 Female infertility,606,204636,all,
 Female infertility,606,159,sliding_3yr,2007
@@ -2531,15 +2516,15 @@ Gynecological diseases,603,25252,sliding_3yr,2012
 Gynecological diseases,603,15513,sliding_3yr,2013
 Gynecological diseases,603,15010,sliding_3yr,2014
 Gynecological diseases,603,42869,sliding_3yr,2015
-Gynecological diseases,603,201214,sliding_3yr,2016
-Gynecological diseases,603,318677,sliding_3yr,2017
-Gynecological diseases,603,555515,sliding_3yr,2018
-Gynecological diseases,603,886033,sliding_3yr,2019
-Gynecological diseases,603,1324820,sliding_3yr,2020
-Gynecological diseases,603,2755287,sliding_3yr,2021
-Gynecological diseases,603,2841414,sliding_3yr,2022
-Gynecological diseases,603,3560384,sliding_3yr,2023
-Gynecological diseases,603,2503301,sliding_3yr,2024
+Gynecological diseases,603,157159,sliding_3yr,2016
+Gynecological diseases,603,251357,sliding_3yr,2017
+Gynecological diseases,603,488195,sliding_3yr,2018
+Gynecological diseases,603,741131,sliding_3yr,2019
+Gynecological diseases,603,1203183,sliding_3yr,2020
+Gynecological diseases,603,2611766,sliding_3yr,2021
+Gynecological diseases,603,2650249,sliding_3yr,2022
+Gynecological diseases,603,3264724,sliding_3yr,2023
+Gynecological diseases,603,2098724,sliding_3yr,2024
 Gynecological diseases,603,159,year,2009
 Gynecological diseases,603,12271,year,2010
 Gynecological diseases,603,6028,year,2011
@@ -2548,35 +2533,26 @@ Gynecological diseases,603,2019,year,2013
 Gynecological diseases,603,13494,year,2015
 Gynecological diseases,603,1516,year,2016
 Gynecological diseases,603,27859,year,2017
-Gynecological diseases,603,171839,year,2018
-Gynecological diseases,603,118979,year,2019
+Gynecological diseases,603,127784,year,2018
+Gynecological diseases,603,95714,year,2019
 Gynecological diseases,603,264697,year,2020
-Gynecological diseases,603,502357,year,2021
+Gynecological diseases,603,380720,year,2021
 Gynecological diseases,603,557766,year,2022
-Gynecological diseases,603,1695164,year,2023
-Gynecological diseases,603,588484,year,2024
-Gynecological diseases,603,1276736,year,2025
-Gynecological diseases,603,638081,year,2026
-HIV/AIDS,298,5958,sliding_3yr,2007
-HIV/AIDS,298,8724,sliding_3yr,2008
-HIV/AIDS,298,11356,sliding_3yr,2009
-HIV/AIDS,298,5398,sliding_3yr,2010
-HIV/AIDS,298,9396,sliding_3yr,2011
-HIV/AIDS,298,6764,sliding_3yr,2012
-HIV/AIDS,298,15942,sliding_3yr,2013
-HIV/AIDS,298,9178,sliding_3yr,2014
-HIV/AIDS,298,9178,sliding_3yr,2015
-HIV/AIDS,298,156,sliding_3yr,2019
-HIV/AIDS,298,7459,sliding_3yr,2020
-HIV/AIDS,298,7459,sliding_3yr,2021
-HIV/AIDS,298,7303,sliding_3yr,2022
-HIV/AIDS,298,5958,year,2009
-HIV/AIDS,298,2766,year,2010
-HIV/AIDS,298,2632,year,2011
-HIV/AIDS,298,6764,year,2013
-HIV/AIDS,298,9178,year,2015
-HIV/AIDS,298,156,year,2021
-HIV/AIDS,298,7303,year,2022
+Gynecological diseases,603,1673280,year,2023
+Gynecological diseases,603,419203,year,2024
+Gynecological diseases,603,1172241,year,2025
+Gynecological diseases,603,507280,year,2026
+HIV/AIDS,298,1798,sliding_3yr,2007
+HIV/AIDS,298,1798,sliding_3yr,2008
+HIV/AIDS,298,2553,sliding_3yr,2009
+HIV/AIDS,298,755,sliding_3yr,2010
+HIV/AIDS,298,755,sliding_3yr,2011
+HIV/AIDS,298,78,sliding_3yr,2019
+HIV/AIDS,298,78,sliding_3yr,2020
+HIV/AIDS,298,78,sliding_3yr,2021
+HIV/AIDS,298,1798,year,2009
+HIV/AIDS,298,755,year,2011
+HIV/AIDS,298,78,year,2021
 HIV/AIDS - Drug-susceptible Tuberculosis,948,0,all,
 HIV/AIDS - Extensively drug-resistant Tuberculosis,950,0,all,
 HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance,949,0,all,
@@ -2600,15 +2576,15 @@ Headache disorders,972,51963,sliding_3yr,2012
 Headache disorders,972,42348,sliding_3yr,2013
 Headache disorders,972,129126,sliding_3yr,2014
 Headache disorders,972,189361,sliding_3yr,2015
-Headache disorders,972,279843,sliding_3yr,2016
-Headache disorders,972,152380,sliding_3yr,2017
-Headache disorders,972,673810,sliding_3yr,2018
-Headache disorders,972,2194268,sliding_3yr,2019
-Headache disorders,972,3626045,sliding_3yr,2020
-Headache disorders,972,4463340,sliding_3yr,2021
-Headache disorders,972,3516280,sliding_3yr,2022
-Headache disorders,972,2552459,sliding_3yr,2023
-Headache disorders,972,1177602,sliding_3yr,2024
+Headache disorders,972,193970,sliding_3yr,2016
+Headache disorders,972,66507,sliding_3yr,2017
+Headache disorders,972,587937,sliding_3yr,2018
+Headache disorders,972,790749,sliding_3yr,2019
+Headache disorders,972,1677222,sliding_3yr,2020
+Headache disorders,972,1859370,sliding_3yr,2021
+Headache disorders,972,1893685,sliding_3yr,2022
+Headache disorders,972,1457655,sliding_3yr,2023
+Headache disorders,972,722858,sliding_3yr,2024
 Headache disorders,972,6120,year,2010
 Headache disorders,972,14356,year,2011
 Headache disorders,972,9615,year,2012
@@ -2616,32 +2592,32 @@ Headache disorders,972,40685,year,2013
 Headache disorders,972,1663,year,2014
 Headache disorders,972,127463,year,2016
 Headache disorders,972,61898,year,2017
-Headache disorders,972,90482,year,2018
+Headache disorders,972,4609,year,2018
 Headache disorders,972,583328,year,2020
-Headache disorders,972,1610940,year,2021
-Headache disorders,972,1431777,year,2022
-Headache disorders,972,1420623,year,2023
-Headache disorders,972,663880,year,2024
-Headache disorders,972,467956,year,2025
-Headache disorders,972,45766,year,2026
+Headache disorders,972,207421,year,2021
+Headache disorders,972,886473,year,2022
+Headache disorders,972,765476,year,2023
+Headache disorders,972,241736,year,2024
+Headache disorders,972,450443,year,2025
+Headache disorders,972,30679,year,2026
 Hemoglobinopathies and hemolytic anemias,613,2856,sliding_3yr,2007
 Hemoglobinopathies and hemolytic anemias,613,2856,sliding_3yr,2008
 Hemoglobinopathies and hemolytic anemias,613,2856,sliding_3yr,2009
 Hemoglobinopathies and hemolytic anemias,613,4150,sliding_3yr,2011
 Hemoglobinopathies and hemolytic anemias,613,4150,sliding_3yr,2012
 Hemoglobinopathies and hemolytic anemias,613,4150,sliding_3yr,2013
-Hemoglobinopathies and hemolytic anemias,613,842,sliding_3yr,2016
-Hemoglobinopathies and hemolytic anemias,613,842,sliding_3yr,2017
-Hemoglobinopathies and hemolytic anemias,613,842,sliding_3yr,2018
-Hemoglobinopathies and hemolytic anemias,613,30642,sliding_3yr,2022
-Hemoglobinopathies and hemolytic anemias,613,40552,sliding_3yr,2023
-Hemoglobinopathies and hemolytic anemias,613,139231,sliding_3yr,2024
+Hemoglobinopathies and hemolytic anemias,613,296,sliding_3yr,2016
+Hemoglobinopathies and hemolytic anemias,613,296,sliding_3yr,2017
+Hemoglobinopathies and hemolytic anemias,613,296,sliding_3yr,2018
+Hemoglobinopathies and hemolytic anemias,613,15617,sliding_3yr,2022
+Hemoglobinopathies and hemolytic anemias,613,19832,sliding_3yr,2023
+Hemoglobinopathies and hemolytic anemias,613,94018,sliding_3yr,2024
 Hemoglobinopathies and hemolytic anemias,613,2856,year,2009
 Hemoglobinopathies and hemolytic anemias,613,4150,year,2013
-Hemoglobinopathies and hemolytic anemias,613,842,year,2018
-Hemoglobinopathies and hemolytic anemias,613,30642,year,2024
-Hemoglobinopathies and hemolytic anemias,613,9910,year,2025
-Hemoglobinopathies and hemolytic anemias,613,98679,year,2026
+Hemoglobinopathies and hemolytic anemias,613,296,year,2018
+Hemoglobinopathies and hemolytic anemias,613,15617,year,2024
+Hemoglobinopathies and hemolytic anemias,613,4215,year,2025
+Hemoglobinopathies and hemolytic anemias,613,74186,year,2026
 Hemolytic disease and other neonatal jaundice,384,8738,all,
 Hemolytic disease and other neonatal jaundice,384,8738,sliding_3yr,2022
 Hemolytic disease and other neonatal jaundice,384,8738,sliding_3yr,2023
@@ -2753,47 +2729,46 @@ Idiopathic epilepsy,545,178202,year,2024
 Idiopathic epilepsy,545,16667,year,2025
 Idiopathic epilepsy,545,24605,year,2026
 Indirect maternal deaths,375,0,all,
-Inflammatory bowel disease,532,12874,sliding_3yr,2005
-Inflammatory bowel disease,532,26481,sliding_3yr,2006
-Inflammatory bowel disease,532,36052,sliding_3yr,2007
-Inflammatory bowel disease,532,58118,sliding_3yr,2008
-Inflammatory bowel disease,532,73262,sliding_3yr,2009
-Inflammatory bowel disease,532,218629,sliding_3yr,2010
-Inflammatory bowel disease,532,266282,sliding_3yr,2011
-Inflammatory bowel disease,532,252195,sliding_3yr,2012
-Inflammatory bowel disease,532,234822,sliding_3yr,2013
-Inflammatory bowel disease,532,267137,sliding_3yr,2014
-Inflammatory bowel disease,532,539787,sliding_3yr,2015
-Inflammatory bowel disease,532,1456321,sliding_3yr,2016
-Inflammatory bowel disease,532,1376294,sliding_3yr,2017
-Inflammatory bowel disease,532,1119543,sliding_3yr,2018
-Inflammatory bowel disease,532,1071717,sliding_3yr,2019
-Inflammatory bowel disease,532,1059427,sliding_3yr,2020
-Inflammatory bowel disease,532,2005160,sliding_3yr,2021
-Inflammatory bowel disease,532,1150425,sliding_3yr,2022
-Inflammatory bowel disease,532,2052167,sliding_3yr,2023
-Inflammatory bowel disease,532,1134808,sliding_3yr,2024
-Inflammatory bowel disease,532,1698,year,2006
+Inflammatory bowel disease,532,11176,sliding_3yr,2005
+Inflammatory bowel disease,532,21850,sliding_3yr,2006
+Inflammatory bowel disease,532,29693,sliding_3yr,2007
+Inflammatory bowel disease,532,51759,sliding_3yr,2008
+Inflammatory bowel disease,532,69836,sliding_3yr,2009
+Inflammatory bowel disease,532,180022,sliding_3yr,2010
+Inflammatory bowel disease,532,227675,sliding_3yr,2011
+Inflammatory bowel disease,532,213588,sliding_3yr,2012
+Inflammatory bowel disease,532,154341,sliding_3yr,2013
+Inflammatory bowel disease,532,181667,sliding_3yr,2014
+Inflammatory bowel disease,532,334724,sliding_3yr,2015
+Inflammatory bowel disease,532,1331739,sliding_3yr,2016
+Inflammatory bowel disease,532,1256701,sliding_3yr,2017
+Inflammatory bowel disease,532,1101691,sliding_3yr,2018
+Inflammatory bowel disease,532,189355,sliding_3yr,2019
+Inflammatory bowel disease,532,170873,sliding_3yr,2020
+Inflammatory bowel disease,532,439671,sliding_3yr,2021
+Inflammatory bowel disease,532,376469,sliding_3yr,2022
+Inflammatory bowel disease,532,1165427,sliding_3yr,2023
+Inflammatory bowel disease,532,937528,sliding_3yr,2024
 Inflammatory bowel disease,532,11176,year,2007
-Inflammatory bowel disease,532,13607,year,2008
-Inflammatory bowel disease,532,11269,year,2009
+Inflammatory bowel disease,532,10674,year,2008
+Inflammatory bowel disease,532,7843,year,2009
 Inflammatory bowel disease,532,33242,year,2010
 Inflammatory bowel disease,532,28751,year,2011
-Inflammatory bowel disease,532,156636,year,2012
+Inflammatory bowel disease,532,118029,year,2012
 Inflammatory bowel disease,532,80895,year,2013
 Inflammatory bowel disease,532,14664,year,2014
-Inflammatory bowel disease,532,139263,year,2015
-Inflammatory bowel disease,532,113210,year,2016
-Inflammatory bowel disease,532,287314,year,2017
+Inflammatory bowel disease,532,58782,year,2015
+Inflammatory bowel disease,532,108221,year,2016
+Inflammatory bowel disease,532,167721,year,2017
 Inflammatory bowel disease,532,1055797,year,2018
 Inflammatory bowel disease,532,33183,year,2019
-Inflammatory bowel disease,532,30563,year,2020
-Inflammatory bowel disease,532,1007971,year,2021
-Inflammatory bowel disease,532,20893,year,2022
-Inflammatory bowel disease,532,976296,year,2023
-Inflammatory bowel disease,532,153236,year,2024
-Inflammatory bowel disease,532,922635,year,2025
-Inflammatory bowel disease,532,58937,year,2026
+Inflammatory bowel disease,532,12711,year,2020
+Inflammatory bowel disease,532,143461,year,2021
+Inflammatory bowel disease,532,14701,year,2022
+Inflammatory bowel disease,532,281509,year,2023
+Inflammatory bowel disease,532,80259,year,2024
+Inflammatory bowel disease,532,803659,year,2025
+Inflammatory bowel disease,532,53610,year,2026
 "Inguinal, femoral, and abdominal hernia",531,1432599,all,
 "Inguinal, femoral, and abdominal hernia",531,14996,sliding_3yr,2013
 "Inguinal, femoral, and abdominal hernia",531,14996,sliding_3yr,2014
@@ -2961,16 +2936,16 @@ Latent tuberculosis infection,954,17450,sliding_3yr,2021
 Latent tuberculosis infection,954,17450,sliding_3yr,2022
 Latent tuberculosis infection,954,17450,sliding_3yr,2023
 Latent tuberculosis infection,954,17450,year,2023
-Leishmaniasis,347,4594,sliding_3yr,2011
-Leishmaniasis,347,4594,sliding_3yr,2012
-Leishmaniasis,347,4594,sliding_3yr,2013
-Leishmaniasis,347,59796,sliding_3yr,2017
-Leishmaniasis,347,63928,sliding_3yr,2018
-Leishmaniasis,347,63928,sliding_3yr,2019
-Leishmaniasis,347,4132,sliding_3yr,2020
-Leishmaniasis,347,4594,year,2013
-Leishmaniasis,347,59796,year,2019
-Leishmaniasis,347,4132,year,2020
+Leishmaniasis,347,2297,sliding_3yr,2011
+Leishmaniasis,347,2297,sliding_3yr,2012
+Leishmaniasis,347,2297,sliding_3yr,2013
+Leishmaniasis,347,29898,sliding_3yr,2017
+Leishmaniasis,347,31964,sliding_3yr,2018
+Leishmaniasis,347,31964,sliding_3yr,2019
+Leishmaniasis,347,2066,sliding_3yr,2020
+Leishmaniasis,347,2297,year,2013
+Leishmaniasis,347,29898,year,2019
+Leishmaniasis,347,2066,year,2020
 Leprosy,405,31310,all,
 Leprosy,405,3960,sliding_3yr,2007
 Leprosy,405,3960,sliding_3yr,2008
@@ -2992,43 +2967,43 @@ Leprosy,405,8313,year,2015
 Leprosy,405,8156,year,2016
 Leprosy,405,2930,year,2020
 Leprosy,405,3944,year,2022
-Leukemia,487,3058,sliding_3yr,2006
-Leukemia,487,6480,sliding_3yr,2007
-Leukemia,487,7936,sliding_3yr,2008
-Leukemia,487,9610,sliding_3yr,2009
-Leukemia,487,10152,sliding_3yr,2010
-Leukemia,487,33368,sliding_3yr,2011
-Leukemia,487,31174,sliding_3yr,2012
-Leukemia,487,27210,sliding_3yr,2013
-Leukemia,487,21012,sliding_3yr,2014
-Leukemia,487,49986,sliding_3yr,2015
-Leukemia,487,80724,sliding_3yr,2016
-Leukemia,487,142942,sliding_3yr,2017
-Leukemia,487,114230,sliding_3yr,2018
-Leukemia,487,141998,sliding_3yr,2019
-Leukemia,487,93600,sliding_3yr,2020
-Leukemia,487,107216,sliding_3yr,2021
-Leukemia,487,789998,sliding_3yr,2022
-Leukemia,487,773589,sliding_3yr,2023
-Leukemia,487,771113,sliding_3yr,2024
-Leukemia,487,3058,year,2008
-Leukemia,487,3422,year,2009
-Leukemia,487,1456,year,2010
-Leukemia,487,4732,year,2011
-Leukemia,487,3964,year,2012
-Leukemia,487,24672,year,2013
-Leukemia,487,2538,year,2014
-Leukemia,487,18474,year,2016
-Leukemia,487,31512,year,2017
-Leukemia,487,30738,year,2018
-Leukemia,487,80692,year,2019
-Leukemia,487,2800,year,2020
-Leukemia,487,58506,year,2021
-Leukemia,487,32294,year,2022
-Leukemia,487,16416,year,2023
-Leukemia,487,741288,year,2024
-Leukemia,487,15885,year,2025
-Leukemia,487,13940,year,2026
+Leukemia,487,1529,sliding_3yr,2006
+Leukemia,487,3240,sliding_3yr,2007
+Leukemia,487,3968,sliding_3yr,2008
+Leukemia,487,4805,sliding_3yr,2009
+Leukemia,487,5076,sliding_3yr,2010
+Leukemia,487,16684,sliding_3yr,2011
+Leukemia,487,15587,sliding_3yr,2012
+Leukemia,487,13605,sliding_3yr,2013
+Leukemia,487,10506,sliding_3yr,2014
+Leukemia,487,24993,sliding_3yr,2015
+Leukemia,487,41167,sliding_3yr,2016
+Leukemia,487,72276,sliding_3yr,2017
+Leukemia,487,58224,sliding_3yr,2018
+Leukemia,487,73337,sliding_3yr,2019
+Leukemia,487,49488,sliding_3yr,2020
+Leukemia,487,55992,sliding_3yr,2021
+Leukemia,487,403655,sliding_3yr,2022
+Leukemia,487,395383,sliding_3yr,2023
+Leukemia,487,394145,sliding_3yr,2024
+Leukemia,487,1529,year,2008
+Leukemia,487,1711,year,2009
+Leukemia,487,728,year,2010
+Leukemia,487,2366,year,2011
+Leukemia,487,1982,year,2012
+Leukemia,487,12336,year,2013
+Leukemia,487,1269,year,2014
+Leukemia,487,9237,year,2016
+Leukemia,487,15756,year,2017
+Leukemia,487,16174,year,2018
+Leukemia,487,40346,year,2019
+Leukemia,487,1704,year,2020
+Leukemia,487,31287,year,2021
+Leukemia,487,16497,year,2022
+Leukemia,487,8208,year,2023
+Leukemia,487,378950,year,2024
+Leukemia,487,8225,year,2025
+Leukemia,487,6970,year,2026
 Lip and oral cavity cancer,444,23758,all,
 Lip and oral cavity cancer,444,5688,sliding_3yr,2014
 Lip and oral cavity cancer,444,5688,sliding_3yr,2015
@@ -3053,27 +3028,27 @@ Liver cancer,417,22898,sliding_3yr,2012
 Liver cancer,417,664,sliding_3yr,2013
 Liver cancer,417,664,sliding_3yr,2014
 Liver cancer,417,7941,sliding_3yr,2015
-Liver cancer,417,22637,sliding_3yr,2016
-Liver cancer,417,22637,sliding_3yr,2017
-Liver cancer,417,23502,sliding_3yr,2018
-Liver cancer,417,22847,sliding_3yr,2019
-Liver cancer,417,35758,sliding_3yr,2020
-Liver cancer,417,805880,sliding_3yr,2021
-Liver cancer,417,864859,sliding_3yr,2022
-Liver cancer,417,903956,sliding_3yr,2023
-Liver cancer,417,125692,sliding_3yr,2024
+Liver cancer,417,22152,sliding_3yr,2016
+Liver cancer,417,22152,sliding_3yr,2017
+Liver cancer,417,23017,sliding_3yr,2018
+Liver cancer,417,22719,sliding_3yr,2019
+Liver cancer,417,35630,sliding_3yr,2020
+Liver cancer,417,689370,sliding_3yr,2021
+Liver cancer,417,729263,sliding_3yr,2022
+Liver cancer,417,762532,sliding_3yr,2023
+Liver cancer,417,100650,sliding_3yr,2024
 Liver cancer,417,5710,year,2010
 Liver cancer,417,3978,year,2011
 Liver cancer,417,22898,year,2012
 Liver cancer,417,664,year,2015
 Liver cancer,417,7277,year,2017
-Liver cancer,417,15360,year,2018
+Liver cancer,417,14875,year,2018
 Liver cancer,417,8142,year,2020
-Liver cancer,417,14705,year,2021
+Liver cancer,417,14577,year,2021
 Liver cancer,417,12911,year,2022
-Liver cancer,417,778264,year,2023
-Liver cancer,417,73684,year,2024
-Liver cancer,417,52008,year,2025
+Liver cancer,417,661882,year,2023
+Liver cancer,417,54470,year,2024
+Liver cancer,417,46180,year,2025
 Liver cancer due to NASH,996,0,all,
 Liver cancer due to alcohol use,420,42401,all,
 Liver cancer due to alcohol use,420,802,sliding_3yr,2016
@@ -3356,28 +3331,28 @@ Maternal disorders,366,6055,sliding_3yr,2012
 Maternal disorders,366,2224,sliding_3yr,2013
 Maternal disorders,366,4061,sliding_3yr,2014
 Maternal disorders,366,1970,sliding_3yr,2015
-Maternal disorders,366,41365,sliding_3yr,2016
-Maternal disorders,366,69396,sliding_3yr,2017
-Maternal disorders,366,114264,sliding_3yr,2018
-Maternal disorders,366,276941,sliding_3yr,2019
-Maternal disorders,366,328663,sliding_3yr,2020
-Maternal disorders,366,474819,sliding_3yr,2021
-Maternal disorders,366,525349,sliding_3yr,2022
-Maternal disorders,366,609604,sliding_3yr,2023
-Maternal disorders,366,942205,sliding_3yr,2024
+Maternal disorders,366,18757,sliding_3yr,2016
+Maternal disorders,366,46788,sliding_3yr,2017
+Maternal disorders,366,91656,sliding_3yr,2018
+Maternal disorders,366,242341,sliding_3yr,2019
+Maternal disorders,366,280932,sliding_3yr,2020
+Maternal disorders,366,427088,sliding_3yr,2021
+Maternal disorders,366,497265,sliding_3yr,2022
+Maternal disorders,366,577709,sliding_3yr,2023
+Maternal disorders,366,657055,sliding_3yr,2024
 Maternal disorders,366,3831,year,2012
 Maternal disorders,366,133,year,2013
 Maternal disorders,366,2091,year,2014
 Maternal disorders,366,1970,year,2016
-Maternal disorders,366,39395,year,2018
+Maternal disorders,366,16787,year,2018
 Maternal disorders,366,30001,year,2019
 Maternal disorders,366,44868,year,2020
-Maternal disorders,366,202072,year,2021
-Maternal disorders,366,81723,year,2022
+Maternal disorders,366,167472,year,2021
+Maternal disorders,366,68592,year,2022
 Maternal disorders,366,191024,year,2023
-Maternal disorders,366,252602,year,2024
-Maternal disorders,366,165978,year,2025
-Maternal disorders,366,523625,year,2026
+Maternal disorders,366,237649,year,2024
+Maternal disorders,366,149036,year,2025
+Maternal disorders,366,270370,year,2026
 Maternal hemorrhage,367,44473,all,
 Maternal hemorrhage,367,866,sliding_3yr,2016
 Maternal hemorrhage,367,866,sliding_3yr,2017
@@ -3687,24 +3662,24 @@ Neck pain,631,379,year,2025
 Neonatal disorders,380,4617,sliding_3yr,2013
 Neonatal disorders,380,4617,sliding_3yr,2014
 Neonatal disorders,380,6458,sliding_3yr,2015
-Neonatal disorders,380,4339,sliding_3yr,2016
-Neonatal disorders,380,11088,sliding_3yr,2017
-Neonatal disorders,380,10228,sliding_3yr,2018
+Neonatal disorders,380,4229,sliding_3yr,2016
+Neonatal disorders,380,10978,sliding_3yr,2017
+Neonatal disorders,380,10118,sliding_3yr,2018
 Neonatal disorders,380,7730,sliding_3yr,2019
 Neonatal disorders,380,9945,sliding_3yr,2020
 Neonatal disorders,380,32923,sliding_3yr,2021
-Neonatal disorders,380,108535,sliding_3yr,2022
-Neonatal disorders,380,117044,sliding_3yr,2023
-Neonatal disorders,380,105053,sliding_3yr,2024
+Neonatal disorders,380,97511,sliding_3yr,2022
+Neonatal disorders,380,102782,sliding_3yr,2023
+Neonatal disorders,380,90791,sliding_3yr,2024
 Neonatal disorders,380,4617,year,2015
 Neonatal disorders,380,1841,year,2017
-Neonatal disorders,380,2498,year,2018
+Neonatal disorders,380,2388,year,2018
 Neonatal disorders,380,6749,year,2019
 Neonatal disorders,380,981,year,2020
 Neonatal disorders,380,8964,year,2022
 Neonatal disorders,380,23959,year,2023
-Neonatal disorders,380,75612,year,2024
-Neonatal disorders,380,17473,year,2025
+Neonatal disorders,380,64588,year,2024
+Neonatal disorders,380,14235,year,2025
 Neonatal disorders,380,11968,year,2026
 Neonatal encephalopathy due to birth asphyxia and trauma,382,60501,all,
 Neonatal encephalopathy due to birth asphyxia and trauma,382,475,sliding_3yr,2016
@@ -3781,35 +3756,32 @@ Neuroblastoma and other peripheral nervous cell tumors,1013,4145,year,2017
 Neuroblastoma and other peripheral nervous cell tumors,1013,17522,year,2019
 Neuroblastoma and other peripheral nervous cell tumors,1013,296,year,2020
 Neuroblastoma and other peripheral nervous cell tumors,1013,883,year,2022
-Non-Hodgkin lymphoma,485,798,sliding_3yr,2009
-Non-Hodgkin lymphoma,485,798,sliding_3yr,2010
-Non-Hodgkin lymphoma,485,798,sliding_3yr,2011
-Non-Hodgkin lymphoma,485,10432,sliding_3yr,2012
-Non-Hodgkin lymphoma,485,13506,sliding_3yr,2013
-Non-Hodgkin lymphoma,485,14209,sliding_3yr,2014
-Non-Hodgkin lymphoma,485,3777,sliding_3yr,2015
-Non-Hodgkin lymphoma,485,3238,sliding_3yr,2016
-Non-Hodgkin lymphoma,485,125893,sliding_3yr,2017
-Non-Hodgkin lymphoma,485,128571,sliding_3yr,2018
-Non-Hodgkin lymphoma,485,149866,sliding_3yr,2019
-Non-Hodgkin lymphoma,485,100659,sliding_3yr,2020
-Non-Hodgkin lymphoma,485,281985,sliding_3yr,2021
-Non-Hodgkin lymphoma,485,275343,sliding_3yr,2022
-Non-Hodgkin lymphoma,485,213214,sliding_3yr,2023
-Non-Hodgkin lymphoma,485,41180,sliding_3yr,2024
-Non-Hodgkin lymphoma,485,798,year,2011
-Non-Hodgkin lymphoma,485,10432,year,2014
-Non-Hodgkin lymphoma,485,3074,year,2015
+Non-Hodgkin lymphoma,485,399,sliding_3yr,2009
+Non-Hodgkin lymphoma,485,399,sliding_3yr,2010
+Non-Hodgkin lymphoma,485,399,sliding_3yr,2011
+Non-Hodgkin lymphoma,485,5216,sliding_3yr,2012
+Non-Hodgkin lymphoma,485,6753,sliding_3yr,2013
+Non-Hodgkin lymphoma,485,7456,sliding_3yr,2014
+Non-Hodgkin lymphoma,485,2240,sliding_3yr,2015
+Non-Hodgkin lymphoma,485,1074,sliding_3yr,2016
+Non-Hodgkin lymphoma,485,62996,sliding_3yr,2017
+Non-Hodgkin lymphoma,485,62996,sliding_3yr,2018
+Non-Hodgkin lymphoma,485,67889,sliding_3yr,2019
+Non-Hodgkin lymphoma,485,35458,sliding_3yr,2020
+Non-Hodgkin lymphoma,485,35458,sliding_3yr,2021
+Non-Hodgkin lymphoma,485,31349,sliding_3yr,2022
+Non-Hodgkin lymphoma,485,6736,sliding_3yr,2023
+Non-Hodgkin lymphoma,485,6736,sliding_3yr,2024
+Non-Hodgkin lymphoma,485,399,year,2011
+Non-Hodgkin lymphoma,485,5216,year,2014
+Non-Hodgkin lymphoma,485,1537,year,2015
 Non-Hodgkin lymphoma,485,703,year,2016
-Non-Hodgkin lymphoma,485,2535,year,2018
-Non-Hodgkin lymphoma,485,123358,year,2019
-Non-Hodgkin lymphoma,485,2678,year,2020
-Non-Hodgkin lymphoma,485,23830,year,2021
-Non-Hodgkin lymphoma,485,74151,year,2022
-Non-Hodgkin lymphoma,485,184004,year,2023
-Non-Hodgkin lymphoma,485,17188,year,2024
-Non-Hodgkin lymphoma,485,12022,year,2025
-Non-Hodgkin lymphoma,485,11970,year,2026
+Non-Hodgkin lymphoma,485,371,year,2018
+Non-Hodgkin lymphoma,485,62625,year,2019
+Non-Hodgkin lymphoma,485,5264,year,2021
+Non-Hodgkin lymphoma,485,30194,year,2022
+Non-Hodgkin lymphoma,485,1155,year,2024
+Non-Hodgkin lymphoma,485,5581,year,2025
 Non-melanoma skin cancer,462,2146,sliding_3yr,2006
 Non-melanoma skin cancer,462,4711,sliding_3yr,2007
 Non-melanoma skin cancer,462,4711,sliding_3yr,2008
@@ -3820,15 +3792,15 @@ Non-melanoma skin cancer,462,5688,sliding_3yr,2012
 Non-melanoma skin cancer,462,11742,sliding_3yr,2013
 Non-melanoma skin cancer,462,23400.945,sliding_3yr,2014
 Non-melanoma skin cancer,462,39962.945,sliding_3yr,2015
-Non-melanoma skin cancer,462,59484.945,sliding_3yr,2016
-Non-melanoma skin cancer,462,79613,sliding_3yr,2017
-Non-melanoma skin cancer,462,76512,sliding_3yr,2018
-Non-melanoma skin cancer,462,211308,sliding_3yr,2019
-Non-melanoma skin cancer,462,452275,sliding_3yr,2020
-Non-melanoma skin cancer,462,433126,sliding_3yr,2021
-Non-melanoma skin cancer,462,753479,sliding_3yr,2022
-Non-melanoma skin cancer,462,876021,sliding_3yr,2023
-Non-melanoma skin cancer,462,876021,sliding_3yr,2024
+Non-melanoma skin cancer,462,39820.945,sliding_3yr,2016
+Non-melanoma skin cancer,462,59949,sliding_3yr,2017
+Non-melanoma skin cancer,462,56848,sliding_3yr,2018
+Non-melanoma skin cancer,462,105643,sliding_3yr,2019
+Non-melanoma skin cancer,462,346610,sliding_3yr,2020
+Non-melanoma skin cancer,462,327461,sliding_3yr,2021
+Non-melanoma skin cancer,462,454043,sliding_3yr,2022
+Non-melanoma skin cancer,462,575915,sliding_3yr,2023
+Non-melanoma skin cancer,462,575915,sliding_3yr,2024
 Non-melanoma skin cancer,462,2146,year,2008
 Non-melanoma skin cancer,462,2565,year,2009
 Non-melanoma skin cancer,462,8098,year,2011
@@ -3836,13 +3808,13 @@ Non-melanoma skin cancer,462,5688,year,2014
 Non-melanoma skin cancer,462,6054,year,2015
 Non-melanoma skin cancer,462,11658.945,year,2016
 Non-melanoma skin cancer,462,22250,year,2017
-Non-melanoma skin cancer,462,25576,year,2018
+Non-melanoma skin cancer,462,5912,year,2018
 Non-melanoma skin cancer,462,31787,year,2019
 Non-melanoma skin cancer,462,19149,year,2020
-Non-melanoma skin cancer,462,160372,year,2021
+Non-melanoma skin cancer,462,54707,year,2021
 Non-melanoma skin cancer,462,272754,year,2022
-Non-melanoma skin cancer,462,480725,year,2024
-Non-melanoma skin cancer,462,395296,year,2025
+Non-melanoma skin cancer,462,181289,year,2024
+Non-melanoma skin cancer,462,394626,year,2025
 Non-melanoma skin cancer (basal-cell carcinoma),850,975723.945,all,
 Non-melanoma skin cancer (basal-cell carcinoma),850,2146,sliding_3yr,2006
 Non-melanoma skin cancer (basal-cell carcinoma),850,4711,sliding_3yr,2007
@@ -3927,25 +3899,25 @@ Non-rheumatic valvular heart disease,504,12985,sliding_3yr,2012
 Non-rheumatic valvular heart disease,504,15849,sliding_3yr,2013
 Non-rheumatic valvular heart disease,504,2864,sliding_3yr,2014
 Non-rheumatic valvular heart disease,504,2864,sliding_3yr,2015
-Non-rheumatic valvular heart disease,504,6234,sliding_3yr,2016
-Non-rheumatic valvular heart disease,504,11349,sliding_3yr,2017
-Non-rheumatic valvular heart disease,504,11349,sliding_3yr,2018
-Non-rheumatic valvular heart disease,504,21065,sliding_3yr,2019
-Non-rheumatic valvular heart disease,504,24918,sliding_3yr,2020
-Non-rheumatic valvular heart disease,504,79598,sliding_3yr,2021
-Non-rheumatic valvular heart disease,504,141717,sliding_3yr,2022
-Non-rheumatic valvular heart disease,504,147931,sliding_3yr,2023
-Non-rheumatic valvular heart disease,504,129572,sliding_3yr,2024
+Non-rheumatic valvular heart disease,504,5071,sliding_3yr,2016
+Non-rheumatic valvular heart disease,504,10186,sliding_3yr,2017
+Non-rheumatic valvular heart disease,504,10186,sliding_3yr,2018
+Non-rheumatic valvular heart disease,504,18942,sliding_3yr,2019
+Non-rheumatic valvular heart disease,504,22795,sliding_3yr,2020
+Non-rheumatic valvular heart disease,504,77475,sliding_3yr,2021
+Non-rheumatic valvular heart disease,504,134075,sliding_3yr,2022
+Non-rheumatic valvular heart disease,504,137563,sliding_3yr,2023
+Non-rheumatic valvular heart disease,504,107128,sliding_3yr,2024
 Non-rheumatic valvular heart disease,504,12985,year,2013
 Non-rheumatic valvular heart disease,504,2864,year,2015
-Non-rheumatic valvular heart disease,504,6234,year,2018
+Non-rheumatic valvular heart disease,504,5071,year,2018
 Non-rheumatic valvular heart disease,504,5115,year,2019
-Non-rheumatic valvular heart disease,504,15950,year,2021
+Non-rheumatic valvular heart disease,504,13827,year,2021
 Non-rheumatic valvular heart disease,504,8968,year,2022
 Non-rheumatic valvular heart disease,504,54680,year,2023
-Non-rheumatic valvular heart disease,504,78069,year,2024
-Non-rheumatic valvular heart disease,504,15182,year,2025
-Non-rheumatic valvular heart disease,504,36321,year,2026
+Non-rheumatic valvular heart disease,504,70427,year,2024
+Non-rheumatic valvular heart disease,504,12456,year,2025
+Non-rheumatic valvular heart disease,504,24245,year,2026
 Nonalcoholic fatty liver disease including cirrhosis,971,980190,all,
 Nonalcoholic fatty liver disease including cirrhosis,971,708,sliding_3yr,2008
 Nonalcoholic fatty liver disease including cirrhosis,971,8476,sliding_3yr,2009
@@ -4000,15 +3972,15 @@ Oral disorders,680,43777,sliding_3yr,2012
 Oral disorders,680,28791,sliding_3yr,2013
 Oral disorders,680,7147,sliding_3yr,2014
 Oral disorders,680,4522,sliding_3yr,2015
-Oral disorders,680,91538,sliding_3yr,2016
-Oral disorders,680,451086,sliding_3yr,2017
-Oral disorders,680,455762,sliding_3yr,2018
-Oral disorders,680,1243294,sliding_3yr,2019
-Oral disorders,680,908683,sliding_3yr,2020
-Oral disorders,680,1992015,sliding_3yr,2021
-Oral disorders,680,3475069,sliding_3yr,2022
-Oral disorders,680,3747563,sliding_3yr,2023
-Oral disorders,680,2803424,sliding_3yr,2024
+Oral disorders,680,74364,sliding_3yr,2016
+Oral disorders,680,433912,sliding_3yr,2017
+Oral disorders,680,438588,sliding_3yr,2018
+Oral disorders,680,850899,sliding_3yr,2019
+Oral disorders,680,516288,sliding_3yr,2020
+Oral disorders,680,1599620,sliding_3yr,2021
+Oral disorders,680,2873328,sliding_3yr,2022
+Oral disorders,680,3023665,sliding_3yr,2023
+Oral disorders,680,2026414,sliding_3yr,2024
 Oral disorders,680,438,year,2009
 Oral disorders,680,6000,year,2011
 Oral disorders,680,17746,year,2012
@@ -4016,15 +3988,15 @@ Oral disorders,680,21644,year,2013
 Oral disorders,680,4387,year,2014
 Oral disorders,680,2760,year,2015
 Oral disorders,680,1762,year,2017
-Oral disorders,680,89776,year,2018
+Oral disorders,680,72602,year,2018
 Oral disorders,680,359548,year,2019
 Oral disorders,680,6438,year,2020
-Oral disorders,680,877308,year,2021
+Oral disorders,680,484913,year,2021
 Oral disorders,680,24937,year,2022
 Oral disorders,680,1089770,year,2023
-Oral disorders,680,2360362,year,2024
-Oral disorders,680,297431,year,2025
-Oral disorders,680,145631,year,2026
+Oral disorders,680,1758621,year,2024
+Oral disorders,680,175274,year,2025
+Oral disorders,680,92519,year,2026
 Orofacial clefts,644,177369,all,
 Orofacial clefts,644,1635,sliding_3yr,2007
 Orofacial clefts,644,11613,sliding_3yr,2008
@@ -4060,43 +4032,43 @@ Orofacial clefts,644,13240,year,2022
 Orofacial clefts,644,10894,year,2023
 Orofacial clefts,644,4819,year,2024
 Orofacial clefts,644,8233,year,2025
-Osteoarthritis,628,3068,sliding_3yr,2006
-Osteoarthritis,628,23348,sliding_3yr,2007
-Osteoarthritis,628,173234,sliding_3yr,2008
-Osteoarthritis,628,246330,sliding_3yr,2009
-Osteoarthritis,628,329442,sliding_3yr,2010
-Osteoarthritis,628,226204,sliding_3yr,2011
-Osteoarthritis,628,153388,sliding_3yr,2012
-Osteoarthritis,628,49996,sliding_3yr,2013
-Osteoarthritis,628,11144,sliding_3yr,2014
-Osteoarthritis,628,131324,sliding_3yr,2015
-Osteoarthritis,628,1021007,sliding_3yr,2016
-Osteoarthritis,628,1615576,sliding_3yr,2017
-Osteoarthritis,628,1632932,sliding_3yr,2018
-Osteoarthritis,628,8928594,sliding_3yr,2019
-Osteoarthritis,628,22023575,sliding_3yr,2020
-Osteoarthritis,628,39398570,sliding_3yr,2021
-Osteoarthritis,628,38414001,sliding_3yr,2022
-Osteoarthritis,628,34241628,sliding_3yr,2023
-Osteoarthritis,628,17078617,sliding_3yr,2024
-Osteoarthritis,628,3068,year,2008
-Osteoarthritis,628,20280,year,2009
-Osteoarthritis,628,149886,year,2010
-Osteoarthritis,628,76164,year,2011
-Osteoarthritis,628,103392,year,2012
-Osteoarthritis,628,46648,year,2013
-Osteoarthritis,628,3348,year,2014
-Osteoarthritis,628,7796,year,2016
-Osteoarthritis,628,123528,year,2017
-Osteoarthritis,628,889683,year,2018
-Osteoarthritis,628,602365,year,2019
-Osteoarthritis,628,140884,year,2020
-Osteoarthritis,628,8185345,year,2021
-Osteoarthritis,628,13697346,year,2022
-Osteoarthritis,628,17515879,year,2023
-Osteoarthritis,628,7200776,year,2024
-Osteoarthritis,628,9524973,year,2025
-Osteoarthritis,628,352868,year,2026
+Osteoarthritis,628,1534,sliding_3yr,2006
+Osteoarthritis,628,16744,sliding_3yr,2007
+Osteoarthritis,628,128219,sliding_3yr,2008
+Osteoarthritis,628,183808,sliding_3yr,2009
+Osteoarthritis,628,246142,sliding_3yr,2010
+Osteoarthritis,628,169653,sliding_3yr,2011
+Osteoarthritis,628,115041,sliding_3yr,2012
+Osteoarthritis,628,37497,sliding_3yr,2013
+Osteoarthritis,628,6409,sliding_3yr,2014
+Osteoarthritis,628,85192,sliding_3yr,2015
+Osteoarthritis,628,683153,sliding_3yr,2016
+Osteoarthritis,628,1085055,sliding_3yr,2017
+Osteoarthritis,628,1103274,sliding_3yr,2018
+Osteoarthritis,628,6167212,sliding_3yr,2019
+Osteoarthritis,628,15986313,sliding_3yr,2020
+Osteoarthritis,628,28902357,sliding_3yr,2021
+Osteoarthritis,628,28641040,sliding_3yr,2022
+Osteoarthritis,628,25026628,sliding_3yr,2023
+Osteoarthritis,628,12256725,sliding_3yr,2024
+Osteoarthritis,628,1534,year,2008
+Osteoarthritis,628,15210,year,2009
+Osteoarthritis,628,111475,year,2010
+Osteoarthritis,628,57123,year,2011
+Osteoarthritis,628,77544,year,2012
+Osteoarthritis,628,34986,year,2013
+Osteoarthritis,628,2511,year,2014
+Osteoarthritis,628,3898,year,2016
+Osteoarthritis,628,81294,year,2017
+Osteoarthritis,628,597961,year,2018
+Osteoarthritis,628,405800,year,2019
+Osteoarthritis,628,99513,year,2020
+Osteoarthritis,628,5661899,year,2021
+Osteoarthritis,628,10224901,year,2022
+Osteoarthritis,628,13015557,year,2023
+Osteoarthritis,628,5400582,year,2024
+Osteoarthritis,628,6610489,year,2025
+Osteoarthritis,628,245654,year,2026
 Osteoarthritis hand,1016,12950288,all,
 Osteoarthritis hand,1016,5070,sliding_3yr,2007
 Osteoarthritis hand,1016,41602,sliding_3yr,2008
@@ -4529,9 +4501,9 @@ Other neoplasms,490,17847,sliding_3yr,2015
 Other neoplasms,490,57960,sliding_3yr,2016
 Other neoplasms,490,46204,sliding_3yr,2017
 Other neoplasms,490,48902,sliding_3yr,2018
-Other neoplasms,490,323323,sliding_3yr,2019
-Other neoplasms,490,331828,sliding_3yr,2020
-Other neoplasms,490,446808,sliding_3yr,2021
+Other neoplasms,490,322741,sliding_3yr,2019
+Other neoplasms,490,331246,sliding_3yr,2020
+Other neoplasms,490,446226,sliding_3yr,2021
 Other neoplasms,490,625568,sliding_3yr,2022
 Other neoplasms,490,632052,sliding_3yr,2023
 Other neoplasms,490,587649,sliding_3yr,2024
@@ -4545,7 +4517,7 @@ Other neoplasms,490,1500,year,2017
 Other neoplasms,490,42546,year,2018
 Other neoplasms,490,2158,year,2019
 Other neoplasms,490,4198,year,2020
-Other neoplasms,490,316967,year,2021
+Other neoplasms,490,316385,year,2021
 Other neoplasms,490,10663,year,2022
 Other neoplasms,490,119178,year,2023
 Other neoplasms,490,495727,year,2024
@@ -5016,23 +4988,23 @@ Pertussis,339,3132,sliding_3yr,2024
 Pertussis,339,5030,year,2021
 Pertussis,339,12215,year,2023
 Pertussis,339,3132,year,2025
-Pneumoconiosis,510,1384,sliding_3yr,2012
-Pneumoconiosis,510,1384,sliding_3yr,2013
-Pneumoconiosis,510,1384,sliding_3yr,2014
-Pneumoconiosis,510,468,sliding_3yr,2016
-Pneumoconiosis,510,468,sliding_3yr,2017
-Pneumoconiosis,510,468,sliding_3yr,2018
-Pneumoconiosis,510,1206,sliding_3yr,2019
-Pneumoconiosis,510,1206,sliding_3yr,2020
-Pneumoconiosis,510,1206,sliding_3yr,2021
-Pneumoconiosis,510,9160,sliding_3yr,2022
-Pneumoconiosis,510,10742,sliding_3yr,2023
-Pneumoconiosis,510,10742,sliding_3yr,2024
-Pneumoconiosis,510,1384,year,2014
-Pneumoconiosis,510,468,year,2018
-Pneumoconiosis,510,1206,year,2021
-Pneumoconiosis,510,9160,year,2024
-Pneumoconiosis,510,1582,year,2025
+Pneumoconiosis,510,692,sliding_3yr,2012
+Pneumoconiosis,510,692,sliding_3yr,2013
+Pneumoconiosis,510,692,sliding_3yr,2014
+Pneumoconiosis,510,234,sliding_3yr,2016
+Pneumoconiosis,510,234,sliding_3yr,2017
+Pneumoconiosis,510,234,sliding_3yr,2018
+Pneumoconiosis,510,603,sliding_3yr,2019
+Pneumoconiosis,510,603,sliding_3yr,2020
+Pneumoconiosis,510,603,sliding_3yr,2021
+Pneumoconiosis,510,4580,sliding_3yr,2022
+Pneumoconiosis,510,5371,sliding_3yr,2023
+Pneumoconiosis,510,5371,sliding_3yr,2024
+Pneumoconiosis,510,692,year,2014
+Pneumoconiosis,510,234,year,2018
+Pneumoconiosis,510,603,year,2021
+Pneumoconiosis,510,4580,year,2024
+Pneumoconiosis,510,791,year,2025
 Polycystic ovarian syndrome,605,292882,all,
 Polycystic ovarian syndrome,605,4082,sliding_3yr,2008
 Polycystic ovarian syndrome,605,4082,sliding_3yr,2009
@@ -5384,21 +5356,21 @@ Seborrhoeic dermatitis,979,4312,year,2021
 Seborrhoeic dermatitis,979,77356,year,2024
 Seborrhoeic dermatitis,979,10893,year,2025
 Seborrhoeic dermatitis,979,29972,year,2026
-Sexually transmitted infections excluding HIV,393,360,sliding_3yr,2016
-Sexually transmitted infections excluding HIV,393,360,sliding_3yr,2017
-Sexually transmitted infections excluding HIV,393,360,sliding_3yr,2018
+Sexually transmitted infections excluding HIV,393,287,sliding_3yr,2016
+Sexually transmitted infections excluding HIV,393,287,sliding_3yr,2017
+Sexually transmitted infections excluding HIV,393,287,sliding_3yr,2018
 Sexually transmitted infections excluding HIV,393,6167,sliding_3yr,2019
-Sexually transmitted infections excluding HIV,393,6611,sliding_3yr,2020
-Sexually transmitted infections excluding HIV,393,6611,sliding_3yr,2021
-Sexually transmitted infections excluding HIV,393,63922,sliding_3yr,2022
-Sexually transmitted infections excluding HIV,393,80379,sliding_3yr,2023
-Sexually transmitted infections excluding HIV,393,104557,sliding_3yr,2024
-Sexually transmitted infections excluding HIV,393,360,year,2018
+Sexually transmitted infections excluding HIV,393,6389,sliding_3yr,2020
+Sexually transmitted infections excluding HIV,393,6389,sliding_3yr,2021
+Sexually transmitted infections excluding HIV,393,47448,sliding_3yr,2022
+Sexually transmitted infections excluding HIV,393,59300,sliding_3yr,2023
+Sexually transmitted infections excluding HIV,393,71389,sliding_3yr,2024
+Sexually transmitted infections excluding HIV,393,287,year,2018
 Sexually transmitted infections excluding HIV,393,6167,year,2021
-Sexually transmitted infections excluding HIV,393,444,year,2022
-Sexually transmitted infections excluding HIV,393,63478,year,2024
-Sexually transmitted infections excluding HIV,393,16901,year,2025
-Sexually transmitted infections excluding HIV,393,24178,year,2026
+Sexually transmitted infections excluding HIV,393,222,year,2022
+Sexually transmitted infections excluding HIV,393,47226,year,2024
+Sexually transmitted infections excluding HIV,393,12074,year,2025
+Sexually transmitted infections excluding HIV,393,12089,year,2026
 Sickle cell disorders,615,17467,all,
 Sickle cell disorders,615,1428,sliding_3yr,2007
 Sickle cell disorders,615,1428,sliding_3yr,2008
@@ -5461,45 +5433,32 @@ Stomach cancer,414,196587,year,2023
 Stomach cancer,414,3562,year,2024
 Stomach cancer,414,2136,year,2025
 Stomach cancer,414,3365,year,2026
-Stroke,494,249,sliding_3yr,2005
-Stroke,494,6486,sliding_3yr,2006
-Stroke,494,9889,sliding_3yr,2007
-Stroke,494,9640,sliding_3yr,2008
-Stroke,494,8358,sliding_3yr,2009
-Stroke,494,53532,sliding_3yr,2010
-Stroke,494,127110,sliding_3yr,2011
-Stroke,494,125381,sliding_3yr,2012
-Stroke,494,225940,sliding_3yr,2013
-Stroke,494,369078,sliding_3yr,2014
-Stroke,494,372170,sliding_3yr,2015
-Stroke,494,814804,sliding_3yr,2016
-Stroke,494,848434,sliding_3yr,2017
-Stroke,494,1013627,sliding_3yr,2018
-Stroke,494,1544537,sliding_3yr,2019
-Stroke,494,3828856,sliding_3yr,2020
-Stroke,494,7510541,sliding_3yr,2021
-Stroke,494,6767506,sliding_3yr,2022
-Stroke,494,4289083,sliding_3yr,2023
-Stroke,494,904989,sliding_3yr,2024
-Stroke,494,249,year,2007
-Stroke,494,6237,year,2008
-Stroke,494,3403,year,2009
-Stroke,494,4955,year,2011
-Stroke,494,48577,year,2012
-Stroke,494,73578,year,2013
+Stroke,494,3226,sliding_3yr,2012
+Stroke,494,74516,sliding_3yr,2013
+Stroke,494,146034,sliding_3yr,2014
+Stroke,494,145934,sliding_3yr,2015
+Stroke,494,280738,sliding_3yr,2016
+Stroke,494,276152,sliding_3yr,2017
+Stroke,494,349889,sliding_3yr,2018
+Stroke,494,356786,sliding_3yr,2019
+Stroke,494,1175877,sliding_3yr,2020
+Stroke,494,2977456,sliding_3yr,2021
+Stroke,494,2946873,sliding_3yr,2022
+Stroke,494,2107618,sliding_3yr,2023
+Stroke,494,300932,sliding_3yr,2024
 Stroke,494,3226,year,2014
-Stroke,494,149136,year,2015
-Stroke,494,216716,year,2016
-Stroke,494,6318,year,2017
-Stroke,494,591770,year,2018
-Stroke,494,250346,year,2019
-Stroke,494,171511,year,2020
-Stroke,494,1122680,year,2021
-Stroke,494,2534665,year,2022
-Stroke,494,3853196,year,2023
-Stroke,494,379645,year,2024
-Stroke,494,56242,year,2025
-Stroke,494,469102,year,2026
+Stroke,494,71290,year,2015
+Stroke,494,71518,year,2016
+Stroke,494,3126,year,2017
+Stroke,494,206094,year,2018
+Stroke,494,66932,year,2019
+Stroke,494,76863,year,2020
+Stroke,494,212991,year,2021
+Stroke,494,886023,year,2022
+Stroke,494,1878442,year,2023
+Stroke,494,182408,year,2024
+Stroke,494,46768,year,2025
+Stroke,494,71756,year,2026
 Subarachnoid hemorrhage,497,61874,all,
 Subarachnoid hemorrhage,497,3116,sliding_3yr,2016
 Subarachnoid hemorrhage,497,3116,sliding_3yr,2017
@@ -5652,49 +5611,31 @@ Trachoma,356,3464,year,2021
 Trachoma,356,1745,year,2023
 Trichomoniasis,397,0,all,
 Trichuriasis,362,0,all,
-Tuberculosis,297,3699,sliding_3yr,2008
-Tuberculosis,297,3699,sliding_3yr,2009
-Tuberculosis,297,16165,sliding_3yr,2010
-Tuberculosis,297,13750,sliding_3yr,2011
-Tuberculosis,297,13750,sliding_3yr,2012
-Tuberculosis,297,10176,sliding_3yr,2013
-Tuberculosis,297,10101,sliding_3yr,2014
-Tuberculosis,297,21771,sliding_3yr,2015
-Tuberculosis,297,15996,sliding_3yr,2016
-Tuberculosis,297,20164,sliding_3yr,2017
-Tuberculosis,297,10092,sliding_3yr,2018
-Tuberculosis,297,36824,sliding_3yr,2019
-Tuberculosis,297,31663,sliding_3yr,2020
-Tuberculosis,297,57358,sliding_3yr,2021
-Tuberculosis,297,33783,sliding_3yr,2022
-Tuberculosis,297,40319,sliding_3yr,2023
-Tuberculosis,297,64002,sliding_3yr,2024
-Tuberculosis,297,3699,year,2010
-Tuberculosis,297,12466,year,2012
-Tuberculosis,297,1284,year,2013
-Tuberculosis,297,8892,year,2015
-Tuberculosis,297,1209,year,2016
-Tuberculosis,297,11670,year,2017
-Tuberculosis,297,3117,year,2018
-Tuberculosis,297,5377,year,2019
-Tuberculosis,297,1598,year,2020
-Tuberculosis,297,29849,year,2021
-Tuberculosis,297,216,year,2022
-Tuberculosis,297,27293,year,2023
-Tuberculosis,297,6274,year,2024
-Tuberculosis,297,6752,year,2025
-Tuberculosis,297,50976,year,2026
+Tuberculosis,297,134,sliding_3yr,2014
+Tuberculosis,297,134,sliding_3yr,2015
+Tuberculosis,297,134,sliding_3yr,2016
+Tuberculosis,297,158,sliding_3yr,2017
+Tuberculosis,297,658,sliding_3yr,2018
+Tuberculosis,297,658,sliding_3yr,2019
+Tuberculosis,297,500,sliding_3yr,2020
+Tuberculosis,297,17450,sliding_3yr,2021
+Tuberculosis,297,17450,sliding_3yr,2022
+Tuberculosis,297,17450,sliding_3yr,2023
+Tuberculosis,297,134,year,2016
+Tuberculosis,297,158,year,2019
+Tuberculosis,297,500,year,2020
+Tuberculosis,297,17450,year,2023
 Turner syndrome,646,0,all,
-Typhoid and paratyphoid,958,2356,sliding_3yr,2012
-Typhoid and paratyphoid,958,2356,sliding_3yr,2013
-Typhoid and paratyphoid,958,2356,sliding_3yr,2014
-Typhoid and paratyphoid,958,6494,sliding_3yr,2019
-Typhoid and paratyphoid,958,6494,sliding_3yr,2020
-Typhoid and paratyphoid,958,6494,sliding_3yr,2021
-Typhoid and paratyphoid,958,23962,sliding_3yr,2024
-Typhoid and paratyphoid,958,2356,year,2014
-Typhoid and paratyphoid,958,6494,year,2021
-Typhoid and paratyphoid,958,23962,year,2026
+Typhoid and paratyphoid,958,1178,sliding_3yr,2012
+Typhoid and paratyphoid,958,1178,sliding_3yr,2013
+Typhoid and paratyphoid,958,1178,sliding_3yr,2014
+Typhoid and paratyphoid,958,3247,sliding_3yr,2019
+Typhoid and paratyphoid,958,3247,sliding_3yr,2020
+Typhoid and paratyphoid,958,3247,sliding_3yr,2021
+Typhoid and paratyphoid,958,11981,sliding_3yr,2024
+Typhoid and paratyphoid,958,1178,year,2014
+Typhoid and paratyphoid,958,3247,year,2021
+Typhoid and paratyphoid,958,11981,year,2026
 Typhoid fever,319,16406,all,
 Typhoid fever,319,1178,sliding_3yr,2012
 Typhoid fever,319,1178,sliding_3yr,2013
@@ -5754,9 +5695,9 @@ Upper digestive system diseases,992,2247,sliding_3yr,2015
 Upper digestive system diseases,992,87103,sliding_3yr,2016
 Upper digestive system diseases,992,167246,sliding_3yr,2017
 Upper digestive system diseases,992,167994,sliding_3yr,2018
-Upper digestive system diseases,992,1478247,sliding_3yr,2019
-Upper digestive system diseases,992,2011722,sliding_3yr,2020
-Upper digestive system diseases,992,4050755,sliding_3yr,2021
+Upper digestive system diseases,992,1476989,sliding_3yr,2019
+Upper digestive system diseases,992,2010464,sliding_3yr,2020
+Upper digestive system diseases,992,4049497,sliding_3yr,2021
 Upper digestive system diseases,992,3910246,sliding_3yr,2022
 Upper digestive system diseases,992,5337305,sliding_3yr,2023
 Upper digestive system diseases,992,3441179,sliding_3yr,2024
@@ -5766,7 +5707,7 @@ Upper digestive system diseases,992,2247,year,2016
 Upper digestive system diseases,992,84856,year,2018
 Upper digestive system diseases,992,82390,year,2019
 Upper digestive system diseases,992,748,year,2020
-Upper digestive system diseases,992,1395109,year,2021
+Upper digestive system diseases,992,1393851,year,2021
 Upper digestive system diseases,992,615865,year,2022
 Upper digestive system diseases,992,2039781,year,2023
 Upper digestive system diseases,992,1254600,year,2024
@@ -5788,38 +5729,38 @@ Upper respiratory infections,328,70371,year,2023
 Upper respiratory infections,328,236290,year,2024
 Upper respiratory infections,328,560033,year,2025
 Upper respiratory infections,328,34651,year,2026
-Urinary diseases and male infertility,594,3957,sliding_3yr,2007
-Urinary diseases and male infertility,594,3957,sliding_3yr,2008
-Urinary diseases and male infertility,594,4162,sliding_3yr,2009
+Urinary diseases and male infertility,594,3865,sliding_3yr,2007
+Urinary diseases and male infertility,594,3865,sliding_3yr,2008
+Urinary diseases and male infertility,594,4070,sliding_3yr,2009
 Urinary diseases and male infertility,594,6001,sliding_3yr,2010
 Urinary diseases and male infertility,594,6001,sliding_3yr,2011
 Urinary diseases and male infertility,594,5796,sliding_3yr,2012
 Urinary diseases and male infertility,594,5149,sliding_3yr,2013
 Urinary diseases and male infertility,594,5149,sliding_3yr,2014
 Urinary diseases and male infertility,594,7551,sliding_3yr,2015
-Urinary diseases and male infertility,594,158318,sliding_3yr,2016
-Urinary diseases and male infertility,594,202113,sliding_3yr,2017
-Urinary diseases and male infertility,594,233674,sliding_3yr,2018
-Urinary diseases and male infertility,594,1525105,sliding_3yr,2019
-Urinary diseases and male infertility,594,1555990,sliding_3yr,2020
-Urinary diseases and male infertility,594,1606111,sliding_3yr,2021
-Urinary diseases and male infertility,594,2175004,sliding_3yr,2022
-Urinary diseases and male infertility,594,3388663,sliding_3yr,2023
-Urinary diseases and male infertility,594,3766828,sliding_3yr,2024
-Urinary diseases and male infertility,594,3957,year,2009
+Urinary diseases and male infertility,594,115592,sliding_3yr,2016
+Urinary diseases and male infertility,594,153796,sliding_3yr,2017
+Urinary diseases and male infertility,594,185357,sliding_3yr,2018
+Urinary diseases and male infertility,594,1332447,sliding_3yr,2019
+Urinary diseases and male infertility,594,1349722,sliding_3yr,2020
+Urinary diseases and male infertility,594,1398731,sliding_3yr,2021
+Urinary diseases and male infertility,594,1727400,sliding_3yr,2022
+Urinary diseases and male infertility,594,2633961,sliding_3yr,2023
+Urinary diseases and male infertility,594,2946860,sliding_3yr,2024
+Urinary diseases and male infertility,594,3865,year,2009
 Urinary diseases and male infertility,594,205,year,2011
 Urinary diseases and male infertility,594,5796,year,2012
 Urinary diseases and male infertility,594,5149,year,2015
 Urinary diseases and male infertility,594,2402,year,2017
-Urinary diseases and male infertility,594,155916,year,2018
-Urinary diseases and male infertility,594,43795,year,2019
+Urinary diseases and male infertility,594,113190,year,2018
+Urinary diseases and male infertility,594,38204,year,2019
 Urinary diseases and male infertility,594,33963,year,2020
-Urinary diseases and male infertility,594,1447347,year,2021
-Urinary diseases and male infertility,594,74680,year,2022
-Urinary diseases and male infertility,594,84084,year,2023
-Urinary diseases and male infertility,594,2016240,year,2024
-Urinary diseases and male infertility,594,1288339,year,2025
-Urinary diseases and male infertility,594,462249,year,2026
+Urinary diseases and male infertility,594,1260280,year,2021
+Urinary diseases and male infertility,594,55479,year,2022
+Urinary diseases and male infertility,594,82972,year,2023
+Urinary diseases and male infertility,594,1588949,year,2024
+Urinary diseases and male infertility,594,962040,year,2025
+Urinary diseases and male infertility,594,395871,year,2026
 Urinary tract infections and interstitial nephritis,595,1234447,all,
 Urinary tract infections and interstitial nephritis,595,13519,sliding_3yr,2016
 Urinary tract infections and interstitial nephritis,595,13519,sliding_3yr,2017

@@ -8,6 +8,10 @@ This context defines the domain language for explaining how GWAS research attent
 The degree to which GWAS attention is concentrated on the conditions responsible for the largest disease burden in a selected population. Conditions are ordered by disease burden, then GWAS attention is assessed across that burden ordering.
 _Avoid_: GWAS attention vs burden, inequality between GWAS and GBD, attention-burden disparity
 
+**Attention-Burden Concentration Index**:
+The concentration index of GWAS attention when conditions are ordered by disease burden. The reverse concentration index, disease burden ordered by GWAS attention, answers a different question and should be named explicitly when used.
+_Avoid_: Reversed concentration index, burden over attention, interchangeable CI direction
+
 **Alignment Quality Check**:
 An expected pattern used to sanity-check a canonical mapping and attention-score pipeline. The default checks are that attention-burden alignment improves over time and is higher in High SDI populations than in Low SDI populations.
 _Avoid_: Plot looks right, validation metric, benchmark fit
@@ -16,9 +20,21 @@ _Avoid_: Plot looks right, validation metric, benchmark fit
 The hypothesis that global GWAS attention is generated from High SDI disease-burden priorities, and that attention-burden alignment in lower-SDI populations appears only insofar as their burden rankings correlate with High SDI burden rankings.
 _Avoid_: Lower-SDI-responsive prioritisation, ancestry-diversity effect, global burden response
 
+**Compatible With the High-SDI Transfer Null**:
+A restrained interpretation meaning the observed lower-SDI attention-burden alignment falls within the counterfactual range expected from High SDI alignment and shared burden structure alone. It does not mean High SDI prioritisation has been proven to cause the observed pattern.
+_Avoid_: Proves the null, caused by High SDI, explained completely
+
 **High-SDI Alignment Counterfactual**:
 A simulated GWAS attention allocation that preserves the observed strength of High SDI attention-burden alignment, while allowing which specific conditions receive attention to vary. It is used to estimate how much lower-SDI attention-burden alignment would be expected from shared burden structure alone.
 _Avoid_: Observed regional analysis, empirical attention distribution, direct replay of true GWAS attention
+
+**Sliding-Window Alignment Counterfactual**:
+A High-SDI alignment counterfactual run separately for each GWAS attention time window. It preserves the sparsity and inequality of GWAS attention within that window so temporal patterns are not blurred into an all-time summary.
+_Avoid_: All-time-only simulation, pooled temporal null, single-era counterfactual
+
+**COVID-Excluded Counterfactual**:
+A High-SDI alignment counterfactual that excludes COVID-19 before permutation so a single pandemic-era condition does not dominate the support of possible attention allocations. This exclusion is about preserving a useful counterfactual range, not merely removing an outlier from a plot.
+_Avoid_: Cosmetic COVID sensitivity, pandemic-adjusted result, hidden exclusion
 
 **Condition Prioritisation**:
 The distribution of GWAS attention across conditions. It is distinct from the ancestry or geography of sampled participants.
