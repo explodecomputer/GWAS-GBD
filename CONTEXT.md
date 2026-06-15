@@ -12,6 +12,22 @@ _Avoid_: GWAS attention vs burden, inequality between GWAS and GBD, attention-bu
 An expected pattern used to sanity-check a canonical mapping and attention-score pipeline. The default checks are that attention-burden alignment improves over time and is higher in High SDI populations than in Low SDI populations.
 _Avoid_: Plot looks right, validation metric, benchmark fit
 
+**High-SDI Transfer Null**:
+The hypothesis that global GWAS attention is generated from High SDI disease-burden priorities, and that attention-burden alignment in lower-SDI populations appears only insofar as their burden rankings correlate with High SDI burden rankings.
+_Avoid_: Lower-SDI-responsive prioritisation, ancestry-diversity effect, global burden response
+
+**High-SDI Alignment Counterfactual**:
+A simulated GWAS attention allocation that preserves the observed strength of High SDI attention-burden alignment, while allowing which specific conditions receive attention to vary. It is used to estimate how much lower-SDI attention-burden alignment would be expected from shared burden structure alone.
+_Avoid_: Observed regional analysis, empirical attention distribution, direct replay of true GWAS attention
+
+**Condition Prioritisation**:
+The distribution of GWAS attention across conditions. It is distinct from the ancestry or geography of sampled participants.
+_Avoid_: Ancestry diversity, cohort representativeness, who is sampled
+
+**Sampling Diversity**:
+The ancestry or geography of participants included in GWAS research. Sampling diversity can change without changing condition prioritisation.
+_Avoid_: Condition alignment, trait diversity, disease-burden response
+
 **Mapping Quality Gate**:
 A hard invariant that a canonical mapping must satisfy before default GWAS attention scores are produced. Examples include observed-term-only mappings, no duplicate accepted mapping decisions, residual exclusivity, reproducibility for identical inputs, and sentinel known non-zero conditions remaining non-zero.
 _Avoid_: Diagnostic plot, sanity check, quality-control figure

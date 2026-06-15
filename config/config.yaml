@@ -15,6 +15,7 @@ inputs:
   efo_obo: "data/efo.obo"
   manual_zero_mapping: "data/manual_zero_attention_mapping.csv"
   reference_attention_scores: "data/merged_dataset_exclude_Injuries_2023_updated_6.csv"
+  citescore: "data/CiteScore2023.csv"
 
 canonical_mapping:
   output_dir: "outputs/canonical_mapping"

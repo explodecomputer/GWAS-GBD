@@ -307,8 +307,135 @@ derive_gbd_universe <- function(hierarchy_path) {
   bind_rows(map_df, replacement_rows) %>% distinct()
 }
 
+# ── CiteScore journal matching ─────────────────────────────────────────────
+
+.normalise_journal_name <- function(x) {
+  x <- tolower(trimws(x))
+  x <- gsub("[^a-z0-9 ]", " ", x)
+  gsub("\\s+", " ", trimws(x))
+}
+
+#' Load and deduplicate CiteScore journal data.
+#'
+#' @param path Path to CiteScore CSV (Scopus format).
+#' @return Data frame: Title, CiteScore (max per title), title_norm.
+load_citescore <- function(path) {
+  cs <- data.table::fread(path, data.table = FALSE)
+  cs <- cs[cs$Type == "j", c("Title", "CiteScore")]
+  cs %>%
+    group_by(Title) %>%
+    summarise(CiteScore = max(CiteScore, na.rm = TRUE), .groups = "drop") %>%
+    mutate(title_norm = .normalise_journal_name(Title))
+}
+
+# Match a character vector of GWAS journal names to CiteScore titles.
+# Returns a data frame: JOURNAL, citescore_value, match_type.
+# Four-stage pipeline:
+#   1. Exact match on normalised name
+#   2. Substring: GWAS name contained in CiteScore title
+#   3. Token-prefix coverage: handles NLM abbreviations ("Nat Genet" → "Nature Genetics")
+#   4. Strip parenthetical location suffixes and retry 1-3
+#      (e.g. "Int J Obes (Lond)" → "Int J Obes")
+.match_journals_to_citescore <- function(gwas_journals, citescore) {
+  norm_q <- .normalise_journal_name(gwas_journals)
+  n      <- length(norm_q)
+  cs_val <- rep(NA_real_, n)
+  mtype  <- rep("unmatched", n)
+
+  # Stage 1: exact on normalised name
+  exact_pos <- match(norm_q, citescore$title_norm)
+  hits <- !is.na(exact_pos)
+  cs_val[hits] <- citescore$CiteScore[exact_pos[hits]]
+  mtype[hits]  <- "exact"
+
+  # Stage 2: GWAS name as substring of CiteScore title → pick shortest match
+  for (i in which(mtype == "unmatched")) {
+    cands <- which(grepl(norm_q[i], citescore$title_norm, fixed = TRUE))
+    if (length(cands) == 0) next
+    best      <- cands[which.min(nchar(citescore$title_norm[cands]))]
+    cs_val[i] <- citescore$CiteScore[best]
+    mtype[i]  <- "substring"
+  }
+
+  # Stage 3: token-prefix coverage (handles NLM-style abbreviations).
+  # Each GWAS token must bidirectionally prefix-match some CS title token.
+  # Bidirectional: either the abbreviated token is a prefix of the full word,
+  # or the full word is a prefix of the abbreviated form (e.g. "alzheimers"/"alzheimer").
+  # Pre-index CiteScore by first 3 chars of the first SIGNIFICANT token
+  # (skipping "the"/"a"/"an") to avoid O(n×28k) scan while still finding
+  # titles like "The Lancet Infectious Diseases" for query "Lancet Infect Dis".
+  .STOP_TOKS <- c("the", "a", "an")
+  .first_sig <- function(toks) {
+    sig <- toks[!toks %in% .STOP_TOKS]
+    if (length(sig) > 0) sig[1] else toks[1]
+  }
+
+  cs_tokens  <- strsplit(citescore$title_norm, " ")
+  first_tok3 <- vapply(cs_tokens, function(x) {
+    if (length(x) == 0) return("")
+    substr(.first_sig(x), 1, 3)
+  }, character(1))
+  cs_idx <- split(seq_along(cs_tokens), first_tok3)
+
+  .cov <- function(qt, ct) {
+    sum(vapply(qt, function(tok) {
+      any(startsWith(ct, tok) | (nchar(tok) >= 3L & startsWith(tok, ct)))
+    }, logical(1))) / length(qt)
+  }
+
+  .token_match <- function(qt) {
+    if (length(qt) == 0) return(NULL)
+    sig_tok <- .first_sig(qt)
+    pfx     <- substr(sig_tok, 1, min(3L, nchar(sig_tok)))
+    keys    <- names(cs_idx)[startsWith(names(cs_idx), pfx)]
+    cands   <- unlist(cs_idx[keys], use.names = FALSE)
+    if (length(cands) == 0) return(NULL)
+    cov <- vapply(cs_tokens[cands], .cov, numeric(1), qt = qt)
+    if (max(cov) < 0.8) return(NULL)
+    list(val = citescore$CiteScore[cands[which.max(cov)]], type = "token")
+  }
+
+  q_tokens <- strsplit(norm_q, " ")
+  for (i in which(mtype == "unmatched")) {
+    r <- .token_match(q_tokens[[i]])
+    if (!is.null(r)) { cs_val[i] <- r$val; mtype[i] <- r$type }
+  }
+
+  # Stage 4: strip parenthetical location suffixes from the ORIGINAL name, then
+  # re-normalise and retry stages 1-3.
+  # e.g. "Int J Obes (Lond)" → "Int J Obes" → "international journal of obesity"
+  stripped_orig <- gsub("\\s*\\([^)]+\\)\\s*$", "", gwas_journals)
+  stripped_norm <- .normalise_journal_name(stripped_orig)
+
+  for (i in which(mtype == "unmatched")) {
+    sn <- stripped_norm[i]
+    if (sn == norm_q[i] || !nzchar(sn)) next
+
+    ep <- match(sn, citescore$title_norm)
+    if (!is.na(ep)) {
+      cs_val[i] <- citescore$CiteScore[ep]; mtype[i] <- "stripped_exact"; next
+    }
+    cands <- which(grepl(sn, citescore$title_norm, fixed = TRUE))
+    if (length(cands) > 0) {
+      best      <- cands[which.min(nchar(citescore$title_norm[cands]))]
+      cs_val[i] <- citescore$CiteScore[best]; mtype[i] <- "stripped_substring"; next
+    }
+    r <- .token_match(strsplit(sn, " ")[[1]])
+    if (!is.null(r)) { cs_val[i] <- r$val; mtype[i] <- paste0("stripped_", r$type) }
+  }
+
+  data.frame(
+    JOURNAL          = gwas_journals,
+    citescore_value  = coalesce(cs_val, 0),
+    match_type       = mtype,
+    stringsAsFactors = FALSE
+  )
+}
+
 # ── Step 1 ─────────────────────────────────────────────────────────────────
-load_gwas_attention <- function(gwas_catalog_path, n_efo_max = NA_integer_) {
+load_gwas_attention <- function(gwas_catalog_path,
+                                citescore = NULL,
+                                n_efo_max = NA_integer_) {
   ext <- tolower(tools::file_ext(gwas_catalog_path))
   a <- switch(
     ext,
@@ -364,6 +491,22 @@ load_gwas_attention <- function(gwas_catalog_path, n_efo_max = NA_integer_) {
   a$`Impact factor` <- gsub("·", ".", a$`Impact factor`)  # middle dot → period
   a$`Impact factor` <- as.numeric(a$`Impact factor`)
   a$`Impact factor`[is.na(a$`Impact factor`)] <- 0
+
+  # Override with CiteScore when provided
+  if (!is.null(citescore) && "JOURNAL" %in% names(a)) {
+    jlookup <- .match_journals_to_citescore(unique(a$JOURNAL), citescore)
+    n_total   <- nrow(jlookup)
+    n_exact   <- sum(jlookup$match_type == "exact")
+    n_fuzzy   <- sum(jlookup$match_type == "fuzzy")
+    n_miss    <- sum(jlookup$match_type == "unmatched")
+    message(sprintf(
+      "  CiteScore: %d unique journals — exact %d, fuzzy %d, unmatched %d",
+      n_total, n_exact, n_fuzzy, n_miss
+    ))
+    a <- left_join(a, jlookup[, c("JOURNAL", "citescore_value")], by = "JOURNAL")
+    a$`Impact factor` <- a$citescore_value
+    a$citescore_value <- NULL
+  }
 
   a$pub_year <- as.integer(format(as.Date(a$DATE), "%Y"))
 

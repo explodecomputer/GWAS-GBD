@@ -4,6 +4,7 @@ library(data.table)
 attention_pipeline_inputs_from_config <- function(cfg) {
   list(
     gwas_catalog = cfg_path(cfg_get(cfg, "inputs.gwas_catalog"), cfg),
+    citescore = cfg_path(cfg_get(cfg, "inputs.citescore"), cfg),
     master_mapping = cfg_path(cfg_get(cfg, "canonical_mapping.master_mapping"), cfg),
     gbd_hierarchy = cfg_path(cfg_get(cfg, "inputs.gbd_hierarchy"), cfg),
     manual_zero_mapping = cfg_path(cfg_get(cfg, "inputs.manual_zero_mapping"), cfg)
@@ -19,7 +20,7 @@ attention_pipeline_outputs_from_config <- function(cfg) {
 }
 
 validate_attention_pipeline_inputs <- function(inputs) {
-  required <- c("gwas_catalog", "master_mapping", "gbd_hierarchy")
+  required <- c("gwas_catalog", "citescore", "master_mapping", "gbd_hierarchy")
   missing_paths <- required[!file.exists(unlist(inputs[required]))]
   if (length(missing_paths) > 0) {
     stop(
@@ -139,7 +140,9 @@ run_attention_score_pipeline <- function(inputs,
   message("  GBD universe: ", nrow(gbd_universe), " terms")
 
   message("Step 1: Loading GWAS attention data...")
-  attention <- load_gwas_attention(inputs$gwas_catalog)
+  citescore <- load_citescore(inputs$citescore)
+  message("  CiteScore: ", nrow(citescore), " unique journals loaded")
+  attention <- load_gwas_attention(inputs$gwas_catalog, citescore = citescore)
   message("  ", nrow(attention), " EFO x publication rows loaded")
 
   message("Step 2: Loading GBD-EFO master mapping...")

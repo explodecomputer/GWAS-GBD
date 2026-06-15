@@ -37,6 +37,7 @@ archive/deprecated/data/local_artifacts/
 # Large input files
 data/efo.obo
 data/gwas_catalog_v*.tsv
+data/CiteScore2023.csv
 
 # Archive
 archive/deprecated/

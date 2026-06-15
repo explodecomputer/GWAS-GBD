@@ -28,6 +28,8 @@ helper_files <- list.files(
 data_files <- c(
   cfg_path(cfg_get(regional_config, "attention_scores.temporal_output"),
            regional_config),
+  cfg_path(cfg_get(regional_config, "attention_scores.combined_output"),
+           regional_config),
   cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.age"),
            regional_config),
   cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.sex"),
@@ -42,6 +44,7 @@ knitr::opts_chunk$set(
 )
 
 gwas_attention <- load_gwas_attention()
+gwas_attention_combined <- load_gwas_attention_combined()
 all_causes <- gwas_attention %>%
   select(cause_name, cause_id)
 gwas_attention_windows <- load_gwas_attention_windows(all_causes)
@@ -263,6 +266,49 @@ plot_attention_gini_fullscale(gini_over_time)
 plot_gini_over_time(gini_over_time, y_var = "n_zero")
 ```
 
+## Gini index by scoring method
+
+All-time Gini coefficients for each attention score type. The Gini is computed as
+the self-referential concentration index (score ranked by itself), giving a measure
+of how unequally GWAS attention is distributed across GBD conditions regardless of
+burden alignment.
+
+```{r gini-by-score, fig.width=7, fig.height=4}
+score_labels <- c(
+  total_attention_score                    = "Total attention\n(fractional pubs)",
+  weighted_nhits                           = "Weighted hits\n(assoc / n_efo)",
+  weighted_attention_score_impact_factor   = "CiteScore-weighted\n(IF / n_efo)",
+  weighted_n                               = "Sample-size\nweighted"
+)
+
+gini_by_score <- gwas_attention_combined %>%
+  filter(if_all(names(score_labels), ~ !is.na(.))) %>%
+  summarise(across(
+    names(score_labels),
+    ~ safe_ci(.x, .x)$concentration_index,
+    .names = "{.col}"
+  )) %>%
+  tidyr::pivot_longer(everything(), names_to = "score", values_to = "gini") %>%
+  mutate(label = score_labels[score],
+         label = factor(label, levels = score_labels))
+
+gini_by_score %>%
+  ggplot(aes(x = label, y = gini, fill = label)) +
+  geom_col(width = 0.6, show.legend = FALSE) +
+  geom_text(aes(label = round(gini, 3)), vjust = -0.4, size = 3.5) +
+  scale_fill_brewer(palette = "Set2") +
+  scale_y_continuous(limits = c(0, max(gini_by_score$gini, na.rm = TRUE) * 1.15)) +
+  labs(x = NULL, y = "Gini coefficient",
+       title = "All-time Gini index by attention scoring method") +
+  theme_minimal(base_size = 11)
+```
+
+```{r gini-by-score-table}
+gini_by_score %>%
+  select(Metric = label, Gini = gini) %>%
+  mutate(Gini = round(Gini, 4))
+```
+
 ## Burden and attention in the same year
 
 ```{r yearly-attention-analysis}
@@ -420,7 +466,7 @@ zero_attention_dalys
 plot_zero_attention_dalys(zero_attention_dalys)
 ```
 
-```{r figure-exports, include=FALSE, eval=!identical(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"), "1")}
+```{r figure-exports, include=FALSE, cache=FALSE, eval=!identical(Sys.getenv("QUARTO_PROJECT_RENDER_ALL"), "1")}
 dir.create(here("figures"), showWarnings = FALSE, recursive = TRUE)
 
 ggsave(

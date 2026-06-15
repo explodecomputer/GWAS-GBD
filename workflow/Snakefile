@@ -119,6 +119,7 @@ rule attention_scores:
         functions=p("scripts/attention_scores/pipeline_functions.R"),
         master_mapping=p(config["canonical_mapping"]["master_mapping"]),
         gwas_catalog=p(config["inputs"]["gwas_catalog"]),
+        citescore=p(config["inputs"]["citescore"]),
         hierarchy=p(config["inputs"]["gbd_hierarchy"]),
         manual_zero_mapping=p(config["inputs"]["manual_zero_mapping"]),
     output:

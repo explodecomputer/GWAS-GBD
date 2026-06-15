@@ -94,11 +94,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lorenz-curves" id="toc-lorenz-curves" class="nav-link" data-scroll-target="#lorenz-curves"><span class="header-section-number">6</span> Lorenz curves</a></li>
   <li><a href="#age-specific-analysis" id="toc-age-specific-analysis" class="nav-link" data-scroll-target="#age-specific-analysis"><span class="header-section-number">7</span> Age-specific analysis</a></li>
   <li><a href="#gwas-attention-inequality-over-time" id="toc-gwas-attention-inequality-over-time" class="nav-link" data-scroll-target="#gwas-attention-inequality-over-time"><span class="header-section-number">8</span> GWAS attention inequality over time</a></li>
-  <li><a href="#burden-and-attention-in-the-same-year" id="toc-burden-and-attention-in-the-same-year" class="nav-link" data-scroll-target="#burden-and-attention-in-the-same-year"><span class="header-section-number">9</span> Burden and attention in the same year</a></li>
-  <li><a href="#fixed-gbd-year-with-changing-gwas-attention-year" id="toc-fixed-gbd-year-with-changing-gwas-attention-year" class="nav-link" data-scroll-target="#fixed-gbd-year-with-changing-gwas-attention-year"><span class="header-section-number">10</span> Fixed GBD year with changing GWAS attention year</a></li>
-  <li><a href="#high-sdi-and-low-sdi-burden-priority" id="toc-high-sdi-and-low-sdi-burden-priority" class="nav-link" data-scroll-target="#high-sdi-and-low-sdi-burden-priority"><span class="header-section-number">11</span> High-SDI and Low-SDI burden priority</a></li>
-  <li><a href="#zero-attention-disease-burden-trends" id="toc-zero-attention-disease-burden-trends" class="nav-link" data-scroll-target="#zero-attention-disease-burden-trends"><span class="header-section-number">12</span> Zero-attention disease burden trends</a></li>
-  <li><a href="#reproducibility-notes" id="toc-reproducibility-notes" class="nav-link" data-scroll-target="#reproducibility-notes"><span class="header-section-number">13</span> Reproducibility notes</a></li>
+  <li><a href="#gini-index-by-scoring-method" id="toc-gini-index-by-scoring-method" class="nav-link" data-scroll-target="#gini-index-by-scoring-method"><span class="header-section-number">9</span> Gini index by scoring method</a></li>
+  <li><a href="#burden-and-attention-in-the-same-year" id="toc-burden-and-attention-in-the-same-year" class="nav-link" data-scroll-target="#burden-and-attention-in-the-same-year"><span class="header-section-number">10</span> Burden and attention in the same year</a></li>
+  <li><a href="#fixed-gbd-year-with-changing-gwas-attention-year" id="toc-fixed-gbd-year-with-changing-gwas-attention-year" class="nav-link" data-scroll-target="#fixed-gbd-year-with-changing-gwas-attention-year"><span class="header-section-number">11</span> Fixed GBD year with changing GWAS attention year</a></li>
+  <li><a href="#high-sdi-and-low-sdi-burden-priority" id="toc-high-sdi-and-low-sdi-burden-priority" class="nav-link" data-scroll-target="#high-sdi-and-low-sdi-burden-priority"><span class="header-section-number">12</span> High-SDI and Low-SDI burden priority</a></li>
+  <li><a href="#zero-attention-disease-burden-trends" id="toc-zero-attention-disease-burden-trends" class="nav-link" data-scroll-target="#zero-attention-disease-burden-trends"><span class="header-section-number">13</span> Zero-attention disease burden trends</a></li>
+  <li><a href="#reproducibility-notes" id="toc-reproducibility-notes" class="nav-link" data-scroll-target="#reproducibility-notes"><span class="header-section-number">14</span> Reproducibility notes</a></li>
   </ul>
 </nav>
 </div>
@@ -354,8 +355,30 @@ share_alignment = 1 - share_distance</code></pre>
 </div>
 </div>
 </section>
-<section id="burden-and-attention-in-the-same-year" class="level2" data-number="9">
-<h2 data-number="9" class="anchored" data-anchor-id="burden-and-attention-in-the-same-year"><span class="header-section-number">9</span> Burden and attention in the same year</h2>
+<section id="gini-index-by-scoring-method" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="gini-index-by-scoring-method"><span class="header-section-number">9</span> Gini index by scoring method</h2>
+<p>All-time Gini coefficients for each attention score type. The Gini is computed as the self-referential concentration index (score ranked by itself), giving a measure of how unequally GWAS attention is distributed across GBD conditions regardless of burden alignment.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/gini-by-score-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["Metric"],"name":[1],"type":["fct"],"align":["left"]},{"label":["Gini"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Total attention\\n(fractional pubs)","2":"0.8465"},{"1":"Weighted hits\\n(assoc / n_efo)","2":"0.8543"},{"1":"CiteScore-weighted\\n(IF / n_efo)","2":"0.7941"},{"1":"Sample-size\\nweighted","2":"0.8956"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="burden-and-attention-in-the-same-year" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="burden-and-attention-in-the-same-year"><span class="header-section-number">10</span> Burden and attention in the same year</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -393,8 +416,8 @@ share_alignment = 1 - share_distance</code></pre>
 </div>
 </div>
 </section>
-<section id="fixed-gbd-year-with-changing-gwas-attention-year" class="level2" data-number="10">
-<h2 data-number="10" class="anchored" data-anchor-id="fixed-gbd-year-with-changing-gwas-attention-year"><span class="header-section-number">10</span> Fixed GBD year with changing GWAS attention year</h2>
+<section id="fixed-gbd-year-with-changing-gwas-attention-year" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="fixed-gbd-year-with-changing-gwas-attention-year"><span class="header-section-number">11</span> Fixed GBD year with changing GWAS attention year</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -414,8 +437,8 @@ share_alignment = 1 - share_distance</code></pre>
 </div>
 </div>
 </section>
-<section id="high-sdi-and-low-sdi-burden-priority" class="level2" data-number="11">
-<h2 data-number="11" class="anchored" data-anchor-id="high-sdi-and-low-sdi-burden-priority"><span class="header-section-number">11</span> High-SDI and Low-SDI burden priority</h2>
+<section id="high-sdi-and-low-sdi-burden-priority" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="high-sdi-and-low-sdi-burden-priority"><span class="header-section-number">12</span> High-SDI and Low-SDI burden priority</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -498,8 +521,8 @@ share_alignment = 1 - share_distance</code></pre>
 </div>
 </div>
 </section>
-<section id="zero-attention-disease-burden-trends" class="level2" data-number="12">
-<h2 data-number="12" class="anchored" data-anchor-id="zero-attention-disease-burden-trends"><span class="header-section-number">12</span> Zero-attention disease burden trends</h2>
+<section id="zero-attention-disease-burden-trends" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="zero-attention-disease-burden-trends"><span class="header-section-number">13</span> Zero-attention disease burden trends</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -519,8 +542,8 @@ share_alignment = 1 - share_distance</code></pre>
 </div>
 </div>
 </section>
-<section id="reproducibility-notes" class="level2" data-number="13">
-<h2 data-number="13" class="anchored" data-anchor-id="reproducibility-notes"><span class="header-section-number">13</span> Reproducibility notes</h2>
+<section id="reproducibility-notes" class="level2" data-number="14">
+<h2 data-number="14" class="anchored" data-anchor-id="reproducibility-notes"><span class="header-section-number">14</span> Reproducibility notes</h2>
 <p>This report sources reusable code from <code>scripts/regional_analysis/R/</code> and can be rendered from the repository root with:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render scripts/regional_analysis/regional_concentration_index.qmd <span class="at">--output-dir</span> outputs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>

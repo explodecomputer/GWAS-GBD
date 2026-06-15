@@ -10,6 +10,15 @@ load_gwas_attention <- function(
     select(cause_name, cause_id, total_attention_score)
 }
 
+load_gwas_attention_combined <- function(
+    path = cfg_path(cfg_get(regional_config, "attention_scores.combined_output"),
+                    regional_config)) {
+  fread(path) %>%
+    rename(cause_name = GBD.term) %>%
+    select(cause_name, total_attention_score, weighted_nhits,
+           weighted_attention_score_impact_factor, weighted_n)
+}
+
 load_gwas_attention_windows <- function(
     all_causes,
     path = cfg_path(cfg_get(regional_config, "attention_scores.temporal_output"),

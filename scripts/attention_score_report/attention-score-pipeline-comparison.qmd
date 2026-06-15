@@ -14,14 +14,16 @@ execute:
 library(data.table)
 library(dplyr)
 library(ggplot2)
+library(tidyr)
 library(here)
 source(here("scripts/attention_scores/config.R"))
 
 cfg <- load_project_config()
-before_path  <- cfg_path(cfg_get(cfg, "inputs.reference_attention_scores"), cfg)
-after_path   <- cfg_path(cfg_get(cfg, "attention_scores.temporal_output"), cfg)
-manual_path  <- cfg_path(cfg_get(cfg, "inputs.manual_zero_mapping"), cfg)
-todo_path    <- cfg_path(cfg_get(cfg, "pipeline_checks.zero_attention_todo"), cfg)
+before_path   <- cfg_path(cfg_get(cfg, "inputs.reference_attention_scores"), cfg)
+after_path    <- cfg_path(cfg_get(cfg, "attention_scores.temporal_output"), cfg)
+combined_path <- cfg_path(cfg_get(cfg, "attention_scores.combined_output"), cfg)
+manual_path   <- cfg_path(cfg_get(cfg, "inputs.manual_zero_mapping"), cfg)
+todo_path     <- cfg_path(cfg_get(cfg, "pipeline_checks.zero_attention_todo"), cfg)
 
 before <- fread(before_path) %>% mutate(source = "updated_6_reference")
 after  <- fread(after_path)  %>% mutate(source = "pipeline_current")
@@ -277,4 +279,64 @@ data.frame(
     nrow(anti_join(after_keys, before_keys, by = key_cols))
   )
 )
+```
+
+## Attention Score Comparison Across Methods
+
+Compares all four scoring methods for all-time scores. Each panel plots that method
+against `total_attention_score`; the dashed line is y = x. The impact-factor score
+uses Scopus CiteScore 2023 (journal-matched from the GWAS Catalog `JOURNAL` column).
+
+```{r score-comparison}
+combined_scores <- fread(combined_path, na.strings = c("", "NA")) %>%
+  filter(total_attention_score > 0)
+
+score_cols <- c(
+  "Weighted hits (1/n_efo)"      = "weighted_nhits",
+  "CiteScore-weighted (1/n_efo)" = "weighted_attention_score_impact_factor",
+  "Sample-size weighted"         = "weighted_n"
+)
+
+plot_data <- lapply(names(score_cols), function(label) {
+  col <- score_cols[[label]]
+  combined_scores %>%
+    filter(.data[[col]] > 0) %>%
+    transmute(
+      GBD.term,
+      total_attention_score,
+      alt_score = .data[[col]],
+      method    = label
+    )
+}) %>% bind_rows()
+
+cors <- plot_data %>%
+  group_by(method) %>%
+  summarise(
+    r = round(cor(log10(total_attention_score + 1),
+                  log10(alt_score + 1),
+                  use = "complete.obs"), 3),
+    .groups = "drop"
+  ) %>%
+  mutate(label = paste0("r = ", r))
+
+ggplot(plot_data,
+       aes(x = total_attention_score + 1, y = alt_score + 1)) +
+  geom_abline(slope = 1, intercept = 0, colour = "grey60", linetype = "dashed") +
+  geom_point(alpha = 0.45, size = 1.5, colour = "#0072B2") +
+  geom_text(
+    data = cors,
+    aes(label = label),
+    x = -Inf, y = Inf, hjust = -0.15, vjust = 1.4,
+    size = 3.5, inherit.aes = FALSE
+  ) +
+  facet_wrap(~method, scales = "free") +
+  scale_x_log10(labels = scales::comma) +
+  scale_y_log10(labels = scales::comma) +
+  labs(
+    x     = "Total attention score + 1 (log10)",
+    y     = "Alternative score + 1 (log10)",
+    title = "All-time attention scores: method comparison (non-zero GBD terms)"
+  ) +
+  theme_minimal(base_size = 11) +
+  theme(strip.text = element_text(size = 9))
 ```
