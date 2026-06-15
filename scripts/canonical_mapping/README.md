@@ -216,6 +216,88 @@ cat(report$report)
 # report$mapping_drift: carry_forward / review_replacement / needs_review per accepted mapping
 ```
 
+## Embedding server
+
+The embedding step (Issue 015) requires a running BioBERT HTTP server. This section covers environment setup, starting the server, and tunnelling from your local machine to a remote GPU node.
+
+### Set up the conda environment
+
+Create the environment once from the repo root:
+
+```bash
+conda env create -f environment.embed.yml
+```
+
+To update an existing environment after dependency changes:
+
+```bash
+conda env update -f environment.embed.yml --prune
+```
+
+### Start the server
+
+**Local CPU (development / testing):**
+
+```bash
+conda run -n gwas-gbd-embed python scripts/canonical_mapping/embed_server.py
+```
+
+Or activate first:
+
+```bash
+conda activate gwas-gbd-embed
+python scripts/canonical_mapping/embed_server.py
+```
+
+The server binds to `127.0.0.1:8000` by default. Verify it is running:
+
+```bash
+curl http://localhost:8000/health
+```
+
+**Remote GPU node:**
+
+On the remote node, bind to all interfaces so the SSH tunnel can reach it:
+
+```bash
+conda activate gwas-gbd-embed
+python scripts/canonical_mapping/embed_server.py --host 0.0.0.0 --port 8000
+```
+
+### Create an SSH tunnel (remote GPU → localhost)
+
+Run this on your **local machine**. Replace `user@gpu-node` with your actual login:
+
+```bash
+ssh -N -L 8000:localhost:8000 user@gpu-node
+```
+
+This forwards `localhost:8000` on your machine to port 8000 on the remote node. The R workflow will then reach the GPU via `http://localhost:8000` as if it were local. Keep the tunnel open in a separate terminal while running the workflow.
+
+To run the tunnel in the background:
+
+```bash
+ssh -f -N -L 8000:localhost:8000 user@gpu-node
+```
+
+### Point the R workflow at the server
+
+`config/config.yaml` already defaults to:
+
+```yaml
+services:
+  embed_server_url: "http://localhost:8000"
+```
+
+No change is needed when running locally or via the SSH tunnel above. For a different host or port, override in a local config or pass `embedding_port` directly:
+
+```r
+candidates <- add_embedding_candidates(
+  ...,
+  embedding_port = "http://localhost:8001"
+)
+```
+
 ## Running the tests
 
 ```r
