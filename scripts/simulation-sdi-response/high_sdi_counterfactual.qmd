@@ -1,0 +1,380 @@
+---
+title: "High-SDI alignment counterfactual"
+format:
+  html:
+    toc: true
+    code-fold: true
+execute:
+  warning: false
+  message: false
+---
+
+```{r setup}
+source(here::here("scripts/regional_analysis/R/packages.R"))
+source(here::here("scripts/regional_analysis/R/data_loaders.R"))
+source(here::here("scripts/regional_analysis/R/metrics.R"))
+source(here::here("scripts/regional_analysis/R/plots.R"))
+source(here::here("scripts/simulation-sdi-response/high_sdi_counterfactual.R"))
+
+simulation_seed <- 20260615
+n_candidates <- 5000
+n_keep <- 500
+median_abs_error_warn <- 0.02
+max_abs_error_warn <- 0.05
+
+# Paper-scale starting point:
+# n_candidates <- 50000
+# n_keep <- 1000
+```
+
+## Aim
+
+This analysis tests whether lower-SDI attention-burden alignment is compatible
+with a High-SDI transfer null. The counterfactual preserves each sliding
+window's observed attention sparsity and inequality, then keeps simulated
+attention allocations closest to the observed High SDI attention-burden
+concentration index.
+
+The candidate generator uses a proposal mixture. One component assigns observed
+nonzero attention scores fully at random; the other components assign the same
+observed scores to randomly selected conditions with noisy High-SDI rank
+alignment. The proposal mixture is used to explore enough High-SDI-aligned
+allocations for calibration; kept allocations are selected by closeness to the
+observed High SDI concentration index.
+
+The active and reversed metrics are calibrated in separate simulation runs. The
+active ribbon keeps allocations closest to observed High SDI attention-burden
+concentration index; the reversed ribbon keeps allocations closest to observed
+High SDI reversed concentration index.
+
+COVID-19 is excluded before building observed and simulated windows so a single
+pandemic-era condition does not dominate the range of possible permutations.
+
+The all-time sensitivity uses the all-time attention score distribution and
+evaluates it against each burden year.
+
+## Data
+
+```{r prepare-data}
+window_data <- prepare_counterfactual_windows(exclude_covid = TRUE)
+observed_alignment <- compute_observed_counterfactual_alignment(window_data)
+
+years <- sort(unique(window_data$year))
+
+tibble(
+  first_year = min(years),
+  last_year = max(years),
+  n_years = length(years),
+  n_conditions = n_distinct(window_data$cause_id),
+  n_locations = n_distinct(window_data$location_name)
+)
+```
+
+```{r observed-summary}
+observed_alignment %>%
+  filter(
+    sex_name == "Both",
+    year %in% c(min(years), 2010, 2015, 2020, max(years)),
+    location_name %in% c("High SDI", "Low SDI", "Global")
+  ) %>%
+  select(
+    location_name,
+    year,
+    concentration_index,
+    concentration_index_rev,
+    attention_gini,
+    alignment_ratio,
+    share_alignment,
+    n_causes
+  ) %>%
+  arrange(location_name, year)
+```
+
+## Simulation
+
+```{r run-counterfactual}
+active_counterfactual <- run_high_sdi_counterfactual(
+  window_data = window_data,
+  years = years,
+  n_candidates = n_candidates,
+  n_keep = n_keep,
+  seed = simulation_seed,
+  calibration_metric = "active",
+  median_abs_error_warn = median_abs_error_warn,
+  max_abs_error_warn = max_abs_error_warn
+)
+
+active_counterfactual_summary <- summarise_counterfactual(
+  simulations = active_counterfactual$simulations,
+  observed_alignment = observed_alignment,
+  calibration = active_counterfactual$calibration
+)
+
+reversed_counterfactual <- run_high_sdi_counterfactual(
+  window_data = window_data,
+  years = years,
+  n_candidates = n_candidates,
+  n_keep = n_keep,
+  seed = simulation_seed,
+  calibration_metric = "reversed",
+  median_abs_error_warn = median_abs_error_warn,
+  max_abs_error_warn = max_abs_error_warn
+)
+
+reversed_counterfactual_summary <- summarise_counterfactual(
+  simulations = reversed_counterfactual$simulations,
+  observed_alignment = observed_alignment,
+  calibration = reversed_counterfactual$calibration
+)
+```
+
+```{r calibration-summary}
+bind_rows(
+  active_counterfactual$calibration,
+  reversed_counterfactual$calibration
+) %>%
+  select(
+    year,
+    calibration_metric,
+    n_candidates,
+    n_kept,
+    n_nonzero_attention,
+    n_zero_attention,
+    n_unique_nonzero_condition_sets,
+    observed_high_sdi_ci,
+    observed_high_sdi_reversed_ci,
+    mean_kept_high_sdi_ci,
+    mean_kept_high_sdi_reversed_ci,
+    observed_calibration_ci,
+    mean_kept_calibration_ci,
+    median_abs_error,
+    max_abs_error,
+    calibration_quality,
+    seed
+  ) %>%
+  arrange(calibration_metric, year)
+```
+
+Windows are flagged when `median_abs_error` exceeds
+`r median_abs_error_warn` or `max_abs_error` exceeds
+`r max_abs_error_warn`. A warning marks a window as poorly calibrated for strong
+interpretation; it does not remove the window from the plot.
+
+## Observed vs null ribbon
+
+The red line and points show the observed metric. The blue line shows the
+median of the High-SDI-calibrated null distribution; the blue ribbon shows its
+2.5th to 97.5th percentile range.
+
+```{r null-ribbon-active, fig.width=11, fig.height=4.5}
+plot_counterfactual_ribbon(active_counterfactual_summary, metric = "active")
+```
+
+```{r null-summary-table-active}
+active_counterfactual_summary %>%
+  filter(
+    year %in% c(min(years), 2010, 2015, 2020, max(years)),
+    location_name != "Global"
+  ) %>%
+  select(
+    location_name,
+    year,
+    observed_ci,
+    sim_lci,
+    sim_median,
+    sim_uci,
+    observed_minus_sim_median,
+    observed_percentile_rank,
+    null_compatibility
+  ) %>%
+  arrange(location_name, year)
+```
+
+## Reversed observed vs null ribbon
+
+The reversed metric asks whether disease burden is concentrated among
+conditions with greater GWAS attention. It is included as a diagnostic rather
+than the primary attention-burden alignment metric.
+
+```{r null-ribbon-reversed, fig.width=11, fig.height=4.5}
+plot_counterfactual_ribbon(reversed_counterfactual_summary, metric = "reversed")
+```
+
+```{r null-summary-table-reversed}
+reversed_counterfactual_summary %>%
+  filter(
+    year %in% c(min(years), 2010, 2015, 2020, max(years)),
+    location_name != "Global"
+  ) %>%
+  select(
+    location_name,
+    year,
+    observed_reversed_ci,
+    sim_reversed_lci,
+    sim_reversed_median,
+    sim_reversed_uci,
+    observed_reversed_minus_sim_median,
+    observed_reversed_percentile_rank,
+    reversed_null_compatibility
+  ) %>%
+  arrange(location_name, year)
+```
+
+## Calibration check
+
+High SDI is the calibration target. Its observed line should sit close to the
+kept permutation distribution by construction; lower-SDI regions are the actual
+test of the transfer null.
+
+```{r high-sdi-active-calibration-plot, fig.width=7, fig.height=4}
+plot_counterfactual_ribbon(
+  active_counterfactual_summary %>% filter(location_name == "High SDI"),
+  include_global = TRUE,
+  metric = "active"
+)
+```
+
+```{r high-sdi-reversed-calibration-plot, fig.width=7, fig.height=4}
+plot_counterfactual_ribbon(
+  reversed_counterfactual_summary %>% filter(location_name == "High SDI"),
+  include_global = TRUE,
+  metric = "reversed"
+)
+```
+
+## Effective sparsity
+
+```{r sparsity-plot, fig.width=7, fig.height=4}
+active_counterfactual$calibration %>%
+  ggplot(aes(x = year, y = n_nonzero_attention)) +
+  geom_line() +
+  geom_point() +
+  theme_report() +
+  labs(
+    x = "GWAS attention window",
+    y = "Nonzero attention conditions"
+  )
+```
+
+## All-time attention sensitivity
+
+This sensitivity repeats the counterfactual using all-time GWAS attention scores
+and each year of DALYs. It asks whether the accumulated GWAS condition canon is
+narrower than a generic High-SDI-calibrated canon across the burden history.
+Because the all-time attention distribution is dense and highly unequal,
+calibration warnings should be checked before placing strong weight on these
+ribbons under the default candidate count.
+
+```{r all-time-counterfactual}
+all_time_data <- prepare_counterfactual_all_time(
+  burden_years = years,
+  exclude_covid = TRUE
+)
+
+all_time_observed_alignment <- compute_observed_counterfactual_alignment(all_time_data)
+
+all_time_active_counterfactual <- run_high_sdi_counterfactual(
+  window_data = all_time_data,
+  years = years,
+  n_candidates = n_candidates,
+  n_keep = n_keep,
+  seed = simulation_seed,
+  calibration_metric = "active",
+  median_abs_error_warn = median_abs_error_warn,
+  max_abs_error_warn = max_abs_error_warn
+)
+
+all_time_active_summary <- summarise_counterfactual(
+  simulations = all_time_active_counterfactual$simulations,
+  observed_alignment = all_time_observed_alignment,
+  calibration = all_time_active_counterfactual$calibration
+)
+
+all_time_reversed_counterfactual <- run_high_sdi_counterfactual(
+  window_data = all_time_data,
+  years = years,
+  n_candidates = n_candidates,
+  n_keep = n_keep,
+  seed = simulation_seed,
+  calibration_metric = "reversed",
+  median_abs_error_warn = median_abs_error_warn,
+  max_abs_error_warn = max_abs_error_warn
+)
+
+all_time_reversed_summary <- summarise_counterfactual(
+  simulations = all_time_reversed_counterfactual$simulations,
+  observed_alignment = all_time_observed_alignment,
+  calibration = all_time_reversed_counterfactual$calibration
+)
+```
+
+```{r all-time-calibration-table}
+bind_rows(
+  all_time_active_counterfactual$calibration,
+  all_time_reversed_counterfactual$calibration
+) %>%
+  select(
+    year,
+    calibration_metric,
+    n_candidates,
+    n_kept,
+    n_nonzero_attention,
+    n_zero_attention,
+    n_unique_nonzero_condition_sets,
+    observed_calibration_ci,
+    mean_kept_calibration_ci,
+    median_abs_error,
+    max_abs_error,
+    calibration_quality,
+    seed
+  ) %>%
+  arrange(calibration_metric, year)
+```
+
+```{r all-time-active-plot, fig.width=11, fig.height=4.5}
+plot_counterfactual_ribbon(all_time_active_summary, metric = "active")
+```
+
+```{r all-time-active-table}
+all_time_active_summary %>%
+  filter(
+    location_name != "Global",
+    year %in% c(min(years), 2010, 2015, 2020, max(years))
+  ) %>%
+  select(
+    location_name,
+    year,
+    observed_ci,
+    sim_lci,
+    sim_median,
+    sim_uci,
+    observed_minus_sim_median,
+    observed_percentile_rank,
+    null_compatibility
+  ) %>%
+  arrange(location_name, year)
+```
+
+```{r all-time-reversed-plot, fig.width=11, fig.height=4.5}
+plot_counterfactual_ribbon(all_time_reversed_summary, metric = "reversed")
+```
+
+```{r all-time-reversed-table}
+all_time_reversed_summary %>%
+  filter(
+    location_name != "Global",
+    year %in% c(min(years), 2010, 2015, 2020, max(years))
+  ) %>%
+  select(
+    location_name,
+    year,
+    observed_reversed_ci,
+    sim_reversed_lci,
+    sim_reversed_median,
+    sim_reversed_uci,
+    observed_reversed_minus_sim_median,
+    observed_reversed_percentile_rank,
+    reversed_null_compatibility
+  ) %>%
+  arrange(location_name, year)
+```
