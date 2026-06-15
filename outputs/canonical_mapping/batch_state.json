@@ -1,6 +1,6 @@
 {
-  "batch_id": "msgbatch_01JMrXvQMfyQdBjsaLaUUTTq",
-  "submitted_at": "2026-06-12T16:32:30+0100",
+  "batch_id": "msgbatch_01W6hTmGtUoue66QDuDRkfmZ",
+  "submitted_at": "2026-06-15T14:50:03+0100",
   "n_requests": 3439,
   "evidence_pkg_path": "/Users/gh13047/repo/GWAS-GBD/outputs/canonical_mapping/04_evidence_package.csv",
   "output_path": "/Users/gh13047/repo/GWAS-GBD/outputs/canonical_mapping/04_evidence_package_reviewed.csv",

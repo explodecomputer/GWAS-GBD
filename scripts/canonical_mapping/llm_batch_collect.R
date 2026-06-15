@@ -9,7 +9,9 @@ source(here("scripts/attention_scores/config.R"))
 # downloads results and writes them back into the evidence package.
 #
 # Usage:
-#   ANTHROPIC_API_KEY=sk-ant-... Rscript scripts/canonical_mapping/llm_batch_collect.R
+#   Rscript scripts/canonical_mapping/llm_batch_collect.R
+# API key is read from config/secrets.yaml (anthropic_api_key), falling back to
+# the ANTHROPIC_API_KEY environment variable.
 #
 # Safe to re-run: exits cleanly if still processing; writes output only when
 # the batch has ended. Reads batch_state.json written by llm_batch_submit.R.
@@ -24,8 +26,18 @@ for (f in list.files(here("scripts/canonical_mapping/R"), pattern = "\\.R$",
 cfg <- load_project_config()
 state_path <- cfg_path(cfg_get(cfg, "canonical_mapping.batch_state"), cfg)
 
-api_key <- Sys.getenv("ANTHROPIC_API_KEY")
-if (nchar(api_key) == 0) stop("ANTHROPIC_API_KEY environment variable not set.")
+secrets_path <- here("config", "secrets.yaml")
+api_key <- if (file.exists(secrets_path)) {
+  yaml::read_yaml(secrets_path)[["anthropic_api_key"]]
+} else {
+  ""
+}
+if (is.null(api_key) || nchar(api_key) == 0) {
+  api_key <- Sys.getenv("ANTHROPIC_API_KEY")
+}
+if (nchar(api_key) == 0) {
+  stop("ANTHROPIC_API_KEY not set in config/secrets.yaml or environment.")
+}
 
 # ── Load state ─────────────────────────────────────────────────────────────
 

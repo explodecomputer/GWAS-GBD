@@ -202,9 +202,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   &lt;chr&gt;                                               &lt;int&gt;
 1 All-time causes (total)                               275
 2 All-time zero-score (_updated_6)                       40
-3 All-time zero-score (pipeline)                         33
-4 Reference-zero causes recovered by pipeline            16
-5 Reference nonzero causes with higher pipeline score   193</code></pre>
+3 All-time zero-score (pipeline)                         34
+4 Reference-zero causes recovered by pipeline            17
+5 Reference nonzero causes with higher pipeline score   189</code></pre>
 </div>
 </div>
 </section>
@@ -225,37 +225,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  1:                                         Near vision loss     1000
  2:                            Vascular intestinal disorders      533
  3:            Maternal sepsis and other maternal infections      368
- 4:              Non-rheumatic calcific aortic valve disease      968
- 5: Neonatal encephalopathy due to birth asphyxia and trauma      382
- 6:                    Other sexually transmitted infections      399
- 7:                                       Thalassemias trait      837
- 8:                       Other non-rheumatic valve diseases      970
- 9:           Other hemoglobinopathies and hemolytic anemias      618
-10:          Non-rheumatic degenerative mitral valve disease      969
-11:            Hemolytic disease and other neonatal jaundice      384
-12:                                 Alcoholic cardiomyopathy      938
+ 4:                                 Alcoholic cardiomyopathy      938
+ 5:              Non-rheumatic calcific aortic valve disease      968
+ 6: Neonatal encephalopathy due to birth asphyxia and trauma      382
+ 7:                    Other sexually transmitted infections      399
+ 8:                                       Thalassemias trait      837
+ 9:                       Other non-rheumatic valve diseases      970
+10:           Other hemoglobinopathies and hemolytic anemias      618
+11:          Non-rheumatic degenerative mitral valve disease      969
+12:            Hemolytic disease and other neonatal jaundice      384
 13:                                     Chlamydial infection      395
 14:         Idiopathic developmental intellectual disability      582
 15:                                    Premenstrual syndrome      609
 16:                 Invasive Non-typhoidal Salmonella (iNTS)      959
+17:                                               Zika virus      935
     before_score after_score
            &lt;num&gt;       &lt;num&gt;
  1:            0      793735
- 2:            0      686266
+ 2:            0      686250
  3:            0      418155
- 4:            0      171949
- 5:            0       40226
- 6:            0       33463
- 7:            0       25999
- 8:            0       25730
- 9:            0       14388
-10:            0       12959
-11:            0        8738
-12:            0        5098
+ 4:            0      193862
+ 5:            0      171949
+ 6:            0       60501
+ 7:            0       33463
+ 8:            0       25999
+ 9:            0       25730
+10:            0       14388
+11:            0       12959
+12:            0        8738
 13:            0        1740
 14:            0        1713
 15:            0        1027
-16:            0         351</code></pre>
+16:            0         351
+17:            0          29</code></pre>
 </div>
 </div>
 </section>
@@ -275,7 +277,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Causes with score change:"</span>, <span class="fu">nrow</span>(changed), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Causes with score change: 224 </code></pre>
+<pre><code>Causes with score change: 225 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -305,30 +307,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 17:                 Alzheimer's disease and other dementias      543
 18:                                                COVID-19     1048
 19:             Lower extremity peripheral arterial disease      502
-20:                                  Other urinary diseases      602
+20:                                        Bipolar disorder      570
                                                  cause_name cause_id
     before_score after_score     delta pct_change
            &lt;num&gt;       &lt;num&gt;     &lt;num&gt;      &lt;num&gt;
- 1:      5849798    47052721  41202923      704.3
+ 1:      5849798    48330325  42480527      726.2
  2:     23587854     1349370 -22238484      -94.3
  3:       757248    14249677  13492429     1781.8
  4:       535636    13887036  13351400     2492.6
- 5:      6599415    19695433  13096018      198.4
+ 5:      6599415    19637805  13038390      197.6
  6:        82495    12950288  12867793    15598.3
  7:      5217162    17082470  11865308      227.4
  8:     12128012    23889086  11761074       97.0
  9:      1674434    12722206  11047772      659.8
 10:      1881847    11638842   9756995      518.5
 11:        20933     7557231   7536298    36002.0
-12:      4387369    11144964   6757595      154.0
+12:      4387369    11157417   6770048      154.3
 13:        23240     6620456   6597216    28387.3
 14:       681623     6601325   5919702      868.5
 15:       433919     5766693   5332774     1229.0
-16:      5182303      252939  -4929364      -95.1
+16:      5182303       93164  -5089139      -98.2
 17:      3494912     8388344   4893432      140.0
 18:      4435854     8810151   4374297       98.6
 19:       894278     4965064   4070786      455.2
-20:      4887921     1074198  -3813723      -78.0
+20:      5729419     9396436   3667017       64.0
     before_score after_score     delta pct_change</code></pre>
 </div>
 </div>
@@ -353,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 2 × 6
   source    rows unique_causes zero_all_time nonzero_all_time score_sum_all_time
   &lt;chr&gt;    &lt;int&gt;         &lt;int&gt;         &lt;int&gt;            &lt;int&gt;              &lt;dbl&gt;
-1 pipelin…  6089           311            33              242         383063190.
+1 pipelin…  6015           311            34              241         381421036.
 2 updated…  4743           312            40              272         242036729.</code></pre>
 </div>
 </div>
@@ -377,9 +379,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 4 × 4
   source              analysis_type  rows nonzero
   &lt;chr&gt;               &lt;chr&gt;         &lt;int&gt;   &lt;int&gt;
-1 pipeline_current    sliding_3yr    3360    3360
+1 pipeline_current    sliding_3yr    3321    3321
 2 updated_6_reference sliding_3yr    2699    2694
-3 pipeline_current    year           2454    2454
+3 pipeline_current    year           2419    2419
 4 updated_6_reference year           1732    1726</code></pre>
 </div>
 </div>
@@ -452,7 +454,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Causes zero in pipeline but non-zero in _updated_6:"</span>, <span class="fu">nrow</span>(problematic), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Causes zero in pipeline but non-zero in _updated_6: 9 </code></pre>
+<pre><code>Causes zero in pipeline but non-zero in _updated_6: 11 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -460,17 +462,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cause_name, cause_id, after_score, before_score)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>                                 cause_name cause_id after_score before_score
-                                     &lt;char&gt;    &lt;int&gt;       &lt;num&gt;        &lt;num&gt;
-1:                 Liver cancer due to NASH      996           0       918189
-2:     Other intestinal infectious diseases      321           0        72938
-3:                        Paratyphoid fever      320           0         4168
-4:                                    Ebola      843           0         1745
-5:                         Hookworm disease      363           0         1745
-6:                             Yellow fever      358           0         1745
-7:                               G6PD trait      839           0          466
-8: HIV/AIDS - Drug-susceptible Tuberculosis      948           0          267
-9:                     Gonococcal infection      396           0          234</code></pre>
+<pre><code>                                                            cause_name cause_id
+                                                                &lt;char&gt;    &lt;int&gt;
+ 1:                                           Liver cancer due to NASH      996
+ 2:                                    Other musculoskeletal disorders      639
+ 3: Multidrug-resistant tuberculosis without extensive drug resistance      946
+ 4:                                        Coal workers pneumoconiosis      513
+ 5:                                                  Paratyphoid fever      320
+ 6:                                                              Ebola      843
+ 7:                                                   Hookworm disease      363
+ 8:                                                       Yellow fever      358
+ 9:                                                         G6PD trait      839
+10:                           HIV/AIDS - Drug-susceptible Tuberculosis      948
+11:                                               Gonococcal infection      396
+    after_score before_score
+          &lt;num&gt;        &lt;num&gt;
+ 1:           0       918189
+ 2:           0       208920
+ 3:           0        16687
+ 4:           0         4525
+ 5:           0         4168
+ 6:           0         1745
+ 7:           0         1745
+ 8:           0         1745
+ 9:           0          466
+10:           0          267
+11:           0          234</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -508,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Remaining unmapped zero-attention traits:"</span>, <span class="fu">nrow</span>(todo), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Remaining unmapped zero-attention traits: 33 </code></pre>
+<pre><code>Remaining unmapped zero-attention traits: 34 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -518,74 +535,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>                                                                       cause_name
                                                                            &lt;char&gt;
  1:                                                      Liver cancer due to NASH
- 2:                                          Other intestinal infectious diseases
- 3:                                                             Paratyphoid fever
- 4:                                                                         Ebola
- 5:                                                              Hookworm disease
- 6:                                                                  Yellow fever
- 7:                                                                    G6PD trait
- 8:                                      HIV/AIDS - Drug-susceptible Tuberculosis
- 9:                                                          Gonococcal infection
-10:                                                       African trypanosomiasis
-11:                                                                    Asbestosis
-12:                                                                    Ascariasis
-13:                                                         Cystic echinococcosis
-14:                                                                 Cysticercosis
-15:                                                      Food-borne trematodiases
-16:                                                               G6PD deficiency
-17:                                                           Guinea worm disease
-18:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
-19: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
-20:                                                      Indirect maternal deaths
-21:                                                          Klinefelter syndrome
-22:                                                          Late maternal deaths
-23:                                        Maternal deaths aggravated by HIV/AIDS
-24:                                                                Onchocerciasis
-25:                                                                        Rabies
-26:                                                               Schistosomiasis
-27:                                                                     Silicosis
-28:                                                  Sudden infant death syndrome
-29:                                                                      Syphilis
-30:                                                                Trichomoniasis
-31:                                                                  Trichuriasis
-32:                                                               Turner syndrome
-33:                                                                    Zika virus
+ 2:                                               Other musculoskeletal disorders
+ 3:            Multidrug-resistant tuberculosis without extensive drug resistance
+ 4:                                                   Coal workers pneumoconiosis
+ 5:                                                             Paratyphoid fever
+ 6:                                                                         Ebola
+ 7:                                                              Hookworm disease
+ 8:                                                                  Yellow fever
+ 9:                                                                    G6PD trait
+10:                                      HIV/AIDS - Drug-susceptible Tuberculosis
+11:                                                          Gonococcal infection
+12:                                                       African trypanosomiasis
+13:                                                                    Asbestosis
+14:                                                                    Ascariasis
+15:                                                         Cystic echinococcosis
+16:                                                                 Cysticercosis
+17:                                                      Food-borne trematodiases
+18:                                                               G6PD deficiency
+19:                                                           Guinea worm disease
+20:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
+21: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
+22:                                                      Indirect maternal deaths
+23:                                                          Klinefelter syndrome
+24:                                                          Late maternal deaths
+25:                                        Maternal deaths aggravated by HIV/AIDS
+26:                                                                Onchocerciasis
+27:                                                                        Rabies
+28:                                                               Schistosomiasis
+29:                                                                     Silicosis
+30:                                                  Sudden infant death syndrome
+31:                                                                      Syphilis
+32:                                                                Trichomoniasis
+33:                                                                  Trichuriasis
+34:                                                               Turner syndrome
                                                                        cause_name
     cause_id reference_score
        &lt;int&gt;           &lt;num&gt;
  1:      996          918189
- 2:      321           72938
- 3:      320            4168
- 4:      843            1745
- 5:      363            1745
- 6:      358            1745
- 7:      839             466
- 8:      948             267
- 9:      396             234
-10:      350               0
-11:      512               0
-12:      361               0
-13:      353               0
-14:      352               0
-15:      364               0
-16:      616               0
-17:      936               0
-18:      950               0
-19:      949               0
-20:      375               0
-21:      647               0
-22:      376               0
-23:      741               0
-24:      355               0
-25:      359               0
-26:      351               0
-27:      511               0
-28:      686               0
-29:      394               0
-30:      397               0
-31:      362               0
-32:      646               0
-33:      935               0
+ 2:      639          208920
+ 3:      946           16687
+ 4:      513            4525
+ 5:      320            4168
+ 6:      843            1745
+ 7:      363            1745
+ 8:      358            1745
+ 9:      839             466
+10:      948             267
+11:      396             234
+12:      350               0
+13:      512               0
+14:      361               0
+15:      353               0
+16:      352               0
+17:      364               0
+18:      616               0
+19:      936               0
+20:      950               0
+21:      949               0
+22:      375               0
+23:      647               0
+24:      376               0
+25:      741               0
+26:      355               0
+27:      359               0
+28:      351               0
+29:      511               0
+30:      686               0
+31:      394               0
+32:      397               0
+33:      362               0
+34:      646               0
     cause_id reference_score</code></pre>
 </div>
 </div>
@@ -608,7 +627,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Total zero-attention traits in pipeline:"</span>, <span class="fu">nrow</span>(all_zero), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Total zero-attention traits in pipeline: 33 </code></pre>
+<pre><code>Total zero-attention traits in pipeline: 34 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -618,74 +637,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>                                                                       cause_name
                                                                            &lt;char&gt;
  1:                                                      Liver cancer due to NASH
- 2:                                          Other intestinal infectious diseases
- 3:                                                             Paratyphoid fever
- 4:                                                                         Ebola
- 5:                                                              Hookworm disease
- 6:                                                                  Yellow fever
- 7:                                                                    G6PD trait
- 8:                                      HIV/AIDS - Drug-susceptible Tuberculosis
- 9:                                                          Gonococcal infection
-10:                                                       African trypanosomiasis
-11:                                                                    Asbestosis
-12:                                                                    Ascariasis
-13:                                                         Cystic echinococcosis
-14:                                                                 Cysticercosis
-15:                                                      Food-borne trematodiases
-16:                                                               G6PD deficiency
-17:                                                           Guinea worm disease
-18:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
-19: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
-20:                                                      Indirect maternal deaths
-21:                                                          Klinefelter syndrome
-22:                                                          Late maternal deaths
-23:                                        Maternal deaths aggravated by HIV/AIDS
-24:                                                                Onchocerciasis
-25:                                                                        Rabies
-26:                                                               Schistosomiasis
-27:                                                                     Silicosis
-28:                                                  Sudden infant death syndrome
-29:                                                                      Syphilis
-30:                                                                Trichomoniasis
-31:                                                                  Trichuriasis
-32:                                                               Turner syndrome
-33:                                                                    Zika virus
+ 2:                                               Other musculoskeletal disorders
+ 3:            Multidrug-resistant tuberculosis without extensive drug resistance
+ 4:                                                   Coal workers pneumoconiosis
+ 5:                                                             Paratyphoid fever
+ 6:                                                                         Ebola
+ 7:                                                              Hookworm disease
+ 8:                                                                  Yellow fever
+ 9:                                                                    G6PD trait
+10:                                      HIV/AIDS - Drug-susceptible Tuberculosis
+11:                                                          Gonococcal infection
+12:                                                       African trypanosomiasis
+13:                                                                    Asbestosis
+14:                                                                    Ascariasis
+15:                                                         Cystic echinococcosis
+16:                                                                 Cysticercosis
+17:                                                      Food-borne trematodiases
+18:                                                               G6PD deficiency
+19:                                                           Guinea worm disease
+20:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
+21: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
+22:                                                      Indirect maternal deaths
+23:                                                          Klinefelter syndrome
+24:                                                          Late maternal deaths
+25:                                        Maternal deaths aggravated by HIV/AIDS
+26:                                                                Onchocerciasis
+27:                                                                        Rabies
+28:                                                               Schistosomiasis
+29:                                                                     Silicosis
+30:                                                  Sudden infant death syndrome
+31:                                                                      Syphilis
+32:                                                                Trichomoniasis
+33:                                                                  Trichuriasis
+34:                                                               Turner syndrome
                                                                        cause_name
     cause_id reference_score
        &lt;int&gt;           &lt;num&gt;
  1:      996          918189
- 2:      321           72938
- 3:      320            4168
- 4:      843            1745
- 5:      363            1745
- 6:      358            1745
- 7:      839             466
- 8:      948             267
- 9:      396             234
-10:      350               0
-11:      512               0
-12:      361               0
-13:      353               0
-14:      352               0
-15:      364               0
-16:      616               0
-17:      936               0
-18:      950               0
-19:      949               0
-20:      375               0
-21:      647               0
-22:      376               0
-23:      741               0
-24:      355               0
-25:      359               0
-26:      351               0
-27:      511               0
-28:      686               0
-29:      394               0
-30:      397               0
-31:      362               0
-32:      646               0
-33:      935               0
+ 2:      639          208920
+ 3:      946           16687
+ 4:      513            4525
+ 5:      320            4168
+ 6:      843            1745
+ 7:      363            1745
+ 8:      358            1745
+ 9:      839             466
+10:      948             267
+11:      396             234
+12:      350               0
+13:      512               0
+14:      361               0
+15:      353               0
+16:      352               0
+17:      364               0
+18:      616               0
+19:      936               0
+20:      950               0
+21:      949               0
+22:      375               0
+23:      647               0
+24:      376               0
+25:      741               0
+26:      355               0
+27:      359               0
+28:      351               0
+29:      511               0
+30:      686               0
+31:      394               0
+32:      397               0
+33:      362               0
+34:      646               0
     cause_id reference_score</code></pre>
 </div>
 </div>
@@ -712,7 +733,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    n correlation causes_unchanged causes_increased causes_decreased
-1 275   0.4665819               35              209               31</code></pre>
+1 275   0.4643994               33              206               36</code></pre>
 </div>
 </div>
 </section>
@@ -735,9 +756,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            metric rows
-1     keys_in_both 4150
-2 keys_only_before  593
-3  keys_only_after 1939</code></pre>
+1     keys_in_both 4072
+2 keys_only_before  671
+3  keys_only_after 1943</code></pre>
 </div>
 </div>
 </section>

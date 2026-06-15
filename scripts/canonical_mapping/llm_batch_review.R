@@ -9,7 +9,9 @@ source(here("scripts/attention_scores/config.R"))
 # Results are written to 04_evidence_package_reviewed.csv.
 #
 # Usage:
-#   ANTHROPIC_API_KEY=sk-ant-... Rscript scripts/canonical_mapping/llm_batch_review.R
+#   Rscript scripts/canonical_mapping/llm_batch_review.R
+# API key is read from config/secrets.yaml (anthropic_api_key), falling back to
+# the ANTHROPIC_API_KEY environment variable.
 #
 # Resumable: rows already filled (model_recommendation not NA) are skipped.
 # Set REVIEW_LIMIT env var to process only N rows (useful for testing):
@@ -32,10 +34,20 @@ requests_per_min   <- 50L          # stay under Haiku tier-1 RPM limit
 retry_max          <- 3L
 retry_wait_secs    <- 10L
 
-api_key  <- Sys.getenv("ANTHROPIC_API_KEY")
-limit    <- suppressWarnings(as.integer(Sys.getenv("REVIEW_LIMIT", "")))
+secrets_path <- here("config", "secrets.yaml")
+api_key <- if (file.exists(secrets_path)) {
+  yaml::read_yaml(secrets_path)[["anthropic_api_key"]]
+} else {
+  ""
+}
+if (is.null(api_key) || nchar(api_key) == 0) {
+  api_key <- Sys.getenv("ANTHROPIC_API_KEY")
+}
+limit <- suppressWarnings(as.integer(Sys.getenv("REVIEW_LIMIT", "")))
 
-if (nchar(api_key) == 0) stop("ANTHROPIC_API_KEY environment variable not set.")
+if (nchar(api_key) == 0) {
+  stop("ANTHROPIC_API_KEY not set in config/secrets.yaml or environment.")
+}
 if (is.na(limit)) limit <- Inf
 
 # ── Load evidence package ──────────────────────────────────────────────────

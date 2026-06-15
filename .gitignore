@@ -16,6 +16,7 @@ site/node_modules/
 
 # Local/private configuration
 config/config.local.yaml
+config/secrets.yaml
 config/secrets.env
 secrets.env
 .env
