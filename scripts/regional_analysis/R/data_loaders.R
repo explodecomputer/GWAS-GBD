@@ -1,4 +1,4 @@
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 regional_config <- load_project_config()
 
 load_gwas_attention <- function(

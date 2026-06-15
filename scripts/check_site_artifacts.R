@@ -4,7 +4,7 @@ suppressPackageStartupMessages({
   library(here)
 })
 
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 source(here("site/R/validate.R"))
 
 cfg <- load_project_config()

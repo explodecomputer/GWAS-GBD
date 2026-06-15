@@ -24,10 +24,10 @@ Archived deprecated variants:
 From the repository root:
 
 ```bash
-quarto render scripts/regional_concentration_index/regional_concentration_index.qmd --output-dir outputs
+quarto render scripts/regional_analysis/regional_concentration_index.qmd --output-dir outputs
 ```
 
-The rendered file will be written under `scripts/regional_concentration_index/outputs/`.
+The rendered file will be written under `scripts/regional_analysis/outputs/`.
 
 The authoritative workflow render is:
 
@@ -44,7 +44,7 @@ declared in `regional_analysis.figure_outputs`.
 From the repository root:
 
 ```bash
-quarto preview scripts/regional_concentration_index/regional_concentration_index.qmd --no-browser --host 127.0.0.1 --port 4321
+quarto preview scripts/regional_analysis/regional_concentration_index.qmd --no-browser --host 127.0.0.1 --port 4321
 ```
 
 The report has Quarto execution caching enabled, so unchanged chunks should not be recomputed on every preview refresh.

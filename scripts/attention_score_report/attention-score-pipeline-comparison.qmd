@@ -15,7 +15,7 @@ library(data.table)
 library(dplyr)
 library(ggplot2)
 library(here)
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 
 cfg <- load_project_config()
 before_path  <- cfg_path(cfg_get(cfg, "inputs.reference_attention_scores"), cfg)

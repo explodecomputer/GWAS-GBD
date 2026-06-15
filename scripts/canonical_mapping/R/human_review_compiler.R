@@ -107,7 +107,7 @@ canonical_mapping_for_scoring <- function(compiled) {
 #' @param compiled Output of compile_human_review().
 #' @param evidence_source File name or label used for provenance.
 #' @return Data frame matching empty_gbd_efo_master_mapping() from
-#'   scripts/pipeline_functions.R, without depending on that module.
+#'   scripts/attention_scores/pipeline_functions.R, without depending on that module.
 canonical_export_table <- function(compiled, evidence_source = NA_character_) {
   canonical <- canonical_mapping_for_scoring(compiled)
 

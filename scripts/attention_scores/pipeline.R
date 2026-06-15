@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
-# Usage: Rscript scripts/pipeline.R
+# Usage: Rscript scripts/attention_scores/pipeline.R
 # Regenerates configured attention score outputs from source inputs.
 
 library(here)
-source(here("scripts/config.R"))
-source(here("scripts/pipeline_functions.R"))
-source(here("scripts/attention_score_pipeline.R"))
+source(here("scripts/attention_scores/config.R"))
+source(here("scripts/attention_scores/pipeline_functions.R"))
+source(here("scripts/attention_scores/attention_score_pipeline.R"))
 
 cfg <- load_project_config()
 run_attention_score_pipeline(

@@ -1,6 +1,6 @@
 library(here)
 library(dplyr)
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 
 # ── Canonical Mapping Workflow ─────────────────────────────────────────────
 # End-to-end orchestration for one GWAS Catalog release.
@@ -48,7 +48,7 @@ write.csv(universe$terms,
 # ── Step 2: GBD condition context (Issue 013) ─────────────────────────────
 message("Step 2: Building GBD condition context...")
 .pf <- new.env(parent = baseenv())
-source(here("scripts/pipeline_functions.R"), local = .pf)
+source(here("scripts/attention_scores/pipeline_functions.R"), local = .pf)
 gbd_context <- build_gbd_condition_context(hierarchy_path,
                                             exclude_causes = .pf$EXCLUDE_CAUSES)
 rm(.pf)

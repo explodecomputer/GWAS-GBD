@@ -12,19 +12,19 @@ their archive destinations.
 | --- | --- | --- | --- |
 | `workflow/Snakefile` | Workflow spine | Active source | Authoritative DAG for mapping, scoring, reports, and site artifacts. |
 | `config/config.yaml` | Configuration | Active source | Committed defaults for paths, releases, parameters, and service URLs. |
-| `scripts/config.R` | Configuration | Active source | R config loader and local override merger. |
+| `scripts/attention_scores/config.R` | Configuration | Active source | R config loader and local override merger. |
 | `scripts/canonical_mapping/R/*.R` | Canonical mapping | Active source | Observed universe, GBD context, candidates, review compiler, gates, diagnostics. |
 | `scripts/canonical_mapping/workflow.R` | Canonical mapping | Active source | Builds canonical mapping review artifacts. |
 | `scripts/canonical_mapping/export_to_master_mapping.R` | Canonical mapping | Active source | Exports compiler-approved canonical mappings to the attention contract. |
 | `scripts/pipeline.R` | Attention scoring | Active source | CLI entrypoint for configured attention score generation. |
-| `scripts/attention_score_pipeline.R` | Attention scoring | Active source | Pipeline boundary from configured inputs to declared outputs. |
-| `scripts/pipeline_functions.R` | Attention scoring | Active source | Lower-level scoring, hierarchy, and temporal helpers. |
-| `scripts/attention-score-pipeline-comparison.qmd` | Pipeline checking | Active source | Comparison report; writes declared zero-attention TODO artifact. |
-| `scripts/regional_concentration_index/R/*.R` | Regional analysis | Active source | Config-driven loaders, metrics, analysis sets, and plotting helpers. |
-| `scripts/regional_concentration_index/regional_concentration_index.qmd` | Regional analysis | Active source | Config-driven regional report and declared figure exports. |
+| `scripts/attention_scores/attention_score_pipeline.R` | Attention scoring | Active source | Pipeline boundary from configured inputs to declared outputs. |
+| `scripts/attention_scores/pipeline_functions.R` | Attention scoring | Active source | Lower-level scoring, hierarchy, and temporal helpers. |
+| `scripts/attention_score_report/attention-score-pipeline-comparison.qmd` | Pipeline checking | Active source | Comparison report; writes declared zero-attention TODO artifact. |
+| `scripts/regional_analysis/R/*.R` | Regional analysis | Active source | Config-driven loaders, metrics, analysis sets, and plotting helpers. |
+| `scripts/regional_analysis/regional_concentration_index.qmd` | Regional analysis | Active source | Config-driven regional report and declared figure exports. |
 | `site/R/*.R` | Site artifacts | Active source | Builds and validates static JSON artifacts. |
 | `site/src/**` | Frontend | Active source | Vue application. |
-| `site/tests/**`, `scripts/tests/**`, `scripts/canonical_mapping/tests/**` | Tests | Active source | Unit, fixture, contract, and smoke tests. |
+| `site/tests/**`, `scripts/attention_scores/tests/**`, `scripts/canonical_mapping/tests/**` | Tests | Active source | Unit, fixture, contract, and smoke tests. |
 
 ## Raw Inputs
 

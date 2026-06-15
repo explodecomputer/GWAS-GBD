@@ -35,7 +35,7 @@ if LOCAL_CONFIG_PATH.exists():
 CONFIG_FILES = [str(CONFIG_PATH)] + ([str(LOCAL_CONFIG_PATH)] if LOCAL_CONFIG_PATH.exists() else [])
 SCRIPTS_DIR = ROOT / "scripts"
 SITE_DIR = ROOT / "site"
-REGIONAL_DIR = SCRIPTS_DIR / "regional_concentration_index"
+REGIONAL_DIR = SCRIPTS_DIR / "regional_analysis"
 CONDA_PREFIX = os.environ.get("CONDA_PREFIX", "")
 CONDA_R_LIB = Path(CONDA_PREFIX) / "lib" / "R" / "library" if CONDA_PREFIX else ""
 
@@ -61,7 +61,7 @@ canonical_r_sources = glob_wildcards(
 ).module
 
 regional_r_sources = glob_wildcards(
-    str(ROOT / "scripts" / "regional_concentration_index" / "R" / "{module}.R")
+    str(ROOT / "scripts" / "regional_analysis" / "R" / "{module}.R")
 ).module
 
 regional_figure_outputs = [
@@ -113,10 +113,10 @@ rule export_master_mapping:
 
 rule attention_scores:
     input:
-        script=p("scripts/pipeline.R"),
-        boundary=p("scripts/attention_score_pipeline.R"),
+        script=p("scripts/attention_scores/pipeline.R"),
+        boundary=p("scripts/attention_scores/attention_score_pipeline.R"),
         config=CONFIG_FILES,
-        functions=p("scripts/pipeline_functions.R"),
+        functions=p("scripts/attention_scores/pipeline_functions.R"),
         master_mapping=p(config["canonical_mapping"]["master_mapping"]),
         gwas_catalog=p(config["inputs"]["gwas_catalog"]),
         hierarchy=p(config["inputs"]["gbd_hierarchy"]),
@@ -131,7 +131,7 @@ rule attention_scores:
 
 rule comparison_report:
     input:
-        qmd=p("scripts/attention-score-pipeline-comparison.qmd"),
+        qmd=p("scripts/attention_score_report/attention-score-pipeline-comparison.qmd"),
         current=p(config["attention_scores"]["temporal_output"]),
         reference=p(config["inputs"]["reference_attention_scores"]),
         manual_zero_mapping=p(config["inputs"]["manual_zero_mapping"]),
@@ -140,16 +140,16 @@ rule comparison_report:
         report=p(config["pipeline_checks"]["comparison_report"]),
         zero_attention_todo=p(config["pipeline_checks"]["zero_attention_todo"]),
     shell:
-        "cd {SCRIPTS_DIR} && {R_ENV} quarto render attention-score-pipeline-comparison.qmd"
+        "cd {SCRIPTS_DIR}/attention_score_report && {R_ENV} quarto render attention-score-pipeline-comparison.qmd"
 
 
 rule regional_report:
     input:
-        qmd=p("scripts/regional_concentration_index/regional_concentration_index.qmd"),
+        qmd=p("scripts/regional_analysis/regional_concentration_index.qmd"),
         attention=p(config["attention_scores"]["temporal_output"]),
         config=CONFIG_FILES,
         r_sources=expand(
-            str(ROOT / "scripts" / "regional_concentration_index" / "R" / "{module}.R"),
+            str(ROOT / "scripts" / "regional_analysis" / "R" / "{module}.R"),
             module=regional_r_sources,
         ),
         age=p(config["regional_analysis"]["burden_files"]["age"]),

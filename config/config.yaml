@@ -37,12 +37,12 @@ attention_scores:
   temporal_output: "outputs/attention_scores/temporal_attention_scores.csv"
 
 pipeline_checks:
-  comparison_report: "scripts/attention-score-pipeline-comparison.html"
+  comparison_report: "scripts/attention_score_report/attention-score-pipeline-comparison.html"
   zero_attention_todo: "outputs/pipeline_checks/zero_attention_todo.csv"
 
 regional_analysis:
-  report: "scripts/regional_concentration_index/regional_concentration_index.html"
-  output_dir: "scripts/regional_concentration_index/outputs"
+  report: "scripts/regional_analysis/regional_concentration_index.html"
+  output_dir: "scripts/regional_analysis/outputs"
   figure_outputs:
     - "figures/ci_by_year.pdf"
     - "figures/ci_by_sex.pdf"

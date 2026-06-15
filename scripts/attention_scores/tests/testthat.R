@@ -6,16 +6,16 @@ library(tidyr)
 # Source pipeline functions (without readxl/ontologyIndex side-effects)
 # Individual test files stub the functions they need if those packages are absent.
 tryCatch(
-  source(here("scripts/pipeline_functions.R")),
+  source(here("scripts/attention_scores/pipeline_functions.R")),
   error = function(e) {
     message("Note: some packages unavailable, sourcing with suppressPackageStartupMessages")
-    suppressWarnings(source(here("scripts/pipeline_functions.R")))
+    suppressWarnings(source(here("scripts/attention_scores/pipeline_functions.R")))
   }
 )
-source(here("scripts/attention_score_pipeline.R"))
+source(here("scripts/attention_scores/attention_score_pipeline.R"))
 
 test_files <- list.files(
-  here("scripts/tests"),
+  here("scripts/attention_scores/tests"),
   pattern = "^test-.*[.][Rr]$",
   full.names = TRUE
 )

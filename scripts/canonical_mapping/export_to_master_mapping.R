@@ -1,13 +1,13 @@
 library(here)
 library(dplyr)
 library(readr)
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 source(here("scripts/canonical_mapping/R/quality_gates.R"))
 source(here("scripts/canonical_mapping/R/human_review_compiler.R"))
 
 # ── Export canonical mapping → gbd_efo_master_mapping.tsv ─────────────────
 # Converts accepted rows from 04_evidence_package_reviewed.csv into the
-# master mapping format consumed by scripts/pipeline.R.
+# master mapping format consumed by scripts/attention_scores/pipeline.R.
 #
 # Usage:
 #   Rscript scripts/canonical_mapping/export_to_master_mapping.R
@@ -64,4 +64,4 @@ message(sprintf("\nWritten: %s", output_path))
 message(sprintf("  Rows           : %d", nrow(master)))
 message(sprintf("  GBD terms      : %d", dplyr::n_distinct(master$gbd_term)))
 message(sprintf("  Unique EFO/OBO : %d", dplyr::n_distinct(master$mapped_trait_uri)))
-message("\nNext: Rscript scripts/pipeline.R")
+message("\nNext: Rscript scripts/attention_scores/pipeline.R")

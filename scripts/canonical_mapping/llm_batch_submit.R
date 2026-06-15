@@ -2,7 +2,7 @@ library(here)
 library(dplyr)
 library(httr)
 library(jsonlite)
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 
 # ── LLM Batch Submit ───────────────────────────────────────────────────────
 # Submits all unreviewed evidence package rows to the Anthropic Message

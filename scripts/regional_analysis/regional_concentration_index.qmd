@@ -14,14 +14,14 @@ execute:
 ---
 
 ```{r setup, cache=FALSE}
-source(here::here("scripts/regional_concentration_index/R/packages.R"))
-source(here::here("scripts/regional_concentration_index/R/data_loaders.R"))
-source(here::here("scripts/regional_concentration_index/R/metrics.R"))
-source(here::here("scripts/regional_concentration_index/R/analysis_sets.R"))
-source(here::here("scripts/regional_concentration_index/R/plots.R"))
+source(here::here("scripts/regional_analysis/R/packages.R"))
+source(here::here("scripts/regional_analysis/R/data_loaders.R"))
+source(here::here("scripts/regional_analysis/R/metrics.R"))
+source(here::here("scripts/regional_analysis/R/analysis_sets.R"))
+source(here::here("scripts/regional_analysis/R/plots.R"))
 
 helper_files <- list.files(
-  here::here("scripts/regional_concentration_index/R"),
+  here::here("scripts/regional_analysis/R"),
   pattern = "\\.R$",
   full.names = TRUE
 )
@@ -577,8 +577,8 @@ ggsave(
 
 ## Reproducibility notes
 
-This report sources reusable code from `scripts/regional_concentration_index/R/` and can be rendered from the repository root with:
+This report sources reusable code from `scripts/regional_analysis/R/` and can be rendered from the repository root with:
 
 ```bash
-quarto render scripts/regional_concentration_index/regional_concentration_index.qmd --output-dir outputs
+quarto render scripts/regional_analysis/regional_concentration_index.qmd --output-dir outputs
 ```

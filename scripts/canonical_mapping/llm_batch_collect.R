@@ -2,7 +2,7 @@ library(here)
 library(dplyr)
 library(httr)
 library(jsonlite)
-source(here("scripts/config.R"))
+source(here("scripts/attention_scores/config.R"))
 
 # ── LLM Batch Collect ──────────────────────────────────────────────────────
 # Checks the status of a submitted Anthropic batch and, when complete,
