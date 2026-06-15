@@ -54,8 +54,17 @@ function draw() {
   const g = svg.append('g').attr('transform', `translate(${MARGIN.left},${MARGIN.top})`)
 
   const data = props.conditions
+
+  // Recompute attention share from raw scores to recover precision lost in JSON serialization
+  // (very small shares can serialize as 0 in jsonlite's default float format)
+  const totalAttn = d3.sum(data, d => d.attention_score || 0)
+  const preciseAttnShare = d =>
+    (d.zero_attention || !d.attention_score || totalAttn === 0)
+      ? 0
+      : d.attention_score / totalAttn
+
   const maxBS = d3.max(data, d => d.burden_share) || 0.01
-  const maxAS = d3.max(data, d => d.attention_share) || 0.01
+  const maxAS = Math.max(d3.max(data, d => preciseAttnShare(d)) || 0.01, 0.01)
   const axMax = Math.max(maxBS, maxAS) * 1.3
 
   // Log axes: zero values are shifted to EPS so they land at the bottom/left edge
@@ -66,8 +75,8 @@ function draw() {
   const y = d3.scaleLog().domain([axMin, axMax]).range([innerH, 0]).clamp(true)
 
   // Helper: map a share to its log-axis position (zero → EPS)
-  const px = d => x(Math.max(d.burden_share,   EPS))
-  const py = d => y(Math.max(d.attention_share, EPS))
+  const px = d => x(Math.max(d.burden_share,        EPS))
+  const py = d => y(Math.max(preciseAttnShare(d), EPS))
 
   // Tick formatter: show clean % labels
   const pctFmt = v => {

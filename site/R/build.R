@@ -97,7 +97,7 @@ opps <- joined %>%
   arrange(year, desc(mismatch_share))
 
 validate_opportunities(opps)
-write_json(opps, file.path(OUT_DIR, "opportunities.json"), auto_unbox = TRUE)
+write_json(opps, file.path(OUT_DIR, "opportunities.json"), auto_unbox = TRUE, digits = 10)
 
 # ── country_summaries.json ────────────────────────────────────────────────────
 message("Writing country_summaries.json...")
@@ -110,7 +110,7 @@ summaries <- joined %>%
   ungroup() %>%
   arrange(location_name, year)
 
-write_json(summaries, file.path(OUT_DIR, "country_summaries.json"), auto_unbox = TRUE)
+write_json(summaries, file.path(OUT_DIR, "country_summaries.json"), auto_unbox = TRUE, digits = 10)
 
 # ── per-country files ─────────────────────────────────────────────────────────
 message("Writing per-country files...")
@@ -144,7 +144,8 @@ for (lid in country_ids) {
   write_json(
     out,
     file.path(COUNTRY_DIR, paste0(lid, ".json")),
-    auto_unbox = TRUE
+    auto_unbox = TRUE,
+    digits = 10
   )
 }
 

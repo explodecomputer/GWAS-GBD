@@ -1,5 +1,5 @@
 {
-  "build_time": "2026-06-15T09:52:27Z",
+  "build_time": "2026-06-15T12:20:53Z",
   "burden_source": "IHME GBD 2023 (gbd_gwas_paper_data_4.csv)",
   "attention_source": "GWAS Catalog, curated GBD-GWAS alignment (temporal_attention_scores.csv)",
   "burden_definition": "DALY count, all ages, both sexes",
@@ -8,5 +8,5 @@
   "years": [1990, 2023],
   "n_countries": 194,
   "n_conditions": 274,
-  "n_eligible_opps": 7228
+  "n_eligible_opps": 7227
 }
