@@ -98,13 +98,20 @@ candidates <- generate_deterministic_candidates(
 
 ```r
 source("scripts/canonical_mapping/R/embedding_candidate.R")
+port <- embedding_port_from_config(cfg)  # HTTP service when configured
 candidates <- add_embedding_candidates(
   existing_candidates    = candidates,
   gbd_context            = gbd_context,
   observed_term_universe = universe,
-  ontology_metadata      = ont_metadata_df   # label, synonyms, definition
+  ontology_metadata      = ont_metadata_df,  # label, synonyms, definition
+  embedding_port         = port
 )
 ```
+
+For offline tests or development without the GPU server, use
+`embedding_fake_port()` for deterministic embeddings or omit the port to use the
+TF-IDF fallback. The production HTTP adapter reads `services.embed_server_url`
+from `config/config.yaml` or local overrides.
 
 ### 5. Build evidence package (Issue 016)
 

@@ -1,0 +1,66 @@
+paths:
+  data_dir: "workflow/fixtures/inputs"
+  outputs_dir: "workflow/fixtures/generated/outputs"
+  figures_dir: "workflow/fixtures/generated/figures"
+
+inputs:
+  gwas_catalog: "workflow/fixtures/inputs/gwas_catalog.tsv"
+  gbd_hierarchy: "workflow/fixtures/inputs/gbd_hierarchy.xlsx"
+  first_part_gbd: "workflow/fixtures/inputs/first_part_gbd.xlsx"
+  second_part_gbd: "workflow/fixtures/inputs/second_part_gbd.xlsx"
+  efo_obo: "workflow/fixtures/inputs/efo.obo"
+  manual_zero_mapping: "workflow/fixtures/inputs/manual_zero_attention_mapping.csv"
+  reference_attention_scores: "workflow/fixtures/inputs/reference_attention_scores.csv"
+
+canonical_mapping:
+  output_dir: "workflow/fixtures/generated/outputs/canonical_mapping"
+  observed_terms: "workflow/fixtures/inputs/observed_terms.csv"
+  condition_context: "workflow/fixtures/inputs/gbd_condition_context.csv"
+  deterministic_candidates: "workflow/fixtures/generated/outputs/canonical_mapping/03_deterministic_candidates.csv"
+  embedding_candidates: "workflow/fixtures/generated/outputs/canonical_mapping/03b_embedding_candidates.csv"
+  evidence_package: "workflow/fixtures/generated/outputs/canonical_mapping/04_evidence_package.csv"
+  reviewed_evidence_package: "workflow/fixtures/inputs/reviewed_evidence_package.csv"
+  batch_state: "workflow/fixtures/generated/outputs/canonical_mapping/batch_state.json"
+  master_mapping: "workflow/fixtures/generated/outputs/canonical_mapping/gbd_efo_master_mapping.tsv"
+  sentinel_conditions: []
+
+attention_scores:
+  gbd_universe: "workflow/fixtures/generated/outputs/attention_scores/gbd_universe.csv"
+  combined_output: "workflow/fixtures/generated/outputs/attention_scores/all_time_attention_scores.csv"
+  temporal_output: "workflow/fixtures/generated/outputs/attention_scores/temporal_attention_scores.csv"
+
+pipeline_checks:
+  comparison_report: "workflow/fixtures/generated/reports/attention-score-pipeline-comparison.html"
+  zero_attention_todo: "workflow/fixtures/generated/outputs/pipeline_checks/zero_attention_todo.csv"
+
+regional_analysis:
+  report: "workflow/fixtures/generated/reports/regional_concentration_index.html"
+  output_dir: "workflow/fixtures/generated/reports"
+  figure_outputs:
+    - "workflow/fixtures/generated/figures/ci_by_year.pdf"
+    - "workflow/fixtures/generated/figures/ci_by_sex.pdf"
+    - "workflow/fixtures/generated/figures/map1990.pdf"
+    - "workflow/fixtures/generated/figures/map2023.pdf"
+    - "workflow/fixtures/generated/figures/lorenz_curve.pdf"
+    - "workflow/fixtures/generated/figures/ci_by_age.pdf"
+    - "workflow/fixtures/generated/figures/gini_over_time_fullscale.pdf"
+    - "workflow/fixtures/generated/figures/gini_over_time.pdf"
+    - "workflow/fixtures/generated/figures/gini_vs_nzero.pdf"
+    - "workflow/fixtures/generated/figures/ci_by_year_and_gwasyear.pdf"
+    - "workflow/fixtures/generated/figures/ci_by_year_and_gwasyear_gbd2023.pdf"
+    - "workflow/fixtures/generated/figures/daly_trends_top_diseases.pdf"
+    - "workflow/fixtures/generated/figures/daly_gwas_trends_by_sdi_relevance.pdf"
+    - "workflow/fixtures/generated/figures/daly_trends_zero_attention_traits.png"
+  burden_files:
+    age: "workflow/fixtures/inputs/gbd_age.csv"
+    sex: "workflow/fixtures/inputs/gbd_sex.csv"
+    year: "workflow/fixtures/inputs/gbd_year.csv"
+    country: "workflow/fixtures/inputs/gbd_country.csv"
+
+site:
+  public_data_dir: "workflow/fixtures/generated/site_data"
+  build_dir: "workflow/fixtures/generated/docs"
+  base_path: "/GWAS-GBD/"
+  years:
+    - 1990
+    - 2023

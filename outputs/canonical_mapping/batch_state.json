@@ -1,0 +1,8 @@
+{
+  "batch_id": "msgbatch_01JMrXvQMfyQdBjsaLaUUTTq",
+  "submitted_at": "2026-06-12T16:32:30+0100",
+  "n_requests": 3439,
+  "evidence_pkg_path": "/Users/gh13047/repo/GWAS-GBD/outputs/canonical_mapping/04_evidence_package.csv",
+  "output_path": "/Users/gh13047/repo/GWAS-GBD/outputs/canonical_mapping/04_evidence_package_reviewed.csv",
+  "llm_model": "claude-haiku-4-5-20251001"
+}

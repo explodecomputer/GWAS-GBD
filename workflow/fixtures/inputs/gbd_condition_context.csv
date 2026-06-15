@@ -1,0 +1,2 @@
+condition_name,gbd_level,parent_name,siblings,n_siblings,is_residual,alias,excluded_alias,scope_note
+Fixture condition,3,Fixture parent,,0,FALSE,,,

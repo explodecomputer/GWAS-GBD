@@ -1,0 +1,44 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+.DS_Store
+.Rhistory
+.Rproj.user/
+.quarto/
+
+# Local environments
+bin/
+include/
+lib/
+pyvenv.cfg
+.venv/
+venv/
+env/
+site/node_modules/
+
+# Local/private configuration
+config/config.local.yaml
+config/secrets.env
+secrets.env
+.env
+
+# Runtime and test artifacts
+.snakemake/
+site/test-results/
+site/playwright-report/
+workflow/fixtures/generated/
+*.log
+*_cache/
+*_files/
+Rplots.pdf
+Data/~$*
+data/~$*
+archive/deprecated/data/local_artifacts/
+
+# Large input files
+data/efo.obo
+data/gwas_catalog_v*.tsv
+
+# Archive
+archive/deprecated/
+
+# issues
+issues/

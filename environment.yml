@@ -1,0 +1,38 @@
+name: gwas-gbd
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - snakemake-minimal
+  - r-base>=4.4
+  - r-data.table
+  - r-dplyr
+  - r-tidyr
+  - r-stringr
+  - r-readr
+  - r-readxl
+  - r-openxlsx
+  - r-ggplot2
+  - r-ggrepel
+  - r-ggstance
+  - r-cowplot
+  - r-jsonlite
+  - r-yaml
+  - r-here
+  - r-testthat
+  - r-ontologyindex
+  - r-boot
+  - r-httr
+  - r-curl
+  - r-desctools
+  - r-rcolorbrewer
+  - r-rmarkdown
+  - r-rworldmap
+  - r-remotes
+  - quarto
+  - nodejs=20
+  - pyyaml
+  - pip
+  - pip:
+      - playwright

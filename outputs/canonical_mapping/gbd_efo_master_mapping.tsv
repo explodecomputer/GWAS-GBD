@@ -1,0 +1,631 @@
+gbd_term	mapped_trait_uri	mapping_strategy	mapping_source	include_in_pipeline	hierarchy_distance	hierarchy_weight	root_mapped_trait_uri	lookup_trait_uri	replacement_type	source_file	source_column	source_value	search_term	matched_gwas_trait_examples	n_matching_pubmeds
+Acne vulgaris	MONDO:0011438	canonical	canonical_human_review	TRUE	0	1	MONDO:0011438		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0011438	Acne vulgaris		13
+Acute glomerulonephritis	MONDO:0002461	canonical	canonical_human_review	TRUE	0	1	MONDO:0002461		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002461	Acute glomerulonephritis		1
+Acute glomerulonephritis	MONDO:0002462	canonical	canonical_human_review	TRUE	0	1	MONDO:0002462		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002462	Acute glomerulonephritis		5
+Acute glomerulonephritis	MONDO:0005342	canonical	canonical_human_review	TRUE	0	1	MONDO:0005342		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005342	Acute glomerulonephritis		11
+Acute glomerulonephritis	MONDO:0019722	canonical	canonical_human_review	TRUE	0	1	MONDO:0019722		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019722	Acute glomerulonephritis		2
+Acute hepatitis	HP:0012115	canonical	canonical_human_review	TRUE	0	1	HP:0012115		original	04_evidence_package_reviewed.csv	ontology_id	HP:0012115	Acute hepatitis		8
+Acute hepatitis	MONDO:0005790	canonical	canonical_human_review	TRUE	0	1	MONDO:0005790		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005790	Acute hepatitis		4
+Acute hepatitis A	MONDO:0005790	canonical	canonical_human_review	TRUE	0	1	MONDO:0005790		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005790	Acute hepatitis A		4
+Acute hepatitis B	MONDO:0005344	canonical	canonical_human_review	TRUE	0	1	MONDO:0005344		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005344	Acute hepatitis B		13
+Acute hepatitis B	MONDO:0100370	canonical	canonical_human_review	TRUE	0	1	MONDO:0100370		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100370	Acute hepatitis B		1
+Acute hepatitis C	MONDO:0005231	canonical	canonical_human_review	TRUE	0	1	MONDO:0005231		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005231	Acute hepatitis C		9
+Acute lymphoid leukemia	MONDO:0000870	canonical	canonical_human_review	TRUE	0	1	MONDO:0000870		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000870	Acute lymphoid leukemia		2
+Acute lymphoid leukemia	MONDO:0000871	canonical	canonical_human_review	TRUE	0	1	MONDO:0000871		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000871	Acute lymphoid leukemia		1
+Acute lymphoid leukemia	MONDO:0004947	canonical	canonical_human_review	TRUE	0	1	MONDO:0004947		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004947	Acute lymphoid leukemia		7
+Acute lymphoid leukemia	MONDO:0004967	canonical	canonical_human_review	TRUE	0	1	MONDO:0004967		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004967	Acute lymphoid leukemia		16
+Acute lymphoid leukemia	MONDO:0005402	canonical	canonical_human_review	TRUE	0	1	MONDO:0005402		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005402	Acute lymphoid leukemia		6
+Acute myeloid leukemia	MONDO:0004643	canonical	canonical_human_review	TRUE	0	1	MONDO:0004643		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004643	Acute myeloid leukemia		3
+Acute myeloid leukemia	MONDO:0018874	canonical	canonical_human_review	TRUE	0	1	MONDO:0018874		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018874	Acute myeloid leukemia		9
+Age-related and other hearing loss	HP:0000405	canonical	canonical_human_review	TRUE	0	1	HP:0000405		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000405	Age-related and other hearing loss		3
+Age-related and other hearing loss	HP:0000407	canonical	canonical_human_review	TRUE	0	1	HP:0000407		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000407	Age-related and other hearing loss		2
+Age-related and other hearing loss	MONDO:0005365	canonical	canonical_human_review	TRUE	0	1	MONDO:0005365		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005365	Age-related and other hearing loss		23
+Age-related and other hearing loss	MONDO:0020678	canonical	canonical_human_review	TRUE	0	1	MONDO:0020678		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020678	Age-related and other hearing loss		3
+Age-related macular degeneration	EFO:1001492	canonical	canonical_human_review	TRUE	0	1	EFO:1001492		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001492	Age-related macular degeneration		6
+Age-related macular degeneration	MONDO:0003004	canonical	canonical_human_review	TRUE	0	1	MONDO:0003004		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003004	Age-related macular degeneration		7
+Age-related macular degeneration	MONDO:0004580	canonical	canonical_human_review	TRUE	0	1	MONDO:0004580		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004580	Age-related macular degeneration		3
+Age-related macular degeneration	MONDO:0005150	canonical	canonical_human_review	TRUE	0	1	MONDO:0005150		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005150	Age-related macular degeneration		37
+Age-related macular degeneration	MONDO:0005417	canonical	canonical_human_review	TRUE	0	1	MONDO:0005417		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005417	Age-related macular degeneration		8
+Age-related macular degeneration	MONDO:0100114	canonical	canonical_human_review	TRUE	0	1	MONDO:0100114		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100114	Age-related macular degeneration		1
+Alcohol use disorders	HP:0030955	canonical	canonical_human_review	TRUE	0	1	HP:0030955		original	04_evidence_package_reviewed.csv	ontology_id	HP:0030955	Alcohol use disorders		4
+Alcohol use disorders	MONDO:0002046	canonical	canonical_human_review	TRUE	0	1	MONDO:0002046		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002046	Alcohol use disorders		1
+Alcohol use disorders	MONDO:0007079	canonical	canonical_human_review	TRUE	0	1	MONDO:0007079		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007079	Alcohol use disorders		31
+Alcohol use disorders	MONDO:0021698	canonical	canonical_human_review	TRUE	0	1	MONDO:0021698		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021698	Alcohol use disorders		6
+Alcoholic cardiomyopathy	EFO:0009881	canonical	canonical_human_review	TRUE	0	1	EFO:0009881		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009881	Alcoholic cardiomyopathy		1
+Alopecia areata	MONDO:0005340	canonical	canonical_human_review	TRUE	0	1	MONDO:0005340		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005340	Alopecia areata		8
+Alzheimer's disease and other dementias	EFO:0006799	canonical	canonical_human_review	TRUE	0	1	EFO:0006799		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0006799	Alzheimer's disease and other dementias		1
+Alzheimer's disease and other dementias	EFO:0006801	canonical	canonical_human_review	TRUE	0	1	EFO:0006801		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0006801	Alzheimer's disease and other dementias		1
+Alzheimer's disease and other dementias	EFO:0022957	canonical	canonical_human_review	TRUE	0	1	EFO:0022957		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0022957	Alzheimer's disease and other dementias		1
+Alzheimer's disease and other dementias	EFO:1001870	canonical	canonical_human_review	TRUE	0	1	EFO:1001870		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001870	Alzheimer's disease and other dementias		11
+Alzheimer's disease and other dementias	MONDO:0001627	canonical	canonical_human_review	TRUE	0	1	MONDO:0001627		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001627	Alzheimer's disease and other dementias		17
+Alzheimer's disease and other dementias	MONDO:0004975	canonical	canonical_human_review	TRUE	0	1	MONDO:0004975		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004975	Alzheimer's disease and other dementias		121
+Amphetamine use disorders	MONDO:0005419	canonical	canonical_human_review	TRUE	0	1	MONDO:0005419		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005419	Amphetamine use disorders		2
+Anorexia nervosa	MONDO:0005351	canonical	canonical_human_review	TRUE	0	1	MONDO:0005351		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005351	Anorexia nervosa		17
+Anxiety disorders	HP:0000739	canonical	canonical_human_review	TRUE	0	1	HP:0000739		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000739	Anxiety disorders		20
+Anxiety disorders	MONDO:0005383	canonical	canonical_human_review	TRUE	0	1	MONDO:0005383		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005383	Anxiety disorders		7
+Anxiety disorders	MONDO:0005618	canonical	canonical_human_review	TRUE	0	1	MONDO:0005618		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005618	Anxiety disorders		20
+Aortic aneurysm	HP:0002647	canonical	canonical_human_review	TRUE	0	1	HP:0002647		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002647	Aortic aneurysm		3
+Aortic aneurysm	MONDO:0005160	canonical	canonical_human_review	TRUE	0	1	MONDO:0005160		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005160	Aortic aneurysm		8
+Aortic aneurysm	MONDO:0005350	canonical	canonical_human_review	TRUE	0	1	MONDO:0005350		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005350	Aortic aneurysm		14
+Aortic aneurysm	MONDO:0005396	canonical	canonical_human_review	TRUE	0	1	MONDO:0005396		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005396	Aortic aneurysm		6
+Appendicitis	MONDO:0005649	canonical	canonical_human_review	TRUE	0	1	MONDO:0005649		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005649	Appendicitis		14
+Appendicitis	MONDO:0056798	canonical	canonical_human_review	TRUE	0	1	MONDO:0056798		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0056798	Appendicitis		5
+Asthma	EFO:0010638	canonical	canonical_human_review	TRUE	0	1	EFO:0010638		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010638	Asthma		2
+Asthma	EFO:1002011	canonical	canonical_human_review	TRUE	0	1	EFO:1002011		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1002011	Asthma		6
+Asthma	MONDO:0004784	canonical	canonical_human_review	TRUE	0	1	MONDO:0004784		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004784	Asthma		1
+Asthma	MONDO:0004979	canonical	canonical_human_review	TRUE	0	1	MONDO:0004979		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004979	Asthma		96
+Asthma	MONDO:0005405	canonical	canonical_human_review	TRUE	0	1	MONDO:0005405		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005405	Asthma		22
+Asthma	MONDO:0956975	canonical	canonical_human_review	TRUE	0	1	MONDO:0956975		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0956975	Asthma		1
+Atopic dermatitis	EFO:1000651	canonical	canonical_human_review	TRUE	0	1	EFO:1000651		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000651	Atopic dermatitis		1
+Atopic dermatitis	HP:0000964	canonical	canonical_human_review	TRUE	0	1	HP:0000964		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000964	Atopic dermatitis		9
+Atopic dermatitis	MONDO:0004980	canonical	canonical_human_review	TRUE	0	1	MONDO:0004980		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004980	Atopic dermatitis		29
+Atrial fibrillation and flutter	HP:0004757	canonical	canonical_human_review	TRUE	0	1	HP:0004757		original	04_evidence_package_reviewed.csv	ontology_id	HP:0004757	Atrial fibrillation and flutter		1
+Atrial fibrillation and flutter	MONDO:0004981	canonical	canonical_human_review	TRUE	0	1	MONDO:0004981		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004981	Atrial fibrillation and flutter		43
+Atrial fibrillation and flutter	MONDO:0005310	canonical	canonical_human_review	TRUE	0	1	MONDO:0005310		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005310	Atrial fibrillation and flutter		4
+Attention-deficit/hyperactivity disorder	MONDO:0007743	canonical	canonical_human_review	TRUE	0	1	MONDO:0007743		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007743	Attention-deficit/hyperactivity disorder		57
+Autism spectrum disorders	MONDO:0005258	canonical	canonical_human_review	TRUE	0	1	MONDO:0005258		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005258	Autism spectrum disorders		26
+Autism spectrum disorders	MONDO:0005260	canonical	canonical_human_review	TRUE	0	1	MONDO:0005260		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005260	Autism spectrum disorders		14
+Autism spectrum disorders	MONDO:0005287	canonical	canonical_human_review	TRUE	0	1	MONDO:0005287		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005287	Autism spectrum disorders		3
+Autism spectrum disorders	MONDO:0100610	canonical	canonical_human_review	TRUE	0	1	MONDO:0100610		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100610	Autism spectrum disorders		2
+Bacterial skin diseases	MONDO:0021201	canonical	canonical_human_review	TRUE	0	1	MONDO:0021201		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021201	Bacterial skin diseases		7
+Benign and in situ cervical and uterine neoplasms	MONDO:0000632	canonical	canonical_model_review	TRUE	0	1	MONDO:0000632		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000632	Benign and in situ cervical and uterine neoplasms		4
+Benign and in situ cervical and uterine neoplasms	MONDO:0006137	canonical	canonical_model_review	TRUE	0	1	MONDO:0006137		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006137	Benign and in situ cervical and uterine neoplasms		1
+Benign and in situ cervical and uterine neoplasms	MONDO:0042487	canonical	canonical_model_review	TRUE	0	1	MONDO:0042487		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0042487	Benign and in situ cervical and uterine neoplasms		2
+Benign and in situ intestinal neoplasms	MONDO:0000385	canonical	canonical_model_review	TRUE	0	1	MONDO:0000385		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000385	Benign and in situ intestinal neoplasms		3
+Benign and in situ intestinal neoplasms	MONDO:0002278	canonical	canonical_model_review	TRUE	0	1	MONDO:0002278		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002278	Benign and in situ intestinal neoplasms		6
+Benign and in situ intestinal neoplasms	MONDO:0021462	canonical	canonical_model_review	TRUE	0	1	MONDO:0021462		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021462	Benign and in situ intestinal neoplasms		1
+Benign and in situ intestinal neoplasms	MONDO:0021464	canonical	canonical_model_review	TRUE	0	1	MONDO:0021464		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021464	Benign and in situ intestinal neoplasms		1
+Benign and in situ intestinal neoplasms	MONDO:0044983	canonical	canonical_model_review	TRUE	0	1	MONDO:0044983		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0044983	Benign and in situ intestinal neoplasms		4
+Benign prostatic hyperplasia	MONDO:0010811	canonical	canonical_model_review	TRUE	0	1	MONDO:0010811		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0010811	Benign prostatic hyperplasia		10
+Bipolar disorder	EFO:0009963	canonical	canonical_model_review	TRUE	0	1	EFO:0009963		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009963	Bipolar disorder		5
+Bipolar disorder	EFO:0009964	canonical	canonical_model_review	TRUE	0	1	EFO:0009964		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009964	Bipolar disorder		4
+Bipolar disorder	EFO:0009965	canonical	canonical_human_review	TRUE	0	1	EFO:0009965		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009965	Bipolar disorder		1
+Bipolar disorder	MONDO:0004985	canonical	canonical_model_review	TRUE	0	1	MONDO:0004985		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004985	Bipolar disorder		83
+Bladder cancer	MONDO:0001187	canonical	canonical_model_review	TRUE	0	1	MONDO:0001187		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001187	Bladder cancer		10
+Blindness and vision loss	HP:0000504	canonical	canonical_model_review	TRUE	0	1	HP:0000504		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000504	Blindness and vision loss		3
+Blindness and vision loss	HP:0000529	canonical	canonical_model_review	TRUE	0	1	HP:0000529		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000529	Blindness and vision loss		1
+Blindness and vision loss	HP:0000572	canonical	canonical_model_review	TRUE	0	1	HP:0000572		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000572	Blindness and vision loss		1
+Blindness and vision loss	HP:0000618	canonical	canonical_model_review	TRUE	0	1	HP:0000618		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000618	Blindness and vision loss		4
+Blindness and vision loss	HP:0007957	canonical	canonical_model_review	TRUE	0	1	HP:0007957		original	04_evidence_package_reviewed.csv	ontology_id	HP:0007957	Blindness and vision loss		3
+Blindness and vision loss	MONDO:0001703	canonical	canonical_model_review	TRUE	0	1	MONDO:0001703		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001703	Blindness and vision loss		2
+Brain and central nervous system cancer	MONDO:0001657	canonical	canonical_model_review	TRUE	0	1	MONDO:0001657		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001657	Brain and central nervous system cancer		3
+Brain and central nervous system cancer	MONDO:0002714	canonical	canonical_model_review	TRUE	0	1	MONDO:0002714		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002714	Brain and central nervous system cancer		10
+Brain and central nervous system cancer	MONDO:0005872	canonical	canonical_model_review	TRUE	0	1	MONDO:0005872		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005872	Brain and central nervous system cancer		2
+Breast cancer	EFO:0009443	canonical	canonical_human_review	TRUE	0	1	EFO:0009443		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009443	Breast cancer		1
+Breast cancer	EFO:0009782	canonical	canonical_human_review	TRUE	0	1	EFO:0009782		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009782	Breast cancer		1
+Breast cancer	MONDO:0000616	canonical	canonical_human_review	TRUE	0	1	MONDO:0000616		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000616	Breast cancer		2
+Breast cancer	MONDO:0000618	canonical	canonical_human_review	TRUE	0	1	MONDO:0000618		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000618	Breast cancer		4
+Breast cancer	MONDO:0004989	canonical	canonical_human_review	TRUE	0	1	MONDO:0004989		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004989	Breast cancer		93
+Breast cancer	MONDO:0006512	canonical	canonical_human_review	TRUE	0	1	MONDO:0006512		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006512	Breast cancer		16
+Breast cancer	MONDO:0006513	canonical	canonical_human_review	TRUE	0	1	MONDO:0006513		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006513	Breast cancer		17
+Breast cancer	MONDO:0007254	canonical	canonical_human_review	TRUE	0	1	MONDO:0007254		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007254	Breast cancer		25
+Bulimia nervosa	MONDO:0005452	canonical	canonical_model_review	TRUE	0	1	MONDO:0005452		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005452	Bulimia nervosa		1
+Burkitt lymphoma	MONDO:0007243	canonical	canonical_model_review	TRUE	0	1	MONDO:0007243		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007243	Burkitt lymphoma		1
+COVID-19	MONDO:0100096	canonical	canonical_model_review	TRUE	0	1	MONDO:0100096		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100096	COVID-19		55
+Cannabis use disorders	MONDO:0005689	canonical	canonical_model_review	TRUE	0	1	MONDO:0005689		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005689	Cannabis use disorders		8
+Cardiomyopathy and myocarditis	EFO:0001425	canonical	canonical_model_review	TRUE	0	1	EFO:0001425		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0001425	Cardiomyopathy and myocarditis		1
+Cardiomyopathy and myocarditis	EFO:0009094	canonical	canonical_model_review	TRUE	0	1	EFO:0009094		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009094	Cardiomyopathy and myocarditis		1
+Cardiomyopathy and myocarditis	EFO:0009881	canonical	canonical_model_review	TRUE	0	1	EFO:0009881		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009881	Cardiomyopathy and myocarditis		1
+Cardiomyopathy and myocarditis	MONDO:0004496	canonical	canonical_model_review	TRUE	0	1	MONDO:0004496		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004496	Cardiomyopathy and myocarditis		4
+Cardiomyopathy and myocarditis	MONDO:0004994	canonical	canonical_model_review	TRUE	0	1	MONDO:0004994		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004994	Cardiomyopathy and myocarditis		13
+Cardiomyopathy and myocarditis	MONDO:0005021	canonical	canonical_model_review	TRUE	0	1	MONDO:0005021		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005021	Cardiomyopathy and myocarditis		8
+Cardiomyopathy and myocarditis	MONDO:0005045	canonical	canonical_model_review	TRUE	0	1	MONDO:0005045		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005045	Cardiomyopathy and myocarditis		10
+Cardiomyopathy and myocarditis	MONDO:0005491	canonical	canonical_model_review	TRUE	0	1	MONDO:0005491		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005491	Cardiomyopathy and myocarditis		3
+Cardiomyopathy and myocarditis	MONDO:0018920	canonical	canonical_model_review	TRUE	0	1	MONDO:0018920		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018920	Cardiomyopathy and myocarditis		1
+Caries of deciduous teeth	EFO:0600095	canonical	canonical_model_review	TRUE	0	1	EFO:0600095		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0600095	Caries of deciduous teeth		4
+Caries of deciduous teeth	MONDO:0005276	canonical	canonical_model_review	TRUE	0	1	MONDO:0005276		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005276	Caries of deciduous teeth		17
+Caries of permanent teeth	EFO:0600096	canonical	canonical_model_review	TRUE	0	1	EFO:0600096		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0600096	Caries of permanent teeth		1
+Caries of permanent teeth	MONDO:0002233	canonical	canonical_model_review	TRUE	0	1	MONDO:0002233		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002233	Caries of permanent teeth		1
+Caries of permanent teeth	MONDO:0005276	canonical	canonical_model_review	TRUE	0	1	MONDO:0005276		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005276	Caries of permanent teeth		17
+Caries of permanent teeth	MONDO:0005591	canonical	canonical_model_review	TRUE	0	1	MONDO:0005591		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005591	Caries of permanent teeth		2
+Caries of permanent teeth	MONDO:0005592	canonical	canonical_model_review	TRUE	0	1	MONDO:0005592		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005592	Caries of permanent teeth		2
+Cataract	HP:0011141	canonical	canonical_model_review	TRUE	0	1	HP:0011141		original	04_evidence_package_reviewed.csv	ontology_id	HP:0011141	Cataract		5
+Cataract	HP:0011142	canonical	canonical_model_review	TRUE	0	1	HP:0011142		original	04_evidence_package_reviewed.csv	ontology_id	HP:0011142	Cataract		3
+Cataract	MONDO:0004847	canonical	canonical_model_review	TRUE	0	1	MONDO:0004847		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004847	Cataract		5
+Cataract	MONDO:0005129	canonical	canonical_model_review	TRUE	0	1	MONDO:0005129		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005129	Cataract		22
+Cellulitis	MONDO:0005230	canonical	canonical_model_review	TRUE	0	1	MONDO:0005230		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005230	Cellulitis		9
+Cervical cancer	MONDO:0002974	canonical	canonical_model_review	TRUE	0	1	MONDO:0002974		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002974	Cervical cancer		6
+Cervical cancer	MONDO:0005131	canonical	canonical_model_review	TRUE	0	1	MONDO:0005131		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005131	Cervical cancer		18
+Chagas disease	MONDO:0005491	canonical	canonical_model_review	TRUE	0	1	MONDO:0005491		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005491	Chagas disease		3
+Chlamydial infection	MONDO:0020776	canonical	canonical_model_review	TRUE	0	1	MONDO:0020776		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020776	Chlamydial infection		1
+Chlamydial infection	MONDO:0021697	canonical	canonical_model_review	TRUE	0	1	MONDO:0021697		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021697	Chlamydial infection		1
+Chronic hepatitis B including cirrhosis	EFO:0008496	canonical	canonical_model_review	TRUE	0	1	EFO:0008496		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0008496	Chronic hepatitis B including cirrhosis		5
+Chronic hepatitis B including cirrhosis	MONDO:0005344	canonical	canonical_model_review	TRUE	0	1	MONDO:0005344		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005344	Chronic hepatitis B including cirrhosis		13
+Chronic hepatitis B including cirrhosis	MONDO:0005366	canonical	canonical_model_review	TRUE	0	1	MONDO:0005366		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005366	Chronic hepatitis B including cirrhosis		8
+Chronic hepatitis C including cirrhosis	MONDO:0005231	canonical	canonical_model_review	TRUE	0	1	MONDO:0005231		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005231	Chronic hepatitis C including cirrhosis		9
+Chronic hepatitis C including cirrhosis	MONDO:0005354	canonical	canonical_model_review	TRUE	0	1	MONDO:0005354		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005354	Chronic hepatitis C including cirrhosis		14
+Chronic hepatitis C including cirrhosis	MONDO:0005448	canonical	canonical_model_review	TRUE	0	1	MONDO:0005448		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005448	Chronic hepatitis C including cirrhosis		1
+Chronic kidney disease	EFO:0009909	canonical	canonical_model_review	TRUE	0	1	EFO:0009909		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009909	Chronic kidney disease		3
+Chronic kidney disease	MONDO:0001106	canonical	canonical_human_review	TRUE	0	1	MONDO:0001106		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001106	Chronic kidney disease		9
+Chronic kidney disease	MONDO:0005300	canonical	canonical_model_review	TRUE	0	1	MONDO:0005300		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005300	Chronic kidney disease		45
+Chronic kidney disease due to diabetes mellitus type 1	EFO:0004996	canonical	canonical_model_review	TRUE	0	1	EFO:0004996		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0004996	Chronic kidney disease due to diabetes mellitus type 1		1
+Chronic kidney disease due to diabetes mellitus type 1	MONDO:0005016	canonical	canonical_human_review	TRUE	0	1	MONDO:0005016		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005016	Chronic kidney disease due to diabetes mellitus type 1		21
+Chronic kidney disease due to diabetes mellitus type 2	EFO:0004997	canonical	canonical_model_review	TRUE	0	1	EFO:0004997		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0004997	Chronic kidney disease due to diabetes mellitus type 2		2
+Chronic kidney disease due to diabetes mellitus type 2	MONDO:0005016	canonical	canonical_human_review	TRUE	0	1	MONDO:0005016		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005016	Chronic kidney disease due to diabetes mellitus type 2		21
+Chronic kidney disease due to glomerulonephritis	MONDO:0002461	canonical	canonical_model_review	TRUE	0	1	MONDO:0002461		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002461	Chronic kidney disease due to glomerulonephritis		1
+Chronic kidney disease due to glomerulonephritis	MONDO:0002462	canonical	canonical_model_review	TRUE	0	1	MONDO:0002462		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002462	Chronic kidney disease due to glomerulonephritis		5
+Chronic kidney disease due to glomerulonephritis	MONDO:0005342	canonical	canonical_model_review	TRUE	0	1	MONDO:0005342		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005342	Chronic kidney disease due to glomerulonephritis		11
+Chronic kidney disease due to glomerulonephritis	MONDO:0100313	canonical	canonical_model_review	TRUE	0	1	MONDO:0100313		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100313	Chronic kidney disease due to glomerulonephritis		2
+Chronic lymphoid leukemia	MONDO:0004948	canonical	canonical_model_review	TRUE	0	1	MONDO:0004948		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004948	Chronic lymphoid leukemia		15
+Chronic lymphoid leukemia	MONDO:0005402	canonical	canonical_human_review	TRUE	0	1	MONDO:0005402		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005402	Chronic lymphoid leukemia		6
+Chronic myeloid leukemia	MONDO:0004643	canonical	canonical_model_review	TRUE	0	1	MONDO:0004643		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004643	Chronic myeloid leukemia		3
+Chronic myeloid leukemia	MONDO:0011996	canonical	canonical_model_review	TRUE	0	1	MONDO:0011996		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0011996	Chronic myeloid leukemia		4
+Chronic obstructive pulmonary disease	EFO:0009910	canonical	canonical_model_review	TRUE	0	1	EFO:0009910		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009910	Chronic obstructive pulmonary disease		1
+Chronic obstructive pulmonary disease	MONDO:0005002	canonical	canonical_model_review	TRUE	0	1	MONDO:0005002		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005002	Chronic obstructive pulmonary disease		46
+Cirrhosis and other chronic liver diseases	EFO:0004267	canonical	canonical_model_review	TRUE	0	1	EFO:0004267		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0004267	Cirrhosis and other chronic liver diseases		4
+Cirrhosis and other chronic liver diseases	HP:0001395	canonical	canonical_model_review	TRUE	0	1	HP:0001395		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001395	Cirrhosis and other chronic liver diseases		5
+Cirrhosis and other chronic liver diseases	MONDO:0005155	canonical	canonical_model_review	TRUE	0	1	MONDO:0005155		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005155	Cirrhosis and other chronic liver diseases		20
+Cirrhosis and other chronic liver diseases	MONDO:0005448	canonical	canonical_model_review	TRUE	0	1	MONDO:0005448		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005448	Cirrhosis and other chronic liver diseases		1
+Cirrhosis and other chronic liver diseases	MONDO:0006644	canonical	canonical_model_review	TRUE	0	1	MONDO:0006644		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006644	Cirrhosis and other chronic liver diseases		4
+Cirrhosis and other chronic liver diseases	MONDO:0007027	canonical	canonical_model_review	TRUE	0	1	MONDO:0007027		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007027	Cirrhosis and other chronic liver diseases		3
+Cirrhosis and other chronic liver diseases	MONDO:0013209	canonical	canonical_model_review	TRUE	0	1	MONDO:0013209		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0013209	Cirrhosis and other chronic liver diseases		28
+Cirrhosis due to alcohol	MONDO:0005155	canonical	canonical_human_review	TRUE	0	1	MONDO:0005155		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005155	Cirrhosis due to alcohol		20
+Cirrhosis due to alcohol	MONDO:0006644	canonical	canonical_model_review	TRUE	0	1	MONDO:0006644		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006644	Cirrhosis due to alcohol		4
+Cirrhosis due to other causes	EFO:0004267	canonical	canonical_model_review	TRUE	0	1	EFO:0004267		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0004267	Cirrhosis due to other causes		4
+Cirrhosis due to other causes	MONDO:0005155	canonical	canonical_model_review	TRUE	0	1	MONDO:0005155		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005155	Cirrhosis due to other causes		20
+Coal workers pneumoconiosis	MONDO:0015926	canonical	canonical_model_review	TRUE	0	1	MONDO:0015926		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0015926	Coal workers pneumoconiosis		5
+Cocaine use disorders	EFO:0010445	canonical	canonical_model_review	TRUE	0	1	EFO:0010445		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010445	Cocaine use disorders		1
+Colon and rectum cancer	MONDO:0002032	canonical	canonical_model_review	TRUE	0	1	MONDO:0002032		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002032	Colon and rectum cancer		12
+Colon and rectum cancer	MONDO:0002033	canonical	canonical_model_review	TRUE	0	1	MONDO:0002033		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002033	Colon and rectum cancer		2
+Colon and rectum cancer	MONDO:0002238	canonical	canonical_model_review	TRUE	0	1	MONDO:0002238		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002238	Colon and rectum cancer		1
+Colon and rectum cancer	MONDO:0005575	canonical	canonical_model_review	TRUE	0	1	MONDO:0005575		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005575	Colon and rectum cancer		98
+Colon and rectum cancer	MONDO:0006519	canonical	canonical_model_review	TRUE	0	1	MONDO:0006519		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006519	Colon and rectum cancer		8
+Colon and rectum cancer	MONDO:0024331	canonical	canonical_model_review	TRUE	0	1	MONDO:0024331		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024331	Colon and rectum cancer		6
+Conduct disorder	MONDO:0005352	canonical	canonical_model_review	TRUE	0	1	MONDO:0005352		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005352	Conduct disorder		6
+Congenital birth defects	EFO:0022941	canonical	canonical_model_review	TRUE	0	1	EFO:0022941		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0022941	Congenital birth defects		1
+Congenital birth defects	EFO:0600032	canonical	canonical_model_review	TRUE	0	1	EFO:0600032		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0600032	Congenital birth defects		1
+Congenital birth defects	HP:0001374	canonical	canonical_model_review	TRUE	0	1	HP:0001374		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001374	Congenital birth defects		1
+Congenital birth defects	MONDO:0005453	canonical	canonical_model_review	TRUE	0	1	MONDO:0005453		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005453	Congenital birth defects		5
+Congenital birth defects	MONDO:0005584	canonical	canonical_model_review	TRUE	0	1	MONDO:0005584		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005584	Congenital birth defects		5
+Congenital birth defects	MONDO:0017427	canonical	canonical_model_review	TRUE	0	1	MONDO:0017427		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0017427	Congenital birth defects		3
+Congenital birth defects	MONDO:0019054	canonical	canonical_model_review	TRUE	0	1	MONDO:0019054		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019054	Congenital birth defects		1
+Congenital birth defects	MONDO:0019512	canonical	canonical_model_review	TRUE	0	1	MONDO:0019512		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019512	Congenital birth defects		4
+Congenital birth defects	MONDO:0024239	canonical	canonical_model_review	TRUE	0	1	MONDO:0024239		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024239	Congenital birth defects		4
+Congenital heart anomalies	EFO:0600032	canonical	canonical_model_review	TRUE	0	1	EFO:0600032		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0600032	Congenital heart anomalies		1
+Congenital heart anomalies	MONDO:0005453	canonical	canonical_model_review	TRUE	0	1	MONDO:0005453		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005453	Congenital heart anomalies		5
+Congenital heart anomalies	MONDO:0005584	canonical	canonical_model_review	TRUE	0	1	MONDO:0005584		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005584	Congenital heart anomalies		5
+Congenital heart anomalies	MONDO:0016581	canonical	canonical_model_review	TRUE	0	1	MONDO:0016581		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0016581	Congenital heart anomalies		5
+Congenital heart anomalies	MONDO:0019512	canonical	canonical_model_review	TRUE	0	1	MONDO:0019512		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019512	Congenital heart anomalies		4
+Congenital heart anomalies	MONDO:0020292	canonical	canonical_model_review	TRUE	0	1	MONDO:0020292		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020292	Congenital heart anomalies		5
+Congenital heart anomalies	MONDO:0024239	canonical	canonical_model_review	TRUE	0	1	MONDO:0024239		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024239	Congenital heart anomalies		4
+Congenital musculoskeletal and limb anomalies	HP:0033127	canonical	canonical_model_review	TRUE	0	1	HP:0033127		original	04_evidence_package_reviewed.csv	ontology_id	HP:0033127	Congenital musculoskeletal and limb anomalies		1
+Congenital musculoskeletal and limb anomalies	MONDO:0016046	canonical	canonical_model_review	TRUE	0	1	MONDO:0016046		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0016046	Congenital musculoskeletal and limb anomalies		1
+Congenital musculoskeletal and limb anomalies	MONDO:0017427	canonical	canonical_model_review	TRUE	0	1	MONDO:0017427		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0017427	Congenital musculoskeletal and limb anomalies		3
+Congenital musculoskeletal and limb anomalies	MONDO:0019054	canonical	canonical_model_review	TRUE	0	1	MONDO:0019054		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019054	Congenital musculoskeletal and limb anomalies		1
+Contact dermatitis	MONDO:0005480	canonical	canonical_model_review	TRUE	0	1	MONDO:0005480		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005480	Contact dermatitis		8
+Contact dermatitis	MONDO:0005481	canonical	canonical_model_review	TRUE	0	1	MONDO:0005481		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005481	Contact dermatitis		1
+Contact dermatitis	MONDO:0006525	canonical	canonical_model_review	TRUE	0	1	MONDO:0006525		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006525	Contact dermatitis		2
+Crohn's disease	MONDO:0005011	canonical	canonical_model_review	TRUE	0	1	MONDO:0005011		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005011	Crohn's disease		56
+Crohn's disease	MONDO:0005537	canonical	canonical_model_review	TRUE	0	1	MONDO:0005537		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005537	Crohn's disease		1
+Cutaneous and mucocutaneous leishmaniasis	MONDO:0005446	canonical	canonical_model_review	TRUE	0	1	MONDO:0005446		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005446	Cutaneous and mucocutaneous leishmaniasis		1
+Decubitus ulcer	EFO:0007066	canonical	canonical_model_review	TRUE	0	1	EFO:0007066		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0007066	Decubitus ulcer		6
+Decubitus ulcer	EFO:0007067	canonical	canonical_model_review	TRUE	0	1	EFO:0007067		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0007067	Decubitus ulcer		7
+Dengue	MONDO:0005358	canonical	canonical_model_review	TRUE	0	1	MONDO:0005358		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005358	Dengue		1
+Depressive disorders	EFO:0007634	canonical	canonical_model_review	TRUE	0	1	EFO:0007634		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0007634	Depressive disorders		7
+Depressive disorders	MONDO:0002009	canonical	canonical_model_review	TRUE	0	1	MONDO:0002009		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002009	Depressive disorders		122
+Depressive disorders	MONDO:0002050	canonical	canonical_model_review	TRUE	0	1	MONDO:0002050		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002050	Depressive disorders		10
+Depressive disorders	MONDO:0005371	canonical	canonical_model_review	TRUE	0	1	MONDO:0005371		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005371	Depressive disorders		14
+Dermatitis	EFO:1000651	canonical	canonical_model_review	TRUE	0	1	EFO:1000651		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000651	Dermatitis		1
+Dermatitis	HP:0000964	canonical	canonical_model_review	TRUE	0	1	HP:0000964		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000964	Dermatitis		9
+Dermatitis	MONDO:0002138	canonical	canonical_model_review	TRUE	0	1	MONDO:0002138		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002138	Dermatitis		1
+Dermatitis	MONDO:0002406	canonical	canonical_model_review	TRUE	0	1	MONDO:0002406		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002406	Dermatitis		6
+Dermatitis	MONDO:0005480	canonical	canonical_model_review	TRUE	0	1	MONDO:0005480		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005480	Dermatitis		8
+Dermatitis	MONDO:0005481	canonical	canonical_model_review	TRUE	0	1	MONDO:0005481		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005481	Dermatitis		1
+Dermatitis	MONDO:0006525	canonical	canonical_model_review	TRUE	0	1	MONDO:0006525		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006525	Dermatitis		2
+Dermatitis	MONDO:0006608	canonical	canonical_model_review	TRUE	0	1	MONDO:0006608		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006608	Dermatitis		7
+Dermatitis	MONDO:0015614	canonical	canonical_model_review	TRUE	0	1	MONDO:0015614		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0015614	Dermatitis		2
+Diabetes mellitus	MONDO:0005015	canonical	canonical_model_review	TRUE	0	1	MONDO:0005015		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005015	Diabetes mellitus		29
+Diabetes mellitus	MONDO:0005148	canonical	canonical_human_review	TRUE	0	1	MONDO:0005148		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005148	Diabetes mellitus		167
+Diabetes mellitus type 1	MONDO:0005147	canonical	canonical_human_review	TRUE	0	1	MONDO:0005147		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005147	Diabetes mellitus type 1		54
+Diabetes mellitus type 2	MONDO:0005148	canonical	canonical_human_review	TRUE	0	1	MONDO:0005148		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005148	Diabetes mellitus type 2		167
+Diarrheal diseases	EFO:1001306	canonical	canonical_model_review	TRUE	0	1	EFO:1001306		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001306	Diarrheal diseases		1
+Diarrheal diseases	HP:0002014	canonical	canonical_model_review	TRUE	0	1	HP:0002014		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002014	Diarrheal diseases		14
+Diarrheal diseases	MONDO:0000916	canonical	canonical_model_review	TRUE	0	1	MONDO:0000916		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000916	Diarrheal diseases		7
+Diarrheal diseases	MONDO:0043424	canonical	canonical_model_review	TRUE	0	1	MONDO:0043424		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0043424	Diarrheal diseases		1
+Digestive congenital anomalies	MONDO:0019938	canonical	canonical_model_review	TRUE	0	1	MONDO:0019938		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019938	Digestive congenital anomalies		1
+Diphtheria	MONDO:0005504	canonical	canonical_model_review	TRUE	0	1	MONDO:0005504		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005504	Diphtheria		1
+Drug use disorders	EFO:0005431	canonical	canonical_model_review	TRUE	0	1	EFO:0005431		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0005431	Drug use disorders		1
+Drug use disorders	EFO:0010445	canonical	canonical_model_review	TRUE	0	1	EFO:0010445		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010445	Drug use disorders		1
+Dysthymia	MONDO:0001442	canonical	canonical_model_review	TRUE	0	1	MONDO:0001442		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001442	Dysthymia		3
+Eating disorders	MONDO:0005451	canonical	canonical_model_review	TRUE	0	1	MONDO:0005451		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005451	Eating disorders		6
+Ectopic pregnancy	HP:0031456	canonical	canonical_model_review	TRUE	0	1	HP:0031456		original	04_evidence_package_reviewed.csv	ontology_id	HP:0031456	Ectopic pregnancy		8
+Encephalitis	MONDO:0000166	canonical	canonical_human_review	TRUE	0	1	MONDO:0000166		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000166	Encephalitis		1
+Encephalitis	MONDO:0006009	canonical	canonical_human_review	TRUE	0	1	MONDO:0006009		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006009	Encephalitis		2
+Encephalitis	MONDO:0019956	canonical	canonical_model_review	TRUE	0	1	MONDO:0019956		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019956	Encephalitis		3
+Endocarditis	MONDO:0005025	canonical	canonical_model_review	TRUE	0	1	MONDO:0005025		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005025	Endocarditis		8
+Endocarditis	MONDO:0006669	canonical	canonical_model_review	TRUE	0	1	MONDO:0006669		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006669	Endocarditis		1
+Endocrine, metabolic, blood, and immune disorders	HP:0001871	canonical	canonical_model_review	TRUE	0	1	HP:0001871		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001871	Endocrine, metabolic, blood, and immune disorders		7
+Endocrine, metabolic, blood, and immune disorders	HP:0001939	canonical	canonical_model_review	TRUE	0	1	HP:0001939		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001939	Endocrine, metabolic, blood, and immune disorders		8
+Endocrine, metabolic, blood, and immune disorders	HP:0002715	canonical	canonical_model_review	TRUE	0	1	HP:0002715		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002715	Endocrine, metabolic, blood, and immune disorders		3
+Endocrine, metabolic, blood, and immune disorders	MONDO:0005151	canonical	canonical_model_review	TRUE	0	1	MONDO:0005151		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005151	Endocrine, metabolic, blood, and immune disorders		6
+Endocrine, metabolic, blood, and immune disorders	MONDO:0005570	canonical	canonical_model_review	TRUE	0	1	MONDO:0005570		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005570	Endocrine, metabolic, blood, and immune disorders		6
+Endometriosis	MONDO:0001285	canonical	canonical_model_review	TRUE	0	1	MONDO:0001285		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001285	Endometriosis		1
+Endometriosis	MONDO:0005133	canonical	canonical_model_review	TRUE	0	1	MONDO:0005133		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005133	Endometriosis		33
+Endometriosis	MONDO:0006337	canonical	canonical_model_review	TRUE	0	1	MONDO:0006337		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006337	Endometriosis		1
+Esophageal cancer	MONDO:0005028	canonical	canonical_model_review	TRUE	0	1	MONDO:0005028		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005028	Esophageal cancer		7
+Esophageal cancer	MONDO:0007576	canonical	canonical_model_review	TRUE	0	1	MONDO:0007576		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007576	Esophageal cancer		6
+Esophageal cancer	MONDO:0019086	canonical	canonical_model_review	TRUE	0	1	MONDO:0019086		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019086	Esophageal cancer		12
+Eye cancer	MONDO:0002236	canonical	canonical_model_review	TRUE	0	1	MONDO:0002236		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002236	Eye cancer		2
+Female infertility	EFO:0021795	canonical	canonical_model_review	TRUE	0	1	EFO:0021795		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0021795	Female infertility		2
+Female infertility	HP:0008209	canonical	canonical_model_review	TRUE	0	1	HP:0008209		original	04_evidence_package_reviewed.csv	ontology_id	HP:0008209	Female infertility		1
+Female infertility	MONDO:0005387	canonical	canonical_model_review	TRUE	0	1	MONDO:0005387		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005387	Female infertility		5
+Female infertility	MONDO:0021124	canonical	canonical_model_review	TRUE	0	1	MONDO:0021124		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021124	Female infertility		9
+Fungal skin diseases	MONDO:0000254	canonical	canonical_model_review	TRUE	0	1	MONDO:0000254		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000254	Fungal skin diseases		3
+Fungal skin diseases	MONDO:0002041	canonical	canonical_model_review	TRUE	0	1	MONDO:0002041		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002041	Fungal skin diseases		5
+Fungal skin diseases	MONDO:0004678	canonical	canonical_model_review	TRUE	0	1	MONDO:0004678		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004678	Fungal skin diseases		8
+Gallbladder and biliary diseases	MONDO:0004868	canonical	canonical_model_review	TRUE	0	1	MONDO:0004868		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004868	Gallbladder and biliary diseases		8
+Gallbladder and biliary diseases	MONDO:0005281	canonical	canonical_model_review	TRUE	0	1	MONDO:0005281		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005281	Gallbladder and biliary diseases		9
+Gallbladder and biliary diseases	MONDO:0005388	canonical	canonical_model_review	TRUE	0	1	MONDO:0005388		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005388	Gallbladder and biliary diseases		13
+Gallbladder and biliary diseases	MONDO:0021416	canonical	canonical_model_review	TRUE	0	1	MONDO:0021416		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021416	Gallbladder and biliary diseases		2
+Gallbladder and biliary tract cancer	MONDO:0001487	canonical	canonical_model_review	TRUE	0	1	MONDO:0001487		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001487	Gallbladder and biliary tract cancer		3
+Gallbladder and biliary tract cancer	MONDO:0003060	canonical	canonical_model_review	TRUE	0	1	MONDO:0003060		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003060	Gallbladder and biliary tract cancer		2
+Gallbladder and biliary tract cancer	MONDO:0003090	canonical	canonical_model_review	TRUE	0	1	MONDO:0003090		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003090	Gallbladder and biliary tract cancer		1
+Gallbladder and biliary tract cancer	MONDO:0018918	canonical	canonical_model_review	TRUE	0	1	MONDO:0018918		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018918	Gallbladder and biliary tract cancer		4
+Gallbladder and biliary tract cancer	MONDO:0021253	canonical	canonical_model_review	TRUE	0	1	MONDO:0021253		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021253	Gallbladder and biliary tract cancer		6
+Gastritis and duodenitis	MONDO:0004627	canonical	canonical_model_review	TRUE	0	1	MONDO:0004627		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004627	Gastritis and duodenitis		5
+Gastritis and duodenitis	MONDO:0004628	canonical	canonical_model_review	TRUE	0	1	MONDO:0004628		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004628	Gastritis and duodenitis		3
+Gastritis and duodenitis	MONDO:0004966	canonical	canonical_model_review	TRUE	0	1	MONDO:0004966		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004966	Gastritis and duodenitis		11
+Gastritis and duodenitis	MONDO:0005001	canonical	canonical_human_review	TRUE	0	1	MONDO:0005001		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005001	Gastritis and duodenitis		2
+Gastritis and duodenitis	MONDO:0006665	canonical	canonical_model_review	TRUE	0	1	MONDO:0006665		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006665	Gastritis and duodenitis		6
+Gastroesophageal reflux disease	MONDO:0006896	canonical	canonical_model_review	TRUE	0	1	MONDO:0006896		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006896	Gastroesophageal reflux disease		4
+Gastroesophageal reflux disease	MONDO:0007186	canonical	canonical_model_review	TRUE	0	1	MONDO:0007186		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007186	Gastroesophageal reflux disease		24
+Genital herpes	MONDO:0004609	canonical	canonical_model_review	TRUE	0	1	MONDO:0004609		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004609	Genital herpes		6
+Genital herpes	MONDO:0005770	canonical	canonical_model_review	TRUE	0	1	MONDO:0005770		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005770	Genital herpes		1
+Genital prolapse	EFO:1001864	canonical	canonical_model_review	TRUE	0	1	EFO:1001864		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001864	Genital prolapse		9
+Genital prolapse	MONDO:0000082	canonical	canonical_model_review	TRUE	0	1	MONDO:0000082		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000082	Genital prolapse		11
+Glaucoma	EFO:0021425	canonical	canonical_model_review	TRUE	0	1	EFO:0021425		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0021425	Glaucoma		1
+Glaucoma	MONDO:0001868	canonical	canonical_model_review	TRUE	0	1	MONDO:0001868		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001868	Glaucoma		7
+Glaucoma	MONDO:0005041	canonical	canonical_model_review	TRUE	0	1	MONDO:0005041		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005041	Glaucoma		28
+Glaucoma	MONDO:0005338	canonical	canonical_model_review	TRUE	0	1	MONDO:0005338		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005338	Glaucoma		30
+Glaucoma	MONDO:0006837	canonical	canonical_model_review	TRUE	0	1	MONDO:0006837		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006837	Glaucoma		2
+Gout	EFO:0021525	canonical	canonical_model_review	TRUE	0	1	EFO:0021525		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0021525	Gout		1
+Gout	MONDO:0005393	canonical	canonical_model_review	TRUE	0	1	MONDO:0005393		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005393	Gout		37
+Gynecological diseases	MONDO:0000922	canonical	canonical_model_review	TRUE	0	1	MONDO:0000922		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000922	Gynecological diseases		10
+Gynecological diseases	MONDO:0002263	canonical	canonical_model_review	TRUE	0	1	MONDO:0002263		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002263	Gynecological diseases		11
+HIV/AIDS	EFO:0000180	canonical	canonical_model_review	TRUE	0	1	EFO:0000180		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0000180	HIV/AIDS		13
+HIV/AIDS	MONDO:0012268	canonical	canonical_model_review	TRUE	0	1	MONDO:0012268		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0012268	HIV/AIDS		4
+HIV/AIDS resulting in other diseases	MONDO:0012268	canonical	canonical_model_review	TRUE	0	1	MONDO:0012268		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0012268	HIV/AIDS resulting in other diseases		4
+Headache disorders	HP:0002315	canonical	canonical_model_review	TRUE	0	1	HP:0002315		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002315	Headache disorders		17
+Headache disorders	MONDO:0021146	canonical	canonical_model_review	TRUE	0	1	MONDO:0021146		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021146	Headache disorders		9
+Hemoglobinopathies and hemolytic anemias	MONDO:0003689	canonical	canonical_model_review	TRUE	0	1	MONDO:0003689		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003689	Hemoglobinopathies and hemolytic anemias		4
+Hemoglobinopathies and hemolytic anemias	MONDO:0019050	canonical	canonical_model_review	TRUE	0	1	MONDO:0019050		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019050	Hemoglobinopathies and hemolytic anemias		4
+Hemoglobinopathies and hemolytic anemias	MONDO:0020108	canonical	canonical_model_review	TRUE	0	1	MONDO:0020108		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020108	Hemoglobinopathies and hemolytic anemias		2
+Hemoglobinopathies and hemolytic anemias	MONDO:0021559	canonical	canonical_model_review	TRUE	0	1	MONDO:0021559		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021559	Hemoglobinopathies and hemolytic anemias		5
+Hemolytic disease and other neonatal jaundice	EFO:1000739	canonical	canonical_model_review	TRUE	0	1	EFO:1000739		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000739	Hemolytic disease and other neonatal jaundice		1
+Hodgkin lymphoma	MONDO:0004633	canonical	canonical_model_review	TRUE	0	1	MONDO:0004633		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004633	Hodgkin lymphoma		1
+Hodgkin lymphoma	MONDO:0004665	canonical	canonical_model_review	TRUE	0	1	MONDO:0004665		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004665	Hodgkin lymphoma		3
+Hodgkin lymphoma	MONDO:0004952	canonical	canonical_model_review	TRUE	0	1	MONDO:0004952		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004952	Hodgkin lymphoma		14
+Hypertensive heart disease	MONDO:0001302	canonical	canonical_model_review	TRUE	0	1	MONDO:0001302		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001302	Hypertensive heart disease		5
+Idiopathic developmental intellectual disability	HP:0001249	canonical	canonical_model_review	TRUE	0	1	HP:0001249		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001249	Idiopathic developmental intellectual disability		2
+Idiopathic developmental intellectual disability	MONDO:0005503	canonical	canonical_human_review	TRUE	0	1	MONDO:0005503		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005503	Idiopathic developmental intellectual disability		1
+Idiopathic epilepsy	MONDO:0005027	canonical	canonical_model_review	TRUE	0	1	MONDO:0005027		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005027	Idiopathic epilepsy		23
+Idiopathic epilepsy	MONDO:0005579	canonical	canonical_model_review	TRUE	0	1	MONDO:0005579		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005579	Idiopathic epilepsy		5
+Idiopathic epilepsy	MONDO:0009696	canonical	canonical_model_review	TRUE	0	1	MONDO:0009696		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0009696	Idiopathic epilepsy		2
+Idiopathic epilepsy	MONDO:0010826	canonical	canonical_model_review	TRUE	0	1	MONDO:0010826		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0010826	Idiopathic epilepsy		2
+Idiopathic epilepsy	MONDO:0800453	canonical	canonical_model_review	TRUE	0	1	MONDO:0800453		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0800453	Idiopathic epilepsy		2
+Inflammatory bowel disease	MONDO:0005265	canonical	canonical_model_review	TRUE	0	1	MONDO:0005265		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005265	Inflammatory bowel disease		38
+Inguinal, femoral, and abdominal hernia	EFO:1001791	canonical	canonical_model_review	TRUE	0	1	EFO:1001791		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001791	Inguinal, femoral, and abdominal hernia		7
+Inguinal, femoral, and abdominal hernia	HP:0000023	canonical	canonical_model_review	TRUE	0	1	HP:0000023		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000023	Inguinal, femoral, and abdominal hernia		15
+Inguinal, femoral, and abdominal hernia	HP:0001537	canonical	canonical_model_review	TRUE	0	1	HP:0001537		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001537	Inguinal, femoral, and abdominal hernia		10
+Inguinal, femoral, and abdominal hernia	HP:0004299	canonical	canonical_model_review	TRUE	0	1	HP:0004299		original	04_evidence_package_reviewed.csv	ontology_id	HP:0004299	Inguinal, femoral, and abdominal hernia		9
+Inguinal, femoral, and abdominal hernia	HP:0100790	canonical	canonical_model_review	TRUE	0	1	HP:0100790		original	04_evidence_package_reviewed.csv	ontology_id	HP:0100790	Inguinal, femoral, and abdominal hernia		3
+Interstitial lung disease and pulmonary sarcoidosis	EFO:0000768	canonical	canonical_model_review	TRUE	0	1	EFO:0000768		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0000768	Interstitial lung disease and pulmonary sarcoidosis		16
+Interstitial lung disease and pulmonary sarcoidosis	MONDO:0015925	canonical	canonical_model_review	TRUE	0	1	MONDO:0015925		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0015925	Interstitial lung disease and pulmonary sarcoidosis		13
+Interstitial lung disease and pulmonary sarcoidosis	MONDO:0019338	canonical	canonical_model_review	TRUE	0	1	MONDO:0019338		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019338	Interstitial lung disease and pulmonary sarcoidosis		23
+Intracerebral hemorrhage	EFO:0000551	canonical	canonical_model_review	TRUE	0	1	EFO:0000551		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0000551	Intracerebral hemorrhage		7
+Intracerebral hemorrhage	EFO:0010177	canonical	canonical_model_review	TRUE	0	1	EFO:0010177		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010177	Intracerebral hemorrhage		1
+Intracerebral hemorrhage	EFO:0010178	canonical	canonical_model_review	TRUE	0	1	EFO:0010178		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010178	Intracerebral hemorrhage		1
+Intracerebral hemorrhage	MONDO:0013792	canonical	canonical_model_review	TRUE	0	1	MONDO:0013792		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0013792	Intracerebral hemorrhage		16
+Invasive Non-typhoidal Salmonella (iNTS)	EFO:0009087	canonical	canonical_model_review	TRUE	0	1	EFO:0009087		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009087	Invasive Non-typhoidal Salmonella (iNTS)		1
+Ischemic heart disease	EFO:0001425	canonical	canonical_model_review	TRUE	0	1	EFO:0001425		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0001425	Ischemic heart disease		1
+Ischemic heart disease	MONDO:0024644	canonical	canonical_model_review	TRUE	0	1	MONDO:0024644		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024644	Ischemic heart disease		11
+Ischemic stroke	EFO:1001504	canonical	canonical_model_review	TRUE	0	1	EFO:1001504		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001504	Ischemic stroke		11
+Ischemic stroke	EFO:1001976	canonical	canonical_model_review	TRUE	0	1	EFO:1001976		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001976	Ischemic stroke		8
+Ischemic stroke	HP:0002140	canonical	canonical_model_review	TRUE	0	1	HP:0002140		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002140	Ischemic stroke		30
+Ischemic stroke	HP:0002637	canonical	canonical_model_review	TRUE	0	1	HP:0002637		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002637	Ischemic stroke		4
+Ischemic stroke	MONDO:0002679	canonical	canonical_model_review	TRUE	0	1	MONDO:0002679		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002679	Ischemic stroke		2
+Ischemic stroke	MONDO:0005394	canonical	canonical_model_review	TRUE	0	1	MONDO:0005394		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005394	Ischemic stroke		6
+Kidney cancer	MONDO:0002367	canonical	canonical_model_review	TRUE	0	1	MONDO:0002367		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002367	Kidney cancer		7
+Larynx cancer	MONDO:0002352	canonical	canonical_model_review	TRUE	0	1	MONDO:0002352		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002352	Larynx cancer		2
+Larynx cancer	MONDO:0002358	canonical	canonical_model_review	TRUE	0	1	MONDO:0002358		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002358	Larynx cancer		3
+Leishmaniasis	MONDO:0005445	canonical	canonical_model_review	TRUE	0	1	MONDO:0005445		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005445	Leishmaniasis		2
+Leishmaniasis	MONDO:0005446	canonical	canonical_model_review	TRUE	0	1	MONDO:0005446		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005446	Leishmaniasis		1
+Leprosy	MONDO:0005124	canonical	canonical_model_review	TRUE	0	1	MONDO:0005124		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005124	Leprosy		7
+Leukemia	MONDO:0000870	canonical	canonical_model_review	TRUE	0	1	MONDO:0000870		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000870	Leukemia		2
+Leukemia	MONDO:0000871	canonical	canonical_model_review	TRUE	0	1	MONDO:0000871		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000871	Leukemia		1
+Leukemia	MONDO:0004600	canonical	canonical_model_review	TRUE	0	1	MONDO:0004600		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004600	Leukemia		1
+Leukemia	MONDO:0004643	canonical	canonical_model_review	TRUE	0	1	MONDO:0004643		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004643	Leukemia		3
+Leukemia	MONDO:0004947	canonical	canonical_model_review	TRUE	0	1	MONDO:0004947		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004947	Leukemia		7
+Leukemia	MONDO:0004948	canonical	canonical_model_review	TRUE	0	1	MONDO:0004948		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004948	Leukemia		15
+Leukemia	MONDO:0004967	canonical	canonical_model_review	TRUE	0	1	MONDO:0004967		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004967	Leukemia		16
+Leukemia	MONDO:0005059	canonical	canonical_model_review	TRUE	0	1	MONDO:0005059		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005059	Leukemia		5
+Leukemia	MONDO:0005402	canonical	canonical_model_review	TRUE	0	1	MONDO:0005402		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005402	Leukemia		6
+Leukemia	MONDO:0011996	canonical	canonical_model_review	TRUE	0	1	MONDO:0011996		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0011996	Leukemia		4
+Leukemia	MONDO:0018874	canonical	canonical_model_review	TRUE	0	1	MONDO:0018874		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018874	Leukemia		9
+Leukemia	MONDO:0600030	canonical	canonical_model_review	TRUE	0	1	MONDO:0600030		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0600030	Leukemia		1
+Lip and oral cavity cancer	MONDO:0004645	canonical	canonical_model_review	TRUE	0	1	MONDO:0004645		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004645	Lip and oral cavity cancer		1
+Lip and oral cavity cancer	MONDO:0005515	canonical	canonical_model_review	TRUE	0	1	MONDO:0005515		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005515	Lip and oral cavity cancer		5
+Lip and oral cavity cancer	MONDO:0006834	canonical	canonical_model_review	TRUE	0	1	MONDO:0006834		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006834	Lip and oral cavity cancer		1
+Liver cancer	MONDO:0002691	canonical	canonical_model_review	TRUE	0	1	MONDO:0002691		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002691	Liver cancer		5
+Liver cancer due to other causes	MONDO:0002691	canonical	canonical_model_review	TRUE	0	1	MONDO:0002691		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002691	Liver cancer due to other causes		5
+Low back pain	HP:0003418	canonical	canonical_model_review	TRUE	0	1	HP:0003418		original	04_evidence_package_reviewed.csv	ontology_id	HP:0003418	Low back pain		19
+Low back pain	HP:0003419	canonical	canonical_model_review	TRUE	0	1	HP:0003419		original	04_evidence_package_reviewed.csv	ontology_id	HP:0003419	Low back pain		1
+Lower extremity peripheral arterial disease	MONDO:0005386	canonical	canonical_model_review	TRUE	0	1	MONDO:0005386		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005386	Lower extremity peripheral arterial disease		14
+Lower respiratory infections	MONDO:0000270	canonical	canonical_model_review	TRUE	0	1	MONDO:0000270		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000270	Lower respiratory infections		4
+Lower respiratory infections	MONDO:0006012	canonical	canonical_model_review	TRUE	0	1	MONDO:0006012		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006012	Lower respiratory infections		6
+Lower respiratory infections	MONDO:0024355	canonical	canonical_model_review	TRUE	0	1	MONDO:0024355		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024355	Lower respiratory infections		8
+Lymphatic filariasis	MONDO:0005761	canonical	canonical_model_review	TRUE	0	1	MONDO:0005761		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005761	Lymphatic filariasis		1
+Major depressive disorder	EFO:0007634	canonical	canonical_model_review	TRUE	0	1	EFO:0007634		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0007634	Major depressive disorder		7
+Major depressive disorder	MONDO:0002009	canonical	canonical_model_review	TRUE	0	1	MONDO:0002009		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002009	Major depressive disorder		122
+Malaria	EFO:0010970	canonical	canonical_model_review	TRUE	0	1	EFO:0010970		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010970	Malaria		1
+Malaria	MONDO:0005136	canonical	canonical_model_review	TRUE	0	1	MONDO:0005136		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005136	Malaria		11
+Male infertility	MONDO:0005372	canonical	canonical_model_review	TRUE	0	1	MONDO:0005372		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005372	Male infertility		8
+Malignant skin melanoma	MONDO:0005012	canonical	canonical_model_review	TRUE	0	1	MONDO:0005012		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005012	Malignant skin melanoma		9
+Malignant skin melanoma	MONDO:0005105	canonical	canonical_model_review	TRUE	0	1	MONDO:0005105		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005105	Malignant skin melanoma		21
+Malignant skin melanoma	MONDO:0006486	canonical	canonical_model_review	TRUE	0	1	MONDO:0006486		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006486	Malignant skin melanoma		4
+Maternal abortion and miscarriage	EFO:1001491	canonical	canonical_model_review	TRUE	0	1	EFO:1001491		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001491	Maternal abortion and miscarriage		3
+Maternal abortion and miscarriage	HP:0005268	canonical	canonical_model_review	TRUE	0	1	HP:0005268		original	04_evidence_package_reviewed.csv	ontology_id	HP:0005268	Maternal abortion and miscarriage		3
+Maternal disorders	MONDO:0024575	canonical	canonical_model_review	TRUE	0	1	MONDO:0024575		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024575	Maternal disorders		9
+Maternal hemorrhage	EFO:0009579	canonical	canonical_model_review	TRUE	0	1	EFO:0009579		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009579	Maternal hemorrhage		3
+Maternal hemorrhage	HP:0025328	canonical	canonical_model_review	TRUE	0	1	HP:0025328		original	04_evidence_package_reviewed.csv	ontology_id	HP:0025328	Maternal hemorrhage		6
+Maternal hypertensive disorders	HP:0008071	canonical	canonical_model_review	TRUE	0	1	HP:0008071		original	04_evidence_package_reviewed.csv	ontology_id	HP:0008071	Maternal hypertensive disorders		2
+Maternal sepsis and other maternal infections	HP:0100806	canonical	canonical_model_review	TRUE	0	1	HP:0100806		original	04_evidence_package_reviewed.csv	ontology_id	HP:0100806	Maternal sepsis and other maternal infections		17
+Maternal sepsis and other maternal infections	MONDO:0005229	canonical	canonical_model_review	TRUE	0	1	MONDO:0005229		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005229	Maternal sepsis and other maternal infections		5
+Measles	MONDO:0004619	canonical	canonical_model_review	TRUE	0	1	MONDO:0004619		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004619	Measles		2
+Meningitis	MONDO:0004796	canonical	canonical_model_review	TRUE	0	1	MONDO:0004796		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004796	Meningitis		3
+Meningitis	MONDO:0006670	canonical	canonical_model_review	TRUE	0	1	MONDO:0006670		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006670	Meningitis		1
+Meningitis	MONDO:0006913	canonical	canonical_model_review	TRUE	0	1	MONDO:0006913		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006913	Meningitis		1
+Meningitis	MONDO:0007015	canonical	canonical_model_review	TRUE	0	1	MONDO:0007015		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007015	Meningitis		2
+Meningitis	MONDO:0021108	canonical	canonical_model_review	TRUE	0	1	MONDO:0021108		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021108	Meningitis		4
+Mesothelioma	MONDO:0003308	canonical	canonical_model_review	TRUE	0	1	MONDO:0003308		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003308	Mesothelioma		1
+Mesothelioma	MONDO:0005065	canonical	canonical_model_review	TRUE	0	1	MONDO:0005065		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005065	Mesothelioma		1
+Mesothelioma	MONDO:0005112	canonical	canonical_model_review	TRUE	0	1	MONDO:0005112		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005112	Mesothelioma		1
+Migraine	MONDO:0005277	canonical	canonical_model_review	TRUE	0	1	MONDO:0005277		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005277	Migraine		32
+Migraine	MONDO:0005475	canonical	canonical_model_review	TRUE	0	1	MONDO:0005475		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005475	Migraine		7
+Migraine	MONDO:0011847	canonical	canonical_model_review	TRUE	0	1	MONDO:0011847		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0011847	Migraine		4
+Migraine	MONDO:0100431	canonical	canonical_model_review	TRUE	0	1	MONDO:0100431		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100431	Migraine		1
+Motor neuron disease	MONDO:0020128	canonical	canonical_model_review	TRUE	0	1	MONDO:0020128		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020128	Motor neuron disease		1
+Multidrug-resistant tuberculosis without extensive drug resistance	MONDO:0018076	canonical	canonical_model_review	TRUE	0	1	MONDO:0018076		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018076	Multidrug-resistant tuberculosis without extensive drug resistance		28
+Multiple myeloma	MONDO:0009693	canonical	canonical_model_review	TRUE	0	1	MONDO:0009693		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0009693	Multiple myeloma		21
+Multiple sclerosis	MONDO:0005301	canonical	canonical_model_review	TRUE	0	1	MONDO:0005301		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005301	Multiple sclerosis		46
+Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms	EFO:0004251	canonical	canonical_model_review	TRUE	0	1	EFO:0004251		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0004251	Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms		7
+Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms	EFO:1000201	canonical	canonical_human_review	TRUE	0	1	EFO:1000201		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000201	Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms		2
+Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms	MONDO:0002334	canonical	canonical_model_review	TRUE	0	1	MONDO:0002334		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002334	Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms		1
+Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms	MONDO:0005170	canonical	canonical_model_review	TRUE	0	1	MONDO:0005170		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005170	Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms		1
+Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms	MONDO:0020076	canonical	canonical_model_review	TRUE	0	1	MONDO:0020076		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020076	Myelodysplastic, myeloproliferative, and other hematopoietic neoplasms		1
+Myocarditis	MONDO:0004496	canonical	canonical_model_review	TRUE	0	1	MONDO:0004496		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004496	Myocarditis		4
+Nasopharynx cancer	MONDO:0005375	canonical	canonical_model_review	TRUE	0	1	MONDO:0005375		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005375	Nasopharynx cancer		12
+Neck pain	HP:0030833	canonical	canonical_model_review	TRUE	0	1	HP:0030833		original	04_evidence_package_reviewed.csv	ontology_id	HP:0030833	Neck pain		8
+Neonatal disorders	EFO:1000739	canonical	canonical_model_review	TRUE	0	1	EFO:1000739		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000739	Neonatal disorders		1
+Neonatal disorders	HP:0040187	canonical	canonical_model_review	TRUE	0	1	HP:0040187		original	04_evidence_package_reviewed.csv	ontology_id	HP:0040187	Neonatal disorders		1
+Neonatal disorders	MONDO:0100086	canonical	canonical_model_review	TRUE	0	1	MONDO:0100086		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100086	Neonatal disorders		4
+Neonatal encephalopathy due to birth asphyxia and trauma	EFO:0009446	canonical	canonical_model_review	TRUE	0	1	EFO:0009446		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009446	Neonatal encephalopathy due to birth asphyxia and trauma		2
+Neonatal encephalopathy due to birth asphyxia and trauma	MONDO:0006663	canonical	canonical_model_review	TRUE	0	1	MONDO:0006663		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006663	Neonatal encephalopathy due to birth asphyxia and trauma		1
+Neonatal preterm birth	EFO:0006917	canonical	canonical_model_review	TRUE	0	1	EFO:0006917		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0006917	Neonatal preterm birth		11
+Neonatal sepsis and other neonatal infections	HP:0040187	canonical	canonical_model_review	TRUE	0	1	HP:0040187		original	04_evidence_package_reviewed.csv	ontology_id	HP:0040187	Neonatal sepsis and other neonatal infections		1
+Neural tube defects	MONDO:0020705	canonical	canonical_model_review	TRUE	0	1	MONDO:0020705		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020705	Neural tube defects		2
+Neuroblastoma and other peripheral nervous cell tumors	MONDO:0005072	canonical	canonical_model_review	TRUE	0	1	MONDO:0005072		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005072	Neuroblastoma and other peripheral nervous cell tumors		9
+Non-Hodgkin lymphoma	MONDO:0007243	canonical	canonical_model_review	TRUE	0	1	MONDO:0007243		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007243	Non-Hodgkin lymphoma		1
+Non-Hodgkin lymphoma	MONDO:0018905	canonical	canonical_model_review	TRUE	0	1	MONDO:0018905		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018905	Non-Hodgkin lymphoma		9
+Non-Hodgkin lymphoma	MONDO:0018906	canonical	canonical_model_review	TRUE	0	1	MONDO:0018906		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018906	Non-Hodgkin lymphoma		9
+Non-Hodgkin lymphoma	MONDO:0018908	canonical	canonical_model_review	TRUE	0	1	MONDO:0018908		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018908	Non-Hodgkin lymphoma		11
+Non-Hodgkin lymphoma	MONDO:0044887	canonical	canonical_model_review	TRUE	0	1	MONDO:0044887		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0044887	Non-Hodgkin lymphoma		1
+Non-melanoma skin cancer	EFO:0009260	canonical	canonical_model_review	TRUE	0	1	EFO:0009260		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009260	Non-melanoma skin cancer		4
+Non-melanoma skin cancer	MONDO:0002656	canonical	canonical_model_review	TRUE	0	1	MONDO:0002656		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002656	Non-melanoma skin cancer		1
+Non-melanoma skin cancer	MONDO:0002898	canonical	canonical_human_review	TRUE	0	1	MONDO:0002898		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002898	Non-melanoma skin cancer		5
+Non-melanoma skin cancer (basal-cell carcinoma)	EFO:0009260	canonical	canonical_model_review	TRUE	0	1	EFO:0009260		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009260	Non-melanoma skin cancer (basal-cell carcinoma)		4
+Non-melanoma skin cancer (basal-cell carcinoma)	MONDO:0020804	canonical	canonical_model_review	TRUE	0	1	MONDO:0020804		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0020804	Non-melanoma skin cancer (basal-cell carcinoma)		17
+Non-melanoma skin cancer (squamous-cell carcinoma)	EFO:1001927	canonical	canonical_model_review	TRUE	0	1	EFO:1001927		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001927	Non-melanoma skin cancer (squamous-cell carcinoma)		3
+Non-melanoma skin cancer (squamous-cell carcinoma)	MONDO:0005096	canonical	canonical_human_review	TRUE	0	1	MONDO:0005096		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005096	Non-melanoma skin cancer (squamous-cell carcinoma)		13
+Non-rheumatic calcific aortic valve disease	MONDO:0003803	canonical	canonical_model_review	TRUE	0	1	MONDO:0003803		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003803	Non-rheumatic calcific aortic valve disease		8
+Non-rheumatic calcific aortic valve disease	MONDO:0005463	canonical	canonical_model_review	TRUE	0	1	MONDO:0005463		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005463	Non-rheumatic calcific aortic valve disease		5
+Non-rheumatic valvular heart disease	MONDO:0000471	canonical	canonical_model_review	TRUE	0	1	MONDO:0000471		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000471	Non-rheumatic valvular heart disease		6
+Non-rheumatic valvular heart disease	MONDO:0005648	canonical	canonical_model_review	TRUE	0	1	MONDO:0005648		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005648	Non-rheumatic valvular heart disease		1
+Nonalcoholic fatty liver disease including cirrhosis	MONDO:0004790	canonical	canonical_model_review	TRUE	0	1	MONDO:0004790		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004790	Nonalcoholic fatty liver disease including cirrhosis		6
+Nonalcoholic fatty liver disease including cirrhosis	MONDO:0007027	canonical	canonical_model_review	TRUE	0	1	MONDO:0007027		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007027	Nonalcoholic fatty liver disease including cirrhosis		3
+Nonalcoholic fatty liver disease including cirrhosis	MONDO:0013209	canonical	canonical_model_review	TRUE	0	1	MONDO:0013209		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0013209	Nonalcoholic fatty liver disease including cirrhosis		28
+Opioid use disorders	EFO:0010702	canonical	canonical_model_review	TRUE	0	1	EFO:0010702		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0010702	Opioid use disorders		8
+Oral disorders	EFO:0009468	canonical	canonical_model_review	TRUE	0	1	EFO:0009468		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009468	Oral disorders		7
+Oral disorders	MONDO:0001165	canonical	canonical_model_review	TRUE	0	1	MONDO:0001165		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001165	Oral disorders		4
+Oral disorders	MONDO:0006858	canonical	canonical_model_review	TRUE	0	1	MONDO:0006858		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006858	Oral disorders		7
+Oral disorders	MONDO:0006999	canonical	canonical_model_review	TRUE	0	1	MONDO:0006999		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006999	Oral disorders		7
+Orofacial clefts	EFO:0003959	canonical	canonical_model_review	TRUE	0	1	EFO:0003959		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0003959	Orofacial clefts		26
+Orofacial clefts	HP:0000175	canonical	canonical_model_review	TRUE	0	1	HP:0000175		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000175	Orofacial clefts		20
+Orofacial clefts	HP:0000202	canonical	canonical_model_review	TRUE	0	1	HP:0000202		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000202	Orofacial clefts		9
+Orofacial clefts	MONDO:0000358	canonical	canonical_model_review	TRUE	0	1	MONDO:0000358		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000358	Orofacial clefts		4
+Osteoarthritis	MONDO:0005178	canonical	canonical_model_review	TRUE	0	1	MONDO:0005178		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005178	Osteoarthritis		34
+Osteoarthritis	MONDO:0005416	canonical	canonical_model_review	TRUE	0	1	MONDO:0005416		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005416	Osteoarthritis		22
+Osteoarthritis	MONDO:0006629	canonical	canonical_model_review	TRUE	0	1	MONDO:0006629		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006629	Osteoarthritis		15
+Osteoarthritis	MONDO:0006630	canonical	canonical_model_review	TRUE	0	1	MONDO:0006630		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006630	Osteoarthritis		3
+Osteoarthritis	MONDO:0006632	canonical	canonical_model_review	TRUE	0	1	MONDO:0006632		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006632	Osteoarthritis		6
+Osteoarthritis hand	MONDO:0005178	canonical	canonical_model_review	TRUE	0	1	MONDO:0005178		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005178	Osteoarthritis hand		34
+Osteoarthritis hand	MONDO:0006632	canonical	canonical_model_review	TRUE	0	1	MONDO:0006632		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006632	Osteoarthritis hand		6
+Osteoarthritis hip	MONDO:0005178	canonical	canonical_model_review	TRUE	0	1	MONDO:0005178		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005178	Osteoarthritis hip		34
+Osteoarthritis hip	MONDO:0006629	canonical	canonical_model_review	TRUE	0	1	MONDO:0006629		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006629	Osteoarthritis hip		15
+Osteoarthritis knee	MONDO:0005178	canonical	canonical_model_review	TRUE	0	1	MONDO:0005178		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005178	Osteoarthritis knee		34
+Osteoarthritis knee	MONDO:0005416	canonical	canonical_model_review	TRUE	0	1	MONDO:0005416		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005416	Osteoarthritis knee		22
+Osteoarthritis other	MONDO:0006630	canonical	canonical_model_review	TRUE	0	1	MONDO:0006630		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006630	Osteoarthritis other		3
+Other benign and in situ neoplasms	MONDO:0004647	canonical	canonical_model_review	TRUE	0	1	MONDO:0004647		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004647	Other benign and in situ neoplasms		2
+Other benign and in situ neoplasms	MONDO:0005165	canonical	canonical_model_review	TRUE	0	1	MONDO:0005165		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005165	Other benign and in situ neoplasms		7
+Other benign and in situ neoplasms	MONDO:0021451	canonical	canonical_model_review	TRUE	0	1	MONDO:0021451		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021451	Other benign and in situ neoplasms		2
+Other benign and in situ neoplasms	MONDO:0021454	canonical	canonical_model_review	TRUE	0	1	MONDO:0021454		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021454	Other benign and in situ neoplasms		3
+Other benign and in situ neoplasms	MONDO:0021506	canonical	canonical_model_review	TRUE	0	1	MONDO:0021506		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021506	Other benign and in situ neoplasms		1
+Other benign and in situ neoplasms	MONDO:0044335	canonical	canonical_model_review	TRUE	0	1	MONDO:0044335		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0044335	Other benign and in situ neoplasms		3
+Other cardiomyopathy	MONDO:0004994	canonical	canonical_model_review	TRUE	0	1	MONDO:0004994		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004994	Other cardiomyopathy		13
+Other cardiomyopathy	MONDO:0019018	canonical	canonical_model_review	TRUE	0	1	MONDO:0019018		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019018	Other cardiomyopathy		1
+Other chromosomal abnormalities	EFO:0000336	canonical	canonical_model_review	TRUE	0	1	EFO:0000336		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0000336	Other chromosomal abnormalities		2
+Other chromosomal abnormalities	MONDO:0019040	canonical	canonical_model_review	TRUE	0	1	MONDO:0019040		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019040	Other chromosomal abnormalities		3
+Other congenital birth defects	EFO:0022941	canonical	canonical_model_review	TRUE	0	1	EFO:0022941		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0022941	Other congenital birth defects		1
+Other congenital birth defects	HP:0001374	canonical	canonical_model_review	TRUE	0	1	HP:0001374		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001374	Other congenital birth defects		1
+Other congenital birth defects	MONDO:0002320	canonical	canonical_model_review	TRUE	0	1	MONDO:0002320		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002320	Other congenital birth defects		4
+Other congenital birth defects	MONDO:0019636	canonical	canonical_model_review	TRUE	0	1	MONDO:0019636		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019636	Other congenital birth defects		1
+Other drug use disorders	EFO:0005431	canonical	canonical_model_review	TRUE	0	1	EFO:0005431		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0005431	Other drug use disorders		1
+Other endocrine, metabolic, blood, and immune disorders	HP:0001939	canonical	canonical_model_review	TRUE	0	1	HP:0001939		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001939	Other endocrine, metabolic, blood, and immune disorders		8
+Other eye cancers	MONDO:0002236	canonical	canonical_model_review	TRUE	0	1	MONDO:0002236		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002236	Other eye cancers		2
+Other hemoglobinopathies and hemolytic anemias	MONDO:0003689	canonical	canonical_model_review	TRUE	0	1	MONDO:0003689		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003689	Other hemoglobinopathies and hemolytic anemias		4
+Other hemoglobinopathies and hemolytic anemias	MONDO:0019050	canonical	canonical_model_review	TRUE	0	1	MONDO:0019050		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019050	Other hemoglobinopathies and hemolytic anemias		4
+Other leukemia	MONDO:0004600	canonical	canonical_model_review	TRUE	0	1	MONDO:0004600		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004600	Other leukemia		1
+Other mental disorders	MONDO:0002025	canonical	canonical_model_review	TRUE	0	1	MONDO:0002025		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002025	Other mental disorders		10
+Other musculoskeletal disorders	EFO:0022195	canonical	canonical_human_review	TRUE	0	1	EFO:0022195		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0022195	Other musculoskeletal disorders		2
+Other musculoskeletal disorders	MONDO:0002081	canonical	canonical_model_review	TRUE	0	1	MONDO:0002081		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002081	Other musculoskeletal disorders		11
+Other neglected tropical diseases	MONDO:0000327	canonical	canonical_model_review	TRUE	0	1	MONDO:0000327		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000327	Other neglected tropical diseases		1
+Other neglected tropical diseases	MONDO:0005644	canonical	canonical_model_review	TRUE	0	1	MONDO:0005644		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005644	Other neglected tropical diseases		1
+Other neonatal disorders	EFO:0022856	canonical	canonical_model_review	TRUE	0	1	EFO:0022856		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0022856	Other neonatal disorders		1
+Other neonatal disorders	MONDO:0005566	canonical	canonical_model_review	TRUE	0	1	MONDO:0005566		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005566	Other neonatal disorders		1
+Other neoplasms	MONDO:0005070	canonical	canonical_human_review	TRUE	0	1	MONDO:0005070		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005070	Other neoplasms		6
+Other neoplasms	MONDO:0021240	canonical	canonical_model_review	TRUE	0	1	MONDO:0021240		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021240	Other neoplasms		1
+Other neurological disorders	MONDO:0002321	canonical	canonical_model_review	TRUE	0	1	MONDO:0002321		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002321	Other neurological disorders		1
+Other neurological disorders	MONDO:0005244	canonical	canonical_model_review	TRUE	0	1	MONDO:0005244		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005244	Other neurological disorders		20
+Other non-rheumatic valve diseases	MONDO:0000471	canonical	canonical_model_review	TRUE	0	1	MONDO:0000471		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000471	Other non-rheumatic valve diseases		6
+Other non-rheumatic valve diseases	MONDO:0005648	canonical	canonical_model_review	TRUE	0	1	MONDO:0005648		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005648	Other non-rheumatic valve diseases		1
+Other nutritional deficiencies	MONDO:0006873	canonical	canonical_model_review	TRUE	0	1	MONDO:0006873		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006873	Other nutritional deficiencies		6
+Other oral disorders	MONDO:0003394	canonical	canonical_model_review	TRUE	0	1	MONDO:0003394		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003394	Other oral disorders		6
+Other oral disorders	MONDO:0006858	canonical	canonical_model_review	TRUE	0	1	MONDO:0006858		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006858	Other oral disorders		7
+Other pharynx cancer	MONDO:0001128	canonical	canonical_model_review	TRUE	0	1	MONDO:0001128		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001128	Other pharynx cancer		2
+Other pharynx cancer	MONDO:0004608	canonical	canonical_model_review	TRUE	0	1	MONDO:0004608		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004608	Other pharynx cancer		8
+Other pharynx cancer	MONDO:0005517	canonical	canonical_model_review	TRUE	0	1	MONDO:0005517		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005517	Other pharynx cancer		2
+Other pharynx cancer	MONDO:0005806	canonical	canonical_model_review	TRUE	0	1	MONDO:0005806		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005806	Other pharynx cancer		1
+Other sexually transmitted infections	MONDO:0021681	canonical	canonical_model_review	TRUE	0	1	MONDO:0021681		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021681	Other sexually transmitted infections		6
+Other skin and subcutaneous diseases	MONDO:0006557	canonical	canonical_model_review	TRUE	0	1	MONDO:0006557		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006557	Other skin and subcutaneous diseases		2
+Other urinary diseases	HP:0000016	canonical	canonical_model_review	TRUE	0	1	HP:0000016		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000016	Other urinary diseases		6
+Other urinary diseases	MONDO:0002118	canonical	canonical_model_review	TRUE	0	1	MONDO:0002118		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002118	Other urinary diseases		10
+Other urinary diseases	MONDO:0003330	canonical	canonical_model_review	TRUE	0	1	MONDO:0003330		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003330	Other urinary diseases		5
+Other urinary diseases	MONDO:0004184	canonical	canonical_model_review	TRUE	0	1	MONDO:0004184		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004184	Other urinary diseases		4
+Other vision loss	HP:0000529	canonical	canonical_model_review	TRUE	0	1	HP:0000529		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000529	Other vision loss		1
+Other vision loss	HP:0000572	canonical	canonical_model_review	TRUE	0	1	HP:0000572		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000572	Other vision loss		1
+Other vision loss	HP:0001123	canonical	canonical_model_review	TRUE	0	1	HP:0001123		original	04_evidence_package_reviewed.csv	ontology_id	HP:0001123	Other vision loss		2
+Otitis media	MONDO:0005441	canonical	canonical_model_review	TRUE	0	1	MONDO:0005441		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005441	Otitis media		11
+Otitis media	MONDO:0005892	canonical	canonical_model_review	TRUE	0	1	MONDO:0005892		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005892	Otitis media		3
+Otitis media	MONDO:0005975	canonical	canonical_model_review	TRUE	0	1	MONDO:0005975		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005975	Otitis media		2
+Otitis media	MONDO:0021204	canonical	canonical_model_review	TRUE	0	1	MONDO:0021204		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021204	Otitis media		1
+Ovarian cancer	EFO:0920034	canonical	canonical_model_review	TRUE	0	1	EFO:0920034		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0920034	Ovarian cancer		1
+Ovarian cancer	EFO:1001515	canonical	canonical_model_review	TRUE	0	1	EFO:1001515		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001515	Ovarian cancer		2
+Ovarian cancer	EFO:1001516	canonical	canonical_model_review	TRUE	0	1	EFO:1001516		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001516	Ovarian cancer		5
+Ovarian cancer	MONDO:0000548	canonical	canonical_model_review	TRUE	0	1	MONDO:0000548		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000548	Ovarian cancer		1
+Ovarian cancer	MONDO:0005140	canonical	canonical_model_review	TRUE	0	1	MONDO:0005140		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005140	Ovarian cancer		30
+Ovarian cancer	MONDO:0008170	canonical	canonical_model_review	TRUE	0	1	MONDO:0008170		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008170	Ovarian cancer		7
+Pancreatic cancer	MONDO:0005192	canonical	canonical_model_review	TRUE	0	1	MONDO:0005192		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005192	Pancreatic cancer		37
+Pancreatic cancer	MONDO:0021040	canonical	canonical_model_review	TRUE	0	1	MONDO:0021040		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021040	Pancreatic cancer		1
+Pancreatitis	EFO:0021524	canonical	canonical_model_review	TRUE	0	1	EFO:0021524		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0021524	Pancreatitis		1
+Pancreatitis	EFO:1001507	canonical	canonical_model_review	TRUE	0	1	EFO:1001507		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001507	Pancreatitis		1
+Pancreatitis	MONDO:0003232	canonical	canonical_model_review	TRUE	0	1	MONDO:0003232		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003232	Pancreatitis		2
+Pancreatitis	MONDO:0004982	canonical	canonical_model_review	TRUE	0	1	MONDO:0004982		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004982	Pancreatitis		7
+Pancreatitis	MONDO:0005003	canonical	canonical_model_review	TRUE	0	1	MONDO:0005003		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005003	Pancreatitis		6
+Pancreatitis	MONDO:0006515	canonical	canonical_model_review	TRUE	0	1	MONDO:0006515		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006515	Pancreatitis		8
+Pancreatitis	MONDO:0017227	canonical	canonical_model_review	TRUE	0	1	MONDO:0017227		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0017227	Pancreatitis		1
+Paralytic ileus and intestinal obstruction	EFO:1000989	canonical	canonical_model_review	TRUE	0	1	EFO:1000989		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000989	Paralytic ileus and intestinal obstruction		1
+Paralytic ileus and intestinal obstruction	HP:0002590	canonical	canonical_model_review	TRUE	0	1	HP:0002590		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002590	Paralytic ileus and intestinal obstruction		3
+Paralytic ileus and intestinal obstruction	HP:0004796	canonical	canonical_model_review	TRUE	0	1	HP:0004796		original	04_evidence_package_reviewed.csv	ontology_id	HP:0004796	Paralytic ileus and intestinal obstruction		3
+Paralytic ileus and intestinal obstruction	MONDO:0004565	canonical	canonical_model_review	TRUE	0	1	MONDO:0004565		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004565	Paralytic ileus and intestinal obstruction		3
+Paralytic ileus and intestinal obstruction	MONDO:0004567	canonical	canonical_model_review	TRUE	0	1	MONDO:0004567		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004567	Paralytic ileus and intestinal obstruction		2
+Parkinson's disease	MONDO:0005180	canonical	canonical_model_review	TRUE	0	1	MONDO:0005180		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005180	Parkinson's disease		65
+Peptic ulcer disease	HP:0004398	canonical	canonical_model_review	TRUE	0	1	HP:0004398		original	04_evidence_package_reviewed.csv	ontology_id	HP:0004398	Peptic ulcer disease		8
+Peptic ulcer disease	MONDO:0001126	canonical	canonical_model_review	TRUE	0	1	MONDO:0001126		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001126	Peptic ulcer disease		13
+Peptic ulcer disease	MONDO:0004247	canonical	canonical_model_review	TRUE	0	1	MONDO:0004247		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004247	Peptic ulcer disease		11
+Peptic ulcer disease	MONDO:0005412	canonical	canonical_model_review	TRUE	0	1	MONDO:0005412		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005412	Peptic ulcer disease		12
+Periodontal diseases	EFO:1001393	canonical	canonical_model_review	TRUE	0	1	EFO:1001393		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001393	Periodontal diseases		1
+Periodontal diseases	MONDO:0002021	canonical	canonical_model_review	TRUE	0	1	MONDO:0002021		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002021	Periodontal diseases		1
+Periodontal diseases	MONDO:0002635	canonical	canonical_model_review	TRUE	0	1	MONDO:0002635		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002635	Periodontal diseases		4
+Periodontal diseases	MONDO:0005076	canonical	canonical_model_review	TRUE	0	1	MONDO:0005076		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005076	Periodontal diseases		20
+Periodontal diseases	MONDO:0005593	canonical	canonical_model_review	TRUE	0	1	MONDO:0005593		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005593	Periodontal diseases		2
+Periodontal diseases	MONDO:0008226	canonical	canonical_model_review	TRUE	0	1	MONDO:0008226		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008226	Periodontal diseases		5
+Pertussis	MONDO:0005077	canonical	canonical_model_review	TRUE	0	1	MONDO:0005077		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005077	Pertussis		2
+Pneumoconiosis	MONDO:0015926	canonical	canonical_model_review	TRUE	0	1	MONDO:0015926		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0015926	Pneumoconiosis		5
+Polycystic ovarian syndrome	MONDO:0008487	canonical	canonical_model_review	TRUE	0	1	MONDO:0008487		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008487	Polycystic ovarian syndrome		22
+Premenstrual syndrome	MONDO:0004169	canonical	canonical_model_review	TRUE	0	1	MONDO:0004169		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004169	Premenstrual syndrome		3
+Prostate cancer	MONDO:0004956	canonical	canonical_model_review	TRUE	0	1	MONDO:0004956		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004956	Prostate cancer		1
+Prostate cancer	MONDO:0005159	canonical	canonical_model_review	TRUE	0	1	MONDO:0005159		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005159	Prostate cancer		71
+Prostate cancer	MONDO:0008315	canonical	canonical_model_review	TRUE	0	1	MONDO:0008315		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008315	Prostate cancer		16
+Prostate cancer	MONDO:0021259	canonical	canonical_model_review	TRUE	0	1	MONDO:0021259		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021259	Prostate cancer		1
+Protein-energy malnutrition	EFO:0008572	canonical	canonical_model_review	TRUE	0	1	EFO:0008572		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0008572	Protein-energy malnutrition		2
+Protein-energy malnutrition	MONDO:0001371	canonical	canonical_model_review	TRUE	0	1	MONDO:0001371		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001371	Protein-energy malnutrition		5
+Pruritus	HP:0000989	canonical	canonical_model_review	TRUE	0	1	HP:0000989		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000989	Pruritus		10
+Pruritus	MONDO:0005492	canonical	canonical_human_review	TRUE	0	1	MONDO:0005492		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005492	Pruritus		14
+Psoriasis	EFO:1001494	canonical	canonical_model_review	TRUE	0	1	EFO:1001494		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001494	Psoriasis		10
+Psoriasis	MONDO:0005083	canonical	canonical_model_review	TRUE	0	1	MONDO:0005083		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005083	Psoriasis		53
+Psoriasis	MONDO:0013626	canonical	canonical_model_review	TRUE	0	1	MONDO:0013626		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0013626	Psoriasis		1
+Pulmonary Arterial Hypertension	MONDO:0001999	canonical	canonical_model_review	TRUE	0	1	MONDO:0001999		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001999	Pulmonary Arterial Hypertension		5
+Pulmonary Arterial Hypertension	MONDO:0005149	canonical	canonical_model_review	TRUE	0	1	MONDO:0005149		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005149	Pulmonary Arterial Hypertension		2
+Pulmonary Arterial Hypertension	MONDO:0015924	canonical	canonical_model_review	TRUE	0	1	MONDO:0015924		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0015924	Pulmonary Arterial Hypertension		4
+Pyoderma	HP:0000999	canonical	canonical_model_review	TRUE	0	1	HP:0000999		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000999	Pyoderma		2
+Refraction disorders	HP:0000539	canonical	canonical_model_review	TRUE	0	1	HP:0000539		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000539	Refraction disorders		7
+Refraction disorders	MONDO:0004892	canonical	canonical_model_review	TRUE	0	1	MONDO:0004892		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004892	Refraction disorders		14
+Rheumatic heart disease	MONDO:0006955	canonical	canonical_model_review	TRUE	0	1	MONDO:0006955		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006955	Rheumatic heart disease		7
+Rheumatoid arthritis	EFO:0009459	canonical	canonical_model_review	TRUE	0	1	EFO:0009459		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009459	Rheumatoid arthritis		3
+Rheumatoid arthritis	EFO:0009460	canonical	canonical_model_review	TRUE	0	1	EFO:0009460		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009460	Rheumatoid arthritis		3
+Rheumatoid arthritis	MONDO:0008383	canonical	canonical_model_review	TRUE	0	1	MONDO:0008383		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008383	Rheumatoid arthritis		72
+Schizophrenia	MONDO:0005090	canonical	canonical_model_review	TRUE	0	1	MONDO:0005090		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005090	Schizophrenia		111
+Schizophrenia	MONDO:0005414	canonical	canonical_model_review	TRUE	0	1	MONDO:0005414		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005414	Schizophrenia		3
+Schizophrenia	MONDO:0005487	canonical	canonical_model_review	TRUE	0	1	MONDO:0005487		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005487	Schizophrenia		4
+Seborrhoeic dermatitis	MONDO:0006546	canonical	canonical_human_review	TRUE	0	1	MONDO:0006546		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006546	Seborrhoeic dermatitis		3
+Seborrhoeic dermatitis	MONDO:0006608	canonical	canonical_model_review	TRUE	0	1	MONDO:0006608		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006608	Seborrhoeic dermatitis		7
+Sexually transmitted infections excluding HIV	MONDO:0021681	canonical	canonical_model_review	TRUE	0	1	MONDO:0021681		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021681	Sexually transmitted infections excluding HIV		6
+Sickle cell disorders	EFO:0700066	canonical	canonical_model_review	TRUE	0	1	EFO:0700066		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0700066	Sickle cell disorders		2
+Sickle cell disorders	MONDO:0011382	canonical	canonical_model_review	TRUE	0	1	MONDO:0011382		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0011382	Sickle cell disorders		4
+Soft tissue and other extraosseous sarcomas	MONDO:0005089	canonical	canonical_model_review	TRUE	0	1	MONDO:0005089		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005089	Soft tissue and other extraosseous sarcomas		1
+Soft tissue and other extraosseous sarcomas	MONDO:0006424	canonical	canonical_model_review	TRUE	0	1	MONDO:0006424		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006424	Soft tissue and other extraosseous sarcomas		1
+Soft tissue and other extraosseous sarcomas	MONDO:0021581	canonical	canonical_model_review	TRUE	0	1	MONDO:0021581		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0021581	Soft tissue and other extraosseous sarcomas		4
+Soft tissue and other extraosseous sarcomas	MONDO:0044334	canonical	canonical_model_review	TRUE	0	1	MONDO:0044334		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0044334	Soft tissue and other extraosseous sarcomas		1
+Stomach cancer	MONDO:0001056	canonical	canonical_model_review	TRUE	0	1	MONDO:0001056		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001056	Stomach cancer		11
+Stroke	EFO:0020921	canonical	canonical_model_review	TRUE	0	1	EFO:0020921		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0020921	Stroke		2
+Stroke	EFO:1001504	canonical	canonical_model_review	TRUE	0	1	EFO:1001504		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001504	Stroke		11
+Stroke	EFO:1001976	canonical	canonical_model_review	TRUE	0	1	EFO:1001976		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001976	Stroke		8
+Stroke	HP:0002140	canonical	canonical_model_review	TRUE	0	1	HP:0002140		original	04_evidence_package_reviewed.csv	ontology_id	HP:0002140	Stroke		30
+Stroke	MONDO:0005098	canonical	canonical_model_review	TRUE	0	1	MONDO:0005098		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005098	Stroke		48
+Stroke	MONDO:0005490	canonical	canonical_model_review	TRUE	0	1	MONDO:0005490		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005490	Stroke		12
+Subarachnoid hemorrhage	EFO:0000551	canonical	canonical_model_review	TRUE	0	1	EFO:0000551		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0000551	Subarachnoid hemorrhage		7
+Subarachnoid hemorrhage	MONDO:0005099	canonical	canonical_model_review	TRUE	0	1	MONDO:0005099		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005099	Subarachnoid hemorrhage		9
+Tension-type headache	HP:0012228	canonical	canonical_model_review	TRUE	0	1	HP:0012228		original	04_evidence_package_reviewed.csv	ontology_id	HP:0012228	Tension-type headache		4
+Testicular cancer	MONDO:0005447	canonical	canonical_model_review	TRUE	0	1	MONDO:0005447		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005447	Testicular cancer		11
+Thalassemias	MONDO:0000984	canonical	canonical_model_review	TRUE	0	1	MONDO:0000984		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000984	Thalassemias		2
+Thalassemias trait	MONDO:0000984	canonical	canonical_model_review	TRUE	0	1	MONDO:0000984		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000984	Thalassemias trait		2
+Thyroid cancer	MONDO:0002108	canonical	canonical_model_review	TRUE	0	1	MONDO:0002108		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002108	Thyroid cancer		9
+Thyroid cancer	MONDO:0015075	canonical	canonical_model_review	TRUE	0	1	MONDO:0015075		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0015075	Thyroid cancer		16
+Thyroid diseases	EFO:1001436	canonical	canonical_model_review	TRUE	0	1	EFO:1001436		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001436	Thyroid diseases		2
+Thyroid diseases	MONDO:0003240	canonical	canonical_model_review	TRUE	0	1	MONDO:0003240		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003240	Thyroid diseases		9
+Thyroid diseases	MONDO:0004425	canonical	canonical_model_review	TRUE	0	1	MONDO:0004425		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004425	Thyroid diseases		12
+Tracheal, bronchus, and lung cancer	MONDO:0001672	canonical	canonical_model_review	TRUE	0	1	MONDO:0001672		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001672	Tracheal, bronchus, and lung cancer		5
+Tracheal, bronchus, and lung cancer	MONDO:0008903	canonical	canonical_model_review	TRUE	0	1	MONDO:0008903		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008903	Tracheal, bronchus, and lung cancer		17
+Tuberculosis	EFO:0008407	canonical	canonical_model_review	TRUE	0	1	EFO:0008407		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0008407	Tuberculosis		3
+Tuberculosis	MONDO:0000368	canonical	canonical_model_review	TRUE	0	1	MONDO:0000368		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0000368	Tuberculosis		1
+Tuberculosis	MONDO:0006052	canonical	canonical_model_review	TRUE	0	1	MONDO:0006052		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006052	Tuberculosis		9
+Tuberculosis	MONDO:0018076	canonical	canonical_model_review	TRUE	0	1	MONDO:0018076		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0018076	Tuberculosis		28
+Typhoid and paratyphoid	MONDO:0005619	canonical	canonical_model_review	TRUE	0	1	MONDO:0005619		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005619	Typhoid and paratyphoid		3
+Typhoid fever	MONDO:0005619	canonical	canonical_model_review	TRUE	0	1	MONDO:0005619		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005619	Typhoid fever		3
+Ulcerative colitis	MONDO:0005101	canonical	canonical_model_review	TRUE	0	1	MONDO:0005101		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005101	Ulcerative colitis		54
+Upper digestive system diseases	EFO:1001785	canonical	canonical_model_review	TRUE	0	1	EFO:1001785		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1001785	Upper digestive system diseases		1
+Upper respiratory infections	MONDO:0004867	canonical	canonical_model_review	TRUE	0	1	MONDO:0004867		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004867	Upper respiratory infections		8
+Upper respiratory infections	MONDO:0024355	canonical	canonical_model_review	TRUE	0	1	MONDO:0024355		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024355	Upper respiratory infections		8
+Urinary diseases and male infertility	HP:0000079	canonical	canonical_model_review	TRUE	0	1	HP:0000079		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000079	Urinary diseases and male infertility		6
+Urinary diseases and male infertility	HP:0010992	canonical	canonical_model_review	TRUE	0	1	HP:0010992		original	04_evidence_package_reviewed.csv	ontology_id	HP:0010992	Urinary diseases and male infertility		6
+Urinary diseases and male infertility	MONDO:0002118	canonical	canonical_model_review	TRUE	0	1	MONDO:0002118		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002118	Urinary diseases and male infertility		10
+Urinary diseases and male infertility	MONDO:0003330	canonical	canonical_model_review	TRUE	0	1	MONDO:0003330		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0003330	Urinary diseases and male infertility		5
+Urinary diseases and male infertility	MONDO:0005372	canonical	canonical_model_review	TRUE	0	1	MONDO:0005372		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005372	Urinary diseases and male infertility		8
+Urinary diseases and male infertility	MONDO:0006026	canonical	canonical_model_review	TRUE	0	1	MONDO:0006026		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006026	Urinary diseases and male infertility		9
+Urinary tract infections and interstitial nephritis	EFO:1000869	canonical	canonical_model_review	TRUE	0	1	EFO:1000869		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000869	Urinary tract infections and interstitial nephritis		5
+Urinary tract infections and interstitial nephritis	HP:0004729	canonical	canonical_model_review	TRUE	0	1	HP:0004729		original	04_evidence_package_reviewed.csv	ontology_id	HP:0004729	Urinary tract infections and interstitial nephritis		4
+Urinary tract infections and interstitial nephritis	HP:0004743	canonical	canonical_human_review	TRUE	0	1	HP:0004743		original	04_evidence_package_reviewed.csv	ontology_id	HP:0004743	Urinary tract infections and interstitial nephritis		1
+Urinary tract infections and interstitial nephritis	MONDO:0001085	canonical	canonical_model_review	TRUE	0	1	MONDO:0001085		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001085	Urinary tract infections and interstitial nephritis		1
+Urinary tract infections and interstitial nephritis	MONDO:0001166	canonical	canonical_human_review	TRUE	0	1	MONDO:0001166		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0001166	Urinary tract infections and interstitial nephritis		7
+Urinary tract infections and interstitial nephritis	MONDO:0100338	canonical	canonical_model_review	TRUE	0	1	MONDO:0100338		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0100338	Urinary tract infections and interstitial nephritis		14
+Urogenital congenital anomalies	MONDO:0019640	canonical	canonical_model_review	TRUE	0	1	MONDO:0019640		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019640	Urogenital congenital anomalies		2
+Urogenital congenital anomalies	MONDO:0019719	canonical	canonical_model_review	TRUE	0	1	MONDO:0019719		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0019719	Urogenital congenital anomalies		3
+Urolithiasis	HP:0000791	canonical	canonical_model_review	TRUE	0	1	HP:0000791		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000791	Urolithiasis		1
+Urolithiasis	HP:0008672	canonical	canonical_model_review	TRUE	0	1	HP:0008672		original	04_evidence_package_reviewed.csv	ontology_id	HP:0008672	Urolithiasis		1
+Urolithiasis	HP:0012580	canonical	canonical_model_review	TRUE	0	1	HP:0012580		original	04_evidence_package_reviewed.csv	ontology_id	HP:0012580	Urolithiasis		1
+Urolithiasis	HP:0030035	canonical	canonical_model_review	TRUE	0	1	HP:0030035		original	04_evidence_package_reviewed.csv	ontology_id	HP:0030035	Urolithiasis		1
+Urolithiasis	MONDO:0007009	canonical	canonical_model_review	TRUE	0	1	MONDO:0007009		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007009	Urolithiasis		6
+Urolithiasis	MONDO:0008171	canonical	canonical_model_review	TRUE	0	1	MONDO:0008171		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0008171	Urolithiasis		20
+Urolithiasis	MONDO:0024647	canonical	canonical_model_review	TRUE	0	1	MONDO:0024647		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0024647	Urolithiasis		12
+Urticaria	MONDO:0005492	canonical	canonical_model_review	TRUE	0	1	MONDO:0005492		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005492	Urticaria		14
+Uterine cancer	MONDO:0002715	canonical	canonical_model_review	TRUE	0	1	MONDO:0002715		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0002715	Uterine cancer		4
+Uterine cancer	MONDO:0005213	canonical	canonical_model_review	TRUE	0	1	MONDO:0005213		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005213	Uterine cancer		2
+Uterine cancer	MONDO:0006003	canonical	canonical_model_review	TRUE	0	1	MONDO:0006003		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0006003	Uterine cancer		4
+Uterine cancer	MONDO:0011962	canonical	canonical_model_review	TRUE	0	1	MONDO:0011962		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0011962	Uterine cancer		8
+Uterine fibroids	HP:0000131	canonical	canonical_model_review	TRUE	0	1	HP:0000131		original	04_evidence_package_reviewed.csv	ontology_id	HP:0000131	Uterine fibroids		10
+Uterine fibroids	MONDO:0007886	canonical	canonical_model_review	TRUE	0	1	MONDO:0007886		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0007886	Uterine fibroids		19
+Vascular intestinal disorders	EFO:0009705	canonical	canonical_model_review	TRUE	0	1	EFO:0009705		original	04_evidence_package_reviewed.csv	ontology_id	EFO:0009705	Vascular intestinal disorders		1
+Vascular intestinal disorders	EFO:1000989	canonical	canonical_model_review	TRUE	0	1	EFO:1000989		original	04_evidence_package_reviewed.csv	ontology_id	EFO:1000989	Vascular intestinal disorders		1
+Vascular intestinal disorders	MONDO:0004622	canonical	canonical_model_review	TRUE	0	1	MONDO:0004622		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0004622	Vascular intestinal disorders		2
+Vascular intestinal disorders	MONDO:0005020	canonical	canonical_model_review	TRUE	0	1	MONDO:0005020		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005020	Vascular intestinal disorders		8
+Visceral leishmaniasis	MONDO:0005445	canonical	canonical_model_review	TRUE	0	1	MONDO:0005445		original	04_evidence_package_reviewed.csv	ontology_id	MONDO:0005445	Visceral leishmaniasis		2

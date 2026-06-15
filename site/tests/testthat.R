@@ -10,5 +10,6 @@ library(testthat)
 library(here)
 
 source(here("site/R/metrics.R"))
+source(here("site/R/validate.R"))
 
 test_dir(here("site/tests/testthat"))

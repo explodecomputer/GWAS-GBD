@@ -1,16 +1,23 @@
 # Regional concentration index Quarto analysis
 
-This directory is a plain-text migration of `scripts/regional-concentration-index.ipynb`.
+This directory is the active config-driven regional concentration index analysis.
+It supersedes the older notebook/script variants and the `_6` duplicate report.
 
 ## Files
 
 - `regional_concentration_index.qmd`: main HTML report.
 - `R/packages.R`: package imports and shared constants.
-- `R/data_loaders.R`: input file readers and join helpers.
+- `R/data_loaders.R`: config-driven input file readers and join helpers.
 - `R/metrics.R`: concentration index, attention Gini, alignment ratio, and related statistics.
 - `R/analysis_sets.R`: analysis dataset builders.
 - `R/plots.R`: reusable plot functions.
-- `outputs/`: suggested render destination.
+- `outputs/`: optional render destination for exploratory local renders.
+
+Archived deprecated variants:
+
+- `archive/deprecated/regional_concentration_index/data_loaders6.R`
+- `archive/deprecated/regional_concentration_index/regional_concentration_index6.qmd`
+- `archive/deprecated/regional_concentration_index/rendered/regional_concentration_index6.html`
 
 ## Render
 
@@ -21,6 +28,16 @@ quarto render scripts/regional_concentration_index/regional_concentration_index.
 ```
 
 The rendered file will be written under `scripts/regional_concentration_index/outputs/`.
+
+The authoritative workflow render is:
+
+```bash
+snakemake --snakefile workflow/Snakefile --cores 1 regional_report
+```
+
+Inputs come from `regional_analysis.burden_files.*` and
+`attention_scores.temporal_output` in `config/config.yaml`. Figure exports are
+declared in `regional_analysis.figure_outputs`.
 
 ## Preview while iterating
 

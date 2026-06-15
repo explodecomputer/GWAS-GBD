@@ -10,15 +10,18 @@ suppressPackageStartupMessages({
   library(here)
 })
 
+source(here("scripts/config.R"))
 source(here("site/R/metrics.R"))
 source(here("site/R/validate.R"))
 
-OUT_DIR       <- here("site/public/data")
+cfg <- load_project_config()
+OUT_DIR       <- cfg_path(cfg_get(cfg, "site.public_data_dir"), cfg)
 COUNTRY_DIR   <- file.path(OUT_DIR, "country")
-GBD_PATH      <- here("Data/december2025/gbd_gwas_paper_data_4.csv")
-ATTENTION_SOURCE <- "merged_dataset_exclude_Injuries.csv"
-ATTENTION_PATH <- here("Data", ATTENTION_SOURCE)
-ELIGIBILITY_THRESHOLD <- 0.01
+GBD_PATH      <- cfg_path(cfg_get(cfg, "regional_analysis.burden_files.country"), cfg)
+ATTENTION_PATH <- cfg_path(cfg_get(cfg, "attention_scores.temporal_output"), cfg)
+ATTENTION_SOURCE <- basename(ATTENTION_PATH)
+SITE_YEARS <- as.integer(unlist(cfg_get(cfg, "site.years")))
+ELIGIBILITY_THRESHOLD <- as.numeric(cfg_get(cfg, "site.eligibility_threshold"))
 
 dir.create(COUNTRY_DIR, recursive = TRUE, showWarnings = FALSE)
 
@@ -28,7 +31,7 @@ gbd <- fread(GBD_PATH) %>%
     location_type == "admin0",
     age_group_name == "All Ages",
     sex == "Both",
-    year_id %in% c(1990L, 2023L)
+    year_id %in% SITE_YEARS
   ) %>%
   select(
     location_id, location_name,

@@ -1,6 +1,9 @@
+source(here("scripts/config.R"))
+regional_config <- load_project_config()
+
 load_gwas_attention <- function(
-    # path = here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv"),
-    path = here("Data/merged_dataset_exclude_Injuries.csv"),
+    path = cfg_path(cfg_get(regional_config, "attention_scores.temporal_output"),
+                    regional_config),
     analysis_type_value = "all") {
   fread(path) %>%
     filter(analysis_type == analysis_type_value) %>%
@@ -9,8 +12,8 @@ load_gwas_attention <- function(
 
 load_gwas_attention_windows <- function(
     all_causes,
-    # path = here("Data/merged_dataset_exclude_Injuries_2023_updated_6.csv")) {
-    path = here("Data/merged_dataset_exclude_Injuries.csv")) {
+    path = cfg_path(cfg_get(regional_config, "attention_scores.temporal_output"),
+                    regional_config)) {
   windows <- fread(path) %>%
     filter(analysis_type == "sliding_3yr") %>%
     select(cause_name, cause_id, total_attention_score, analysis_type, time_strata)
@@ -30,22 +33,26 @@ load_gwas_attention_windows <- function(
 }
 
 load_gbd_sdi_sex <- function() {
-  fread(here("Data/december2025/gbd_gwas_paper_data_2.csv")) %>%
+  fread(cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.sex"),
+                 regional_config)) %>%
     rename(sex_name = sex, year = year_id)
 }
 
 load_gbd_sdi_year <- function() {
-  fread(here("Data/december2025/gbd_gwas_paper_data_3.csv")) %>%
+  fread(cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.year"),
+                 regional_config)) %>%
     rename(sex_name = sex, year = year_id)
 }
 
 load_gbd_country <- function() {
-  fread(here("Data/december2025/gbd_gwas_paper_data_4.csv")) %>%
+  fread(cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.country"),
+                 regional_config)) %>%
     rename(sex_name = sex, year = year_id)
 }
 
 load_gbd_age <- function() {
-  fread(here("Data/december2025/gbd_gwas_paper_data_1.csv")) %>%
+  fread(cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.age"),
+                 regional_config)) %>%
     rename(
       sex_name = sex,
       year = year_id,

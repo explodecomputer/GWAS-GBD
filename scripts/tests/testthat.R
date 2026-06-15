@@ -12,6 +12,7 @@ tryCatch(
     suppressWarnings(source(here("scripts/pipeline_functions.R")))
   }
 )
+source(here("scripts/attention_score_pipeline.R"))
 
 test_files <- list.files(
   here("scripts/tests"),

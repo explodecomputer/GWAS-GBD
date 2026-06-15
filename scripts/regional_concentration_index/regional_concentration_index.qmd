@@ -1,6 +1,6 @@
 ---
 title: "Regional concentration index analysis"
-subtitle: "Trial Quarto migration from scripts/regional-concentration-index.ipynb"
+subtitle: "Config-driven Snakemake report"
 format:
   html:
     toc: true
@@ -26,11 +26,16 @@ helper_files <- list.files(
   full.names = TRUE
 )
 data_files <- c(
-  here::here("Data/merged_dataset_exclude_Injuries.csv"),
-  here::here("Data/december2025/gbd_gwas_paper_data_1.csv"),
-  here::here("Data/december2025/gbd_gwas_paper_data_2.csv"),
-  here::here("Data/december2025/gbd_gwas_paper_data_3.csv"),
-  here::here("Data/december2025/gbd_gwas_paper_data_4.csv")
+  cfg_path(cfg_get(regional_config, "attention_scores.temporal_output"),
+           regional_config),
+  cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.age"),
+           regional_config),
+  cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.sex"),
+           regional_config),
+  cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.year"),
+           regional_config),
+  cfg_path(cfg_get(regional_config, "regional_analysis.burden_files.country"),
+           regional_config)
 )
 knitr::opts_chunk$set(
   cache.extra = paste(tools::md5sum(c(helper_files, data_files)), collapse = "")
@@ -572,7 +577,7 @@ ggsave(
 
 ## Reproducibility notes
 
-This Quarto migration keeps `scripts/regional-concentration-index.ipynb` unchanged. The report sources reusable code from `scripts/regional_concentration_index/R/` and can be rendered from the repository root with:
+This report sources reusable code from `scripts/regional_concentration_index/R/` and can be rendered from the repository root with:
 
 ```bash
 quarto render scripts/regional_concentration_index/regional_concentration_index.qmd --output-dir outputs

@@ -1,0 +1,194 @@
+import copy
+import os
+from pathlib import Path
+
+import yaml
+
+
+# In Snakemake, __file__ can refer to Snakemake internals; workflow.basedir is
+# the directory containing this Snakefile.
+SNAKEFILE_DIR = Path(getattr(workflow, "basedir", Path.cwd() / "workflow")).resolve()
+ROOT = SNAKEFILE_DIR.parent
+CONFIG_PATH = Path(os.environ.get("GWAS_GBD_CONFIG", ROOT / "config" / "config.yaml"))
+LOCAL_CONFIG_PATH = Path(
+    os.environ.get("GWAS_GBD_LOCAL_CONFIG", ROOT / "config" / "config.local.yaml")
+)
+
+
+def merge_config(base, override):
+    result = copy.deepcopy(base)
+    for key, value in (override or {}).items():
+        if isinstance(value, dict) and isinstance(result.get(key), dict):
+            result[key] = merge_config(result[key], value)
+        else:
+            result[key] = value
+    return result
+
+
+with open(CONFIG_PATH, "r", encoding="utf-8") as handle:
+    config = yaml.safe_load(handle)
+
+if LOCAL_CONFIG_PATH.exists():
+    with open(LOCAL_CONFIG_PATH, "r", encoding="utf-8") as handle:
+        config = merge_config(config, yaml.safe_load(handle))
+
+CONFIG_FILES = [str(CONFIG_PATH)] + ([str(LOCAL_CONFIG_PATH)] if LOCAL_CONFIG_PATH.exists() else [])
+SCRIPTS_DIR = ROOT / "scripts"
+SITE_DIR = ROOT / "site"
+REGIONAL_DIR = SCRIPTS_DIR / "regional_concentration_index"
+CONDA_PREFIX = os.environ.get("CONDA_PREFIX", "")
+CONDA_R_LIB = Path(CONDA_PREFIX) / "lib" / "R" / "library" if CONDA_PREFIX else ""
+
+if CONDA_PREFIX:
+    R_ENV = (
+        f"R_LIBS='' "
+        f"R_LIBS_USER='{CONDA_R_LIB}' "
+        f"R_LIBS_SITE='{CONDA_R_LIB}'"
+    )
+else:
+    R_ENV = "R_LIBS='' R_LIBS_USER='' R_LIBS_SITE=''"
+
+RSCRIPT = f"{R_ENV} Rscript --no-save --no-restore"
+
+
+def p(value):
+    path = Path(value)
+    return str(path if path.is_absolute() else ROOT / path)
+
+
+canonical_r_sources = glob_wildcards(
+    str(ROOT / "scripts" / "canonical_mapping" / "R" / "{module}.R")
+).module
+
+regional_r_sources = glob_wildcards(
+    str(ROOT / "scripts" / "regional_concentration_index" / "R" / "{module}.R")
+).module
+
+regional_figure_outputs = [
+    p(path) for path in config["regional_analysis"].get("figure_outputs", [])
+]
+
+
+rule all:
+    input:
+        p(config["pipeline_checks"]["comparison_report"]),
+        p(config["regional_analysis"]["report"]),
+
+
+rule canonical_evidence_package:
+    input:
+        workflow=p("scripts/canonical_mapping/workflow.R"),
+        config=CONFIG_FILES,
+        r_sources=expand(
+            str(ROOT / "scripts" / "canonical_mapping" / "R" / "{module}.R"),
+            module=canonical_r_sources,
+        ),
+        gwas_catalog=p(config["inputs"]["gwas_catalog"]),
+        hierarchy=p(config["inputs"]["gbd_hierarchy"]),
+        first_part=p(config["inputs"]["first_part_gbd"]),
+        second_part=p(config["inputs"]["second_part_gbd"]),
+        efo_obo=p(config["inputs"]["efo_obo"]),
+    output:
+        p(config["canonical_mapping"]["evidence_package"]),
+    shell:
+        "{RSCRIPT} {input.workflow}"
+
+
+rule export_master_mapping:
+    input:
+        script=p("scripts/canonical_mapping/export_to_master_mapping.R"),
+        config=CONFIG_FILES,
+        reviewed=p(config["canonical_mapping"]["reviewed_evidence_package"]),
+        observed=p(config["canonical_mapping"]["observed_terms"]),
+        context=p(config["canonical_mapping"]["condition_context"]),
+        r_sources=expand(
+            str(ROOT / "scripts" / "canonical_mapping" / "R" / "{module}.R"),
+            module=canonical_r_sources,
+        ),
+    output:
+        p(config["canonical_mapping"]["master_mapping"]),
+    shell:
+        "{RSCRIPT} {input.script}"
+
+
+rule attention_scores:
+    input:
+        script=p("scripts/pipeline.R"),
+        boundary=p("scripts/attention_score_pipeline.R"),
+        config=CONFIG_FILES,
+        functions=p("scripts/pipeline_functions.R"),
+        master_mapping=p(config["canonical_mapping"]["master_mapping"]),
+        gwas_catalog=p(config["inputs"]["gwas_catalog"]),
+        hierarchy=p(config["inputs"]["gbd_hierarchy"]),
+        manual_zero_mapping=p(config["inputs"]["manual_zero_mapping"]),
+    output:
+        universe=p(config["attention_scores"]["gbd_universe"]),
+        combined=p(config["attention_scores"]["combined_output"]),
+        temporal=p(config["attention_scores"]["temporal_output"]),
+    shell:
+        "{RSCRIPT} {input.script}"
+
+
+rule comparison_report:
+    input:
+        qmd=p("scripts/attention-score-pipeline-comparison.qmd"),
+        current=p(config["attention_scores"]["temporal_output"]),
+        reference=p(config["inputs"]["reference_attention_scores"]),
+        manual_zero_mapping=p(config["inputs"]["manual_zero_mapping"]),
+        config=CONFIG_FILES,
+    output:
+        report=p(config["pipeline_checks"]["comparison_report"]),
+        zero_attention_todo=p(config["pipeline_checks"]["zero_attention_todo"]),
+    shell:
+        "cd {SCRIPTS_DIR} && {R_ENV} quarto render attention-score-pipeline-comparison.qmd"
+
+
+rule regional_report:
+    input:
+        qmd=p("scripts/regional_concentration_index/regional_concentration_index.qmd"),
+        attention=p(config["attention_scores"]["temporal_output"]),
+        config=CONFIG_FILES,
+        r_sources=expand(
+            str(ROOT / "scripts" / "regional_concentration_index" / "R" / "{module}.R"),
+            module=regional_r_sources,
+        ),
+        age=p(config["regional_analysis"]["burden_files"]["age"]),
+        sex=p(config["regional_analysis"]["burden_files"]["sex"]),
+        year=p(config["regional_analysis"]["burden_files"]["year"]),
+        country=p(config["regional_analysis"]["burden_files"]["country"]),
+    output:
+        report=p(config["regional_analysis"]["report"]),
+        figures=regional_figure_outputs,
+    shell:
+        "cd {REGIONAL_DIR} && {R_ENV} quarto render regional_concentration_index.qmd"
+
+
+rule site_artifacts:
+    input:
+        script=p("site/R/build.R"),
+        check=p("scripts/check_site_artifacts.R"),
+        config=CONFIG_FILES,
+        attention=p(config["attention_scores"]["temporal_output"]),
+        burden_country=p(config["regional_analysis"]["burden_files"]["country"]),
+        metrics=p("site/R/metrics.R"),
+        validate=p("site/R/validate.R"),
+    output:
+        metadata=p(f"{config['site']['public_data_dir']}/metadata.json"),
+        countries=p(f"{config['site']['public_data_dir']}/countries.json"),
+        conditions=p(f"{config['site']['public_data_dir']}/conditions.json"),
+        country_summaries=p(f"{config['site']['public_data_dir']}/country_summaries.json"),
+        opportunities=p(f"{config['site']['public_data_dir']}/opportunities.json"),
+    shell:
+        "{RSCRIPT} {input.script} && {RSCRIPT} {input.check}"
+
+
+rule site_build:
+    input:
+        metadata=rules.site_artifacts.output.metadata,
+        package_lock=p("site/package-lock.json"),
+    output:
+        index=p(f"{config['site']['build_dir']}/index.html"),
+    params:
+        base=config["site"]["base_path"],
+    shell:
+        "cd {SITE_DIR} && VITE_BASE={params.base} npm run build"

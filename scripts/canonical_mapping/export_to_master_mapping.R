@@ -1,6 +1,9 @@
 library(here)
 library(dplyr)
 library(readr)
+source(here("scripts/config.R"))
+source(here("scripts/canonical_mapping/R/quality_gates.R"))
+source(here("scripts/canonical_mapping/R/human_review_compiler.R"))
 
 # ── Export canonical mapping → gbd_efo_master_mapping.tsv ─────────────────
 # Converts accepted rows from 04_evidence_package_reviewed.csv into the
@@ -9,15 +12,18 @@ library(readr)
 # Usage:
 #   Rscript scripts/canonical_mapping/export_to_master_mapping.R
 #
-# Output: Data/gbd_efo_master_mapping.tsv
+# Output: configured canonical_mapping.master_mapping path
 #
 # Key constraint: hierarchy_distance = 0, hierarchy_weight = 1 for all rows.
 # The canonical mapping contains ONLY observed, human-accepted direct mappings;
 # no hierarchy expansion is applied here. Rollup through the GBD hierarchy
 # happens inside pipeline.R's rollup_hierarchy() as normal.
 
-evidence_pkg_path <- here("outputs/canonical_mapping/04_evidence_package_reviewed.csv")
-output_path       <- here("Data/gbd_efo_master_mapping.tsv")
+cfg <- load_project_config()
+evidence_pkg_path <- cfg_path(cfg_get(cfg, "canonical_mapping.reviewed_evidence_package"), cfg)
+observed_terms_path <- cfg_path(cfg_get(cfg, "canonical_mapping.observed_terms"), cfg)
+condition_context_path <- cfg_path(cfg_get(cfg, "canonical_mapping.condition_context"), cfg)
+output_path       <- cfg_path(cfg_get(cfg, "canonical_mapping.master_mapping"), cfg)
 
 if (!file.exists(evidence_pkg_path)) {
   stop("Evidence package not found: ", evidence_pkg_path,
@@ -25,78 +31,33 @@ if (!file.exists(evidence_pkg_path)) {
 }
 
 pkg <- read.csv(evidence_pkg_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
+observed_terms <- read.csv(observed_terms_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
+condition_context <- read.csv(condition_context_path, stringsAsFactors = FALSE, na.strings = c("", "NA"))
+observed_term_universe <- list(terms = observed_terms)
 
-# Prefer explicit human decision; fall back to LLM model recommendation
-pkg <- pkg %>%
-  mutate(decision = dplyr::coalesce(
-    dplyr::na_if(as.character(human_decision), "NA"),
-    model_recommendation
+compiled <- compile_human_review(
+  reviewed_pkg = pkg,
+  observed_term_universe = observed_term_universe,
+  gbd_context = condition_context,
+  sentinel_conditions = unlist(cfg_get(
+    cfg,
+    "canonical_mapping.sentinel_conditions",
+    default = character(0),
+    required = FALSE
   ))
+)
 
-accepted <- pkg %>%
-  filter(decision == "accept") %>%
-  select(
-    gbd_condition, ontology_id, label,
-    pubmed_count, example_trait_labels,
-    human_decision, model_recommendation,
-    human_relationship, model_relationship,
-    human_notes, reviewer_id
-  )
+message(compiled$summary$gate_report)
 
-n_accepted   <- nrow(accepted)
-n_conditions <- dplyr::n_distinct(accepted$gbd_condition)
-n_human      <- sum(!is.na(accepted$human_decision) & accepted$human_decision == "accept")
+master <- canonical_export_table(compiled, evidence_source = basename(evidence_pkg_path))
 
-message(sprintf("Accepted mappings : %d", n_accepted))
-message(sprintf("GBD conditions    : %d", n_conditions))
-message(sprintf("Human decisions   : %d  (remainder: LLM recommendation)", n_human))
+n_accepted <- nrow(master)
+n_conditions <- dplyr::n_distinct(master$gbd_term)
 
-# ── Build master mapping rows ──────────────────────────────────────────────
-# mapping_source distinguishes human-accepted from LLM-only rows so the
-# comparison QMD and downstream diagnostics can filter if needed.
+message(sprintf("Accepted human mappings : %d", n_accepted))
+message(sprintf("GBD conditions          : %d", n_conditions))
 
-master <- accepted %>%
-  mutate(
-    gbd_term             = gbd_condition,
-    mapped_trait_uri     = ontology_id,   # cleaned by pipeline.R on load
-    mapping_strategy     = "canonical",
-    mapping_source       = dplyr::if_else(
-      !is.na(human_decision) & human_decision == "accept",
-      "canonical_human_review",
-      "canonical_llm_review"
-    ),
-    include_in_pipeline  = TRUE,
-    hierarchy_distance   = 0L,
-    hierarchy_weight     = 1,
-    root_mapped_trait_uri = ontology_id,
-    lookup_trait_uri     = NA_character_,
-    replacement_type     = "original",
-    source_file          = basename(evidence_pkg_path),
-    source_column        = "ontology_id",
-    source_value         = ontology_id,
-    search_term          = gbd_condition,
-    matched_gwas_trait_examples = example_trait_labels,
-    n_matching_pubmeds   = pubmed_count
-  ) %>%
-  select(
-    gbd_term,
-    mapped_trait_uri,
-    mapping_strategy,
-    mapping_source,
-    include_in_pipeline,
-    hierarchy_distance,
-    hierarchy_weight,
-    root_mapped_trait_uri,
-    lookup_trait_uri,
-    replacement_type,
-    source_file,
-    source_column,
-    source_value,
-    search_term,
-    matched_gwas_trait_examples,
-    n_matching_pubmeds
-  )
-
+dir.create(dirname(output_path), recursive = TRUE, showWarnings = FALSE)
 readr::write_tsv(master, output_path, na = "")
 
 message(sprintf("\nWritten: %s", output_path))

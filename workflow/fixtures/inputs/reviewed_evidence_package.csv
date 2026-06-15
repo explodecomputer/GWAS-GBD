@@ -1,0 +1,2 @@
+gbd_condition,ontology_id,label,pubmed_count,example_trait_labels,human_decision,model_recommendation,human_relationship,model_relationship,human_notes,reviewer_id
+Fixture condition,EFO:0000001,Fixture trait,1,Fixture trait,accept,accept,exact,exact,fixture,ci

@@ -2,6 +2,7 @@ library(here)
 library(dplyr)
 library(httr)
 library(jsonlite)
+source(here("scripts/config.R"))
 
 # ── LLM Batch Review ───────────────────────────────────────────────────────
 # Sends each row of the evidence package to Claude Haiku for automated review.
@@ -21,10 +22,11 @@ for (f in list.files(here("scripts/canonical_mapping/R"), pattern = "\\.R$",
 
 # ── Configuration ──────────────────────────────────────────────────────────
 
-evidence_pkg_path  <- here("outputs/canonical_mapping/04_evidence_package.csv")
-output_path        <- here("outputs/canonical_mapping/04_evidence_package_reviewed.csv")
+cfg <- load_project_config()
+evidence_pkg_path  <- cfg_path(cfg_get(cfg, "canonical_mapping.evidence_package"), cfg)
+output_path        <- cfg_path(cfg_get(cfg, "canonical_mapping.reviewed_evidence_package"), cfg)
 
-llm_model          <- "claude-haiku-4-5-20251001"
+llm_model          <- cfg_get(cfg, "services.llm_model")
 llm_max_tokens     <- 512L
 requests_per_min   <- 50L          # stay under Haiku tier-1 RPM limit
 retry_max          <- 3L

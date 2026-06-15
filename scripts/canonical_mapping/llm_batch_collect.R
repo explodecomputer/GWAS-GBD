@@ -2,6 +2,7 @@ library(here)
 library(dplyr)
 library(httr)
 library(jsonlite)
+source(here("scripts/config.R"))
 
 # ── LLM Batch Collect ──────────────────────────────────────────────────────
 # Checks the status of a submitted Anthropic batch and, when complete,
@@ -20,7 +21,8 @@ for (f in list.files(here("scripts/canonical_mapping/R"), pattern = "\\.R$",
 
 # ── Configuration ──────────────────────────────────────────────────────────
 
-state_path <- here("outputs/canonical_mapping/batch_state.json")
+cfg <- load_project_config()
+state_path <- cfg_path(cfg_get(cfg, "canonical_mapping.batch_state"), cfg)
 
 api_key <- Sys.getenv("ANTHROPIC_API_KEY")
 if (nchar(api_key) == 0) stop("ANTHROPIC_API_KEY environment variable not set.")

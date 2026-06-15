@@ -1,0 +1,78 @@
+release:
+  gwas_catalog: "2026-06-01"
+  burden_release: "gbd_2023_december2025_extract"
+
+paths:
+  data_dir: "data"
+  outputs_dir: "outputs"
+  figures_dir: "figures"
+
+inputs:
+  gwas_catalog: "data/gwas_catalog_v1.0.2.1-studies_r2026-06-01.tsv"
+  gbd_hierarchy: "data/IHME_GBD_2023_HIERARCHIES_Y2025M10D23.XLSX"
+  first_part_gbd: "data/First_part_GBD.xlsx"
+  second_part_gbd: "data/Second_part_GBD.xlsx"
+  efo_obo: "data/efo.obo"
+  manual_zero_mapping: "data/manual_zero_attention_mapping.csv"
+  reference_attention_scores: "data/merged_dataset_exclude_Injuries_2023_updated_6.csv"
+
+canonical_mapping:
+  output_dir: "outputs/canonical_mapping"
+  observed_terms: "outputs/canonical_mapping/01_observed_term_universe.csv"
+  condition_context: "outputs/canonical_mapping/02_gbd_condition_context.csv"
+  deterministic_candidates: "outputs/canonical_mapping/03_deterministic_candidates.csv"
+  embedding_candidates: "outputs/canonical_mapping/03b_embedding_candidates.csv"
+  evidence_package: "outputs/canonical_mapping/04_evidence_package.csv"
+  reviewed_evidence_package: "outputs/canonical_mapping/04_evidence_package_reviewed.csv"
+  batch_state: "outputs/canonical_mapping/batch_state.json"
+  master_mapping: "outputs/canonical_mapping/gbd_efo_master_mapping.tsv"
+  sentinel_conditions:
+    - "Diabetes mellitus type 1"
+    - "Diabetes mellitus type 2"
+    - "Breast cancer"
+
+attention_scores:
+  gbd_universe: "outputs/attention_scores/gbd_universe.csv"
+  combined_output: "outputs/attention_scores/all_time_attention_scores.csv"
+  temporal_output: "outputs/attention_scores/temporal_attention_scores.csv"
+
+pipeline_checks:
+  comparison_report: "scripts/attention-score-pipeline-comparison.html"
+  zero_attention_todo: "outputs/pipeline_checks/zero_attention_todo.csv"
+
+regional_analysis:
+  report: "scripts/regional_concentration_index/regional_concentration_index.html"
+  output_dir: "scripts/regional_concentration_index/outputs"
+  figure_outputs:
+    - "figures/ci_by_year.pdf"
+    - "figures/ci_by_sex.pdf"
+    - "figures/map1990.pdf"
+    - "figures/map2023.pdf"
+    - "figures/lorenz_curve.pdf"
+    - "figures/ci_by_age.pdf"
+    - "figures/gini_over_time_fullscale.pdf"
+    - "figures/gini_over_time.pdf"
+    - "figures/gini_vs_nzero.pdf"
+    - "figures/ci_by_year_and_gwasyear.pdf"
+    - "figures/ci_by_year_and_gwasyear_gbd2023.pdf"
+    - "figures/daly_trends_top_diseases.pdf"
+    - "figures/daly_gwas_trends_by_sdi_relevance.pdf"
+    - "figures/daly_trends_zero_attention_traits.png"
+  burden_files:
+    age: "data/december2025/gbd_gwas_paper_data_1.csv"
+    sex: "data/december2025/gbd_gwas_paper_data_2.csv"
+    year: "data/december2025/gbd_gwas_paper_data_3.csv"
+    country: "data/december2025/gbd_gwas_paper_data_4.csv"
+
+site:
+  public_data_dir: "site/public/data"
+  build_dir: "docs"
+  base_path: "/GWAS-GBD/"
+  years:
+    - 1990
+    - 2023
+  eligibility_threshold: 0.01
+
+services:
+  embed_server_url: "http://localhost:8000"
+  llm_model: "claude-haiku-4-5-20251001"

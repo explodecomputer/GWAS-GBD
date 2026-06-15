@@ -2,6 +2,7 @@ library(here)
 library(dplyr)
 library(httr)
 library(jsonlite)
+source(here("scripts/config.R"))
 
 # ── LLM Batch Submit ───────────────────────────────────────────────────────
 # Submits all unreviewed evidence package rows to the Anthropic Message
@@ -21,11 +22,12 @@ for (f in list.files(here("scripts/canonical_mapping/R"), pattern = "\\.R$",
 
 # ── Configuration ──────────────────────────────────────────────────────────
 
-evidence_pkg_path <- here("outputs/canonical_mapping/04_evidence_package.csv")
-output_path       <- here("outputs/canonical_mapping/04_evidence_package_reviewed.csv")
-state_path        <- here("outputs/canonical_mapping/batch_state.json")
+cfg <- load_project_config()
+evidence_pkg_path <- cfg_path(cfg_get(cfg, "canonical_mapping.evidence_package"), cfg)
+output_path       <- cfg_path(cfg_get(cfg, "canonical_mapping.reviewed_evidence_package"), cfg)
+state_path        <- cfg_path(cfg_get(cfg, "canonical_mapping.batch_state"), cfg)
 
-llm_model      <- "claude-haiku-4-5-20251001"
+llm_model      <- cfg_get(cfg, "services.llm_model")
 llm_max_tokens <- 512L
 
 api_key <- Sys.getenv("ANTHROPIC_API_KEY")

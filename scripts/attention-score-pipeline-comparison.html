@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,10 +68,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="attention-score-pipeline-comparison_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="attention-score-pipeline-comparison_files/libs/quarto-html/anchor.min.js"></script>
 <link href="attention-score-pipeline-comparison_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="attention-score-pipeline-comparison_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="attention-score-pipeline-comparison_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="attention-score-pipeline-comparison_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="attention-score-pipeline-comparison_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="attention-score-pipeline-comparison_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="attention-score-pipeline-comparison_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -128,42 +128,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>before_path  <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"Data/merged_dataset_exclude_Injuries_2023_updated_6.csv"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>after_path   <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"Data/merged_dataset_exclude_Injuries.csv"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>manual_path  <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"Data/manual_zero_attention_mapping.csv"</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>todo_path    <span class="ot">&lt;-</span> <span class="fu">here</span>(<span class="st">"Data/zero_attention_todo.csv"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">fread</span>(before_path) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">"updated_6_reference"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>after  <span class="ot">&lt;-</span> <span class="fu">fread</span>(after_path)  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">"pipeline_current"</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(before, after)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>key_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cause_name"</span>, <span class="st">"cause_id"</span>, <span class="st">"analysis_type"</span>, <span class="st">"time_strata"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Terms already covered in the manual mapping file (have at least one filled URI)</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>manual_mapped <span class="ot">&lt;-</span> <span class="fu">fread</span>(manual_path, <span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mapped_trait_uri), <span class="fu">nzchar</span>(mapped_trait_uri)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(cause_name)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Current pipeline zeros not yet manually mapped → write todo file</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>a_all_for_todo <span class="ot">&lt;-</span> after <span class="sc">%&gt;%</span> <span class="fu">filter</span>(analysis_type <span class="sc">==</span> <span class="st">"all"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>todo <span class="ot">&lt;-</span> a_all_for_todo <span class="sc">%&gt;%</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_attention_score <span class="sc">==</span> <span class="dv">0</span>,</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>cause_name <span class="sc">%in%</span> manual_mapped<span class="sc">$</span>cause_name) <span class="sc">%&gt;%</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    before <span class="sc">%&gt;%</span> <span class="fu">filter</span>(analysis_type <span class="sc">==</span> <span class="st">"all"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(cause_name, <span class="at">reference_score =</span> total_attention_score),</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"cause_name"</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">coalesce</span>(reference_score, <span class="dv">0</span>L))) <span class="sc">%&gt;%</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(cause_name, cause_id, reference_score,</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapped_trait_uri =</span> <span class="cn">NA_character_</span>, <span class="at">notes =</span> <span class="cn">NA_character_</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(todo, todo_path, <span class="at">na =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="fu">here</span>(<span class="st">"scripts/config.R"</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>cfg <span class="ot">&lt;-</span> <span class="fu">load_project_config</span>()</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>before_path  <span class="ot">&lt;-</span> <span class="fu">cfg_path</span>(<span class="fu">cfg_get</span>(cfg, <span class="st">"inputs.reference_attention_scores"</span>), cfg)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>after_path   <span class="ot">&lt;-</span> <span class="fu">cfg_path</span>(<span class="fu">cfg_get</span>(cfg, <span class="st">"attention_scores.temporal_output"</span>), cfg)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>manual_path  <span class="ot">&lt;-</span> <span class="fu">cfg_path</span>(<span class="fu">cfg_get</span>(cfg, <span class="st">"inputs.manual_zero_mapping"</span>), cfg)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>todo_path    <span class="ot">&lt;-</span> <span class="fu">cfg_path</span>(<span class="fu">cfg_get</span>(cfg, <span class="st">"pipeline_checks.zero_attention_todo"</span>), cfg)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>before <span class="ot">&lt;-</span> <span class="fu">fread</span>(before_path) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">"updated_6_reference"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>after  <span class="ot">&lt;-</span> <span class="fu">fread</span>(after_path)  <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">source =</span> <span class="st">"pipeline_current"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>combined <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(before, after)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>key_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cause_name"</span>, <span class="st">"cause_id"</span>, <span class="st">"analysis_type"</span>, <span class="st">"time_strata"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Terms already covered in the manual mapping file (have at least one filled URI)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>manual_mapped <span class="ot">&lt;-</span> <span class="fu">fread</span>(manual_path, <span class="at">na.strings =</span> <span class="fu">c</span>(<span class="st">""</span>, <span class="st">"NA"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(mapped_trait_uri), <span class="fu">nzchar</span>(mapped_trait_uri)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(cause_name)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Current pipeline zeros not yet manually mapped → write todo file</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>a_all_for_todo <span class="ot">&lt;-</span> after <span class="sc">%&gt;%</span> <span class="fu">filter</span>(analysis_type <span class="sc">==</span> <span class="st">"all"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>todo <span class="ot">&lt;-</span> a_all_for_todo <span class="sc">%&gt;%</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(total_attention_score <span class="sc">==</span> <span class="dv">0</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>         <span class="sc">!</span>cause_name <span class="sc">%in%</span> manual_mapped<span class="sc">$</span>cause_name) <span class="sc">%&gt;%</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    before <span class="sc">%&gt;%</span> <span class="fu">filter</span>(analysis_type <span class="sc">==</span> <span class="st">"all"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(cause_name, <span class="at">reference_score =</span> total_attention_score),</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"cause_name"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="fu">coalesce</span>(reference_score, <span class="dv">0</span>L))) <span class="sc">%&gt;%</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(cause_name, cause_id, reference_score,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>            <span class="at">mapped_trait_uri =</span> <span class="cn">NA_character_</span>, <span class="at">notes =</span> <span class="cn">NA_character_</span>)</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="fu">dirname</span>(todo_path), <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">fwrite</span>(todo, todo_path, <span class="at">na =</span> <span class="st">""</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>This report compares Rayan’s manually generated <code>_updated_6</code> file with the regenerated pipeline output. The current pipeline reads <code>Data/gbd_efo_master_mapping.tsv</code> (generated by <code>scripts/canonical_mapping/export_to_master_mapping.R</code> from the LLM/human-reviewed evidence package) and rolls up through the GBD hierarchy.</p>
+<p>This report compares Rayan’s manually generated <code>_updated_6</code> file with the regenerated pipeline output. The current pipeline reads the configured <code>canonical_mapping.master_mapping</code> path (generated by <code>scripts/canonical_mapping/export_to_master_mapping.R</code> from the LLM/human-reviewed evidence package) and rolls up through the GBD hierarchy.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -199,9 +202,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   &lt;chr&gt;                                               &lt;int&gt;
 1 All-time causes (total)                               275
 2 All-time zero-score (_updated_6)                       40
-3 All-time zero-score (pipeline)                         32
+3 All-time zero-score (pipeline)                         33
 4 Reference-zero causes recovered by pipeline            16
-5 Reference nonzero causes with higher pipeline score   194</code></pre>
+5 Reference nonzero causes with higher pipeline score   193</code></pre>
 </div>
 </div>
 </section>
@@ -304,7 +307,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 19:             Lower extremity peripheral arterial disease      502
 20:                                  Other urinary diseases      602
                                                  cause_name cause_id
-                                                     &lt;char&gt;    &lt;int&gt;
     before_score after_score     delta pct_change
            &lt;num&gt;       &lt;num&gt;     &lt;num&gt;      &lt;num&gt;
  1:      5849798    47052721  41202923      704.3
@@ -327,8 +329,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 18:      4435854     8810151   4374297       98.6
 19:       894278     4965064   4070786      455.2
 20:      4887921     1074198  -3813723      -78.0
-    before_score after_score     delta pct_change
-           &lt;num&gt;       &lt;num&gt;     &lt;num&gt;      &lt;num&gt;</code></pre>
+    before_score after_score     delta pct_change</code></pre>
 </div>
 </div>
 </section>
@@ -352,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 2 × 6
   source    rows unique_causes zero_all_time nonzero_all_time score_sum_all_time
   &lt;chr&gt;    &lt;int&gt;         &lt;int&gt;         &lt;int&gt;            &lt;int&gt;              &lt;dbl&gt;
-1 pipelin…  6104           311            32              243         383508718.
+1 pipelin…  6089           311            33              242         383063190.
 2 updated…  4743           312            40              272         242036729.</code></pre>
 </div>
 </div>
@@ -376,9 +377,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 4 × 4
   source              analysis_type  rows nonzero
   &lt;chr&gt;               &lt;chr&gt;         &lt;int&gt;   &lt;int&gt;
-1 pipeline_current    sliding_3yr    3369    3369
+1 pipeline_current    sliding_3yr    3360    3360
 2 updated_6_reference sliding_3yr    2699    2694
-3 pipeline_current    year           2460    2460
+3 pipeline_current    year           2454    2454
 4 updated_6_reference year           1732    1726</code></pre>
 </div>
 </div>
@@ -451,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Causes zero in pipeline but non-zero in _updated_6:"</span>, <span class="fu">nrow</span>(problematic), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Causes zero in pipeline but non-zero in _updated_6: 8 </code></pre>
+<pre><code>Causes zero in pipeline but non-zero in _updated_6: 9 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -462,13 +463,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>                                 cause_name cause_id after_score before_score
                                      &lt;char&gt;    &lt;int&gt;       &lt;num&gt;        &lt;num&gt;
 1:                 Liver cancer due to NASH      996           0       918189
-2:                        Paratyphoid fever      320           0         4168
-3:                                    Ebola      843           0         1745
-4:                         Hookworm disease      363           0         1745
-5:                             Yellow fever      358           0         1745
-6:                               G6PD trait      839           0          466
-7: HIV/AIDS - Drug-susceptible Tuberculosis      948           0          267
-8:                     Gonococcal infection      396           0          234</code></pre>
+2:     Other intestinal infectious diseases      321           0        72938
+3:                        Paratyphoid fever      320           0         4168
+4:                                    Ebola      843           0         1745
+5:                         Hookworm disease      363           0         1745
+6:                             Yellow fever      358           0         1745
+7:                               G6PD trait      839           0          466
+8: HIV/AIDS - Drug-susceptible Tuberculosis      948           0          267
+9:                     Gonococcal infection      396           0          234</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -499,14 +501,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="remaining-unmapped-zero-attention-traits" class="level2">
 <h2 class="anchored" data-anchor-id="remaining-unmapped-zero-attention-traits">Remaining Unmapped Zero-Attention Traits</h2>
-<p>Terms with zero pipeline attention that are <strong>not yet covered</strong> in <code>manual_zero_attention_mapping.csv</code>. This list is also written to <code>Data/zero_attention_todo.csv</code> — add new mappings there, then copy the <code>cause_name</code> + <code>mapped_trait_uri</code> rows into <code>manual_zero_attention_mapping.csv</code> and re-run the pipeline.</p>
+<p>Terms with zero pipeline attention that are <strong>not yet covered</strong> in <code>manual_zero_attention_mapping.csv</code>. This list is also written to the configured <code>pipeline_checks.zero_attention_todo</code> path — add new mappings there, then copy the <code>cause_name</code> + <code>mapped_trait_uri</code> rows into <code>manual_zero_attention_mapping.csv</code> and re-run the pipeline.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Remaining unmapped zero-attention traits:"</span>, <span class="fu">nrow</span>(todo), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Remaining unmapped zero-attention traits: 32 </code></pre>
+<pre><code>Remaining unmapped zero-attention traits: 33 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -516,75 +518,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>                                                                       cause_name
                                                                            &lt;char&gt;
  1:                                                      Liver cancer due to NASH
- 2:                                                             Paratyphoid fever
- 3:                                                                         Ebola
- 4:                                                              Hookworm disease
- 5:                                                                  Yellow fever
- 6:                                                                    G6PD trait
- 7:                                      HIV/AIDS - Drug-susceptible Tuberculosis
- 8:                                                          Gonococcal infection
- 9:                                                       African trypanosomiasis
-10:                                                                    Asbestosis
-11:                                                                    Ascariasis
-12:                                                         Cystic echinococcosis
-13:                                                                 Cysticercosis
-14:                                                      Food-borne trematodiases
-15:                                                               G6PD deficiency
-16:                                                           Guinea worm disease
-17:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
-18: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
-19:                                                      Indirect maternal deaths
-20:                                                          Klinefelter syndrome
-21:                                                          Late maternal deaths
-22:                                        Maternal deaths aggravated by HIV/AIDS
-23:                                                                Onchocerciasis
-24:                                                                        Rabies
-25:                                                               Schistosomiasis
-26:                                                                     Silicosis
-27:                                                  Sudden infant death syndrome
-28:                                                                      Syphilis
-29:                                                                Trichomoniasis
-30:                                                                  Trichuriasis
-31:                                                               Turner syndrome
-32:                                                                    Zika virus
+ 2:                                          Other intestinal infectious diseases
+ 3:                                                             Paratyphoid fever
+ 4:                                                                         Ebola
+ 5:                                                              Hookworm disease
+ 6:                                                                  Yellow fever
+ 7:                                                                    G6PD trait
+ 8:                                      HIV/AIDS - Drug-susceptible Tuberculosis
+ 9:                                                          Gonococcal infection
+10:                                                       African trypanosomiasis
+11:                                                                    Asbestosis
+12:                                                                    Ascariasis
+13:                                                         Cystic echinococcosis
+14:                                                                 Cysticercosis
+15:                                                      Food-borne trematodiases
+16:                                                               G6PD deficiency
+17:                                                           Guinea worm disease
+18:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
+19: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
+20:                                                      Indirect maternal deaths
+21:                                                          Klinefelter syndrome
+22:                                                          Late maternal deaths
+23:                                        Maternal deaths aggravated by HIV/AIDS
+24:                                                                Onchocerciasis
+25:                                                                        Rabies
+26:                                                               Schistosomiasis
+27:                                                                     Silicosis
+28:                                                  Sudden infant death syndrome
+29:                                                                      Syphilis
+30:                                                                Trichomoniasis
+31:                                                                  Trichuriasis
+32:                                                               Turner syndrome
+33:                                                                    Zika virus
                                                                        cause_name
-                                                                           &lt;char&gt;
     cause_id reference_score
        &lt;int&gt;           &lt;num&gt;
  1:      996          918189
- 2:      320            4168
- 3:      843            1745
- 4:      363            1745
- 5:      358            1745
- 6:      839             466
- 7:      948             267
- 8:      396             234
- 9:      350               0
-10:      512               0
-11:      361               0
-12:      353               0
-13:      352               0
-14:      364               0
-15:      616               0
-16:      936               0
-17:      950               0
-18:      949               0
-19:      375               0
-20:      647               0
-21:      376               0
-22:      741               0
-23:      355               0
-24:      359               0
-25:      351               0
-26:      511               0
-27:      686               0
-28:      394               0
-29:      397               0
-30:      362               0
-31:      646               0
-32:      935               0
-    cause_id reference_score
-       &lt;int&gt;           &lt;num&gt;</code></pre>
+ 2:      321           72938
+ 3:      320            4168
+ 4:      843            1745
+ 5:      363            1745
+ 6:      358            1745
+ 7:      839             466
+ 8:      948             267
+ 9:      396             234
+10:      350               0
+11:      512               0
+12:      361               0
+13:      353               0
+14:      352               0
+15:      364               0
+16:      616               0
+17:      936               0
+18:      950               0
+19:      949               0
+20:      375               0
+21:      647               0
+22:      376               0
+23:      741               0
+24:      355               0
+25:      359               0
+26:      351               0
+27:      511               0
+28:      686               0
+29:      394               0
+30:      397               0
+31:      362               0
+32:      646               0
+33:      935               0
+    cause_id reference_score</code></pre>
 </div>
 </div>
 </section>
@@ -606,7 +608,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Total zero-attention traits in pipeline:"</span>, <span class="fu">nrow</span>(all_zero), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Total zero-attention traits in pipeline: 32 </code></pre>
+<pre><code>Total zero-attention traits in pipeline: 33 </code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
@@ -616,75 +618,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>                                                                       cause_name
                                                                            &lt;char&gt;
  1:                                                      Liver cancer due to NASH
- 2:                                                             Paratyphoid fever
- 3:                                                                         Ebola
- 4:                                                              Hookworm disease
- 5:                                                                  Yellow fever
- 6:                                                                    G6PD trait
- 7:                                      HIV/AIDS - Drug-susceptible Tuberculosis
- 8:                                                          Gonococcal infection
- 9:                                                       African trypanosomiasis
-10:                                                                    Asbestosis
-11:                                                                    Ascariasis
-12:                                                         Cystic echinococcosis
-13:                                                                 Cysticercosis
-14:                                                      Food-borne trematodiases
-15:                                                               G6PD deficiency
-16:                                                           Guinea worm disease
-17:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
-18: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
-19:                                                      Indirect maternal deaths
-20:                                                          Klinefelter syndrome
-21:                                                          Late maternal deaths
-22:                                        Maternal deaths aggravated by HIV/AIDS
-23:                                                                Onchocerciasis
-24:                                                                        Rabies
-25:                                                               Schistosomiasis
-26:                                                                     Silicosis
-27:                                                  Sudden infant death syndrome
-28:                                                                      Syphilis
-29:                                                                Trichomoniasis
-30:                                                                  Trichuriasis
-31:                                                               Turner syndrome
-32:                                                                    Zika virus
+ 2:                                          Other intestinal infectious diseases
+ 3:                                                             Paratyphoid fever
+ 4:                                                                         Ebola
+ 5:                                                              Hookworm disease
+ 6:                                                                  Yellow fever
+ 7:                                                                    G6PD trait
+ 8:                                      HIV/AIDS - Drug-susceptible Tuberculosis
+ 9:                                                          Gonococcal infection
+10:                                                       African trypanosomiasis
+11:                                                                    Asbestosis
+12:                                                                    Ascariasis
+13:                                                         Cystic echinococcosis
+14:                                                                 Cysticercosis
+15:                                                      Food-borne trematodiases
+16:                                                               G6PD deficiency
+17:                                                           Guinea worm disease
+18:                            HIV/AIDS - Extensively drug-resistant Tuberculosis
+19: HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance
+20:                                                      Indirect maternal deaths
+21:                                                          Klinefelter syndrome
+22:                                                          Late maternal deaths
+23:                                        Maternal deaths aggravated by HIV/AIDS
+24:                                                                Onchocerciasis
+25:                                                                        Rabies
+26:                                                               Schistosomiasis
+27:                                                                     Silicosis
+28:                                                  Sudden infant death syndrome
+29:                                                                      Syphilis
+30:                                                                Trichomoniasis
+31:                                                                  Trichuriasis
+32:                                                               Turner syndrome
+33:                                                                    Zika virus
                                                                        cause_name
-                                                                           &lt;char&gt;
     cause_id reference_score
        &lt;int&gt;           &lt;num&gt;
  1:      996          918189
- 2:      320            4168
- 3:      843            1745
- 4:      363            1745
- 5:      358            1745
- 6:      839             466
- 7:      948             267
- 8:      396             234
- 9:      350               0
-10:      512               0
-11:      361               0
-12:      353               0
-13:      352               0
-14:      364               0
-15:      616               0
-16:      936               0
-17:      950               0
-18:      949               0
-19:      375               0
-20:      647               0
-21:      376               0
-22:      741               0
-23:      355               0
-24:      359               0
-25:      351               0
-26:      511               0
-27:      686               0
-28:      394               0
-29:      397               0
-30:      362               0
-31:      646               0
-32:      935               0
-    cause_id reference_score
-       &lt;int&gt;           &lt;num&gt;</code></pre>
+ 2:      321           72938
+ 3:      320            4168
+ 4:      843            1745
+ 5:      363            1745
+ 6:      358            1745
+ 7:      839             466
+ 8:      948             267
+ 9:      396             234
+10:      350               0
+11:      512               0
+12:      361               0
+13:      353               0
+14:      352               0
+15:      364               0
+16:      616               0
+17:      936               0
+18:      950               0
+19:      949               0
+20:      375               0
+21:      647               0
+22:      376               0
+23:      741               0
+24:      355               0
+25:      359               0
+26:      351               0
+27:      511               0
+28:      686               0
+29:      394               0
+30:      397               0
+31:      362               0
+32:      646               0
+33:      935               0
+    cause_id reference_score</code></pre>
 </div>
 </div>
 </section>
@@ -710,7 +712,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>    n correlation causes_unchanged causes_increased causes_decreased
-1 275    0.466526               35              210               30</code></pre>
+1 275   0.4665819               35              209               31</code></pre>
 </div>
 </div>
 </section>
@@ -733,9 +735,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            metric rows
-1     keys_in_both 4163
-2 keys_only_before  580
-3  keys_only_after 1941</code></pre>
+1     keys_in_both 4150
+2 keys_only_before  593
+3  keys_only_after 1939</code></pre>
 </div>
 </div>
 </section>

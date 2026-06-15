@@ -46,6 +46,64 @@ library(stringr)
   as.numeric(matrix_rows %*% query_vec) / (mnorms * qnorm)
 }
 
+# ── Embedding service ports ─────────────────────────────────────────────────
+
+embedding_http_port <- function(url) {
+  if (is.null(url) || is.na(url) || !nzchar(url)) {
+    stop("Embedding HTTP port requires a non-empty service URL.", call. = FALSE)
+  }
+  structure(list(type = "http", url = url), class = "embedding_port")
+}
+
+embedding_fake_port <- function(dim = 8L) {
+  structure(list(type = "fake", dim = as.integer(dim)), class = "embedding_port")
+}
+
+embedding_tfidf_port <- function() {
+  structure(list(type = "tfidf"), class = "embedding_port")
+}
+
+embedding_port_from_config <- function(cfg, use_fake = FALSE) {
+  if (isTRUE(use_fake)) {
+    return(embedding_fake_port())
+  }
+  url <- cfg_get(cfg, "services.embed_server_url", default = NULL, required = FALSE)
+  if (is.null(url) || is.na(url) || !nzchar(url)) {
+    embedding_tfidf_port()
+  } else {
+    embedding_http_port(url)
+  }
+}
+
+.embed_via_fake_port <- function(texts, dim = 8L) {
+  rows <- lapply(texts, function(text) {
+    tokens <- .tokenise(text)
+    vec <- rep(0, dim)
+    for (token in tokens) {
+      bucket <- (sum(utf8ToInt(token)) %% dim) + 1L
+      vec[bucket] <- vec[bucket] + 1
+    }
+    vec
+  })
+  do.call(rbind, rows)
+}
+
+embedding_port_embed <- function(port, texts) {
+  if (is.null(port)) {
+    port <- embedding_tfidf_port()
+  }
+
+  if (identical(port$type, "http")) {
+    return(.embed_via_server(texts, port$url))
+  }
+
+  if (identical(port$type, "fake")) {
+    return(.embed_via_fake_port(texts, port$dim))
+  }
+
+  stop("Port type 'tfidf' is handled by the caller because it needs all documents together.")
+}
+
 # ── BioBERT server backend ─────────────────────────────────────────────────
 
 #' Check that the embed server is reachable.
@@ -125,6 +183,7 @@ add_embedding_candidates <- function(existing_candidates,
                                      ontology_metadata,
                                      top_k            = 10L,
                                      min_similarity   = 0.15,
+                                     embedding_port   = NULL,
                                      embed_server_url = NULL,
                                      embed_fn         = NULL) {
   obs_ids <- observed_term_universe$terms$ontology_id
@@ -159,7 +218,25 @@ add_embedding_candidates <- function(existing_candidates,
 
   # ── Build similarity function ────────────────────────────────────────────
 
-  if (!is.null(embed_server_url)) {
+  if (!is.null(embedding_port) && identical(embedding_port$type, "http")) {
+    message(sprintf("Embedding %d texts via configured embedding port: %s",
+                    nrow(cond_docs) + length(term_texts), embedding_port$url))
+    all_texts  <- c(cond_docs$query_text, term_texts)
+    all_embeds <- embedding_port_embed(embedding_port, all_texts)
+    n_cond     <- nrow(cond_docs)
+    cond_mat   <- all_embeds[seq_len(n_cond), , drop = FALSE]
+    term_mat   <- all_embeds[seq(n_cond + 1L, nrow(all_embeds)), , drop = FALSE]
+    sim_fn     <- function(i) .cosine_sim(cond_mat[i, ], term_mat)
+
+  } else if (!is.null(embedding_port) && identical(embedding_port$type, "fake")) {
+    all_texts  <- c(cond_docs$query_text, term_texts)
+    all_embeds <- embedding_port_embed(embedding_port, all_texts)
+    n_cond     <- nrow(cond_docs)
+    cond_mat   <- all_embeds[seq_len(n_cond), , drop = FALSE]
+    term_mat   <- all_embeds[seq(n_cond + 1L, nrow(all_embeds)), , drop = FALSE]
+    sim_fn     <- function(i) .cosine_sim(cond_mat[i, ], term_mat)
+
+  } else if (!is.null(embed_server_url)) {
     message(sprintf("Embedding %d texts via BioBERT server: %s",
                     nrow(cond_docs) + length(term_texts), embed_server_url))
     all_texts  <- c(cond_docs$query_text, term_texts)

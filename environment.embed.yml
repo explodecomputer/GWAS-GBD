@@ -1,0 +1,10 @@
+name: gwas-gbd-embed
+channels:
+  - conda-forge
+  - pytorch
+dependencies:
+  - python=3.11
+  - pip
+  - pytorch
+  - pip:
+      - -r scripts/canonical_mapping/embed_requirements.txt

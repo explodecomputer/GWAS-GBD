@@ -1,5 +1,6 @@
 library(here)
 library(dplyr)
+source(here("scripts/config.R"))
 
 # ── Canonical Mapping Workflow ─────────────────────────────────────────────
 # End-to-end orchestration for one GWAS Catalog release.
@@ -11,24 +12,26 @@ for (f in list.files(here("scripts/canonical_mapping/R"), pattern = "\\.R$",
 }
 
 # ── Configuration ──────────────────────────────────────────────────────────
-# Edit paths here or pass as environment variables.
+# Edit config/config.yaml for project defaults. Use config/config.local.yaml
+# or GWAS_GBD_CONFIG/GWAS_GBD_LOCAL_CONFIG for local overrides.
 
-gwas_catalog_path    <- here("Data/gwas_catalog_v1.0.2.1-studies_r2026-06-01.tsv")
-hierarchy_path       <- here("Data/IHME_GBD_2023_HIERARCHIES_Y2025M10D23.XLSX")
-first_part_path      <- here("Data/First_part_GBD.xlsx")
-second_part_path     <- here("Data/Second_part_GBD.xlsx")
-efo_obo_path         <- here("Data/efo.obo")
-output_dir           <- here("outputs/canonical_mapping")
-catalog_release      <- "2026-06-01"
+cfg <- load_project_config()
+gwas_catalog_path    <- cfg_path(cfg_get(cfg, "inputs.gwas_catalog"), cfg)
+hierarchy_path       <- cfg_path(cfg_get(cfg, "inputs.gbd_hierarchy"), cfg)
+first_part_path      <- cfg_path(cfg_get(cfg, "inputs.first_part_gbd"), cfg)
+second_part_path     <- cfg_path(cfg_get(cfg, "inputs.second_part_gbd"), cfg)
+efo_obo_path         <- cfg_path(cfg_get(cfg, "inputs.efo_obo"), cfg)
+output_dir           <- cfg_path(cfg_get(cfg, "canonical_mapping.output_dir"), cfg)
+catalog_release      <- cfg_get(cfg, "release.gwas_catalog")
 
 # Set to NULL to fall back to TF-IDF; or "http://<gpu-host>:8000" for remote.
-embed_server_url     <- Sys.getenv("EMBED_SERVER_URL", unset = "http://localhost:8000")
-
-sentinel_conditions <- c(
-  "Type 1 diabetes mellitus",
-  "Type 2 diabetes mellitus",
-  "Breast cancer"
+embed_server_url     <- Sys.getenv(
+  "EMBED_SERVER_URL",
+  unset = cfg_get(cfg, "services.embed_server_url", required = FALSE, default = "")
 )
+if (!nzchar(embed_server_url)) embed_server_url <- NULL
+
+sentinel_conditions <- cfg_get(cfg, "canonical_mapping.sentinel_conditions")
 
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
