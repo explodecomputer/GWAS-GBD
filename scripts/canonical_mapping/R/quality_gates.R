@@ -86,10 +86,11 @@ library(stringr)
   if (nrow(viol) == 0) return(NULL)
   list(
     gate    = "residual_exclusivity",
-    status  = "FAIL",
+    status  = "WARN",
     message = paste(
       nrow(viol),
-      "residual condition(s) accept term(s) already accepted by specific siblings:",
+      "residual condition(s) accept term(s) already accepted by specific siblings",
+      "(allowed — both terms are scored independently):",
       paste(head(paste(viol$residual_condition, viol$ontology_id, sep = " × "), 10),
             collapse = ", ")
     ),

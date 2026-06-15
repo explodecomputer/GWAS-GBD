@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Regional concentration index analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="regional_concentration_index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="regional_concentration_index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="regional_concentration_index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="regional_concentration_index_files/libs/quarto-html/popper.min.js"></script>
+<script src="regional_concentration_index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="regional_concentration_index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="regional_concentration_index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="regional_concentration_index_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="regional_concentration_index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="regional_concentration_index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="regional_concentration_index_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="regional_concentration_index_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="regional_concentration_index_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#analysis-aim" id="toc-analysis-aim" class="nav-link active" data-scroll-target="#analysis-aim"><span class="header-section-number">1</span> Analysis aim</a></li>
+  <li><a href="#gwas-attention-data" id="toc-gwas-attention-data" class="nav-link" data-scroll-target="#gwas-attention-data"><span class="header-section-number">2</span> GWAS attention data</a></li>
+  <li><a href="#main-sdi-comparison" id="toc-main-sdi-comparison" class="nav-link" data-scroll-target="#main-sdi-comparison"><span class="header-section-number">3</span> Main SDI comparison</a></li>
+  <li><a href="#sex-specific-analysis" id="toc-sex-specific-analysis" class="nav-link" data-scroll-target="#sex-specific-analysis"><span class="header-section-number">4</span> Sex-specific analysis</a></li>
+  <li><a href="#country-level-analysis" id="toc-country-level-analysis" class="nav-link" data-scroll-target="#country-level-analysis"><span class="header-section-number">5</span> Country-level analysis</a></li>
+  <li><a href="#lorenz-curves" id="toc-lorenz-curves" class="nav-link" data-scroll-target="#lorenz-curves"><span class="header-section-number">6</span> Lorenz curves</a></li>
+  <li><a href="#age-specific-analysis" id="toc-age-specific-analysis" class="nav-link" data-scroll-target="#age-specific-analysis"><span class="header-section-number">7</span> Age-specific analysis</a></li>
+  <li><a href="#gwas-attention-inequality-over-time" id="toc-gwas-attention-inequality-over-time" class="nav-link" data-scroll-target="#gwas-attention-inequality-over-time"><span class="header-section-number">8</span> GWAS attention inequality over time</a></li>
+  <li><a href="#burden-and-attention-in-the-same-year" id="toc-burden-and-attention-in-the-same-year" class="nav-link" data-scroll-target="#burden-and-attention-in-the-same-year"><span class="header-section-number">9</span> Burden and attention in the same year</a></li>
+  <li><a href="#fixed-gbd-year-with-changing-gwas-attention-year" id="toc-fixed-gbd-year-with-changing-gwas-attention-year" class="nav-link" data-scroll-target="#fixed-gbd-year-with-changing-gwas-attention-year"><span class="header-section-number">10</span> Fixed GBD year with changing GWAS attention year</a></li>
+  <li><a href="#high-sdi-and-low-sdi-burden-priority" id="toc-high-sdi-and-low-sdi-burden-priority" class="nav-link" data-scroll-target="#high-sdi-and-low-sdi-burden-priority"><span class="header-section-number">11</span> High-SDI and Low-SDI burden priority</a></li>
+  <li><a href="#zero-attention-disease-burden-trends" id="toc-zero-attention-disease-burden-trends" class="nav-link" data-scroll-target="#zero-attention-disease-burden-trends"><span class="header-section-number">12</span> Zero-attention disease burden trends</a></li>
+  <li><a href="#reproducibility-notes" id="toc-reproducibility-notes" class="nav-link" data-scroll-target="#reproducibility-notes"><span class="header-section-number">13</span> Reproducibility notes</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Regional concentration index analysis</h1>
+<p class="subtitle lead">Trial Quarto migration from scripts/regional-concentration-index.ipynb</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="analysis-aim" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="analysis-aim"><span class="header-section-number">1</span> Analysis aim</h2>
+<p>This report examines whether inequality in GWAS attention is aligned with disease burden. The primary descriptive statistic is the concentration index of GWAS attention when diseases are ranked by DALY burden.</p>
+<p>The notebook metric is retained as <code>concentration_index</code>. This migration also reports:</p>
+<pre class="text"><code>alignment_ratio = concentration_index / attention_gini</code></pre>
+<p>This ratio can be read as the share of GWAS attention inequality that is aligned with the disease-burden ranking. Values near 1 indicate that GWAS attention inequality is strongly ordered by burden; values near 0 indicate that attention inequality is not ordered by burden; negative values indicate concentration among lower-burden diseases.</p>
+<p>As a proportional-allocation sensitivity analysis, this report also calculates:</p>
+<pre class="text"><code>share_distance = 0.5 * sum(abs(attention_share - daly_share))
+share_alignment = 1 - share_distance</code></pre>
+<p>This asks a different question: how close the share of GWAS attention is to the share of DALYs.</p>
+</section>
+<section id="gwas-attention-data" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="gwas-attention-data"><span class="header-section-number">2</span> GWAS attention data</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["n_causes"],"name":[1],"type":["int"],"align":["right"]},{"label":["n_unique_cause_ids"],"name":[2],"type":["int"],"align":["right"]},{"label":["n_zero_attention"],"name":[3],"type":["int"],"align":["right"]},{"label":["n_nonzero_attention"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"312","2":"312","3":"129","4":"183"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["cause_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["cause_id"],"name":[2],"type":["int"],"align":["right"]},{"label":["total_attention_score"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Acute glomerulonephritis","2":"588","3":"0"},{"1":"Acute hepatitis","2":"400","3":"0"},{"1":"Acute hepatitis A","2":"401","3":"0"},{"1":"Acute hepatitis B","2":"402","3":"0"},{"1":"Acute hepatitis C","2":"403","3":"0"},{"1":"Acute hepatitis E","2":"404","3":"0"},{"1":"Acute lymphoid leukemia","2":"845","3":"0"},{"1":"African trypanosomiasis","2":"350","3":"0"},{"1":"Alcoholic cardiomyopathy","2":"938","3":"0"},{"1":"Amphetamine use disorders","2":"564","3":"0"},{"1":"Anxiety disorders","2":"571","3":"0"},{"1":"Asbestosis","2":"512","3":"0"},{"1":"Ascariasis","2":"361","3":"0"},{"1":"Benign and in situ cervical and uterine neoplasms","2":"966","3":"0"},{"1":"Benign and in situ intestinal neoplasms","2":"965","3":"0"},{"1":"Burkitt lymphoma","2":"1006","3":"0"},{"1":"Cellulitis","2":"656","3":"0"},{"1":"Chlamydial infection","2":"395","3":"0"},{"1":"Chronic hepatitis C including cirrhosis","2":"523","3":"0"},{"1":"Chronic kidney disease due to hypertension","2":"591","3":"0"},{"1":"Chronic kidney disease due to other and unspecified causes","2":"593","3":"0"},{"1":"Chronic lymphoid leukemia","2":"846","3":"0"},{"1":"Cirrhosis and other chronic liver diseases","2":"521","3":"0"},{"1":"Cirrhosis due to alcohol","2":"524","3":"0"},{"1":"Coal workers pneumoconiosis","2":"513","3":"0"},{"1":"Cocaine use disorders","2":"563","3":"0"},{"1":"Colon and rectum cancer","2":"441","3":"0"},{"1":"Cystic echinococcosis","2":"353","3":"0"},{"1":"Cysticercosis","2":"352","3":"0"},{"1":"Decubitus ulcer","2":"665","3":"0"},{"1":"Dietary iron deficiency","2":"390","3":"0"},{"1":"Digestive congenital anomalies","2":"651","3":"0"},{"1":"Diphtheria","2":"338","3":"0"},{"1":"Drug-susceptible tuberculosis","2":"934","3":"0"},{"1":"Dysthymia","2":"569","3":"0"},{"1":"Edentulism","2":"684","3":"0"},{"1":"Endocarditis","2":"503","3":"0"},{"1":"Extensively drug-resistant tuberculosis","2":"947","3":"0"},{"1":"Food-borne trematodiases","2":"364","3":"0"},{"1":"Fungal skin diseases","2":"659","3":"0"},{"1":"G6PD deficiency","2":"616","3":"0"},{"1":"G6PD trait","2":"839","3":"0"},{"1":"Gallbladder and biliary diseases","2":"534","3":"0"},{"1":"Gallbladder and biliary tract cancer","2":"453","3":"0"},{"1":"Gastritis and duodenitis","2":"528","3":"0"},{"1":"Genital herpes","2":"398","3":"0"},{"1":"Genital prolapse","2":"608","3":"0"},{"1":"Gonococcal infection","2":"396","3":"0"},{"1":"Guinea worm disease","2":"936","3":"0"},{"1":"HIV/AIDS - Drug-susceptible Tuberculosis","2":"948","3":"0"},{"1":"HIV/AIDS - Extensively drug-resistant Tuberculosis","2":"950","3":"0"},{"1":"HIV/AIDS - Multidrug-resistant Tuberculosis without extensive drug resistance","2":"949","3":"0"},{"1":"Hemolytic disease and other neonatal jaundice","2":"384","3":"0"},{"1":"Hepatoblastoma","2":"1005","3":"0"},{"1":"Hypertensive heart disease","2":"498","3":"0"},{"1":"Idiopathic developmental intellectual disability","2":"582","3":"0"},{"1":"Idiopathic epilepsy","2":"545","3":"0"},{"1":"Indirect maternal deaths","2":"375","3":"0"},{"1":"Inguinal, femoral, and abdominal hernia","2":"531","3":"0"},{"1":"Interstitial lung disease and pulmonary sarcoidosis","2":"516","3":"0"},{"1":"Invasive Non-typhoidal Salmonella (iNTS)","2":"959","3":"0"},{"1":"Iodine deficiency","2":"388","3":"0"},{"1":"Klinefelter syndrome","2":"647","3":"0"},{"1":"Larynx cancer","2":"423","3":"0"},{"1":"Late maternal deaths","2":"376","3":"0"},{"1":"Latent tuberculosis infection","2":"954","3":"0"},{"1":"Lip and oral cavity cancer","2":"444","3":"0"},{"1":"Liver cancer due to other causes","2":"421","3":"0"},{"1":"Low back pain","2":"630","3":"0"},{"1":"Lower respiratory infections","2":"322","3":"0"},{"1":"Malignant neoplasm of bone and articular cartilage","2":"1012","3":"0"},{"1":"Maternal abortion and miscarriage","2":"995","3":"0"},{"1":"Maternal deaths aggravated by HIV/AIDS","2":"741","3":"0"},{"1":"Maternal hemorrhage","2":"367","3":"0"},{"1":"Maternal obstructed labor and uterine rupture","2":"370","3":"0"},{"1":"Maternal sepsis and other maternal infections","2":"368","3":"0"},{"1":"Measles","2":"341","3":"0"},{"1":"Mesothelioma","2":"483","3":"0"},{"1":"Multidrug-resistant tuberculosis without extensive drug resistance","2":"946","3":"0"},{"1":"Nasopharynx cancer","2":"447","3":"0"},{"1":"Near vision loss","2":"1000","3":"0"},{"1":"Neonatal encephalopathy due to birth asphyxia and trauma","2":"382","3":"0"},{"1":"Neural tube defects","2":"642","3":"0"},{"1":"Non-rheumatic calcific aortic valve disease","2":"968","3":"0"},{"1":"Non-rheumatic degenerative mitral valve disease","2":"969","3":"0"},{"1":"Non-rheumatic valvular heart disease","2":"504","3":"0"},{"1":"Onchocerciasis","2":"355","3":"0"},{"1":"Opioid use disorders","2":"562","3":"0"},{"1":"Other congenital birth defects","2":"652","3":"0"},{"1":"Other digestive diseases","2":"1161","3":"0"},{"1":"Other drug use disorders","2":"566","3":"0"},{"1":"Other endocrine, metabolic, blood, and immune disorders","2":"625","3":"0"},{"1":"Other eye cancers","2":"1010","3":"0"},{"1":"Other hemoglobinopathies and hemolytic anemias","2":"618","3":"0"},{"1":"Other intestinal infectious diseases","2":"321","3":"0"},{"1":"Other neonatal disorders","2":"385","3":"0"},{"1":"Other non-Hodgkin lymphoma","2":"1007","3":"0"},{"1":"Other non-rheumatic valve diseases","2":"970","3":"0"},{"1":"Other nutritional deficiencies","2":"391","3":"0"},{"1":"Other pharynx cancer","2":"450","3":"0"},{"1":"Other pneumoconiosis","2":"514","3":"0"},{"1":"Other sexually transmitted infections","2":"399","3":"0"},{"1":"Other vision loss","2":"1162","3":"0"},{"1":"Paralytic ileus and intestinal obstruction","2":"530","3":"0"},{"1":"Paratyphoid fever","2":"320","3":"0"},{"1":"Periodontal diseases","2":"683","3":"0"},{"1":"Pertussis","2":"339","3":"0"},{"1":"Premenstrual syndrome","2":"609","3":"0"},{"1":"Protein-energy malnutrition","2":"387","3":"0"},{"1":"Rabies","2":"359","3":"0"},{"1":"Scabies","2":"658","3":"0"},{"1":"Schistosomiasis","2":"351","3":"0"},{"1":"Sexually transmitted infections excluding HIV","2":"393","3":"0"},{"1":"Silicosis","2":"511","3":"0"},{"1":"Sudden infant death syndrome","2":"686","3":"0"},{"1":"Syphilis","2":"394","3":"0"},{"1":"Tension-type headache","2":"548","3":"0"},{"1":"Thalassemias","2":"614","3":"0"},{"1":"Thalassemias trait","2":"837","3":"0"},{"1":"Tracheal, bronchus, and lung cancer","2":"426","3":"0"},{"1":"Trichomoniasis","2":"397","3":"0"},{"1":"Trichuriasis","2":"362","3":"0"},{"1":"Turner syndrome","2":"646","3":"0"},{"1":"Upper respiratory infections","2":"328","3":"0"},{"1":"Urinary tract infections and interstitial nephritis","2":"595","3":"0"},{"1":"Urogenital congenital anomalies","2":"650","3":"0"},{"1":"Varicella and herpes zoster","2":"342","3":"0"},{"1":"Vascular intestinal disorders","2":"533","3":"0"},{"1":"Zika virus","2":"935","3":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</section>
+<section id="main-sdi-comparison" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="main-sdi-comparison"><span class="header-section-number">3</span> Main SDI comparison</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location_name"],"name":[1],"type":["fct"],"align":["left"]},{"label":["concentration_index"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["concentration_index_lci"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["concentration_index_uci"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["attention_gini"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["share_distance"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["share_alignment"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["n_causes"],"name":[9],"type":["int"],"align":["right"]},{"label":["daly_sum"],"name":[10],"type":["dbl"],"align":["right"]}],"data":[{"1":"High SDI","2":"0.4438795","3":"0.27405229","4":"0.6137066","5":"0.8832924","6":"0.5025283","7":"0.7198421","8":"0.2801579","9":"274","10":"708400090"},{"1":"High-middle SDI","2":"0.3779201","3":"0.21214955","4":"0.5436906","5":"0.8832924","6":"0.4278539","7":"0.7565254","8":"0.2434746","9":"274","10":"437591178"},{"1":"Middle SDI","2":"0.3281485","3":"0.15660594","4":"0.4996911","5":"0.8832924","6":"0.3715061","7":"0.7630302","8":"0.2369698","9":"274","10":"266220696"},{"1":"Low-middle SDI","2":"0.2918868","3":"0.12890383","4":"0.4548697","5":"0.8832924","6":"0.3304532","7":"0.7948976","8":"0.2051024","9":"274","10":"381935737"},{"1":"Low SDI","2":"0.2187410","3":"0.06190755","4":"0.3755745","5":"0.8832924","6":"0.2476428","7":"0.8325742","8":"0.1674258","9":"274","10":"687453469"},{"1":"Global","2":"0.3324234","3":"0.16857227","4":"0.4962744","5":"0.8832924","6":"0.3763458","7":"0.7643946","8":"0.2356054","9":"274","10":"2481601171"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/main-sdi-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location_name"],"name":[1],"type":["fct"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["sensitivity"],"name":[3],"type":["chr"],"align":["left"]},{"label":["concentration_index"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["n_causes"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"High SDI","2":"2019","3":"Excluding COVID","4":"0.4138388","5":"0.4686940","6":"273"},{"1":"High SDI","2":"2019","3":"Original","4":"0.3409659","5":"0.3860170","6":"274"},{"1":"High SDI","2":"2020","3":"Excluding COVID","4":"0.4175124","5":"0.4728545","6":"273"},{"1":"High SDI","2":"2020","3":"Original","4":"0.4458874","5":"0.5048016","6":"274"},{"1":"High SDI","2":"2021","3":"Excluding COVID","4":"0.4200759","5":"0.4757578","6":"273"},{"1":"High SDI","2":"2021","3":"Original","4":"0.4482930","5":"0.5075250","6":"274"},{"1":"High SDI","2":"2022","3":"Excluding COVID","4":"0.4175901","5":"0.4729425","6":"273"},{"1":"High SDI","2":"2022","3":"Original","4":"0.4455358","5":"0.5044035","6":"274"},{"1":"High SDI","2":"2023","3":"Excluding COVID","4":"0.4208461","5":"0.4766301","6":"273"},{"1":"High SDI","2":"2023","3":"Original","4":"0.4438795","5":"0.5025283","6":"274"},{"1":"High-middle SDI","2":"2019","3":"Excluding COVID","4":"0.3379717","5":"0.3827706","6":"273"},{"1":"High-middle SDI","2":"2019","3":"Original","4":"0.2668250","5":"0.3020800","6":"274"},{"1":"High-middle SDI","2":"2020","3":"Excluding COVID","4":"0.3433139","5":"0.3888209","6":"273"},{"1":"High-middle SDI","2":"2020","3":"Original","4":"0.3766757","5":"0.4264450","6":"274"},{"1":"High-middle SDI","2":"2021","3":"Excluding COVID","4":"0.3468854","5":"0.3928658","6":"273"},{"1":"High-middle SDI","2":"2021","3":"Original","4":"0.3800271","5":"0.4302393","6":"274"},{"1":"High-middle SDI","2":"2022","3":"Excluding COVID","4":"0.3460171","5":"0.3918824","6":"273"},{"1":"High-middle SDI","2":"2022","3":"Original","4":"0.3774275","5":"0.4272962","6":"274"},{"1":"High-middle SDI","2":"2023","3":"Excluding COVID","4":"0.3509909","5":"0.3975155","6":"273"},{"1":"High-middle SDI","2":"2023","3":"Original","4":"0.3779201","5":"0.4278539","6":"274"},{"1":"Middle SDI","2":"2019","3":"Excluding COVID","4":"0.2793069","5":"0.3163296","6":"273"},{"1":"Middle SDI","2":"2019","3":"Original","4":"0.2105001","5":"0.2383130","6":"274"},{"1":"Middle SDI","2":"2020","3":"Excluding COVID","4":"0.2867783","5":"0.3247914","6":"273"},{"1":"Middle SDI","2":"2020","3":"Original","4":"0.3232060","5":"0.3659105","6":"274"},{"1":"Middle SDI","2":"2021","3":"Excluding COVID","4":"0.2949192","5":"0.3340113","6":"273"},{"1":"Middle SDI","2":"2021","3":"Original","4":"0.3312618","5":"0.3750307","6":"274"},{"1":"Middle SDI","2":"2022","3":"Excluding COVID","4":"0.2946742","5":"0.3337339","6":"273"},{"1":"Middle SDI","2":"2022","3":"Original","4":"0.3297716","5":"0.3733437","6":"274"},{"1":"Middle SDI","2":"2023","3":"Excluding COVID","4":"0.2960573","5":"0.3353003","6":"273"},{"1":"Middle SDI","2":"2023","3":"Original","4":"0.3281485","5":"0.3715061","6":"274"},{"1":"Low-middle SDI","2":"2019","3":"Excluding COVID","4":"0.2448785","5":"0.2773377","6":"273"},{"1":"Low-middle SDI","2":"2019","3":"Original","4":"0.1790414","5":"0.2026978","6":"274"},{"1":"Low-middle SDI","2":"2020","3":"Excluding COVID","4":"0.2504863","5":"0.2836888","6":"273"},{"1":"Low-middle SDI","2":"2020","3":"Original","4":"0.2895658","5":"0.3278255","6":"274"},{"1":"Low-middle SDI","2":"2021","3":"Excluding COVID","4":"0.2562060","5":"0.2901666","6":"273"},{"1":"Low-middle SDI","2":"2021","3":"Original","4":"0.2949331","5":"0.3339020","6":"274"},{"1":"Low-middle SDI","2":"2022","3":"Excluding COVID","4":"0.2578584","5":"0.2920381","6":"273"},{"1":"Low-middle SDI","2":"2022","3":"Original","4":"0.2921688","5":"0.3307724","6":"274"},{"1":"Low-middle SDI","2":"2023","3":"Excluding COVID","4":"0.2630230","5":"0.2978872","6":"273"},{"1":"Low-middle SDI","2":"2023","3":"Original","4":"0.2918868","5":"0.3304532","6":"274"},{"1":"Low SDI","2":"2019","3":"Excluding COVID","4":"0.1647067","5":"0.1865390","6":"273"},{"1":"Low SDI","2":"2019","3":"Original","4":"0.1029592","5":"0.1165630","6":"274"},{"1":"Low SDI","2":"2020","3":"Excluding COVID","4":"0.1704890","5":"0.1930877","6":"273"},{"1":"Low SDI","2":"2020","3":"Original","4":"0.2132399","5":"0.2414148","6":"274"},{"1":"Low SDI","2":"2021","3":"Excluding COVID","4":"0.1747409","5":"0.1979032","6":"273"},{"1":"Low SDI","2":"2021","3":"Original","4":"0.2184859","5":"0.2473540","6":"274"},{"1":"Low SDI","2":"2022","3":"Excluding COVID","4":"0.1810855","5":"0.2050888","6":"273"},{"1":"Low SDI","2":"2022","3":"Original","4":"0.2215097","5":"0.2507773","6":"274"},{"1":"Low SDI","2":"2023","3":"Excluding COVID","4":"0.1861428","5":"0.2108164","6":"273"},{"1":"Low SDI","2":"2023","3":"Original","4":"0.2187410","5":"0.2476428","6":"274"},{"1":"Global","2":"2019","3":"Excluding COVID","4":"0.2934275","5":"0.3323219","6":"273"},{"1":"Global","2":"2019","3":"Original","4":"0.2237538","5":"0.2533179","6":"274"},{"1":"Global","2":"2020","3":"Excluding COVID","4":"0.2984263","5":"0.3379833","6":"273"},{"1":"Global","2":"2020","3":"Original","4":"0.3341365","5":"0.3782852","6":"274"},{"1":"Global","2":"2021","3":"Excluding COVID","4":"0.3009105","5":"0.3407969","6":"273"},{"1":"Global","2":"2021","3":"Original","4":"0.3368841","5":"0.3813959","6":"274"},{"1":"Global","2":"2022","3":"Excluding COVID","4":"0.3029074","5":"0.3430584","6":"273"},{"1":"Global","2":"2022","3":"Original","4":"0.3370732","5":"0.3816100","6":"274"},{"1":"Global","2":"2023","3":"Excluding COVID","4":"0.3047511","5":"0.3451465","6":"273"},{"1":"Global","2":"2023","3":"Original","4":"0.3324234","5":"0.3763458","6":"274"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/main-sdi-covid-sensitivity-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/main-sdi-covid-sensitivity-delta-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/main-sdi-ratio-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/main-sdi-share-comparison-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/main-sdi-share-trends-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sex-specific-analysis" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="sex-specific-analysis"><span class="header-section-number">4</span> Sex-specific analysis</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location_name"],"name":[1],"type":["fct"],"align":["left"]},{"label":["sex_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["concentration_index"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["concentration_index_lci"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["concentration_index_uci"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["n_causes"],"name":[7],"type":["int"],"align":["right"]}],"data":[{"1":"High SDI","2":"Female","3":"0.4041339","4":"0.205016212","5":"0.6032515","6":"0.4575312","7":"274"},{"1":"High SDI","2":"Male","3":"0.3658311","4":"0.173433902","5":"0.5582283","6":"0.4141676","7":"274"},{"1":"High-middle SDI","2":"Female","3":"0.3429716","4":"0.146021072","5":"0.5399222","6":"0.3882878","7":"274"},{"1":"High-middle SDI","2":"Male","3":"0.3188873","4":"0.131241353","5":"0.5065332","6":"0.3610212","7":"274"},{"1":"Middle SDI","2":"Female","3":"0.2887456","4":"0.087499016","5":"0.4899921","6":"0.3268969","7":"274"},{"1":"Middle SDI","2":"Male","3":"0.2728948","4":"0.081174235","5":"0.4646153","6":"0.3089518","7":"274"},{"1":"Low-middle SDI","2":"Female","3":"0.2500931","4":"0.056953428","5":"0.4432328","6":"0.2831374","7":"274"},{"1":"Low-middle SDI","2":"Male","3":"0.2384182","4":"0.056887760","5":"0.4199486","6":"0.2699199","7":"274"},{"1":"Low SDI","2":"Female","3":"0.1777817","4":"-0.003379895","5":"0.3589432","6":"0.2012716","7":"274"},{"1":"Low SDI","2":"Male","3":"0.1841075","4":"0.010877582","5":"0.3573373","6":"0.2084332","7":"274"},{"1":"Global","2":"Female","3":"0.2981034","4":"0.106013710","5":"0.4901930","6":"0.3374911","7":"274"},{"1":"Global","2":"Male","3":"0.2148030","4":"-0.004014883","5":"0.4336209","6":"0.2431845","7":"274"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/sex-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="country-level-analysis" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="country-level-analysis"><span class="header-section-number">5</span> Country-level analysis</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["concentration_index"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["concentration_index_lci"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["concentration_index_uci"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["daly_sum"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Ireland","2":"0.5171708","3":"0.3629683","4":"0.6713734","5":"0.5855035","6":"1226802.80"},{"1":"Iceland","2":"0.5036229","3":"0.3562502","4":"0.6509956","5":"0.5701655","6":"87074.02"},{"1":"Netherlands","2":"0.4998634","3":"0.3427374","4":"0.6569894","5":"0.5659093","6":"4898274.11"},{"1":"Australia","2":"0.4943231","3":"0.3321685","4":"0.6564777","5":"0.5596370","6":"6374141.17"},{"1":"Finland","2":"0.4926049","3":"0.3349911","4":"0.6502188","5":"0.5576918","6":"1621379.74"},{"1":"Canada","2":"0.4882882","3":"0.3339855","4":"0.6425909","5":"0.5528047","6":"10592089.39"},{"1":"United Kingdom","2":"0.4865742","3":"0.3310551","4":"0.6420934","5":"0.5508643","6":"20571852.44"},{"1":"Switzerland","2":"0.4850860","3":"0.3299411","4":"0.6402310","5":"0.5491794","6":"2131545.39"},{"1":"Cyprus","2":"0.4840907","3":"0.3202146","4":"0.6479668","5":"0.5480526","6":"312776.43"},{"1":"Belgium","2":"0.4838157","3":"0.3254089","4":"0.6422224","5":"0.5477412","6":"3121083.24"},{"1":"France","2":"0.4825160","3":"0.3276327","4":"0.6373993","5":"0.5462698","6":"18371460.58"},{"1":"New Zealand","2":"0.4802819","3":"0.3174910","4":"0.6430728","5":"0.5437406","6":"1287395.75"},{"1":"Norway","2":"0.4801344","3":"0.3147880","4":"0.6454809","5":"0.5435736","6":"1326254.58"},{"1":"Malta","2":"0.4796649","3":"0.3118505","4":"0.6474793","5":"0.5430420","6":"131820.52"},{"1":"Luxembourg","2":"0.4780455","3":"0.3147236","4":"0.6413675","5":"0.5412087","6":"143652.57"},{"1":"Sweden","2":"0.4728243","3":"0.3121299","4":"0.6335187","5":"0.5352976","6":"2692780.42"},{"1":"Italy","2":"0.4713636","3":"0.3084203","4":"0.6343069","5":"0.5336439","6":"17290014.06"},{"1":"Denmark","2":"0.4701151","3":"0.3170938","4":"0.6231364","5":"0.5322304","6":"1661637.65"},{"1":"Spain","2":"0.4677964","3":"0.3084928","4":"0.6271000","5":"0.5296054","6":"12599970.08"},{"1":"Singapore","2":"0.4674785","3":"0.3142338","4":"0.6207232","5":"0.5292454","6":"1063212.33"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/country-rank-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/country-size-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="lorenz-curves" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="lorenz-curves"><span class="header-section-number">6</span> Lorenz curves</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/lorenz-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="age-specific-analysis" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="age-specific-analysis"><span class="header-section-number">7</span> Age-specific analysis</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location_name"],"name":[1],"type":["fct"],"align":["left"]},{"label":["age_name"],"name":[2],"type":["chr"],"align":["left"]},{"label":["concentration_index"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["concentration_index_lci"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["concentration_index_uci"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["daly_prop"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"High SDI","2":"5 to 9","3":"0.0401354161","4":"-0.1874682421","5":"0.26773907","6":"0.0454384239","7":"0.009990115"},{"1":"High SDI","2":"10 to 14","3":"0.1098392352","4":"-0.1317788738","5":"0.35145734","6":"0.1243520615","7":"0.013434122"},{"1":"High SDI","2":"15 to 19","3":"0.2629289217","4":"0.0465754466","5":"0.47928240","6":"0.2976691651","7":"0.017565211"},{"1":"High SDI","2":"20 to 24","3":"0.2924813476","4":"0.0772912215","5":"0.50767147","6":"0.3311262908","7":"0.020695166"},{"1":"High SDI","2":"25 to 29","3":"0.3146740961","4":"0.1028894236","5":"0.52645877","6":"0.3562513203","7":"0.025860156"},{"1":"High SDI","2":"30 to 34","3":"0.3232331927","4":"0.1127980002","5":"0.53366839","6":"0.3659413123","7":"0.034273428"},{"1":"High SDI","2":"35 to 39","3":"0.3262327994","4":"0.1164435364","5":"0.53602206","6":"0.3693372507","7":"0.042502956"},{"1":"High SDI","2":"40 to 44","3":"0.3673165056","4":"0.1746952999","5":"0.55993771","6":"0.4158492602","7":"0.047092396"},{"1":"High SDI","2":"45 to 49","3":"0.4079161241","4":"0.2279889610","5":"0.58784329","6":"0.4618132206","7":"0.054652771"},{"1":"High SDI","2":"50 to 54","3":"0.4278013036","4":"0.2513061657","5":"0.60429644","6":"0.4843257870","7":"0.069328507"},{"1":"High SDI","2":"55 to 59","3":"0.4255064751","4":"0.2508872776","5":"0.60012567","6":"0.4817277476","7":"0.083107405"},{"1":"High SDI","2":"60 to 64","3":"0.4299474295","4":"0.2563546409","5":"0.60354022","6":"0.4867554759","7":"0.095955017"},{"1":"High SDI","2":"65 to 69","3":"0.4267211482","4":"0.2547659699","5":"0.59867633","6":"0.4831029128","7":"0.104912442"},{"1":"High SDI","2":"70 to 74","3":"0.4198465654","4":"0.2473440752","5":"0.59234906","6":"0.4753200059","7":"0.103900516"},{"1":"High SDI","2":"75 to 79","3":"0.4022127155","4":"0.2299688734","5":"0.57445656","6":"0.4553562327","7":"0.086945393"},{"1":"High SDI","2":"<1 year","3":"-0.0425551187","4":"-0.2477343079","5":"0.16262407","6":"-0.0481778367","7":"0.014119779"},{"1":"High SDI","2":"80 to 84","3":"0.3782504897","4":"0.2025604667","5":"0.55394051","6":"0.4282279285","7":"0.075753190"},{"1":"High SDI","2":"85 to 89","3":"0.3630966241","4":"0.1834509392","5":"0.54274231","6":"0.4110718147","7":"0.060226782"},{"1":"High SDI","2":"90 to 94","3":"0.3421230121","4":"0.1573276178","5":"0.52691841","6":"0.3873270036","7":"0.035080586"},{"1":"High SDI","2":"2 to 4","3":"0.0173008823","4":"-0.2111589052","5":"0.24576067","6":"0.0195868113","7":"0.004604063"},{"1":"High-middle SDI","2":"5 to 9","3":"-0.0006038528","4":"-0.2214146791","5":"0.22020697","6":"-0.0006836386","7":"0.017316555"},{"1":"High-middle SDI","2":"10 to 14","3":"0.0406032549","4":"-0.1910498846","5":"0.27225639","6":"0.0459680773","7":"0.020830776"},{"1":"High-middle SDI","2":"15 to 19","3":"0.1955425929","4":"-0.0169401968","5":"0.40802538","6":"0.2213792230","7":"0.024396144"},{"1":"High-middle SDI","2":"20 to 24","3":"0.2289221909","4":"0.0141059608","5":"0.44373842","6":"0.2591691968","7":"0.027668674"},{"1":"High-middle SDI","2":"25 to 29","3":"0.2484866571","4":"0.0365952177","5":"0.46037810","6":"0.2813186747","7":"0.034128555"},{"1":"High-middle SDI","2":"30 to 34","3":"0.2672826396","4":"0.0542923644","5":"0.48027291","6":"0.3025981306","7":"0.043454798"},{"1":"High-middle SDI","2":"35 to 39","3":"0.2867923653","4":"0.0749718606","5":"0.49861287","6":"0.3246856353","7":"0.051614695"},{"1":"High-middle SDI","2":"40 to 44","3":"0.3201225169","4":"0.1238475114","5":"0.51639752","6":"0.3624196294","7":"0.054874754"},{"1":"High-middle SDI","2":"45 to 49","3":"0.3619375426","4":"0.1792769762","5":"0.54459811","6":"0.4097595862","7":"0.062481877"},{"1":"High-middle SDI","2":"50 to 54","3":"0.3823348682","4":"0.2044087533","5":"0.56026098","6":"0.4328519674","7":"0.077191016"},{"1":"High-middle SDI","2":"55 to 59","3":"0.3816088798","4":"0.2059373745","5":"0.55728039","6":"0.4320300556","7":"0.088390500"},{"1":"High-middle SDI","2":"60 to 64","3":"0.3803359675","4":"0.2072638682","5":"0.55340807","6":"0.4305889561","7":"0.086317370"},{"1":"High-middle SDI","2":"65 to 69","3":"0.3796058361","4":"0.2061819836","5":"0.55302969","6":"0.4297623541","7":"0.092367413"},{"1":"High-middle SDI","2":"70 to 74","3":"0.3716597160","4":"0.2004508615","5":"0.54286857","6":"0.4207663298","7":"0.085613796"},{"1":"High-middle SDI","2":"75 to 79","3":"0.3645757289","4":"0.1926463301","5":"0.53650513","6":"0.4127463505","7":"0.067203871"},{"1":"High-middle SDI","2":"<1 year","3":"-0.0591176080","4":"-0.2525608993","5":"0.13432568","6":"-0.0669286928","7":"0.050371016"},{"1":"High-middle SDI","2":"80 to 84","3":"0.3541746759","4":"0.1790586611","5":"0.52929069","6":"0.4009710283","7":"0.053225439"},{"1":"High-middle SDI","2":"85 to 89","3":"0.3500739499","4":"0.1674465841","5":"0.53270132","6":"0.3963284820","7":"0.035246705"},{"1":"High-middle SDI","2":"90 to 94","3":"0.3341517335","4":"0.1442374925","5":"0.52406597","6":"0.3783024968","7":"0.016637435"},{"1":"High-middle SDI","2":"2 to 4","3":"-0.0247658096","4":"-0.2385664249","5":"0.18903481","6":"-0.0280380637","7":"0.010668610"},{"1":"Middle SDI","2":"5 to 9","3":"-0.0110278630","4":"-0.2328629830","5":"0.21080726","6":"-0.0124849512","7":"0.024447591"},{"1":"Middle SDI","2":"10 to 14","3":"0.0369317795","4":"-0.1991664888","5":"0.27303005","6":"0.0418114976","7":"0.026382731"},{"1":"Middle SDI","2":"15 to 19","3":"0.1943673146","4":"-0.0201494302","5":"0.40888406","6":"0.2200486576","7":"0.030391967"},{"1":"Middle SDI","2":"20 to 24","3":"0.2182611461","4":"0.0006803017","5":"0.43584199","6":"0.2470995307","7":"0.034255177"},{"1":"Middle SDI","2":"25 to 29","3":"0.2342793424","4":"0.0181006983","5":"0.45045799","6":"0.2652341774","7":"0.039644993"},{"1":"Middle SDI","2":"30 to 34","3":"0.2538259147","4":"0.0369485224","5":"0.47070331","6":"0.2873633971","7":"0.046662155"},{"1":"Middle SDI","2":"35 to 39","3":"0.2627957234","4":"0.0465231293","5":"0.47906832","6":"0.2975183677","7":"0.052183830"},{"1":"Middle SDI","2":"40 to 44","3":"0.3011974657","4":"0.0974602100","5":"0.50493472","6":"0.3409940511","7":"0.059015419"},{"1":"Middle SDI","2":"45 to 49","3":"0.3433904863","4":"0.1570047972","5":"0.52977618","6":"0.3887619465","7":"0.066906444"},{"1":"Middle SDI","2":"50 to 54","3":"0.3668599470","4":"0.1861444444","5":"0.54757545","6":"0.4153323775","7":"0.077109860"},{"1":"Middle SDI","2":"55 to 59","3":"0.3678723469","4":"0.1879834346","5":"0.54776126","6":"0.4164785437","7":"0.083330001"},{"1":"Middle SDI","2":"60 to 64","3":"0.3650026738","4":"0.1873432269","5":"0.54266212","6":"0.4132297067","7":"0.086153526"},{"1":"Middle SDI","2":"65 to 69","3":"0.3518391120","4":"0.1746814007","5":"0.52899682","6":"0.3983268713","7":"0.078841305"},{"1":"Middle SDI","2":"70 to 74","3":"0.3491223168","4":"0.1745769027","5":"0.52366773","6":"0.3952511117","7":"0.066112812"},{"1":"Middle SDI","2":"75 to 79","3":"0.3447648672","4":"0.1709611231","5":"0.51856861","6":"0.3903179214","7":"0.046251819"},{"1":"Middle SDI","2":"<1 year","3":"-0.0630055761","4":"-0.2555431566","5":"0.12953200","6":"-0.0713303699","7":"0.098534884"},{"1":"Middle SDI","2":"80 to 84","3":"0.3317703491","4":"0.1557485853","5":"0.50779211","6":"0.3756064650","7":"0.033856651"},{"1":"Middle SDI","2":"85 to 89","3":"0.3245112161","4":"0.1444067206","5":"0.50461571","6":"0.3673881982","7":"0.019689149"},{"1":"Middle SDI","2":"90 to 94","3":"0.3031985534","4":"0.1168856538","5":"0.48951145","6":"0.3432595384","7":"0.009110679"},{"1":"Middle SDI","2":"2 to 4","3":"-0.0296036172","4":"-0.2456540617","5":"0.18644683","6":"-0.0335150807","7":"0.021119008"},{"1":"Low-middle SDI","2":"5 to 9","3":"-0.0329819259","4":"-0.2434510895","5":"0.17748724","6":"-0.0373397582","7":"0.028257932"},{"1":"Low-middle SDI","2":"10 to 14","3":"-0.0064838819","4":"-0.2286036051","5":"0.21563584","6":"-0.0073405835","7":"0.030095774"},{"1":"Low-middle SDI","2":"15 to 19","3":"0.1480338203","4":"-0.0527005522","5":"0.34876819","6":"0.1675932165","7":"0.036069511"},{"1":"Low-middle SDI","2":"20 to 24","3":"0.1830591256","4":"-0.0278624892","5":"0.39398074","6":"0.2072463414","7":"0.039084917"},{"1":"Low-middle SDI","2":"25 to 29","3":"0.2128532777","4":"-0.0005285587","5":"0.42623511","6":"0.2409771320","7":"0.042416316"},{"1":"Low-middle SDI","2":"30 to 34","3":"0.2180847485","4":"0.0019418419","5":"0.43422765","6":"0.2468998260","7":"0.047562870"},{"1":"Low-middle SDI","2":"35 to 39","3":"0.2208112883","4":"0.0069953404","5":"0.43462724","6":"0.2499866177","7":"0.050467954"},{"1":"Low-middle SDI","2":"40 to 44","3":"0.2636751704","4":"0.0639003981","5":"0.46344994","6":"0.2985140142","7":"0.054408708"},{"1":"Low-middle SDI","2":"45 to 49","3":"0.3178947822","4":"0.1332992487","5":"0.50249032","6":"0.3598975488","7":"0.054843417"},{"1":"Low-middle SDI","2":"50 to 54","3":"0.3407541570","4":"0.1600257978","5":"0.52148252","6":"0.3857772846","7":"0.061606623"},{"1":"Low-middle SDI","2":"55 to 59","3":"0.3411643133","4":"0.1646034088","5":"0.51772522","6":"0.3862416339","7":"0.067879303"},{"1":"Low-middle SDI","2":"60 to 64","3":"0.3499540456","4":"0.1739962869","5":"0.52591180","6":"0.3961927350","7":"0.067566390"},{"1":"Low-middle SDI","2":"65 to 69","3":"0.3498727891","4":"0.1732868395","5":"0.52645874","6":"0.3961007422","7":"0.065987590"},{"1":"Low-middle SDI","2":"70 to 74","3":"0.3433465710","4":"0.1689730178","5":"0.51772012","6":"0.3887122287","7":"0.058887252"},{"1":"Low-middle SDI","2":"75 to 79","3":"0.3358588705","4":"0.1640758922","5":"0.50764185","6":"0.3802351942","7":"0.042970188"},{"1":"Low-middle SDI","2":"<1 year","3":"-0.0722894611","4":"-0.2558933494","5":"0.11131443","6":"-0.0818409150","7":"0.172710174"},{"1":"Low-middle SDI","2":"80 to 84","3":"0.3277440279","4":"0.1534528332","5":"0.50203522","6":"0.3710481546","7":"0.030070542"},{"1":"Low-middle SDI","2":"85 to 89","3":"0.3139387642","4":"0.1365476235","5":"0.49132991","6":"0.3554188306","7":"0.016205149"},{"1":"Low-middle SDI","2":"90 to 94","3":"0.2898782597","4":"0.1063481388","5":"0.47340838","6":"0.3281792623","7":"0.006197055"},{"1":"Low-middle SDI","2":"2 to 4","3":"-0.0539239792","4":"-0.2565688285","5":"0.14872087","6":"-0.0610488408","7":"0.026712334"},{"1":"Low SDI","2":"5 to 9","3":"-0.0536643408","4":"-0.2632398141","5":"0.15591113","6":"-0.0607548969","7":"0.048369780"},{"1":"Low SDI","2":"10 to 14","3":"-0.0556534875","4":"-0.2756133019","5":"0.16430633","6":"-0.0630068654","7":"0.041187593"},{"1":"Low SDI","2":"15 to 19","3":"0.0896095710","4":"-0.1084142583","5":"0.28763340","6":"0.1014494944","7":"0.045552268"},{"1":"Low SDI","2":"20 to 24","3":"0.1263177477","4":"-0.0815986041","5":"0.33423410","6":"0.1430078451","7":"0.043717622"},{"1":"Low SDI","2":"25 to 29","3":"0.1703615670","4":"-0.0411622111","5":"0.38188534","6":"0.1928710812","7":"0.043097957"},{"1":"Low SDI","2":"30 to 34","3":"0.1754597337","4":"-0.0407184667","5":"0.39163793","6":"0.1986428579","7":"0.046140089"},{"1":"Low SDI","2":"35 to 39","3":"0.1797858166","4":"-0.0389449870","5":"0.39851662","6":"0.2035405371","7":"0.043655203"},{"1":"Low SDI","2":"40 to 44","3":"0.2242954061","4":"0.0210113636","5":"0.42757945","6":"0.2539310847","7":"0.044793786"},{"1":"Low SDI","2":"45 to 49","3":"0.2706074066","4":"0.0785382705","5":"0.46267654","6":"0.3063621921","7":"0.040792067"},{"1":"Low SDI","2":"50 to 54","3":"0.3025846117","4":"0.1159379363","5":"0.48923129","6":"0.3425644778","7":"0.041790296"},{"1":"Low SDI","2":"55 to 59","3":"0.3091221455","4":"0.1272630067","5":"0.49098128","6":"0.3499658022","7":"0.040260510"},{"1":"Low SDI","2":"60 to 64","3":"0.3096376268","4":"0.1274014535","5":"0.49187380","6":"0.3505493929","7":"0.041016113"},{"1":"Low SDI","2":"65 to 69","3":"0.3208857178","4":"0.1396961996","5":"0.50207524","6":"0.3632836705","7":"0.037201825"},{"1":"Low SDI","2":"70 to 74","3":"0.3069069141","4":"0.1274323391","5":"0.48638149","6":"0.3474578769","7":"0.032771762"},{"1":"Low SDI","2":"75 to 79","3":"0.3003719173","4":"0.1232347918","5":"0.47750904","6":"0.3400594248","7":"0.024080952"},{"1":"Low SDI","2":"<1 year","3":"-0.0865077988","4":"-0.2646319727","5":"0.09161637","6":"-0.0979378917","7":"0.277076820"},{"1":"Low SDI","2":"80 to 84","3":"0.2837753465","4":"0.1059833116","5":"0.46156738","6":"0.3212699841","7":"0.016350361"},{"1":"Low SDI","2":"85 to 89","3":"0.2719147802","4":"0.0912391765","5":"0.45259038","6":"0.3078423062","7":"0.008323478"},{"1":"Low SDI","2":"90 to 94","3":"0.2582812365","4":"0.0722002051","5":"0.44436227","6":"0.2924073912","7":"0.003238635"},{"1":"Low SDI","2":"2 to 4","3":"-0.0865577145","4":"-0.2916310913","5":"0.11851566","6":"-0.0979944027","7":"0.080582882"},{"1":"Global","2":"5 to 9","3":"-0.0216806498","4":"-0.2260910103","5":"0.18272971","6":"-0.0245452683","7":"0.026094213"},{"1":"Global","2":"10 to 14","3":"0.0169134587","4":"-0.1948947168","5":"0.22872163","6":"0.0191481984","7":"0.026257967"},{"1":"Global","2":"15 to 19","3":"0.1556876780","4":"-0.0465660471","5":"0.35794140","6":"0.1762583623","7":"0.030623595"},{"1":"Global","2":"20 to 24","3":"0.1861553341","4":"-0.0245183465","5":"0.39682901","6":"0.2107516455","7":"0.032494456"},{"1":"Global","2":"25 to 29","3":"0.2243777855","4":"0.0136581701","5":"0.43509740","6":"0.2540243487","7":"0.036062526"},{"1":"Global","2":"30 to 34","3":"0.2404559915","4":"0.0261341025","5":"0.45477788","6":"0.2722269342","7":"0.042525770"},{"1":"Global","2":"35 to 39","3":"0.2600913667","4":"0.0488622271","5":"0.47132051","6":"0.2944566900","7":"0.046720844"},{"1":"Global","2":"40 to 44","3":"0.3001700993","4":"0.1020684559","5":"0.49827174","6":"0.3398309410","7":"0.050279251"},{"1":"Global","2":"45 to 49","3":"0.3532452271","4":"0.1706122829","5":"0.53587817","6":"0.3999187734","7":"0.053645513"},{"1":"Global","2":"50 to 54","3":"0.3820396349","4":"0.2059217135","5":"0.55815756","6":"0.4325177255","7":"0.062910394"},{"1":"Global","2":"55 to 59","3":"0.3892574632","4":"0.2181155559","5":"0.56039937","6":"0.4406892303","7":"0.070099323"},{"1":"Global","2":"60 to 64","3":"0.3931421928","4":"0.2244019918","5":"0.56188239","6":"0.4450872409","7":"0.073884724"},{"1":"Global","2":"65 to 69","3":"0.3932038016","4":"0.2249407049","5":"0.56146690","6":"0.4451569900","7":"0.075471061"},{"1":"Global","2":"70 to 74","3":"0.3920843994","4":"0.2255230961","5":"0.55864570","6":"0.4438896836","7":"0.070298946"},{"1":"Global","2":"75 to 79","3":"0.3834744656","4":"0.2165460292","5":"0.55040290","6":"0.4341421374","7":"0.055171624"},{"1":"Global","2":"<1 year","3":"-0.0755200853","4":"-0.2638546873","5":"0.11281452","6":"-0.0854983947","7":"0.125562357"},{"1":"Global","2":"80 to 84","3":"0.3723704309","4":"0.2021321160","5":"0.54260875","6":"0.4215709500","7":"0.044026346"},{"1":"Global","2":"85 to 89","3":"0.3651416311","4":"0.1874211171","5":"0.54286215","6":"0.4133870242","7":"0.030499652"},{"1":"Global","2":"90 to 94","3":"0.3414225638","4":"0.1590504364","5":"0.52379469","6":"0.3865340066","7":"0.015877375"},{"1":"Global","2":"2 to 4","3":"-0.0395235678","4":"-0.2333172029","5":"0.15427007","6":"-0.0447457334","7":"0.031494062"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/age-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="gwas-attention-inequality-over-time" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="gwas-attention-inequality-over-time"><span class="header-section-number">8</span> GWAS attention inequality over time</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["time_strata"],"name":[1],"type":["int"],"align":["right"]},{"label":["n_zero"],"name":[2],"type":["int"],"align":["right"]},{"label":["attention_gini"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"2005","2":"289","3":"0.9732732"},{"1":"2006","2":"274","3":"0.9594576"},{"1":"2007","2":"254","3":"0.9418995"},{"1":"2008","2":"237","3":"0.9104213"},{"1":"2009","2":"227","3":"0.8974844"},{"1":"2010","2":"220","3":"0.8848541"},{"1":"2011","2":"215","3":"0.8850874"},{"1":"2012","2":"210","3":"0.8816986"},{"1":"2013","2":"205","3":"0.8952470"},{"1":"2014","2":"205","3":"0.9009875"},{"1":"2015","2":"194","3":"0.9099624"},{"1":"2016","2":"194","3":"0.8953842"},{"1":"2017","2":"190","3":"0.8809212"},{"1":"2018","2":"175","3":"0.8836748"},{"1":"2019","2":"160","3":"0.8911860"},{"1":"2020","2":"164","3":"0.9026756"},{"1":"2021","2":"162","3":"0.8968287"},{"1":"2022","2":"184","3":"0.9033722"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/attention-gini-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/attention-gini-fullscale-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/zero-count-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="burden-and-attention-in-the-same-year" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="burden-and-attention-in-the-same-year"><span class="header-section-number">9</span> Burden and attention in the same year</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["location_name"],"name":[1],"type":["fct"],"align":["left"]},{"label":["concentration_index"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["concentration_index_lci"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["concentration_index_uci"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["attention_gini"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/yearly-attention-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fixed-gbd-year-with-changing-gwas-attention-year" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="fixed-gbd-year-with-changing-gwas-attention-year"><span class="header-section-number">10</span> Fixed GBD year with changing GWAS attention year</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["gbd_year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["location_name"],"name":[2],"type":["fct"],"align":["left"]},{"label":["concentration_index"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["concentration_index_lci"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["concentration_index_uci"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["alignment_ratio"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/fixed-gbd-year-plot-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="high-sdi-and-low-sdi-burden-priority" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="high-sdi-and-low-sdi-burden-priority"><span class="header-section-number">11</span> High-SDI and Low-SDI burden priority</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["priority_group"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"High SDI priority","2":"43"},{"1":"Low SDI priority","2":"43"},{"1":"No strong priority","2":"223"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/sdi-bias-plot-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/sdi-bias-group-trends-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/low-sdi-bias-attention-rank-plot-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["cause_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_attention_score"],"name":[2],"type":["int"],"align":["right"]},{"label":["attention_rank"],"name":[3],"type":["int"],"align":["right"]},{"label":["attention_rank_percentile"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["attention_status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["high_sdi_priority_score"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"African trypanosomiasis","2":"0","3":"8","4":"0.0000000","5":"Zero attention","6":"-224"},{"1":"Diphtheria","2":"0","3":"33","4":"0.0000000","5":"Zero attention","6":"-238"},{"1":"Invasive Non-typhoidal Salmonella (iNTS)","2":"0","3":"61","4":"0.0000000","5":"Zero attention","6":"-232"},{"1":"Maternal abortion and miscarriage","2":"0","3":"72","4":"0.0000000","5":"Zero attention","6":"-191"},{"1":"Maternal hemorrhage","2":"0","3":"74","4":"0.0000000","5":"Zero attention","6":"-168"},{"1":"Maternal obstructed labor and uterine rupture","2":"0","3":"75","4":"0.0000000","5":"Zero attention","6":"-178"},{"1":"Maternal sepsis and other maternal infections","2":"0","3":"76","4":"0.0000000","5":"Zero attention","6":"-181"},{"1":"Onchocerciasis","2":"0","3":"87","4":"0.0000000","5":"Zero attention","6":"-215"},{"1":"Other nutritional deficiencies","2":"0","3":"99","4":"0.0000000","5":"Zero attention","6":"-169"},{"1":"Paratyphoid fever","2":"0","3":"105","4":"0.0000000","5":"Zero attention","6":"-192"},{"1":"Rabies","2":"0","3":"110","4":"0.0000000","5":"Zero attention","6":"-187"},{"1":"Schistosomiasis","2":"0","3":"112","4":"0.0000000","5":"Zero attention","6":"-170"},{"1":"Syphilis","2":"0","3":"116","4":"0.0000000","5":"Zero attention","6":"-182"},{"1":"Visceral leishmaniasis","2":"1","3":"134","4":"0.4147910","5":"Non-zero attention","6":"-248"},{"1":"Typhoid fever","2":"2","3":"139","4":"0.4308682","5":"Non-zero attention","6":"-185"},{"1":"Lymphatic filariasis","2":"9","3":"162","4":"0.5176849","5":"Non-zero attention","6":"-189"},{"1":"Yellow fever","2":"105","3":"223","4":"0.7073955","5":"Non-zero attention","6":"-184"},{"1":"Maternal hypertensive disorders","2":"109","3":"224","4":"0.7170418","5":"Non-zero attention","6":"-166"},{"1":"Sickle cell disorders","2":"144","3":"229","4":"0.7331190","5":"Non-zero attention","6":"-168"},{"1":"Malaria","2":"158","3":"236","4":"0.7556270","5":"Non-zero attention","6":"-253"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/high-sdi-bias-attention-rank-plot-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["cause_name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_attention_score"],"name":[2],"type":["int"],"align":["right"]},{"label":["attention_rank"],"name":[3],"type":["int"],"align":["right"]},{"label":["attention_rank_percentile"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["attention_status"],"name":[5],"type":["chr"],"align":["left"]},{"label":["high_sdi_priority_score"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alcoholic cardiomyopathy","2":"0","3":"9","4":"0.0000000","5":"Zero attention","6":"177"},{"1":"Amphetamine use disorders","2":"0","3":"10","4":"0.0000000","5":"Zero attention","6":"125"},{"1":"Edentulism","2":"0","3":"36","4":"0.0000000","5":"Zero attention","6":"114"},{"1":"Food-borne trematodiases","2":"0","3":"39","4":"0.0000000","5":"Zero attention","6":"122"},{"1":"Gallbladder and biliary diseases","2":"0","3":"43","4":"0.0000000","5":"Zero attention","6":"115"},{"1":"Gallbladder and biliary tract cancer","2":"0","3":"44","4":"0.0000000","5":"Zero attention","6":"125"},{"1":"Non-rheumatic calcific aortic valve disease","2":"0","3":"84","4":"0.0000000","5":"Zero attention","6":"113"},{"1":"Opioid use disorders","2":"0","3":"88","4":"0.0000000","5":"Zero attention","6":"116"},{"1":"Tracheal, bronchus, and lung cancer","2":"0","3":"120","4":"0.0000000","5":"Zero attention","6":"113"},{"1":"Vascular intestinal disorders","2":"0","3":"128","4":"0.0000000","5":"Zero attention","6":"109"},{"1":"Atrial fibrillation and flutter","2":"3","3":"140","4":"0.4469453","5":"Non-zero attention","6":"120"},{"1":"Uterine cancer","2":"5","3":"153","4":"0.4726688","5":"Non-zero attention","6":"111"},{"1":"Aortic aneurysm","2":"7","3":"156","4":"0.4983923","5":"Non-zero attention","6":"139"},{"1":"Kidney cancer","2":"10","3":"165","4":"0.5241158","5":"Non-zero attention","6":"134"},{"1":"Bladder cancer","2":"26","3":"190","4":"0.6077170","5":"Non-zero attention","6":"131"},{"1":"Osteoarthritis hand","2":"51","3":"206","4":"0.6591640","5":"Non-zero attention","6":"125"},{"1":"Motor neuron disease","2":"196","3":"241","4":"0.7717042","5":"Non-zero attention","6":"109"},{"1":"Pancreatic cancer","2":"240","3":"246","4":"0.7845659","5":"Non-zero attention","6":"174"},{"1":"Malignant skin melanoma","2":"300","3":"252","4":"0.8070740","5":"Non-zero attention","6":"108"},{"1":"Prostate cancer","2":"2713","3":"300","4":"0.9614148","5":"Non-zero attention","6":"111"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/sdi-priority-attention-rank-facets-1.png" class="img-fluid figure-img" width="864"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/sdi-priority-four-panel-1.png" class="img-fluid figure-img" width="1536"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="zero-attention-disease-burden-trends" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="zero-attention-disease-burden-trends"><span class="header-section-number">12</span> Zero-attention disease burden trends</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div data-pagedtable="false">
+  <script data-pagedtable-source="" type="application/json">
+{"columns":[{"label":["zero_attention"],"name":[1],"type":["chr"],"align":["left"]},{"label":["location_name"],"name":[2],"type":["fct"],"align":["left"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["median_daly"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mean_daly"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"Other traits","2":"High SDI","3":"1990","4":"884248.1","5":"3946056.0","6":"184"},{"1":"Other traits","2":"High SDI","3":"1991","4":"907975.6","5":"3985770.4","6":"184"},{"1":"Other traits","2":"High SDI","3":"1992","4":"900893.9","5":"4027856.5","6":"184"},{"1":"Other traits","2":"High SDI","3":"1993","4":"914136.1","5":"4115663.6","6":"184"},{"1":"Other traits","2":"High SDI","3":"1994","4":"936478.5","5":"4159474.2","6":"184"},{"1":"Other traits","2":"High SDI","3":"1995","4":"950395.8","5":"4175042.3","6":"184"},{"1":"Other traits","2":"High SDI","3":"1996","4":"964549.7","5":"4150567.4","6":"184"},{"1":"Other traits","2":"High SDI","3":"1997","4":"969006.1","5":"4122816.6","6":"184"},{"1":"Other traits","2":"High SDI","3":"1998","4":"976303.8","5":"4128337.1","6":"184"},{"1":"Other traits","2":"High SDI","3":"1999","4":"1005710.8","5":"4181424.7","6":"184"},{"1":"Other traits","2":"High SDI","3":"2000","4":"1004274.0","5":"4191182.1","6":"184"},{"1":"Other traits","2":"High SDI","3":"2001","4":"1017813.4","5":"4204570.5","6":"184"},{"1":"Other traits","2":"High SDI","3":"2002","4":"1028589.6","5":"4229978.8","6":"184"},{"1":"Other traits","2":"High SDI","3":"2003","4":"1037485.8","5":"4253019.1","6":"184"},{"1":"Other traits","2":"High SDI","3":"2004","4":"1063082.5","5":"4238958.4","6":"184"},{"1":"Other traits","2":"High SDI","3":"2005","4":"1033410.5","5":"4238359.7","6":"184"},{"1":"Other traits","2":"High SDI","3":"2006","4":"1020054.8","5":"4214779.8","6":"184"},{"1":"Other traits","2":"High SDI","3":"2007","4":"1038450.9","5":"4220115.5","6":"184"},{"1":"Other traits","2":"High SDI","3":"2008","4":"1047491.7","5":"4229080.9","6":"184"},{"1":"Other traits","2":"High SDI","3":"2009","4":"1042885.1","5":"4203881.2","6":"184"},{"1":"Other traits","2":"High SDI","3":"2010","4":"1020645.1","5":"4199009.6","6":"184"},{"1":"Other traits","2":"High SDI","3":"2011","4":"1016993.8","5":"4184806.0","6":"184"},{"1":"Other traits","2":"High SDI","3":"2012","4":"1022230.3","5":"4184343.1","6":"184"},{"1":"Other traits","2":"High SDI","3":"2013","4":"1029732.7","5":"4184838.6","6":"184"},{"1":"Other traits","2":"High SDI","3":"2014","4":"1037253.6","5":"4198048.4","6":"184"},{"1":"Other traits","2":"High SDI","3":"2015","4":"1037589.2","5":"4249648.4","6":"184"},{"1":"Other traits","2":"High SDI","3":"2016","4":"1035483.7","5":"4281518.8","6":"184"},{"1":"Other traits","2":"High SDI","3":"2017","4":"1045154.0","5":"4303158.1","6":"184"},{"1":"Other traits","2":"High SDI","3":"2018","4":"1029364.9","5":"4284305.8","6":"184"},{"1":"Other traits","2":"High SDI","3":"2019","4":"1034793.1","5":"4251364.2","6":"184"},{"1":"Other traits","2":"High SDI","3":"2020","4":"1078994.7","5":"4480171.2","6":"184"},{"1":"Other traits","2":"High SDI","3":"2021","4":"1058618.7","5":"4712384.0","6":"184"},{"1":"Other traits","2":"High SDI","3":"2022","4":"1123038.1","5":"4647433.5","6":"184"},{"1":"Other traits","2":"High SDI","3":"2023","4":"1143802.3","5":"4576416.4","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1990","4":"437928.4","5":"2120904.2","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1991","4":"430997.7","5":"2120413.0","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1992","4":"434295.0","5":"2130277.0","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1993","4":"445871.0","5":"2131690.5","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1994","4":"434169.2","5":"2132212.1","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1995","4":"441985.3","5":"2140859.9","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1996","4":"440359.5","5":"2142147.6","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1997","4":"446121.4","5":"2143716.5","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1998","4":"447639.2","5":"2158059.3","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"1999","4":"455300.3","5":"2177168.9","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2000","4":"461111.3","5":"2194370.9","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2001","4":"466946.9","5":"2209901.8","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2002","4":"470249.6","5":"2220793.9","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2003","4":"484125.9","5":"2232198.7","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2004","4":"487395.4","5":"2281053.6","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2005","4":"477716.7","5":"2219876.3","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2006","4":"500509.5","5":"2223298.2","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2007","4":"485588.1","5":"2235499.0","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2008","4":"515464.4","5":"2263776.4","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2009","4":"505188.6","5":"2252110.5","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2010","4":"511596.8","5":"2258684.9","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2011","4":"505832.2","5":"2254428.2","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2012","4":"513526.7","5":"2259413.4","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2013","4":"515553.6","5":"2270099.4","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2014","4":"520324.1","5":"2293698.1","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2015","4":"536569.2","5":"2333322.6","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2016","4":"552321.3","5":"2387504.3","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2017","4":"563403.0","5":"2417153.2","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2018","4":"567226.7","5":"2412574.7","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2019","4":"570749.1","5":"2392559.9","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2020","4":"595377.5","5":"2600363.4","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2021","4":"610528.2","5":"2858084.1","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2022","4":"603949.8","5":"2648795.1","6":"184"},{"1":"Other traits","2":"High-middle SDI","3":"2023","4":"622659.1","5":"2629723.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1990","4":"238471.5","5":"1068468.3","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1991","4":"239127.6","5":"1065406.4","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1992","4":"240328.0","5":"1062402.0","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1993","4":"240988.4","5":"1066833.8","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1994","4":"249112.8","5":"1070867.2","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1995","4":"257900.3","5":"1074768.1","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1996","4":"261480.5","5":"1081133.7","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1997","4":"264707.2","5":"1088298.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1998","4":"265643.9","5":"1097846.5","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"1999","4":"273630.3","5":"1103699.0","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2000","4":"280788.6","5":"1113000.4","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2001","4":"279958.8","5":"1124599.0","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2002","4":"287829.1","5":"1135065.9","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2003","4":"293213.5","5":"1150525.5","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2004","4":"302512.9","5":"1162926.8","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2005","4":"306080.3","5":"1165492.5","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2006","4":"317730.2","5":"1188023.8","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2007","4":"310736.3","5":"1197634.1","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2008","4":"306483.1","5":"1204910.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2009","4":"311720.9","5":"1218896.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2010","4":"314566.4","5":"1232921.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2011","4":"318151.7","5":"1246251.8","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2012","4":"321324.1","5":"1261833.7","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2013","4":"351178.7","5":"1280810.7","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2014","4":"338189.9","5":"1301860.7","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2015","4":"353329.7","5":"1323048.0","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2016","4":"374232.1","5":"1343262.9","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2017","4":"375596.7","5":"1353794.0","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2018","4":"371990.1","5":"1355897.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2019","4":"367233.7","5":"1361591.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2020","4":"379363.7","5":"1472094.2","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2021","4":"380479.4","5":"1639343.1","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2022","4":"379584.9","5":"1500635.6","6":"184"},{"1":"Other traits","2":"Middle SDI","3":"2023","4":"389128.8","5":"1503041.7","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1990","4":"348787.5","5":"1738764.3","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1991","4":"349069.8","5":"1736317.8","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1992","4":"365725.5","5":"1730804.5","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1993","4":"355869.0","5":"1721089.0","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1994","4":"363156.1","5":"1712138.6","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1995","4":"368978.5","5":"1717439.7","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1996","4":"368105.3","5":"1731633.4","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1997","4":"357960.4","5":"1743828.4","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1998","4":"383165.5","5":"1752927.9","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"1999","4":"382225.0","5":"1752364.4","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2000","4":"361683.9","5":"1730828.3","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2001","4":"379985.6","5":"1732179.6","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2002","4":"364703.6","5":"1725450.9","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2003","4":"373651.5","5":"1726721.5","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2004","4":"396057.2","5":"1726472.8","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2005","4":"397947.5","5":"1747894.3","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2006","4":"404036.8","5":"1729000.4","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2007","4":"424816.3","5":"1745009.1","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2008","4":"432900.1","5":"1803445.4","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2009","4":"427901.4","5":"1758178.3","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2010","4":"445013.0","5":"1763825.8","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2011","4":"455075.7","5":"1769439.2","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2012","4":"465254.0","5":"1797647.3","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2013","4":"471625.5","5":"1813348.4","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2014","4":"471629.3","5":"1825960.9","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2015","4":"475577.3","5":"1831807.9","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2016","4":"474267.5","5":"1844726.9","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2017","4":"482486.6","5":"1851776.5","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2018","4":"465095.7","5":"1848944.7","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2019","4":"462294.9","5":"1838758.2","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2020","4":"475218.3","5":"1991489.1","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2021","4":"500731.3","5":"2184819.1","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2022","4":"498544.3","5":"1967390.8","6":"184"},{"1":"Other traits","2":"Low-middle SDI","3":"2023","4":"506355.8","5":"1967877.9","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1990","4":"458849.7","5":"2631001.3","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1991","4":"480208.0","5":"2710835.4","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1992","4":"479386.2","5":"2651059.0","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1993","4":"490042.7","5":"2674765.1","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1994","4":"505529.3","5":"2992270.7","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1995","4":"512523.9","5":"2717066.0","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1996","4":"520165.8","5":"2753452.3","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1997","4":"528612.7","5":"2762618.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1998","4":"546021.8","5":"2788085.7","6":"184"},{"1":"Other traits","2":"Low SDI","3":"1999","4":"545194.7","5":"2787963.6","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2000","4":"549134.7","5":"2786374.9","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2001","4":"559187.1","5":"2761319.9","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2002","4":"569428.0","5":"2769435.8","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2003","4":"570151.4","5":"2761135.6","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2004","4":"594752.8","5":"2753981.6","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2005","4":"590185.3","5":"2734081.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2006","4":"585943.5","5":"2732091.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2007","4":"607645.8","5":"2729947.6","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2008","4":"591396.9","5":"2721187.8","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2009","4":"600048.0","5":"2721113.9","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2010","4":"626744.8","5":"2797398.6","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2011","4":"619705.2","5":"2715509.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2012","4":"629858.5","5":"2721571.6","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2013","4":"635979.9","5":"2737378.1","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2014","4":"650125.4","5":"2758072.7","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2015","4":"659125.7","5":"2787584.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2016","4":"679767.5","5":"2802161.2","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2017","4":"706470.9","5":"2824265.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2018","4":"726333.6","5":"2848424.7","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2019","4":"745942.7","5":"2877189.3","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2020","4":"759550.2","5":"3124176.2","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2021","4":"766878.6","5":"3399769.5","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2022","4":"777917.6","5":"3110511.3","6":"184"},{"1":"Other traits","2":"Low SDI","3":"2023","4":"788154.5","5":"3110739.9","6":"184"},{"1":"Zero attention traits","2":"High SDI","3":"1990","4":"361802.0","5":"1557731.3","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1991","4":"382844.8","5":"1551633.0","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1992","4":"427272.4","5":"1548370.4","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1993","4":"434005.8","5":"1559067.9","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1994","4":"427984.6","5":"1558752.3","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1995","4":"426378.2","5":"1555886.3","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1996","4":"421338.7","5":"1540203.5","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1997","4":"420452.7","5":"1524334.1","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1998","4":"425221.9","5":"1517360.6","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"1999","4":"430724.0","5":"1523444.6","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2000","4":"392776.0","5":"1527129.7","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2001","4":"385585.3","5":"1524980.0","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2002","4":"377005.0","5":"1532010.8","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2003","4":"353069.4","5":"1540597.7","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2004","4":"347342.9","5":"1537045.3","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2005","4":"351299.0","5":"1551715.0","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2006","4":"344402.1","5":"1546354.7","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2007","4":"337554.1","5":"1549449.5","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2008","4":"330915.9","5":"1553943.8","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2009","4":"325155.1","5":"1547260.4","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2010","4":"319902.7","5":"1542502.4","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2011","4":"315465.0","5":"1540195.6","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2012","4":"305987.1","5":"1547686.6","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2013","4":"298903.7","5":"1558218.4","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2014","4":"300728.2","5":"1569992.4","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2015","4":"299981.8","5":"1593852.7","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2016","4":"294729.0","5":"1610067.1","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2017","4":"290221.6","5":"1622834.8","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2018","4":"292090.8","5":"1628198.6","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2019","4":"289824.3","5":"1629281.4","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2020","4":"287990.5","5":"1646732.7","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2021","4":"286005.6","5":"1667652.6","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2022","4":"294422.6","5":"1717487.9","6":"125"},{"1":"Zero attention traits","2":"High SDI","3":"2023","4":"290377.6","5":"1733871.0","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1990","4":"325402.7","5":"1212805.7","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1991","4":"330000.4","5":"1194078.2","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1992","4":"334782.2","5":"1172958.2","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1993","4":"345008.3","5":"1154098.3","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1994","4":"357331.6","5":"1139873.6","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1995","4":"349658.7","5":"1125979.1","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1996","4":"334636.0","5":"1110550.4","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1997","4":"317158.0","5":"1090534.2","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1998","4":"302155.2","5":"1076122.7","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"1999","4":"290688.1","5":"1063261.2","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2000","4":"298717.4","5":"1051157.0","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2001","4":"284610.0","5":"1043097.1","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2002","4":"300202.1","5":"1036403.6","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2003","4":"306109.7","5":"1031146.9","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2004","4":"306062.4","5":"1023674.7","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2005","4":"306175.3","5":"1019316.7","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2006","4":"313495.7","5":"1018007.4","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2007","4":"317627.5","5":"1016984.2","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2008","4":"304464.9","5":"1010764.2","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2009","4":"297368.5","5":"1004801.8","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2010","4":"276175.7","5":"993727.4","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2011","4":"262569.4","5":"980216.3","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2012","4":"266706.6","5":"972819.1","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2013","4":"290012.6","5":"970730.9","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2014","4":"272520.2","5":"970688.8","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2015","4":"270232.0","5":"975417.3","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2016","4":"262137.0","5":"985709.3","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2017","4":"260742.1","5":"989957.5","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2018","4":"246815.2","5":"986068.5","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2019","4":"218459.2","5":"981000.3","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2020","4":"216480.3","5":"973190.7","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2021","4":"203376.2","5":"993590.7","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2022","4":"212465.5","5":"1023757.1","6":"125"},{"1":"Zero attention traits","2":"High-middle SDI","3":"2023","4":"208892.0","5":"1040556.8","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1990","4":"179801.6","5":"817635.1","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1991","4":"180365.5","5":"801663.4","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1992","4":"179078.9","5":"790322.3","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1993","4":"194233.7","5":"779100.6","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1994","4":"200139.1","5":"767458.6","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1995","4":"205991.5","5":"755536.9","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1996","4":"209395.1","5":"742878.3","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1997","4":"197373.2","5":"729054.5","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1998","4":"187518.2","5":"715588.5","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"1999","4":"180117.1","5":"699909.5","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2000","4":"183386.3","5":"688462.1","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2001","4":"187553.6","5":"679934.4","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2002","4":"189070.1","5":"670656.9","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2003","4":"184838.2","5":"660172.9","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2004","4":"184315.0","5":"655007.4","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2005","4":"182674.3","5":"643581.8","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2006","4":"185176.4","5":"638262.8","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2007","4":"187212.4","5":"633427.6","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2008","4":"188370.1","5":"629612.1","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2009","4":"190822.5","5":"628489.8","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2010","4":"191290.8","5":"627965.9","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2011","4":"187394.1","5":"627633.0","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2012","4":"185808.1","5":"626399.2","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2013","4":"182184.8","5":"626097.3","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2014","4":"180714.0","5":"628532.8","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2015","4":"179646.8","5":"633086.1","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2016","4":"184221.1","5":"634506.0","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2017","4":"181259.6","5":"633108.4","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2018","4":"176799.5","5":"628711.5","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2019","4":"172426.0","5":"625196.4","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2020","4":"166137.8","5":"615710.2","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2021","4":"174150.3","5":"622652.1","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2022","4":"176578.5","5":"642456.0","6":"125"},{"1":"Zero attention traits","2":"Middle SDI","3":"2023","4":"175159.3","5":"653774.6","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1990","4":"266261.5","5":"1560661.8","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1991","4":"270881.3","5":"1539177.4","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1992","4":"273837.6","5":"1519414.1","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1993","4":"280754.3","5":"1499593.8","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1994","4":"319027.3","5":"1490754.9","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1995","4":"305222.0","5":"1522713.8","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1996","4":"292721.2","5":"1517649.7","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1997","4":"297698.5","5":"1505052.2","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1998","4":"307834.6","5":"1491192.8","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"1999","4":"317706.4","5":"1448449.1","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2000","4":"324867.5","5":"1422981.5","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2001","4":"331791.8","5":"1400673.9","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2002","4":"336799.4","5":"1380213.7","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2003","4":"340610.4","5":"1342884.2","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2004","4":"341565.7","5":"1316527.9","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2005","4":"337893.9","5":"1289247.7","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2006","4":"342620.1","5":"1269448.5","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2007","4":"355592.3","5":"1255493.6","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2008","4":"355705.6","5":"1235231.3","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2009","4":"350672.4","5":"1210697.7","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2010","4":"339843.2","5":"1189125.5","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2011","4":"328344.0","5":"1166536.0","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2012","4":"320574.9","5":"1144087.0","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2013","4":"331017.3","5":"1128457.5","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2014","4":"330810.1","5":"1110641.2","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2015","4":"330224.9","5":"1099319.4","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2016","4":"340773.1","5":"1092547.3","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2017","4":"332756.8","5":"1083076.1","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2018","4":"321885.0","5":"1067178.1","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2019","4":"318423.6","5":"1047097.5","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2020","4":"316545.4","5":"1012603.8","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2021","4":"331928.2","5":"1003733.9","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2022","4":"338807.4","5":"1025306.3","6":"125"},{"1":"Zero attention traits","2":"Low-middle SDI","3":"2023","4":"326835.5","5":"1037104.3","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1990","4":"407978.4","5":"2908699.2","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1991","4":"411099.0","5":"2921641.9","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1992","4":"415062.5","5":"2928785.9","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1993","4":"425881.9","5":"2948721.2","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1994","4":"437188.0","5":"2979385.7","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1995","4":"445903.2","5":"3000423.3","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1996","4":"464346.1","5":"3009039.6","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1997","4":"473389.5","5":"3004138.8","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1998","4":"482224.7","5":"2985940.6","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"1999","4":"491279.8","5":"2953731.6","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2000","4":"500079.4","5":"2912720.5","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2001","4":"508747.4","5":"2858951.4","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2002","4":"517322.2","5":"2807285.8","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2003","4":"527016.5","5":"2750609.0","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2004","4":"535545.8","5":"2686028.2","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2005","4":"546753.7","5":"2630068.8","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2006","4":"555954.7","5":"2565322.1","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2007","4":"565006.5","5":"2512767.3","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2008","4":"574027.7","5":"2473595.5","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2009","4":"576466.2","5":"2443959.4","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2010","4":"575985.2","5":"2450151.5","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2011","4":"576382.4","5":"2489413.9","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2012","4":"592619.4","5":"2409779.5","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2013","4":"597881.8","5":"2355178.1","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2014","4":"584025.1","5":"2333761.1","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2015","4":"600707.4","5":"2314240.8","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2016","4":"612768.0","5":"2291890.8","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2017","4":"602127.1","5":"2276258.3","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2018","4":"618350.8","5":"2258501.7","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2019","4":"634364.6","5":"2240756.8","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2020","4":"621228.7","5":"2134777.5","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2021","4":"650208.4","5":"2109763.1","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2022","4":"649562.1","5":"2209880.9","6":"125"},{"1":"Zero attention traits","2":"Low SDI","3":"2023","4":"668471.8","5":"2263944.7","6":"125"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regional_concentration_index_files/figure-html/zero-attention-daly-plot-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reproducibility-notes" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="reproducibility-notes"><span class="header-section-number">13</span> Reproducibility notes</h2>
+<p>This Quarto migration keeps <code>scripts/regional-concentration-index.ipynb</code> unchanged. The report sources reusable code from <code>scripts/regional_concentration_index/R/</code> and can be rendered from the repository root with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render scripts/regional_concentration_index/regional_concentration_index.qmd <span class="at">--output-dir</span> outputs</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
