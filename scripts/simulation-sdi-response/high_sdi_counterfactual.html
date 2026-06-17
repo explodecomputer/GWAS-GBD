@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,10 +68,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="high_sdi_counterfactual_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="high_sdi_counterfactual_files/libs/quarto-html/anchor.min.js"></script>
 <link href="high_sdi_counterfactual_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="high_sdi_counterfactual_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="high_sdi_counterfactual_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="high_sdi_counterfactual_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="high_sdi_counterfactual_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="high_sdi_counterfactual_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="high_sdi_counterfactual_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -84,7 +84,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aim" id="toc-aim" class="nav-link active" data-scroll-target="#aim">Aim</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#aim" id="toc-aim" class="nav-link" data-scroll-target="#aim">Aim</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a>
+  <ul class="collapse">
+  <li><a href="#analysis-universe" id="toc-analysis-universe" class="nav-link" data-scroll-target="#analysis-universe">Analysis universe</a></li>
+  <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics">Metrics</a></li>
+  <li><a href="#candidate-generation" id="toc-candidate-generation" class="nav-link" data-scroll-target="#candidate-generation">Candidate generation</a></li>
+  <li><a href="#calibration" id="toc-calibration" class="nav-link" data-scroll-target="#calibration">Calibration</a></li>
+  <li><a href="#summaries-and-interpretation" id="toc-summaries-and-interpretation" class="nav-link" data-scroll-target="#summaries-and-interpretation">Summaries and interpretation</a></li>
+  <li><a href="#interpretation-guide" id="toc-interpretation-guide" class="nav-link" data-scroll-target="#interpretation-guide">Interpretation guide</a></li>
+  <li><a href="#calibration-diagnostics" id="toc-calibration-diagnostics" class="nav-link" data-scroll-target="#calibration-diagnostics">Calibration diagnostics</a></li>
+  <li><a href="#sliding-window-and-all-time-analyses" id="toc-sliding-window-and-all-time-analyses" class="nav-link" data-scroll-target="#sliding-window-and-all-time-analyses">Sliding-window and all-time analyses</a></li>
+  </ul></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
   <li><a href="#observed-vs-null-ribbon" id="toc-observed-vs-null-ribbon" class="nav-link" data-scroll-target="#observed-vs-null-ribbon">Observed vs null ribbon</a></li>
@@ -92,6 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#calibration-check" id="toc-calibration-check" class="nav-link" data-scroll-target="#calibration-check">Calibration check</a></li>
   <li><a href="#effective-sparsity" id="toc-effective-sparsity" class="nav-link" data-scroll-target="#effective-sparsity">Effective sparsity</a></li>
   <li><a href="#all-time-attention-sensitivity" id="toc-all-time-attention-sensitivity" class="nav-link" data-scroll-target="#all-time-attention-sensitivity">All-time attention sensitivity</a></li>
+  <li><a href="#interpretation-of-results" id="toc-interpretation-of-results" class="nav-link" data-scroll-target="#interpretation-of-results">Interpretation of Results</a></li>
   </ul>
 </nav>
 </div>
@@ -126,8 +139,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"scripts/simulation-sdi-response/high_sdi_counterfactual.R"</span>))</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>simulation_seed <span class="ot">&lt;-</span> <span class="dv">20260615</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>n_candidates <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n_keep <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>n_candidates <span class="ot">&lt;-</span> <span class="dv">50000</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>n_keep <span class="ot">&lt;-</span> <span class="dv">5000</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>median_abs_error_warn <span class="ot">&lt;-</span> <span class="fl">0.02</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>max_abs_error_warn <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
@@ -136,34 +149,124 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># n_keep &lt;- 1000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>This report tests whether lower-SDI attention-burden alignment can be explained as a passive consequence of High SDI alignment plus shared disease burden. The null expectation is that lower-SDI concentration-index trends should track the High-SDI-calibrated simulation ribbon. Under that interpretation, any apparent lower-SDI alignment would be dictated by GWAS prioritisation in High SDI settings and by overlap in disease-burden rankings across SDI regions.</p>
+<p>The main finding is that lower-SDI regions generally perform worse than expected under this transfer null in the time-varying attention analysis, for both the active and reversed concentration-index definitions. This suggests that time-varying GWAS attention is not merely passively High-SDI-aligned; it is focused on a narrower condition canon that is less compatible with lower-SDI burden than a generic High-SDI-calibrated allocation would be.</p>
+<p>The all-time analysis gives a more nuanced result. When asking whether lower-SDI disease burden is concentrated among conditions that have received GWAS attention, all-time attention is closer to the null expectation. When asking whether GWAS attention is concentrated on lower-SDI high-burden conditions, lower-SDI regions again perform worse than expected. This suggests some accumulated coverage of lower-SDI-relevant conditions, but insufficient prioritisation intensity toward the conditions that matter most in lower-SDI settings.</p>
+</section>
 <section id="aim" class="level2">
 <h2 class="anchored" data-anchor-id="aim">Aim</h2>
-<p>This analysis tests whether lower-SDI attention-burden alignment is compatible with a High-SDI transfer null. The counterfactual preserves each sliding window’s observed attention sparsity and inequality, then keeps simulated attention allocations closest to the observed High SDI attention-burden concentration index.</p>
-<p>The candidate generator uses a proposal mixture. One component assigns observed nonzero attention scores fully at random; the other components assign the same observed scores to randomly selected conditions with noisy High-SDI rank alignment. The proposal mixture is used to explore enough High-SDI-aligned allocations for calibration; kept allocations are selected by closeness to the observed High SDI concentration index.</p>
+<p>This analysis tests whether lower-SDI attention-burden alignment is compatible with a High-SDI transfer null. Under this null, GWAS condition prioritisation is assumed to be shaped by High SDI disease burden. Any apparent alignment in lower-SDI regions is then expected to arise from shared burden structure between High SDI and lower-SDI regions, rather than from lower-SDI-responsive condition prioritisation.</p>
+<p>The simulation is a calibrated permutation analysis. It preserves each GWAS attention window’s observed sparsity and attention-score inequality, breaks the observed mapping between conditions and attention scores, then keeps simulated attention allocations that reproduce the observed High SDI alignment metric. Those same kept allocations are evaluated against each SDI region’s burden ranking.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<section id="analysis-universe" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-universe">Analysis universe</h3>
+<p>The main analysis uses sliding-window GWAS attention scores and SDI burden data for all ages, both sexes, and DALY counts. The condition universe is the same condition set used by the regional concentration-index analysis after zero padding attention windows. Conditions with zero GWAS attention remain in the analysis universe.</p>
+<p>COVID-19 is excluded before constructing observed metrics or simulated allocations. The exclusion is used because a single pandemic-era condition can dominate the support of possible permutations, narrowing the counterfactual range in a way that is not useful for testing the broader GWAS condition canon.</p>
+</section>
+<section id="metrics" class="level3">
+<h3 class="anchored" data-anchor-id="metrics">Metrics</h3>
+<p>The primary metric is the attention-burden concentration index:</p>
+<pre class="text"><code>CI_active = CI(GWAS attention ranked by DALY burden)</code></pre>
+<p>Positive values mean GWAS attention is concentrated among higher-burden conditions in the selected SDI region and year.</p>
+<p>The reversed metric is calculated separately as a diagnostic:</p>
+<pre class="text"><code>CI_reversed = CI(DALY burden ranked by GWAS attention)</code></pre>
+<p>Positive values mean disease burden is concentrated among conditions with greater GWAS attention. Because this answers a different question, the active and reversed metrics are calibrated in separate simulation runs.</p>
+</section>
+<section id="candidate-generation" class="level3">
+<h3 class="anchored" data-anchor-id="candidate-generation">Candidate generation</h3>
+<p>For each year or attention window, the simulation starts with the observed vector of GWAS attention scores:</p>
+<pre class="text"><code>observed_scores = {0, 0, ..., nonzero attention scores}</code></pre>
+<p>Each candidate allocation preserves the exact observed nonzero score values and the exact number of zero-attention conditions. A candidate is generated by:</p>
+<pre class="text"><code>1. sample n_nonzero conditions from the condition universe
+2. assign the observed nonzero scores to those selected conditions
+3. assign zero attention to all other conditions</code></pre>
+<p>The candidate generator uses a proposal mixture so that enough High-SDI-aligned allocations are available for calibration:</p>
+<pre class="text"><code>proposal 1:
+  randomly choose nonzero conditions
+  randomly assign nonzero score magnitudes
+
+proposal 2:
+  randomly choose nonzero conditions
+  assign larger scores to higher High SDI burden ranks, with rank noise
+
+proposal 3:
+  same as proposal 2, using different rank-noise levels</code></pre>
+<p>The rank-noise levels range from strongly High-SDI-shaped to weakly High-SDI-shaped. The proposal mixture is not itself the estimand; it is a practical sampler used to discover enough candidate allocations near the observed High SDI calibration target.</p>
+</section>
+<section id="calibration" class="level3">
+<h3 class="anchored" data-anchor-id="calibration">Calibration</h3>
+<p>For each year, the simulation generates 5^{4} candidate allocations and keeps the 5000 allocations closest to the observed High SDI metric. The active and reversed analyses use different calibration targets:</p>
+<pre class="text"><code>active run:
+  keep allocations closest to observed High SDI CI_active
+
+reversed run:
+  keep allocations closest to observed High SDI CI_reversed</code></pre>
+<p>High SDI is therefore a calibration check, not an independent test. The lower SDI regions are the test regions: the High-SDI-calibrated allocations are projected onto each lower-SDI burden ranking to estimate the null distribution expected from shared burden structure alone.</p>
+</section>
+<section id="summaries-and-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="summaries-and-interpretation">Summaries and interpretation</h3>
+<p>For each SDI region and year, the kept allocations define a null distribution. The report summarizes:</p>
+<pre class="text"><code>sim_lci      = 2.5th percentile of simulated CI
+sim_median   = median simulated CI
+sim_uci      = 97.5th percentile of simulated CI
+observed_ci  = empirical regional CI</code></pre>
+<p>If the observed lower-SDI CI lies inside the null ribbon, the observed regional alignment is compatible with the High-SDI transfer null. If it lies below the ribbon, observed alignment is worse than expected under a generic High-SDI-calibrated canon. If it lies above the ribbon, observed alignment is stronger than expected under the transfer null.</p>
+<p>This is a sufficiency test, not a causal proof. Compatibility with the null means that the observed pattern can be reproduced by High SDI alignment plus shared burden structure. It does not prove that High SDI prioritisation caused the observed pattern.</p>
+</section>
+<section id="interpretation-guide" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-guide">Interpretation guide</h3>
+<p>The lower-SDI observed line is interpreted relative to the High-SDI-calibrated null ribbon:</p>
+<pre class="text"><code>observed inside null ribbon:
+  lower-SDI alignment is compatible with passive High-SDI transfer
+
+observed above null ribbon:
+  lower-SDI alignment is stronger than expected
+  possible evidence of condition prioritisation beyond passive High-SDI transfer
+
+observed below null ribbon:
+  lower-SDI alignment is weaker than expected
+  High-SDI-shaped prioritisation is worse than a generic High-SDI-calibrated
+  allocation for lower-SDI burden</code></pre>
+<p>The last case is especially informative. It means the empirical GWAS canon is not just High-SDI-aligned; it is selectively High-SDI-specific. Among diseases that could satisfy the High SDI calibration target, observed GWAS attention has favoured conditions that are relatively less important in lower-SDI regions than other plausible High-SDI-aligned alternatives.</p>
+</section>
+<section id="calibration-diagnostics" class="level3">
+<h3 class="anchored" data-anchor-id="calibration-diagnostics">Calibration diagnostics</h3>
+<p>Calibration quality is reported for every year. Windows are flagged when:</p>
+<pre class="text"><code>median_abs_error &gt; 0.02
+or
+max_abs_error &gt; 0.05</code></pre>
+<p>A warning indicates that the kept allocations do not closely reproduce the High SDI calibration target and should not be used for strong inference without increasing the candidate count or tuning the proposal sampler. Warning windows remain visible in plots using a different point shape.</p>
+</section>
+<section id="sliding-window-and-all-time-analyses" class="level3">
+<h3 class="anchored" data-anchor-id="sliding-window-and-all-time-analyses">Sliding-window and all-time analyses</h3>
 <p>The active and reversed metrics are calibrated in separate simulation runs. The active ribbon keeps allocations closest to observed High SDI attention-burden concentration index; the reversed ribbon keeps allocations closest to observed High SDI reversed concentration index.</p>
-<p>COVID-19 is excluded before building observed and simulated windows so a single pandemic-era condition does not dominate the range of possible permutations.</p>
 <p>The all-time sensitivity uses the all-time attention score distribution and evaluates it against each burden year.</p>
+</section>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>window_data <span class="ot">&lt;-</span> <span class="fu">prepare_counterfactual_windows</span>(<span class="at">exclude_covid =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>observed_alignment <span class="ot">&lt;-</span> <span class="fu">compute_observed_counterfactual_alignment</span>(window_data)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(window_data<span class="sc">$</span>year))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_year =</span> <span class="fu">min</span>(years),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_year =</span> <span class="fu">max</span>(years),</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_years =</span> <span class="fu">length</span>(years),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_conditions =</span> <span class="fu">n_distinct</span>(window_data<span class="sc">$</span>cause_id),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_locations =</span> <span class="fu">n_distinct</span>(window_data<span class="sc">$</span>location_name)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>window_data <span class="ot">&lt;-</span> <span class="fu">prepare_counterfactual_windows</span>(<span class="at">exclude_covid =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>observed_alignment <span class="ot">&lt;-</span> <span class="fu">compute_observed_counterfactual_alignment</span>(window_data)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">sort</span>(<span class="fu">unique</span>(window_data<span class="sc">$</span>year))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">first_year =</span> <span class="fu">min</span>(years),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">last_year =</span> <span class="fu">max</span>(years),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_years =</span> <span class="fu">length</span>(years),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_conditions =</span> <span class="fu">n_distinct</span>(window_data<span class="sc">$</span>cause_id),</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_locations =</span> <span class="fu">n_distinct</span>(window_data<span class="sc">$</span>location_name)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 5
+<pre><code># A tibble: 1 × 5
   first_year last_year n_years n_conditions n_locations
        &lt;int&gt;     &lt;int&gt;   &lt;int&gt;        &lt;int&gt;       &lt;int&gt;
 1       2005      2023      19          273           6</code></pre>
@@ -172,27 +275,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>observed_alignment <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    sex_name <span class="sc">==</span> <span class="st">"Both"</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years)),</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"High SDI"</span>, <span class="st">"Low SDI"</span>, <span class="st">"Global"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    concentration_index,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    concentration_index_rev,</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    attention_gini,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    alignment_ratio,</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    share_alignment,</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    n_causes</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>observed_alignment <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    sex_name <span class="sc">==</span> <span class="st">"Both"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years)),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"High SDI"</span>, <span class="st">"Low SDI"</span>, <span class="st">"Global"</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    concentration_index,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    concentration_index_rev,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    attention_gini,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    alignment_ratio,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    share_alignment,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    n_causes</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 15 x 8
-   location_name  year concentration_index concentration_index_~1 attention_gini
+<pre><code># A tibble: 15 × 8
+   location_name  year concentration_index concentration_index_…¹ attention_gini
    &lt;fct&gt;         &lt;int&gt;               &lt;dbl&gt;                  &lt;dbl&gt;          &lt;dbl&gt;
  1 High SDI       2005               0.683                 0.152           0.977
  2 High SDI       2010               0.493                 0.159           0.886
@@ -209,8 +312,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 13 Global         2015               0.329                 0.104           0.923
 14 Global         2020               0.455                 0.235           0.906
 15 Global         2023               0.472                 0.349           0.844
-# i abbreviated name: 1: concentration_index_rev
-# i 3 more variables: alignment_ratio &lt;dbl&gt;, share_alignment &lt;dbl&gt;,
+# ℹ abbreviated name: ¹​concentration_index_rev
+# ℹ 3 more variables: alignment_ratio &lt;dbl&gt;, share_alignment &lt;dbl&gt;,
 #   n_causes &lt;int&gt;</code></pre>
 </div>
 </div>
@@ -220,85 +323,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>active_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> window_data,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"active"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>active_counterfactual_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> active_counterfactual<span class="sc">$</span>simulations,</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> observed_alignment,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> active_counterfactual<span class="sc">$</span>calibration</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>reversed_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> window_data,</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"reversed"</span>,</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>reversed_counterfactual_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> reversed_counterfactual<span class="sc">$</span>simulations,</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> observed_alignment,</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> reversed_counterfactual<span class="sc">$</span>calibration</span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>active_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> window_data,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"active"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>active_counterfactual_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> active_counterfactual<span class="sc">$</span>simulations,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> observed_alignment,</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> active_counterfactual<span class="sc">$</span>calibration</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>reversed_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> window_data,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"reversed"</span>,</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>reversed_counterfactual_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> reversed_counterfactual<span class="sc">$</span>simulations,</span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> observed_alignment,</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> reversed_counterfactual<span class="sc">$</span>calibration</span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  active_counterfactual<span class="sc">$</span>calibration,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  reversed_counterfactual<span class="sc">$</span>calibration</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    calibration_metric,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    n_candidates,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    n_kept,</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    n_nonzero_attention,</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    n_zero_attention,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    n_unique_nonzero_condition_sets,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    observed_high_sdi_ci,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    observed_high_sdi_reversed_ci,</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    mean_kept_high_sdi_ci,</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    mean_kept_high_sdi_reversed_ci,</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    observed_calibration_ci,</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    mean_kept_calibration_ci,</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    median_abs_error,</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    max_abs_error,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    calibration_quality,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    seed</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(calibration_metric, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  active_counterfactual<span class="sc">$</span>calibration,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  reversed_counterfactual<span class="sc">$</span>calibration</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    calibration_metric,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    n_candidates,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    n_kept,</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    n_nonzero_attention,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    n_zero_attention,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    n_unique_nonzero_condition_sets,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    observed_high_sdi_ci,</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    observed_high_sdi_reversed_ci,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    mean_kept_high_sdi_ci,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    mean_kept_high_sdi_reversed_ci,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    observed_calibration_ci,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    mean_kept_calibration_ci,</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    median_abs_error,</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    max_abs_error,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    calibration_quality,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    seed</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(calibration_metric, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 38 x 17
+<pre><code># A tibble: 38 × 17
     year calibration_metric n_candidates n_kept n_nonzero_attention
    &lt;int&gt; &lt;chr&gt;                     &lt;dbl&gt;  &lt;int&gt;               &lt;int&gt;
- 1  2005 active                     5000    500                  18
- 2  2006 active                     5000    500                  32
- 3  2007 active                     5000    500                  63
- 4  2008 active                     5000    500                  79
- 5  2009 active                     5000    500                  89
- 6  2010 active                     5000    500                  94
- 7  2011 active                     5000    500                 105
- 8  2012 active                     5000    500                 104
- 9  2013 active                     5000    500                 107
-10  2014 active                     5000    500                  99
-# i 28 more rows
-# i 12 more variables: n_zero_attention &lt;int&gt;,
+ 1  2005 active                    50000   5000                  18
+ 2  2006 active                    50000   5000                  32
+ 3  2007 active                    50000   5000                  63
+ 4  2008 active                    50000   5000                  79
+ 5  2009 active                    50000   5000                  89
+ 6  2010 active                    50000   5000                  94
+ 7  2011 active                    50000   5000                 105
+ 8  2012 active                    50000   5000                 104
+ 9  2013 active                    50000   5000                 107
+10  2014 active                    50000   5000                  99
+# ℹ 28 more rows
+# ℹ 12 more variables: n_zero_attention &lt;int&gt;,
 #   n_unique_nonzero_condition_sets &lt;int&gt;, observed_high_sdi_ci &lt;dbl&gt;,
 #   observed_high_sdi_reversed_ci &lt;dbl&gt;, mean_kept_high_sdi_ci &lt;dbl&gt;,
 #   mean_kept_high_sdi_reversed_ci &lt;dbl&gt;, observed_calibration_ci &lt;dbl&gt;,
@@ -314,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(active_counterfactual_summary, <span class="at">metric =</span> <span class="st">"active"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(active_counterfactual_summary, <span class="at">metric =</span> <span class="st">"active"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -327,40 +430,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>active_counterfactual_summary <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years)),</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    observed_ci,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    sim_lci,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    sim_median,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    sim_uci,</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    observed_minus_sim_median,</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    observed_percentile_rank,</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    null_compatibility</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>active_counterfactual_summary <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years)),</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    observed_ci,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    sim_lci,</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    sim_median,</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    sim_uci,</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    observed_minus_sim_median,</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    observed_percentile_rank,</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    null_compatibility</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 25 x 9
+<pre><code># A tibble: 25 × 9
    location_name    year observed_ci sim_lci sim_median sim_uci
    &lt;fct&gt;           &lt;int&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
- 1 High SDI         2005       0.683   0.647      0.678   0.718
- 2 High SDI         2010       0.493   0.442      0.510   0.545
- 3 High SDI         2015       0.527   0.463      0.524   0.592
- 4 High SDI         2020       0.565   0.488      0.548   0.640
- 5 High SDI         2023       0.574   0.497      0.625   0.652
- 6 High-middle SDI  2005       0.532   0.431      0.623   0.726
- 7 High-middle SDI  2010       0.357   0.338      0.449   0.531
- 8 High-middle SDI  2015       0.328   0.355      0.483   0.593
- 9 High-middle SDI  2020       0.509   0.395      0.511   0.625
-10 High-middle SDI  2023       0.522   0.443      0.570   0.630
-# i 15 more rows
-# i 3 more variables: observed_minus_sim_median &lt;dbl&gt;,
+ 1 High SDI         2005       0.683   0.649      0.678   0.717
+ 2 High SDI         2010       0.493   0.443      0.510   0.545
+ 3 High SDI         2015       0.527   0.459      0.522   0.595
+ 4 High SDI         2020       0.565   0.492      0.546   0.634
+ 5 High SDI         2023       0.574   0.499      0.623   0.651
+ 6 High-middle SDI  2005       0.532   0.431      0.623   0.725
+ 7 High-middle SDI  2010       0.357   0.338      0.447   0.529
+ 8 High-middle SDI  2015       0.328   0.342      0.480   0.591
+ 9 High-middle SDI  2020       0.509   0.393      0.510   0.614
+10 High-middle SDI  2023       0.522   0.441      0.570   0.631
+# ℹ 15 more rows
+# ℹ 3 more variables: observed_minus_sim_median &lt;dbl&gt;,
 #   observed_percentile_rank &lt;dbl&gt;, null_compatibility &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -371,7 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(reversed_counterfactual_summary, <span class="at">metric =</span> <span class="st">"reversed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(reversed_counterfactual_summary, <span class="at">metric =</span> <span class="st">"reversed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -384,40 +487,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>reversed_counterfactual_summary <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years)),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    observed_reversed_ci,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    sim_reversed_lci,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    sim_reversed_median,</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    sim_reversed_uci,</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    observed_reversed_minus_sim_median,</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    observed_reversed_percentile_rank,</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    reversed_null_compatibility</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>reversed_counterfactual_summary <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years)),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    observed_reversed_ci,</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    sim_reversed_lci,</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    sim_reversed_median,</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    sim_reversed_uci,</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    observed_reversed_minus_sim_median,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    observed_reversed_percentile_rank,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    reversed_null_compatibility</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 25 x 9
+<pre><code># A tibble: 25 × 9
    location_name  year observed_reversed_ci sim_reversed_lci sim_reversed_median
    &lt;fct&gt;         &lt;int&gt;                &lt;dbl&gt;            &lt;dbl&gt;               &lt;dbl&gt;
- 1 High SDI       2005               0.152           0.0369               0.0568
- 2 High SDI       2010               0.159           0.0884               0.103 
- 3 High SDI       2015               0.232           0.155                0.173 
+ 1 High SDI       2005               0.152           0.0378               0.0572
+ 2 High SDI       2010               0.159           0.0880               0.103 
+ 3 High SDI       2015               0.232           0.153                0.173 
  4 High SDI       2020               0.395           0.362                0.389 
- 5 High SDI       2023               0.506           0.469                0.495 
- 6 High-middle ~  2005              -0.0472          0.00127              0.0401
- 7 High-middle ~  2010               0.0342          0.0132               0.0804
- 8 High-middle ~  2015               0.148           0.0920               0.152 
- 9 High-middle ~  2020               0.301           0.291                0.358 
-10 High-middle ~  2023               0.424           0.387                0.460 
-# i 15 more rows
-# i 4 more variables: sim_reversed_uci &lt;dbl&gt;,
+ 5 High SDI       2023               0.506           0.467                0.495 
+ 6 High-middle …  2005              -0.0472          0.00461              0.0410
+ 7 High-middle …  2010               0.0342          0.0172               0.0833
+ 8 High-middle …  2015               0.148           0.0862               0.151 
+ 9 High-middle …  2020               0.301           0.288                0.359 
+10 High-middle …  2023               0.424           0.391                0.459 
+# ℹ 15 more rows
+# ℹ 4 more variables: sim_reversed_uci &lt;dbl&gt;,
 #   observed_reversed_minus_sim_median &lt;dbl&gt;,
 #   observed_reversed_percentile_rank &lt;dbl&gt;, reversed_null_compatibility &lt;chr&gt;</code></pre>
 </div>
@@ -429,11 +532,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  active_counterfactual_summary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(location_name <span class="sc">==</span> <span class="st">"High SDI"</span>),</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_global =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"active"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  active_counterfactual_summary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(location_name <span class="sc">==</span> <span class="st">"High SDI"</span>),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_global =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"active"</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -446,11 +549,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  reversed_counterfactual_summary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(location_name <span class="sc">==</span> <span class="st">"High SDI"</span>),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_global =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"reversed"</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  reversed_counterfactual_summary <span class="sc">%&gt;%</span> <span class="fu">filter</span>(location_name <span class="sc">==</span> <span class="st">"High SDI"</span>),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">include_global =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">metric =</span> <span class="st">"reversed"</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -466,15 +569,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>active_counterfactual<span class="sc">$</span>calibration <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_nonzero_attention)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>() <span class="sc">+</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GWAS attention window"</span>,</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Nonzero attention conditions"</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>active_counterfactual<span class="sc">$</span>calibration <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n_nonzero_attention)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_report</span>() <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"GWAS attention window"</span>,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Nonzero attention conditions"</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -491,88 +594,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>all_time_data <span class="ot">&lt;-</span> <span class="fu">prepare_counterfactual_all_time</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">burden_years =</span> years,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">exclude_covid =</span> <span class="cn">TRUE</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>all_time_observed_alignment <span class="ot">&lt;-</span> <span class="fu">compute_observed_counterfactual_alignment</span>(all_time_data)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>all_time_active_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> all_time_data,</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"active"</span>,</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>all_time_active_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> all_time_active_counterfactual<span class="sc">$</span>simulations,</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> all_time_observed_alignment,</span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> all_time_active_counterfactual<span class="sc">$</span>calibration</span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>all_time_reversed_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> all_time_data,</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"reversed"</span>,</span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>all_time_reversed_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> all_time_reversed_counterfactual<span class="sc">$</span>simulations,</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> all_time_observed_alignment,</span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> all_time_reversed_counterfactual<span class="sc">$</span>calibration</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>all_time_data <span class="ot">&lt;-</span> <span class="fu">prepare_counterfactual_all_time</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">burden_years =</span> years,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">exclude_covid =</span> <span class="cn">TRUE</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>all_time_observed_alignment <span class="ot">&lt;-</span> <span class="fu">compute_observed_counterfactual_alignment</span>(all_time_data)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>all_time_active_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> all_time_data,</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"active"</span>,</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>all_time_active_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> all_time_active_counterfactual<span class="sc">$</span>simulations,</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> all_time_observed_alignment,</span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> all_time_active_counterfactual<span class="sc">$</span>calibration</span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>all_time_reversed_counterfactual <span class="ot">&lt;-</span> <span class="fu">run_high_sdi_counterfactual</span>(</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">window_data =</span> all_time_data,</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">years =</span> years,</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_candidates =</span> n_candidates,</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">n_keep =</span> n_keep,</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">seed =</span> simulation_seed,</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration_metric =</span> <span class="st">"reversed"</span>,</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">median_abs_error_warn =</span> median_abs_error_warn,</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">max_abs_error_warn =</span> max_abs_error_warn</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>all_time_reversed_summary <span class="ot">&lt;-</span> <span class="fu">summarise_counterfactual</span>(</span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">simulations =</span> all_time_reversed_counterfactual<span class="sc">$</span>simulations,</span>
+<span id="cb27-38"><a href="#cb27-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">observed_alignment =</span> all_time_observed_alignment,</span>
+<span id="cb27-39"><a href="#cb27-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">calibration =</span> all_time_reversed_counterfactual<span class="sc">$</span>calibration</span>
+<span id="cb27-40"><a href="#cb27-40" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  all_time_active_counterfactual<span class="sc">$</span>calibration,</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  all_time_reversed_counterfactual<span class="sc">$</span>calibration</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    calibration_metric,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    n_candidates,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    n_kept,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    n_nonzero_attention,</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    n_zero_attention,</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    n_unique_nonzero_condition_sets,</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    observed_calibration_ci,</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    mean_kept_calibration_ci,</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    median_abs_error,</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    max_abs_error,</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    calibration_quality,</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>    seed</span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(calibration_metric, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bind_rows</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  all_time_active_counterfactual<span class="sc">$</span>calibration,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  all_time_reversed_counterfactual<span class="sc">$</span>calibration</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    calibration_metric,</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    n_candidates,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    n_kept,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    n_nonzero_attention,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    n_zero_attention,</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    n_unique_nonzero_condition_sets,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    observed_calibration_ci,</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    mean_kept_calibration_ci,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    median_abs_error,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>    max_abs_error,</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>    calibration_quality,</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    seed</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(calibration_metric, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 38 x 13
+<pre><code># A tibble: 38 × 13
     year calibration_metric n_candidates n_kept n_nonzero_attention
    &lt;int&gt; &lt;chr&gt;                     &lt;dbl&gt;  &lt;int&gt;               &lt;int&gt;
- 1  2005 active                     5000    500                 239
- 2  2006 active                     5000    500                 239
- 3  2007 active                     5000    500                 239
- 4  2008 active                     5000    500                 239
- 5  2009 active                     5000    500                 239
- 6  2010 active                     5000    500                 239
- 7  2011 active                     5000    500                 239
- 8  2012 active                     5000    500                 239
- 9  2013 active                     5000    500                 239
-10  2014 active                     5000    500                 239
-# i 28 more rows
-# i 8 more variables: n_zero_attention &lt;int&gt;,
+ 1  2005 active                    50000   5000                 239
+ 2  2006 active                    50000   5000                 239
+ 3  2007 active                    50000   5000                 239
+ 4  2008 active                    50000   5000                 239
+ 5  2009 active                    50000   5000                 239
+ 6  2010 active                    50000   5000                 239
+ 7  2011 active                    50000   5000                 239
+ 8  2012 active                    50000   5000                 239
+ 9  2013 active                    50000   5000                 239
+10  2014 active                    50000   5000                 239
+# ℹ 28 more rows
+# ℹ 8 more variables: n_zero_attention &lt;int&gt;,
 #   n_unique_nonzero_condition_sets &lt;int&gt;, observed_calibration_ci &lt;dbl&gt;,
 #   mean_kept_calibration_ci &lt;dbl&gt;, median_abs_error &lt;dbl&gt;,
 #   max_abs_error &lt;dbl&gt;, calibration_quality &lt;chr&gt;, seed &lt;dbl&gt;</code></pre>
@@ -581,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(all_time_active_summary, <span class="at">metric =</span> <span class="st">"active"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(all_time_active_summary, <span class="at">metric =</span> <span class="st">"active"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -594,47 +697,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>all_time_active_summary <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span>,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years))</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    observed_ci,</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    sim_lci,</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    sim_median,</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    sim_uci,</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    observed_minus_sim_median,</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    observed_percentile_rank,</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    null_compatibility</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>all_time_active_summary <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years))</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    observed_ci,</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    sim_lci,</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    sim_median,</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    sim_uci,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    observed_minus_sim_median,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    observed_percentile_rank,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    null_compatibility</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 25 x 9
+<pre><code># A tibble: 25 × 9
    location_name    year observed_ci sim_lci sim_median sim_uci
    &lt;fct&gt;           &lt;int&gt;       &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;   &lt;dbl&gt;
- 1 High SDI         2005       0.529   0.453      0.500   0.595
- 2 High SDI         2010       0.543   0.460      0.506   0.615
- 3 High SDI         2015       0.552   0.465      0.514   0.637
- 4 High SDI         2020       0.565   0.475      0.526   0.653
- 5 High SDI         2023       0.566   0.477      0.530   0.655
- 6 High-middle SDI  2005       0.435   0.336      0.445   0.540
- 7 High-middle SDI  2010       0.460   0.349      0.452   0.570
- 8 High-middle SDI  2015       0.489   0.391      0.477   0.604
- 9 High-middle SDI  2020       0.509   0.400      0.499   0.629
-10 High-middle SDI  2023       0.513   0.408      0.498   0.627
-# i 15 more rows
-# i 3 more variables: observed_minus_sim_median &lt;dbl&gt;,
+ 1 High SDI         2005       0.529   0.454      0.499   0.593
+ 2 High SDI         2010       0.543   0.459      0.506   0.622
+ 3 High SDI         2015       0.552   0.465      0.512   0.637
+ 4 High SDI         2020       0.565   0.477      0.529   0.653
+ 5 High SDI         2023       0.566   0.479      0.532   0.653
+ 6 High-middle SDI  2005       0.435   0.334      0.445   0.543
+ 7 High-middle SDI  2010       0.460   0.348      0.456   0.574
+ 8 High-middle SDI  2015       0.489   0.378      0.476   0.603
+ 9 High-middle SDI  2020       0.509   0.398      0.497   0.626
+10 High-middle SDI  2023       0.513   0.407      0.502   0.629
+# ℹ 15 more rows
+# ℹ 3 more variables: observed_minus_sim_median &lt;dbl&gt;,
 #   observed_percentile_rank &lt;dbl&gt;, null_compatibility &lt;chr&gt;</code></pre>
 </div>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(all_time_reversed_summary, <span class="at">metric =</span> <span class="st">"reversed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_counterfactual_ribbon</span>(all_time_reversed_summary, <span class="at">metric =</span> <span class="st">"reversed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -647,44 +750,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>all_time_reversed_summary <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span>,</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years))</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    observed_reversed_ci,</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    sim_reversed_lci,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    sim_reversed_median,</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    sim_reversed_uci,</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    observed_reversed_minus_sim_median,</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    observed_reversed_percentile_rank,</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>    reversed_null_compatibility</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>all_time_reversed_summary <span class="sc">%&gt;%</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    location_name <span class="sc">!=</span> <span class="st">"Global"</span>,</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fu">min</span>(years), <span class="dv">2010</span>, <span class="dv">2015</span>, <span class="dv">2020</span>, <span class="fu">max</span>(years))</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    location_name,</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    observed_reversed_ci,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    sim_reversed_lci,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    sim_reversed_median,</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    sim_reversed_uci,</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    observed_reversed_minus_sim_median,</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    observed_reversed_percentile_rank,</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>    reversed_null_compatibility</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location_name, year)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 25 x 9
+<pre><code># A tibble: 25 × 9
    location_name  year observed_reversed_ci sim_reversed_lci sim_reversed_median
    &lt;fct&gt;         &lt;int&gt;                &lt;dbl&gt;            &lt;dbl&gt;               &lt;dbl&gt;
- 1 High SDI       2005                0.425            0.383               0.424
- 2 High SDI       2010                0.438            0.396               0.438
- 3 High SDI       2015                0.449            0.413               0.449
- 4 High SDI       2020                0.465            0.427               0.468
- 5 High SDI       2023                0.471            0.435               0.471
- 6 High-middle ~  2005                0.254            0.269               0.382
- 7 High-middle ~  2010                0.292            0.305               0.396
- 8 High-middle ~  2015                0.335            0.335               0.414
- 9 High-middle ~  2020                0.373            0.368               0.434
-10 High-middle ~  2023                0.389            0.371               0.443
-# i 15 more rows
-# i 4 more variables: sim_reversed_uci &lt;dbl&gt;,
+ 1 High SDI       2005                0.425            0.381               0.424
+ 2 High SDI       2010                0.438            0.396               0.439
+ 3 High SDI       2015                0.449            0.410               0.452
+ 4 High SDI       2020                0.465            0.429               0.467
+ 5 High SDI       2023                0.471            0.435               0.473
+ 6 High-middle …  2005                0.254            0.270               0.379
+ 7 High-middle …  2010                0.292            0.305               0.396
+ 8 High-middle …  2015                0.335            0.343               0.417
+ 9 High-middle …  2020                0.373            0.364               0.435
+10 High-middle …  2023                0.389            0.370               0.440
+# ℹ 15 more rows
+# ℹ 4 more variables: sim_reversed_uci &lt;dbl&gt;,
 #   observed_reversed_minus_sim_median &lt;dbl&gt;,
 #   observed_reversed_percentile_rank &lt;dbl&gt;, reversed_null_compatibility &lt;chr&gt;</code></pre>
 </div>
 </div>
+</section>
+<section id="interpretation-of-results" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-of-results">Interpretation of Results</h2>
+<p>The four analyses separate two related questions:</p>
+<pre class="text"><code>active CI:
+  Is GWAS attention concentrated on high-burden conditions?
+
+reversed CI:
+  Is disease burden concentrated among conditions that receive GWAS attention?
+
+time-varying attention:
+  What do specific GWAS attention windows do?
+
+all-time attention:
+  What does the accumulated GWAS canon do?</code></pre>
+<p>For time-varying attention, lower-SDI regions tend to fall below the High-SDI-calibrated null for both active and reversed concentration-index definitions. This indicates that individual GWAS attention windows do not merely reflect passive transfer from High SDI burden priorities. They perform worse for lower-SDI burden than a generic High-SDI-calibrated attention allocation would. Substantively, this suggests that the changing GWAS canon is selectively High-SDI-specific: it favours conditions that are relatively more important in High SDI settings than alternative High-SDI-aligned conditions that would also matter more for lower-SDI regions.</p>
+<p>For all-time attention, the reversed metric is closer to the null expectation. This suggests that the accumulated GWAS literature has some coverage of conditions carrying lower-SDI disease burden. In other words, lower-SDI burden is not entirely outside the studied condition universe once GWAS attention is pooled across time.</p>
+<p>However, the all-time active metric again suggests weaker lower-SDI alignment than expected under the High-SDI transfer null. This means that even where lower-SDI-relevant conditions have received some GWAS attention, the amount of attention is not concentrated on the highest-burden lower-SDI conditions as much as the null would predict.</p>
+<p>Taken together, the results suggest a distinction between coverage and prioritisation intensity. GWAS has accumulated some condition coverage relevant to lower-SDI disease burden, but the distribution of attention remains more skewed toward a narrow High-SDI-specific canon than expected under passive High-SDI transfer. The evidence does not support concerted lower-SDI-responsive condition prioritisation, which would appear as lower-SDI alignment above the null ribbon. Instead, the stronger pattern is that observed lower-SDI alignment is often worse than expected even under a High-SDI-calibrated null.</p>
+<p>This interpretation should be weighted by calibration quality. Windows flagged with calibration warnings are useful descriptively, but stronger claims should focus on well-calibrated windows or be revisited with a larger candidate count and tuned proposal sampler.</p>
 </section>
 
 </main>

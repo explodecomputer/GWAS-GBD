@@ -17,8 +17,8 @@ source(here::here("scripts/regional_analysis/R/plots.R"))
 source(here::here("scripts/simulation-sdi-response/high_sdi_counterfactual.R"))
 
 simulation_seed <- 20260615
-n_candidates <- 5000
-n_keep <- 500
+n_candidates <- 50000
+n_keep <- 5000
 median_abs_error_warn <- 0.02
 max_abs_error_warn <- 0.05
 
@@ -27,28 +27,210 @@ max_abs_error_warn <- 0.05
 # n_keep <- 1000
 ```
 
+## Summary
+
+This report tests whether lower-SDI attention-burden alignment can be explained
+as a passive consequence of High SDI alignment plus shared disease burden. The
+null expectation is that lower-SDI concentration-index trends should track the
+High-SDI-calibrated simulation ribbon. Under that interpretation, any apparent
+lower-SDI alignment would be dictated by GWAS prioritisation in High SDI
+settings and by overlap in disease-burden rankings across SDI regions.
+
+The main finding is that lower-SDI regions generally perform worse than expected
+under this transfer null in the time-varying attention analysis, for both the
+active and reversed concentration-index definitions. This suggests that
+time-varying GWAS attention is not merely passively High-SDI-aligned; it is
+focused on a narrower condition canon that is less compatible with lower-SDI
+burden than a generic High-SDI-calibrated allocation would be.
+
+The all-time analysis gives a more nuanced result. When asking whether lower-SDI
+disease burden is concentrated among conditions that have received GWAS
+attention, all-time attention is closer to the null expectation. When asking
+whether GWAS attention is concentrated on lower-SDI high-burden conditions,
+lower-SDI regions again perform worse than expected. This suggests some
+accumulated coverage of lower-SDI-relevant conditions, but insufficient
+prioritisation intensity toward the conditions that matter most in lower-SDI
+settings.
+
 ## Aim
 
 This analysis tests whether lower-SDI attention-burden alignment is compatible
-with a High-SDI transfer null. The counterfactual preserves each sliding
-window's observed attention sparsity and inequality, then keeps simulated
-attention allocations closest to the observed High SDI attention-burden
-concentration index.
+with a High-SDI transfer null. Under this null, GWAS condition prioritisation is
+assumed to be shaped by High SDI disease burden. Any apparent alignment in
+lower-SDI regions is then expected to arise from shared burden structure between
+High SDI and lower-SDI regions, rather than from lower-SDI-responsive condition
+prioritisation.
 
-The candidate generator uses a proposal mixture. One component assigns observed
-nonzero attention scores fully at random; the other components assign the same
-observed scores to randomly selected conditions with noisy High-SDI rank
-alignment. The proposal mixture is used to explore enough High-SDI-aligned
-allocations for calibration; kept allocations are selected by closeness to the
-observed High SDI concentration index.
+The simulation is a calibrated permutation analysis. It preserves each GWAS
+attention window's observed sparsity and attention-score inequality, breaks the
+observed mapping between conditions and attention scores, then keeps simulated
+attention allocations that reproduce the observed High SDI alignment metric.
+Those same kept allocations are evaluated against each SDI region's burden
+ranking.
+
+## Methodology
+
+### Analysis universe
+
+The main analysis uses sliding-window GWAS attention scores and SDI burden data
+for all ages, both sexes, and DALY counts. The condition universe is the same
+condition set used by the regional concentration-index analysis after zero
+padding attention windows. Conditions with zero GWAS attention remain in the
+analysis universe.
+
+COVID-19 is excluded before constructing observed metrics or simulated
+allocations. The exclusion is used because a single pandemic-era condition can
+dominate the support of possible permutations, narrowing the counterfactual
+range in a way that is not useful for testing the broader GWAS condition canon.
+
+### Metrics
+
+The primary metric is the attention-burden concentration index:
+
+```text
+CI_active = CI(GWAS attention ranked by DALY burden)
+```
+
+Positive values mean GWAS attention is concentrated among higher-burden
+conditions in the selected SDI region and year.
+
+The reversed metric is calculated separately as a diagnostic:
+
+```text
+CI_reversed = CI(DALY burden ranked by GWAS attention)
+```
+
+Positive values mean disease burden is concentrated among conditions with
+greater GWAS attention. Because this answers a different question, the active
+and reversed metrics are calibrated in separate simulation runs.
+
+### Candidate generation
+
+For each year or attention window, the simulation starts with the observed
+vector of GWAS attention scores:
+
+```text
+observed_scores = {0, 0, ..., nonzero attention scores}
+```
+
+Each candidate allocation preserves the exact observed nonzero score values and
+the exact number of zero-attention conditions. A candidate is generated by:
+
+```text
+1. sample n_nonzero conditions from the condition universe
+2. assign the observed nonzero scores to those selected conditions
+3. assign zero attention to all other conditions
+```
+
+The candidate generator uses a proposal mixture so that enough
+High-SDI-aligned allocations are available for calibration:
+
+```text
+proposal 1:
+  randomly choose nonzero conditions
+  randomly assign nonzero score magnitudes
+
+proposal 2:
+  randomly choose nonzero conditions
+  assign larger scores to higher High SDI burden ranks, with rank noise
+
+proposal 3:
+  same as proposal 2, using different rank-noise levels
+```
+
+The rank-noise levels range from strongly High-SDI-shaped to weakly
+High-SDI-shaped. The proposal mixture is not itself the estimand; it is a
+practical sampler used to discover enough candidate allocations near the
+observed High SDI calibration target.
+
+### Calibration
+
+For each year, the simulation generates `r n_candidates` candidate allocations
+and keeps the `r n_keep` allocations closest to the observed High SDI metric.
+The active and reversed analyses use different calibration targets:
+
+```text
+active run:
+  keep allocations closest to observed High SDI CI_active
+
+reversed run:
+  keep allocations closest to observed High SDI CI_reversed
+```
+
+High SDI is therefore a calibration check, not an independent test. The lower
+SDI regions are the test regions: the High-SDI-calibrated allocations are
+projected onto each lower-SDI burden ranking to estimate the null distribution
+expected from shared burden structure alone.
+
+### Summaries and interpretation
+
+For each SDI region and year, the kept allocations define a null distribution.
+The report summarizes:
+
+```text
+sim_lci      = 2.5th percentile of simulated CI
+sim_median   = median simulated CI
+sim_uci      = 97.5th percentile of simulated CI
+observed_ci  = empirical regional CI
+```
+
+If the observed lower-SDI CI lies inside the null ribbon, the observed regional
+alignment is compatible with the High-SDI transfer null. If it lies below the
+ribbon, observed alignment is worse than expected under a generic
+High-SDI-calibrated canon. If it lies above the ribbon, observed alignment is
+stronger than expected under the transfer null.
+
+This is a sufficiency test, not a causal proof. Compatibility with the null
+means that the observed pattern can be reproduced by High SDI alignment plus
+shared burden structure. It does not prove that High SDI prioritisation caused
+the observed pattern.
+
+### Interpretation guide
+
+The lower-SDI observed line is interpreted relative to the High-SDI-calibrated
+null ribbon:
+
+```text
+observed inside null ribbon:
+  lower-SDI alignment is compatible with passive High-SDI transfer
+
+observed above null ribbon:
+  lower-SDI alignment is stronger than expected
+  possible evidence of condition prioritisation beyond passive High-SDI transfer
+
+observed below null ribbon:
+  lower-SDI alignment is weaker than expected
+  High-SDI-shaped prioritisation is worse than a generic High-SDI-calibrated
+  allocation for lower-SDI burden
+```
+
+The last case is especially informative. It means the empirical GWAS canon is
+not just High-SDI-aligned; it is selectively High-SDI-specific. Among diseases
+that could satisfy the High SDI calibration target, observed GWAS attention has
+favoured conditions that are relatively less important in lower-SDI regions than
+other plausible High-SDI-aligned alternatives.
+
+### Calibration diagnostics
+
+Calibration quality is reported for every year. Windows are flagged when:
+
+```text
+median_abs_error > 0.02
+or
+max_abs_error > 0.05
+```
+
+A warning indicates that the kept allocations do not closely reproduce the
+High SDI calibration target and should not be used for strong inference without
+increasing the candidate count or tuning the proposal sampler. Warning windows
+remain visible in plots using a different point shape.
+
+### Sliding-window and all-time analyses
 
 The active and reversed metrics are calibrated in separate simulation runs. The
 active ribbon keeps allocations closest to observed High SDI attention-burden
 concentration index; the reversed ribbon keeps allocations closest to observed
 High SDI reversed concentration index.
-
-COVID-19 is excluded before building observed and simulated windows so a single
-pandemic-era condition does not dominate the range of possible permutations.
 
 The all-time sensitivity uses the all-time attention score distribution and
 evaluates it against each burden year.
@@ -378,3 +560,57 @@ all_time_reversed_summary %>%
   ) %>%
   arrange(location_name, year)
 ```
+
+## Interpretation of Results
+
+The four analyses separate two related questions:
+
+```text
+active CI:
+  Is GWAS attention concentrated on high-burden conditions?
+
+reversed CI:
+  Is disease burden concentrated among conditions that receive GWAS attention?
+
+time-varying attention:
+  What do specific GWAS attention windows do?
+
+all-time attention:
+  What does the accumulated GWAS canon do?
+```
+
+For time-varying attention, lower-SDI regions tend to fall below the
+High-SDI-calibrated null for both active and reversed concentration-index
+definitions. This indicates that individual GWAS attention windows do not merely
+reflect passive transfer from High SDI burden priorities. They perform worse for
+lower-SDI burden than a generic High-SDI-calibrated attention allocation would.
+Substantively, this suggests that the changing GWAS canon is selectively
+High-SDI-specific: it favours conditions that are relatively more important in
+High SDI settings than alternative High-SDI-aligned conditions that would also
+matter more for lower-SDI regions.
+
+For all-time attention, the reversed metric is closer to the null expectation.
+This suggests that the accumulated GWAS literature has some coverage of
+conditions carrying lower-SDI disease burden. In other words, lower-SDI burden
+is not entirely outside the studied condition universe once GWAS attention is
+pooled across time.
+
+However, the all-time active metric again suggests weaker lower-SDI alignment
+than expected under the High-SDI transfer null. This means that even where
+lower-SDI-relevant conditions have received some GWAS attention, the amount of
+attention is not concentrated on the highest-burden lower-SDI conditions as much
+as the null would predict.
+
+Taken together, the results suggest a distinction between coverage and
+prioritisation intensity. GWAS has accumulated some condition coverage relevant
+to lower-SDI disease burden, but the distribution of attention remains more
+skewed toward a narrow High-SDI-specific canon than expected under passive
+High-SDI transfer. The evidence does not support concerted lower-SDI-responsive
+condition prioritisation, which would appear as lower-SDI alignment above the
+null ribbon. Instead, the stronger pattern is that observed lower-SDI alignment
+is often worse than expected even under a High-SDI-calibrated null.
+
+This interpretation should be weighted by calibration quality. Windows flagged
+with calibration warnings are useful descriptively, but stronger claims should
+focus on well-calibrated windows or be revisited with a larger candidate count
+and tuned proposal sampler.
