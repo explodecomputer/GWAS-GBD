@@ -24,12 +24,25 @@ burden_fractional_rank <- function(burden) {
 }
 
 reversed_ci_for_simulations <- function(scores, burden) {
-  apply(scores, 1, function(score) {
-    ci_from_fractional_rank(
-      outcome = burden,
-      fractional_rank = fractional_rank(score)
-    )
-  })
+  if (is.null(dim(scores))) {
+    scores <- matrix(scores, nrow = 1)
+  }
+
+  reference_scores <- scores[1, ]
+  rank_lookup <- tibble(
+    score = reference_scores,
+    score_rank = fractional_rank(reference_scores)
+  ) %>%
+    group_by(score) %>%
+    summarise(score_rank = first(score_rank), .groups = "drop")
+
+  score_ranks <- matrix(
+    rank_lookup$score_rank[match(as.vector(scores), rank_lookup$score)],
+    nrow = nrow(scores),
+    ncol = ncol(scores)
+  )
+
+  as.numeric(2 * (score_ranks %*% burden) / sum(burden, na.rm = TRUE) - 1)
 }
 
 default_counterfactual_proposals <- function() {
@@ -40,18 +53,26 @@ default_counterfactual_proposals <- function() {
       "exchangeable_rank_jitter_0.10",
       "exchangeable_rank_jitter_0.20",
       "exchangeable_rank_jitter_0.50",
-      "exchangeable_rank_jitter_1.00"
+      "exchangeable_rank_jitter_1.00",
+      "weighted_alpha_1_rank_jitter_0.20",
+      "weighted_alpha_1_rank_jitter_0.50",
+      "weighted_alpha_2_rank_jitter_0.20",
+      "weighted_alpha_2_rank_jitter_0.50"
     ),
-    selection_alpha = c(0, 0, 0, 0, 0, 0),
+    selection_alpha = c(0, 0, 0, 0, 0, 0, 1, 1, 2, 2),
     score_assignment = c(
       "random",
       "rank_aligned",
       "rank_aligned",
       "rank_aligned",
       "rank_aligned",
+      "rank_aligned",
+      "rank_aligned",
+      "rank_aligned",
+      "rank_aligned",
       "rank_aligned"
     ),
-    rank_jitter_sd = c(NA_real_, 0.05, 0.10, 0.20, 0.50, 1.00)
+    rank_jitter_sd = c(NA_real_, 0.05, 0.10, 0.20, 0.50, 1.00, 0.20, 0.50, 0.20, 0.50)
   )
 }
 
@@ -451,10 +472,57 @@ summarise_counterfactual <- function(
   summary
 }
 
+summarise_null_compatibility <- function(
+    counterfactual_summary,
+    metric = c("active", "reversed"),
+    include_global = FALSE) {
+  metric <- match.arg(metric)
+  summary_data <- counterfactual_summary
+
+  if (!include_global) {
+    summary_data <- summary_data %>%
+      filter(location_name != "Global")
+  }
+
+  if (metric == "active") {
+    summary_data <- summary_data %>%
+      mutate(
+        compatibility = null_compatibility,
+        percentile_rank = observed_percentile_rank,
+        observed_minus_sim_median_value = observed_minus_sim_median
+      )
+  } else {
+    summary_data <- summary_data %>%
+      mutate(
+        compatibility = reversed_null_compatibility,
+        percentile_rank = observed_reversed_percentile_rank,
+        observed_minus_sim_median_value = observed_reversed_minus_sim_median
+      )
+  }
+
+  summary_data %>%
+    group_by(location_name) %>%
+    summarise(
+      n_years = n(),
+      n_below = sum(compatibility == "Below null ribbon", na.rm = TRUE),
+      n_compatible = sum(compatibility == "Compatible with null ribbon", na.rm = TRUE),
+      n_above = sum(compatibility == "Above null ribbon", na.rm = TRUE),
+      share_below = n_below / n_years,
+      median_percentile_rank = median(percentile_rank, na.rm = TRUE),
+      min_percentile_rank = min(percentile_rank, na.rm = TRUE),
+      max_percentile_rank = max(percentile_rank, na.rm = TRUE),
+      median_observed_minus_sim = median(observed_minus_sim_median_value, na.rm = TRUE),
+      n_calibration_warnings = sum(calibration_quality == "Warning", na.rm = TRUE),
+      .groups = "drop"
+    )
+}
+
 plot_counterfactual_ribbon <- function(
     counterfactual_summary,
     include_global = FALSE,
-    metric = c("active", "reversed")) {
+    metric = c("active", "reversed"),
+    x_label = "GWAS attention window",
+    title = NULL) {
   metric <- match.arg(metric)
   plot_data <- counterfactual_summary
 
@@ -514,76 +582,9 @@ plot_counterfactual_ribbon <- function(
     facet_grid(. ~ location_name) +
     theme_report() +
     labs(
-      x = "GWAS attention window",
+      x = x_label,
       y = y_label,
-      colour = NULL,
-      shape = "Calibration"
-    )
-}
-
-plot_all_time_counterfactual <- function(
-    counterfactual_summary,
-    include_global = FALSE,
-    metric = c("active", "reversed")) {
-  metric <- match.arg(metric)
-  plot_data <- counterfactual_summary
-
-  if (!include_global) {
-    plot_data <- plot_data %>%
-      filter(location_name != "Global")
-  }
-
-  if (metric == "active") {
-    plot_data <- plot_data %>%
-      mutate(
-        observed_value = observed_ci,
-        sim_lci_value = sim_lci,
-        sim_median_value = sim_median,
-        sim_uci_value = sim_uci
-      )
-    y_label <- "Attention-burden concentration index"
-  } else {
-    plot_data <- plot_data %>%
-      mutate(
-        observed_value = observed_reversed_ci,
-        sim_lci_value = sim_reversed_lci,
-        sim_median_value = sim_reversed_median,
-        sim_uci_value = sim_reversed_uci
-      )
-    y_label <- "Reversed concentration index"
-  }
-
-  plot_data %>%
-    mutate(location_name = factor(location_name, levels = sdi_levels)) %>%
-    ggplot(aes(x = location_name)) +
-    geom_hline(yintercept = 0, linetype = "dashed", colour = "grey55") +
-    geom_errorbar(
-      aes(ymin = sim_lci_value, ymax = sim_uci_value),
-      width = 0.18,
-      colour = "#9ecae1",
-      linewidth = 1.1
-    ) +
-    geom_point(
-      aes(y = sim_median_value, colour = "Null median"),
-      size = 2
-    ) +
-    geom_point(
-      aes(y = observed_value, colour = "Observed", shape = calibration_quality),
-      size = 2.2
-    ) +
-    scale_colour_manual(
-      values = c("Observed" = "#de2d26", "Null median" = "#3182bd"),
-      breaks = c("Observed", "Null median")
-    ) +
-    scale_shape_manual(
-      values = c("Well calibrated" = 16, "Warning" = 17),
-      na.translate = FALSE
-    ) +
-    theme_report() +
-    theme(axis.text.x = element_text(angle = 35, hjust = 1)) +
-    labs(
-      x = NULL,
-      y = y_label,
+      title = title,
       colour = NULL,
       shape = "Calibration"
     )
