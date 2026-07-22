@@ -1,25 +1,21 @@
 plot_alignment_by_sex <- function(alignment) {
   alignment %>%
     filter(year == 2023, !is.na(location_name)) %>%
-    ggplot(aes(x = concentration_index, y = sex_name)) +
-    geom_point(
-      aes(colour = sex_name),
-      position = ggstance::position_dodge2v(height = 0.3)
-    ) +
-    geom_errorbarh(
+    ggplot(aes(y = concentration_index, x = sex_name)) +
+    geom_point() +
+    geom_errorbar(
       aes(
-        xmin = concentration_index_lci,
-        xmax = concentration_index_uci,
-        colour = sex_name
+        ymin = concentration_index_lci,
+        ymax = concentration_index_uci
       ),
-      height = 0,
-      position = ggstance::position_dodge2v(height = 0.3)
+      width = 0
     ) +
-    geom_vline(xintercept = 0, linetype = "dashed") +
-    facet_grid(location_name ~ .) +
+    geom_hline(yintercept = 0, linetype = "dashed") +
+    facet_grid(. ~ location_name) +
     theme_report() +
-    theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-    labs(x = "Concentration index", y = NULL, colour = NULL)
+    theme(axis.text.x = element_text(angle = 0, hjust = 0.5)) +
+    # theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+    labs(x = "Sex", y = "Concentration index", colour = NULL)
 }
 
 plot_alignment_over_time <- function(alignment, y_var = "concentration_index", lci_var = "concentration_index_lci", uci_var = "concentration_index_uci") {
@@ -163,11 +159,11 @@ plot_lorenz_curves <- function(lorenz_data) {
     geom_line(aes(colour = group)) +
     geom_abline(slope = 1, intercept = 0, linetype = "dashed") +
     theme_report() +
-    theme(legend.position = c(0.22, 0.78)) +
+    theme(legend.position = c(0.32, 0.78)) +
     labs(
-      x = "Fractional rank",
-      y = "Cumulative proportion of outcome",
-      colour = "Outcome"
+      x = "Fractional rank of outcome",
+      y = "Cumulative proportion of GWAS attention score",
+      colour = ""
     ) +
     scale_colour_manual(values = c(
       "#a6cee3",
