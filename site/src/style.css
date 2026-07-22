@@ -73,6 +73,12 @@ body {
   align-items: flex-end;
   margin-bottom: 16px;
 }
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.filter-field-wide { min-width: min(420px, 100%); }
 .filter-label {
   display: flex;
   flex-direction: column;
@@ -81,6 +87,12 @@ body {
   font-weight: 600;
   color: #374151;
 }
+.combo-filter {
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+}
+.filter-input,
 .filter-select {
   padding: 6px 10px;
   border: 1px solid #d1d5db;
@@ -88,7 +100,16 @@ body {
   background: #fff;
   font-size: 13px;
   min-width: 180px;
+  min-height: 34px;
 }
+.filter-input { width: 220px; }
+.filter-input-wide { width: min(320px, 52vw); }
+.filter-select-compact {
+  min-width: 42px;
+  width: 42px;
+  color: transparent;
+}
+.filter-select-compact option { color: #111827; }
 .row-count { font-size: 12px; color: #6b7280; margin-top: auto; padding-bottom: 2px; }
 
 /* ── Overview side-by-side layout ────────────────────────────────────────── */
@@ -172,10 +193,11 @@ body {
 .opportunity-table-section { flex: 1; min-width: 0; margin-top: 0; }
 .table-scroll {
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: visible;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  max-height: calc(100vh - 180px);
+  max-height: none;
+  background: #fff;
 }
 .opp-table, .cond-table {
   width: 100%;
@@ -260,6 +282,73 @@ body {
 .pagination { display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 13px; color: #374151; }
 .pagination button { padding: 4px 12px; border: 1px solid #d1d5db; border-radius: 4px; background: #fff; cursor: pointer; }
 .pagination button:disabled { opacity: .4; cursor: default; }
+
+/* ── DataTables ─────────────────────────────────────────────────────────── */
+.dt-container {
+  padding: 10px 12px 12px;
+  color: #111827;
+}
+.dt-top,
+.dt-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: #4b5563;
+}
+.dt-top { margin-bottom: 8px; }
+.dt-bottom { margin-top: 10px; }
+.dt-container .dt-length,
+.dt-container .dt-search,
+.dt-container .dt-info,
+.dt-container .dt-paging {
+  float: none;
+  margin: 0;
+}
+.dt-container label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #4b5563;
+}
+.dt-container .dt-input,
+.dt-container select,
+.dt-container input[type="search"],
+.column-search {
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #111827;
+  font: inherit;
+  min-height: 30px;
+  padding: 4px 8px;
+}
+.dt-container .dt-input[type="search"] { width: 220px; }
+.column-search {
+  width: 100%;
+  min-width: 88px;
+}
+.opp-table tfoot th,
+.cond-table tfoot th {
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+  padding: 6px 8px;
+}
+.dt-container .dt-paging .dt-paging-button {
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  color: #374151 !important;
+  padding: 4px 8px;
+}
+.dt-container .dt-paging .dt-paging-button.current,
+.dt-container .dt-paging .dt-paging-button.current:hover {
+  background: #1e3a5f !important;
+  border-color: #1e3a5f !important;
+  color: #fff !important;
+}
 
 /* (orientation panel styles now in the overview layout block above) */
 

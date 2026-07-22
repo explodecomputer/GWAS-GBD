@@ -38,12 +38,9 @@
               :conditions="conditions"
               :country-filter="countryFilter"
               :condition-filter="conditionFilter"
-              :sort-by="sortBy"
-              :sort-dir="sortDir"
               @open-country="onOpenCountry"
               @update:country-filter="countryFilter = $event"
               @update:condition-filter="conditionFilter = $event"
-              @sort="onSort"
             />
           </div>
         </div>
@@ -83,8 +80,6 @@ const selectedYear     = ref(2023)
 const sortMode           = ref('alignment')
 const countryFilter      = ref('')
 const conditionFilter    = ref('')
-const sortBy             = ref('mismatch_share')
-const sortDir            = ref('desc')
 const showDoc            = ref(false)
 
 // ── loaded data ────────────────────────────────────────────────────────────
@@ -190,8 +185,4 @@ function onChangeYear(year) {
   syncUrl()
 }
 
-function onSort({ by, dir }) {
-  sortBy.value  = by
-  sortDir.value = dir
-}
 </script>

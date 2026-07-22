@@ -2,37 +2,69 @@
   <section class="opportunity-table-section" aria-label="Low attention country-condition outcomes">
     <div class="table-controls">
       <div class="filter-row">
-        <label class="filter-label">
-          Country
-          <select
-            class="filter-select"
-            :value="countryFilter"
-            @change="$emit('update:countryFilter', $event.target.value)"
-            data-testid="country-filter"
-          >
-            <option value="">All countries</option>
-            <option v-for="c in countries" :key="c.location_id" :value="c.location_name">
-              {{ c.location_name }}
-            </option>
-          </select>
-        </label>
+        <div class="filter-field">
+          <label class="filter-label" for="country-search">Country search</label>
+          <div class="combo-filter">
+            <input
+              id="country-search"
+              class="filter-input"
+              type="search"
+              list="country-options"
+              :value="countryFilter"
+              @input="setCountryFilter($event.target.value)"
+              data-testid="country-search"
+            />
+            <select
+              class="filter-select filter-select-compact"
+              :value="selectedCountryOption"
+              @change="setCountryFilter($event.target.value)"
+              data-testid="country-filter"
+              aria-label="Country list"
+            >
+              <option value="">All countries</option>
+              <option v-for="c in countries" :key="c.location_id" :value="c.location_name">
+                {{ c.location_name }}
+              </option>
+            </select>
+          </div>
+          <datalist id="country-options">
+            <option v-for="c in countries" :key="c.location_id" :value="c.location_name" />
+          </datalist>
+        </div>
 
-        <label class="filter-label">
-          Condition
-          <select
-            class="filter-select"
-            :value="conditionFilter"
-            @change="$emit('update:conditionFilter', $event.target.value)"
-            data-testid="condition-filter"
-          >
-            <option value="">All conditions</option>
-            <option v-for="c in conditions" :key="c.cause_id" :value="c.cause_name">
-              {{ c.cause_name }}
-            </option>
-          </select>
-        </label>
+        <div class="filter-field filter-field-wide">
+          <label class="filter-label" for="condition-search">Condition search</label>
+          <div class="combo-filter">
+            <input
+              id="condition-search"
+              class="filter-input filter-input-wide"
+              type="search"
+              list="condition-options"
+              :value="conditionFilter"
+              @input="setConditionFilter($event.target.value)"
+              data-testid="condition-search"
+            />
+            <select
+              class="filter-select filter-select-compact"
+              :value="selectedConditionOption"
+              @change="setConditionFilter($event.target.value)"
+              data-testid="condition-filter"
+              aria-label="Condition list"
+            >
+              <option value="">All conditions</option>
+              <option v-for="c in conditions" :key="c.cause_id" :value="c.cause_name">
+                {{ c.cause_name }}
+              </option>
+            </select>
+          </div>
+          <datalist id="condition-options">
+            <option v-for="c in conditions" :key="c.cause_id" :value="c.cause_name" />
+          </datalist>
+        </div>
 
-        <span class="row-count">{{ filtered.length.toLocaleString() }} low attention conditions</span>
+        <span class="row-count" data-testid="opportunity-row-count">
+          {{ filtered.length.toLocaleString() }} low attention conditions
+        </span>
       </div>
     </div>
     <dl class="column-definitions" aria-label="Column definitions">
@@ -46,127 +78,180 @@
     </dl>
 
     <div class="table-scroll">
-      <table class="opp-table" data-testid="opportunity-table">
+      <table
+        ref="tableRef"
+        class="opp-table display"
+        data-testid="opportunity-table"
+        @click="onTableClick"
+      >
         <thead>
           <tr>
-            <th @click="setSort('location_name')" :class="thClass('location_name')">Country</th>
-            <th @click="setSort('cause_name')"    :class="thClass('cause_name')">Condition</th>
-            <th @click="setSort('mismatch_share')" :class="thClass('mismatch_share')">Mismatch share</th>
-            <th @click="setSort('burden_share')"  :class="thClass('burden_share')">Burden share</th>
-            <th @click="setSort('attention_share')" :class="thClass('attention_share')">GWAS attention share</th>
-            <th @click="setSort('dalys')"          :class="thClass('dalys')">DALYs</th>
+            <th>Country</th>
+            <th>Condition</th>
+            <th>Mismatch share</th>
+            <th>Burden share</th>
+            <th>GWAS attention share</th>
+            <th>DALYs</th>
             <th class="col-flag">Zero attention</th>
           </tr>
         </thead>
-        <tbody>
-          <tr
-            v-for="row in paginated"
-            :key="row.location_id + '-' + row.cause_id"
-            class="opp-row"
-            :class="{ 'zero-attn': row.zero_attention }"
-            @click="$emit('open-country', { locationId: row.location_id, causeId: row.cause_id })"
-            data-testid="opportunity-row"
-          >
-            <td class="country-link-cell">{{ row.location_name }}</td>
-            <td class="condition-cell">
-              <button
-                type="button"
-                class="condition-link"
-                data-testid="condition-filter-link"
-                @click.stop="filterToCondition(row)"
-              >
-                {{ row.cause_name }}
-              </button>
-            </td>
-            <td class="num-cell">
-              <span class="mismatch-bar-wrap">
-                <span
-                  class="mismatch-bar"
-                  :style="{ width: barWidth(row.mismatch_share) }"
-                  :class="mismatchClass(row.mismatch_share)"
-                ></span>
-                <span class="mismatch-label">{{ fmtPct(row.mismatch_share) }}</span>
-              </span>
-            </td>
-            <td class="num-cell">{{ fmtPct(row.burden_share) }}</td>
-            <td class="num-cell">{{ fmtPct(row.attention_share) }}</td>
-            <td class="num-cell">{{ fmtDalys(row.dalys) }}</td>
-            <td class="flag-cell">
-              <span v-if="row.zero_attention" class="zero-badge" title="No mapped GWAS attention">●</span>
-            </td>
+        <tbody></tbody>
+        <tfoot>
+          <tr>
+            <th><input class="column-search" type="search" aria-label="Search country column" /></th>
+            <th><input class="column-search" type="search" aria-label="Search condition column" /></th>
+            <th><input class="column-search" type="search" aria-label="Search mismatch share column" /></th>
+            <th><input class="column-search" type="search" aria-label="Search burden share column" /></th>
+            <th><input class="column-search" type="search" aria-label="Search GWAS attention share column" /></th>
+            <th><input class="column-search" type="search" aria-label="Search DALYs column" /></th>
+            <th><input class="column-search" type="search" aria-label="Search zero attention column" /></th>
           </tr>
-        </tbody>
+        </tfoot>
       </table>
-    </div>
-
-    <div class="pagination" v-if="pages > 1">
-      <button :disabled="page === 0" @click="page--">‹ Prev</button>
-      <span>Page {{ page + 1 }} / {{ pages }}</span>
-      <button :disabled="page >= pages - 1" @click="page++">Next ›</button>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 import { fmtPct, fmtDalys, mismatchClass } from '../lib/fmt.js'
-
-const PAGE_SIZE = 50
+import { useDataTable } from '../lib/useDataTable.js'
 
 const props = defineProps({
   opportunities: { type: Array, default: () => [] },
-  countries:     { type: Array, default: () => [] },
-  conditions:    { type: Array, default: () => [] },
-  countryFilter:   { type: String, default: '' },
+  countries: { type: Array, default: () => [] },
+  conditions: { type: Array, default: () => [] },
+  countryFilter: { type: String, default: '' },
   conditionFilter: { type: String, default: '' },
-  sortBy:  { type: String, default: 'mismatch_share' },
-  sortDir: { type: String, default: 'desc' },
 })
 
-const emit = defineEmits(['open-country', 'update:countryFilter', 'update:conditionFilter', 'sort'])
+const emit = defineEmits(['open-country', 'update:countryFilter', 'update:conditionFilter'])
+const tableRef = ref(null)
 
-const page = ref(0)
-
-// Only show 2023 opportunities in the main table (default year)
 const base2023 = computed(() => props.opportunities.filter(o => o.year === 2023))
+
+const normalize = value => String(value ?? '').trim().toLocaleLowerCase()
+const contains = (value, query) => normalize(value).includes(normalize(query))
+
+const selectedCountryOption = computed(() =>
+  props.countries.some(c => c.location_name === props.countryFilter) ? props.countryFilter : ''
+)
+
+const selectedConditionOption = computed(() =>
+  props.conditions.some(c => c.cause_name === props.conditionFilter) ? props.conditionFilter : ''
+)
 
 const filtered = computed(() => {
   let rows = base2023.value
-  if (props.countryFilter)   rows = rows.filter(r => r.location_name === props.countryFilter)
-  if (props.conditionFilter) rows = rows.filter(r => r.cause_name === props.conditionFilter)
+  if (props.countryFilter) rows = rows.filter(r => contains(r.location_name, props.countryFilter))
+  if (props.conditionFilter) rows = rows.filter(r => contains(r.cause_name, props.conditionFilter))
   return rows
 })
 
-const sorted = computed(() => {
-  const key = props.sortBy
-  const dir = props.sortDir === 'asc' ? 1 : -1
-  return [...filtered.value].sort((a, b) => {
-    const av = a[key], bv = b[key]
-    if (typeof av === 'string') return dir * av.localeCompare(bv)
-    return dir * (av - bv)
-  })
-})
-
-const pages   = computed(() => Math.ceil(sorted.value.length / PAGE_SIZE))
-const paginated = computed(() => sorted.value.slice(page.value * PAGE_SIZE, (page.value + 1) * PAGE_SIZE))
-
 const maxMismatch = computed(() => Math.max(...base2023.value.map(r => r.mismatch_share), 0.01))
-const barWidth = (ms) => Math.round((ms / maxMismatch.value) * 100) + '%'
+const barWidth = ms => Math.round((ms / maxMismatch.value) * 100) + '%'
+const escapeHtml = value =>
+  String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
 
-function setSort(col) {
-  const dir = props.sortBy === col && props.sortDir === 'desc' ? 'asc' : 'desc'
-  page.value = 0
-  emit('sort', { by: col, dir })
+function setCountryFilter(value) {
+  emit('update:countryFilter', value)
+}
+
+function setConditionFilter(value) {
+  emit('update:conditionFilter', value)
 }
 
 function filterToCondition(row) {
-  page.value = 0
-  emit('update:countryFilter', '')
-  emit('update:conditionFilter', row.cause_name)
-  emit('sort', { by: 'mismatch_share', dir: 'desc' })
+  setCountryFilter('')
+  setConditionFilter(row.cause_name)
 }
 
-function thClass(col) {
-  return ['th-sortable', props.sortBy === col ? 'th-active' : '', props.sortBy === col ? 'th-' + props.sortDir : '']
+function onTableClick(event) {
+  const conditionButton = event.target.closest('.condition-link')
+  if (conditionButton) {
+    const causeId = Number(conditionButton.dataset.causeId)
+    const row = filtered.value.find(item => item.cause_id === causeId)
+    if (row) filterToCondition(row)
+    return
+  }
+
+  const rowEl = event.target.closest('tr[data-location-id][data-cause-id]')
+  if (!rowEl) return
+
+  emit('open-country', {
+    locationId: Number(rowEl.dataset.locationId),
+    causeId: Number(rowEl.dataset.causeId),
+  })
 }
+
+useDataTable(tableRef, filtered, () => ({
+  data: filtered.value,
+  columns: [
+    {
+      data: 'location_name',
+      render(data, type) {
+        if (type !== 'display') return data
+        return `<span class="country-link-cell">${escapeHtml(data)}</span>`
+      },
+    },
+    {
+      data: 'cause_name',
+      render(data, type, row) {
+        if (type !== 'display') return data
+        return `<button type="button" class="condition-link" data-testid="condition-filter-link" data-cause-id="${row.cause_id}">${escapeHtml(data)}</button>`
+      },
+    },
+    {
+      data: 'mismatch_share',
+      render(data, type) {
+        if (type !== 'display') return data
+        return `<span class="mismatch-bar-wrap"><span class="mismatch-bar ${mismatchClass(data)}" style="width:${barWidth(data)}"></span><span class="mismatch-label">${fmtPct(data)}</span></span>`
+      },
+    },
+    {
+      data: 'burden_share',
+      render(data, type) {
+        return type === 'display' ? fmtPct(data) : data
+      },
+    },
+    {
+      data: 'attention_share',
+      render(data, type) {
+        return type === 'display' ? fmtPct(data) : data
+      },
+    },
+    {
+      data: 'dalys',
+      render(data, type) {
+        return type === 'display' ? fmtDalys(data) : data
+      },
+    },
+    {
+      data: 'zero_attention',
+      render(data, type) {
+        if (type === 'filter') return data ? 'yes zero attention' : 'no'
+        return type === 'display' && data
+          ? '<span class="zero-badge" title="No mapped GWAS attention">●</span>'
+          : ''
+      },
+    },
+  ],
+  order: [[2, 'desc']],
+  columnDefs: [
+    { targets: [2, 3, 4, 5], className: 'dt-body-right dt-head-right' },
+    { targets: [6], className: 'dt-body-center dt-head-center' },
+  ],
+  createdRow(row, data) {
+    row.classList.add('opp-row')
+    if (data.zero_attention) row.classList.add('zero-attn')
+    row.setAttribute('data-testid', 'opportunity-row')
+    row.dataset.locationId = data.location_id
+    row.dataset.causeId = data.cause_id
+  },
+}))
 </script>

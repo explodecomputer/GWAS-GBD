@@ -16,6 +16,11 @@ import { test, expect } from '@playwright/test'
 
 const BASE = '/GWAS-GBD/'
 
+async function opportunityCount(page) {
+  const text = await page.getByTestId('opportunity-row-count').innerText()
+  return parseInt(text.replace(/,/g, ''), 10)
+}
+
 test.describe('Opportunity view', () => {
   test('loads and shows opportunity rows', async ({ page }) => {
     await page.goto(BASE)
@@ -32,15 +37,35 @@ test.describe('Opportunity view', () => {
     await page.goto(BASE)
     await page.getByTestId('opportunity-table').waitFor({ timeout: 10000 })
 
-    const allRows = await page.getByTestId('opportunity-row').count()
+    const allRows = await opportunityCount(page)
 
     // Select the first country option in the filter
     const countryFilter = page.getByTestId('country-filter')
     await countryFilter.selectOption({ index: 1 })
 
-    const filteredRows = await page.getByTestId('opportunity-row').count()
+    const filteredRows = await opportunityCount(page)
     expect(filteredRows).toBeLessThan(allRows)
     expect(filteredRows).toBeGreaterThan(0)
+  })
+
+  test('typed condition search narrows partial matches', async ({ page }) => {
+    await page.goto(BASE)
+    await page.getByTestId('opportunity-table').waitFor({ timeout: 10000 })
+
+    await page.getByTestId('condition-search').fill('hepatitis')
+
+    await expect.poll(async () => {
+      const names = await page.getByTestId('condition-filter-link').evaluateAll(nodes =>
+        nodes.slice(0, 10).map(node => node.textContent.replace(/\s+/g, ' ').trim().toLowerCase())
+      )
+      return names.length > 0 && names.every(name => name.includes('hepatitis'))
+    }).toBeTruthy()
+
+    const visibleConditionNames = await page.getByTestId('condition-filter-link').evaluateAll(nodes =>
+      nodes.slice(0, 10).map(node => node.textContent.replace(/\s+/g, ' ').trim().toLowerCase())
+    )
+    expect(visibleConditionNames.length).toBeGreaterThan(0)
+    expect(visibleConditionNames.every(name => name.includes('hepatitis'))).toBeTruthy()
   })
 
   test('condition link filters table to that condition', async ({ page }) => {
@@ -56,11 +81,32 @@ test.describe('Opportunity view', () => {
     await expect(page.getByTestId('opportunity-table')).toBeVisible()
     await expect(page.getByTestId('summary-panel')).toHaveCount(0)
 
+    await expect.poll(async () => {
+      const names = await page.getByTestId('condition-filter-link').evaluateAll(nodes =>
+        nodes.slice(0, 10).map(node => node.textContent.replace(/\s+/g, ' ').trim())
+      )
+      return names.length > 0 && names.every(name => name === conditionName)
+    }).toBeTruthy()
+
     const visibleConditionNames = await page.getByTestId('condition-filter-link').evaluateAll(nodes =>
       nodes.slice(0, 10).map(node => node.textContent.replace(/\s+/g, ' ').trim())
     )
     expect(visibleConditionNames.length).toBeGreaterThan(0)
     expect(visibleConditionNames.every(name => name === conditionName)).toBeTruthy()
+  })
+
+  test('DataTables column search filters the condition column', async ({ page }) => {
+    await page.goto(BASE)
+    await page.getByTestId('opportunity-table').waitFor({ timeout: 10000 })
+
+    await page.locator('.opp-table tfoot th').nth(1).locator('input').fill('hepatitis')
+
+    await expect.poll(async () => {
+      const names = await page.getByTestId('condition-filter-link').evaluateAll(nodes =>
+        nodes.slice(0, 10).map(node => node.textContent.replace(/\s+/g, ' ').trim().toLowerCase())
+      )
+      return names.length > 0 && names.every(name => name.includes('hepatitis'))
+    }).toBeTruthy()
   })
 })
 
