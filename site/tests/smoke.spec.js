@@ -39,9 +39,9 @@ test.describe('Opportunity view', () => {
 
     const allRows = await opportunityCount(page)
 
-    // Select the first country option in the filter
-    const countryFilter = page.getByTestId('country-filter')
-    await countryFilter.selectOption({ index: 1 })
+    const countrySearch = page.getByTestId('country-search')
+    await expect(countrySearch).toHaveAttribute('placeholder', 'Country search')
+    await countrySearch.fill('Afghanistan')
 
     const filteredRows = await opportunityCount(page)
     expect(filteredRows).toBeLessThan(allRows)
@@ -52,6 +52,7 @@ test.describe('Opportunity view', () => {
     await page.goto(BASE)
     await page.getByTestId('opportunity-table').waitFor({ timeout: 10000 })
 
+    await expect(page.getByTestId('condition-search')).toHaveAttribute('placeholder', 'Condition search')
     await page.getByTestId('condition-search').fill('hepatitis')
 
     await expect.poll(async () => {
@@ -77,7 +78,7 @@ test.describe('Opportunity view', () => {
 
     await firstCondition.click()
 
-    await expect(page.getByTestId('condition-filter')).toHaveValue(conditionName)
+    await expect(page.getByTestId('condition-search')).toHaveValue(conditionName)
     await expect(page.getByTestId('opportunity-table')).toBeVisible()
     await expect(page.getByTestId('summary-panel')).toHaveCount(0)
 

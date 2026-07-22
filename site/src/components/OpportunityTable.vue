@@ -3,60 +3,34 @@
     <div class="table-controls">
       <div class="filter-row">
         <div class="filter-field">
-          <label class="filter-label" for="country-search">Country search</label>
-          <div class="combo-filter">
-            <input
-              id="country-search"
-              class="filter-input"
-              type="search"
-              list="country-options"
-              :value="countryFilter"
-              @input="setCountryFilter($event.target.value)"
-              data-testid="country-search"
-            />
-            <select
-              class="filter-select filter-select-compact"
-              :value="selectedCountryOption"
-              @change="setCountryFilter($event.target.value)"
-              data-testid="country-filter"
-              aria-label="Country list"
-            >
-              <option value="">All countries</option>
-              <option v-for="c in countries" :key="c.location_id" :value="c.location_name">
-                {{ c.location_name }}
-              </option>
-            </select>
-          </div>
+          <input
+            id="country-search"
+            class="filter-input"
+            type="search"
+            list="country-options"
+            placeholder="Country search"
+            aria-label="Country search"
+            :value="countryFilter"
+            @input="setCountryFilter($event.target.value)"
+            data-testid="country-search"
+          />
           <datalist id="country-options">
             <option v-for="c in countries" :key="c.location_id" :value="c.location_name" />
           </datalist>
         </div>
 
         <div class="filter-field filter-field-wide">
-          <label class="filter-label" for="condition-search">Condition search</label>
-          <div class="combo-filter">
-            <input
-              id="condition-search"
-              class="filter-input filter-input-wide"
-              type="search"
-              list="condition-options"
-              :value="conditionFilter"
-              @input="setConditionFilter($event.target.value)"
-              data-testid="condition-search"
-            />
-            <select
-              class="filter-select filter-select-compact"
-              :value="selectedConditionOption"
-              @change="setConditionFilter($event.target.value)"
-              data-testid="condition-filter"
-              aria-label="Condition list"
-            >
-              <option value="">All conditions</option>
-              <option v-for="c in conditions" :key="c.cause_id" :value="c.cause_name">
-                {{ c.cause_name }}
-              </option>
-            </select>
-          </div>
+          <input
+            id="condition-search"
+            class="filter-input filter-input-wide"
+            type="search"
+            list="condition-options"
+            placeholder="Condition search"
+            aria-label="Condition search"
+            :value="conditionFilter"
+            @input="setConditionFilter($event.target.value)"
+            data-testid="condition-search"
+          />
           <datalist id="condition-options">
             <option v-for="c in conditions" :key="c.cause_id" :value="c.cause_name" />
           </datalist>
@@ -132,14 +106,6 @@ const base2023 = computed(() => props.opportunities.filter(o => o.year === 2023)
 
 const normalize = value => String(value ?? '').trim().toLocaleLowerCase()
 const contains = (value, query) => normalize(value).includes(normalize(query))
-
-const selectedCountryOption = computed(() =>
-  props.countries.some(c => c.location_name === props.countryFilter) ? props.countryFilter : ''
-)
-
-const selectedConditionOption = computed(() =>
-  props.conditions.some(c => c.cause_name === props.conditionFilter) ? props.conditionFilter : ''
-)
 
 const filtered = computed(() => {
   let rows = base2023.value
