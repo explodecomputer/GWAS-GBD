@@ -92,7 +92,7 @@ opps <- joined %>%
   filter(eligible) %>%
   select(
     location_id, location_name, cause_id, cause_name, year,
-    dalys, burden_share, attention_share, mismatch_share, zero_attention
+    burden_share, attention_share, mismatch_share, zero_attention
   ) %>%
   arrange(year, desc(mismatch_share))
 
@@ -121,7 +121,7 @@ for (lid in country_ids) {
     filter(location_id == lid) %>%
     select(
       location_name,
-      cause_id, cause_name, year, dalys,
+      cause_id, cause_name, year,
       burden_share, attention_score, attention_share,
       mismatch_share, zero_attention, eligible
     )
@@ -158,7 +158,7 @@ meta <- list(
     "GWAS Catalog, curated GBD-GWAS alignment (%s)",
     ATTENTION_SOURCE
   ),
-  burden_definition     = "DALY count, all ages, both sexes",
+  burden_definition     = "Disease burden share, all ages, both sexes",
   attention_definition  = "All-time mapped attention score from curated GBD-GWAS alignment",
   eligibility_threshold = ELIGIBILITY_THRESHOLD,
   years                 = sort(unique(joined$year)),

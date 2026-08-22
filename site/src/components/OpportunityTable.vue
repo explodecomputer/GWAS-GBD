@@ -45,9 +45,8 @@
       <div><dt>Country:</dt><dd>GBD admin0 location</dd></div>
       <div><dt>Condition:</dt><dd>GBD study term</dd></div>
       <div><dt>Mismatch share:</dt><dd>burden share minus GWAS attention share</dd></div>
-      <div><dt>Burden share:</dt><dd>share of the country's DALYs</dd></div>
+      <div><dt>Burden share:</dt><dd>share of the country's disease burden</dd></div>
       <div><dt>GWAS attention share:</dt><dd>share of mapped global GWAS attention</dd></div>
-      <div><dt>DALYs:</dt><dd>healthy life years lost</dd></div>
       <div><dt>Zero attention:</dt><dd>no mapped GWAS attention</dd></div>
     </dl>
 
@@ -65,7 +64,6 @@
             <th>Mismatch share</th>
             <th>Burden share</th>
             <th>GWAS attention share</th>
-            <th>DALYs</th>
             <th class="col-flag">Zero attention</th>
           </tr>
         </thead>
@@ -77,7 +75,6 @@
             <th><input class="column-search" type="search" aria-label="Search mismatch share column" /></th>
             <th><input class="column-search" type="search" aria-label="Search burden share column" /></th>
             <th><input class="column-search" type="search" aria-label="Search GWAS attention share column" /></th>
-            <th><input class="column-search" type="search" aria-label="Search DALYs column" /></th>
             <th><input class="column-search" type="search" aria-label="Search zero attention column" /></th>
           </tr>
         </tfoot>
@@ -88,7 +85,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
-import { fmtPct, fmtDalys, mismatchClass } from '../lib/fmt.js'
+import { fmtPct, mismatchClass } from '../lib/fmt.js'
 import { useDataTable } from '../lib/useDataTable.js'
 
 const props = defineProps({
@@ -192,12 +189,6 @@ useDataTable(tableRef, filtered, () => ({
       },
     },
     {
-      data: 'dalys',
-      render(data, type) {
-        return type === 'display' ? fmtDalys(data) : data
-      },
-    },
-    {
       data: 'zero_attention',
       render(data, type) {
         if (type === 'filter') return data ? 'yes zero attention' : 'no'
@@ -209,8 +200,8 @@ useDataTable(tableRef, filtered, () => ({
   ],
   order: [[2, 'desc']],
   columnDefs: [
-    { targets: [2, 3, 4, 5], className: 'dt-body-right dt-head-right' },
-    { targets: [6], className: 'dt-body-center dt-head-center' },
+    { targets: [2, 3, 4], className: 'dt-body-right dt-head-right' },
+    { targets: [5], className: 'dt-body-center dt-head-center' },
   ],
   createdRow(row, data) {
     row.classList.add('opp-row')

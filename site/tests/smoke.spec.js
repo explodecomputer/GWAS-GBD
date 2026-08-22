@@ -133,9 +133,6 @@ test.describe('Country story navigation', () => {
     const underShareVal = page.getByTestId('under-attended-share')
     await expect(underShareVal).not.toBeEmpty()
 
-    const underBurdenVal = page.getByTestId('under-attended-burden')
-    await expect(underBurdenVal).not.toBeEmpty()
-
     // Condition table should show at least one highlighted row
     const highlighted = page.locator('[data-highlighted="true"]')
     await expect(highlighted).toBeVisible({ timeout: 5000 })

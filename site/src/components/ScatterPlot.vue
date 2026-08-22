@@ -13,7 +13,6 @@
       <div class="tt-row"><span>Burden share</span><span>{{ fmtPct(tooltip.data.burden_share) }}</span></div>
       <div class="tt-row"><span>Attention share</span><span>{{ fmtPct(tooltip.data.attention_share) }}</span></div>
       <div class="tt-row"><span>Mismatch share</span><span>{{ fmtPct(tooltip.data.mismatch_share) }}</span></div>
-      <div class="tt-row"><span>DALYs</span><span>{{ fmtDalys(tooltip.data.dalys) }}</span></div>
       <div class="tt-row"><span>Attention score</span><span>{{ fmtScore(tooltip.data.attention_score) }}</span></div>
       <div v-if="tooltip.data.zero_attention" class="tt-zero">Zero attention</div>
     </div>
@@ -23,7 +22,7 @@
 <script setup>
 import { ref, reactive, watch, onMounted, onUnmounted } from 'vue'
 import * as d3 from 'd3'
-import { fmtPct, fmtDalys, fmtScore } from '../lib/fmt.js'
+import { fmtPct, fmtScore } from '../lib/fmt.js'
 
 const props = defineProps({
   conditions: { type: Array, default: () => [] },   // per-country conditions for selected year

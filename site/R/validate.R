@@ -47,6 +47,14 @@ validate_opportunities <- function(opps) {
   invisible(TRUE)
 }
 
+artifact_column_names <- function(x) {
+  if (is.data.frame(x)) return(names(x))
+  if (is.list(x) && length(x) > 0 && all(vapply(x, is.list, logical(1)))) {
+    return(unique(unlist(lapply(x, names), use.names = FALSE)))
+  }
+  character(0)
+}
+
 validate_site_artifact_files <- function(data_dir,
                                          expected_years = c(1990L, 2023L),
                                          min_countries = 100L,
@@ -108,6 +116,17 @@ validate_site_artifact_files <- function(data_dir,
     if (!col %in% names(opportunities)) msgs <- c(msgs, paste("opportunities missing column:", col))
   }
 
+  stripped_summary_cols <- c("total_dalys", "under_attended_burden", "zero_attention_burden")
+  present_summary_cols <- intersect(stripped_summary_cols, names(summaries))
+  if (length(present_summary_cols) > 0) {
+    msgs <- c(msgs, paste("country_summaries must not expose stripped column(s):", paste(present_summary_cols, collapse = ", ")))
+  }
+
+  present_opportunity_cols <- intersect("dalys", names(opportunities))
+  if (length(present_opportunity_cols) > 0) {
+    msgs <- c(msgs, paste("opportunities must not expose stripped column(s):", paste(present_opportunity_cols, collapse = ", ")))
+  }
+
   if (nrow(countries) < min_countries) {
     msgs <- c(msgs, sprintf("expected at least %d countries, found %d", min_countries, nrow(countries)))
   }
@@ -133,6 +152,15 @@ validate_site_artifact_files <- function(data_dir,
     )
     if (length(missing_country_keys) > 0) {
       msgs <- c(msgs, paste("sample country artifact missing keys:", paste(missing_country_keys, collapse = ", ")))
+    }
+
+    country_year_cols <- unique(unlist(lapply(paste0("y", expected_years), function(year_key) {
+      if (!year_key %in% names(sample_country)) return(character(0))
+      artifact_column_names(sample_country[[year_key]])
+    }), use.names = FALSE))
+    present_country_cols <- intersect("dalys", country_year_cols)
+    if (length(present_country_cols) > 0) {
+      msgs <- c(msgs, paste("country artifacts must not expose stripped column(s):", paste(present_country_cols, collapse = ", ")))
     }
   }
 

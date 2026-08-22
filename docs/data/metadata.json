@@ -1,12 +1,12 @@
 {
-  "build_time": "2026-06-15T12:20:53Z",
+  "build_time": "2026-08-22T19:22:33Z",
   "burden_source": "IHME GBD 2023 (gbd_gwas_paper_data_4.csv)",
   "attention_source": "GWAS Catalog, curated GBD-GWAS alignment (temporal_attention_scores.csv)",
-  "burden_definition": "DALY count, all ages, both sexes",
+  "burden_definition": "Disease burden share, all ages, both sexes",
   "attention_definition": "All-time mapped attention score from curated GBD-GWAS alignment",
   "eligibility_threshold": 0.01,
   "years": [1990, 2023],
   "n_countries": 194,
   "n_conditions": 274,
-  "n_eligible_opps": 7227
+  "n_eligible_opps": 7222
 }

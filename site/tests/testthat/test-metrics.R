@@ -105,30 +105,9 @@ test_that("under_attended_burden_share returns NA when total dalys is zero", {
   expect_true(is.na(under_attended_burden_share(c(0, 0), c(0.5, 0.5), c(0.3, 0.7))))
 })
 
-# ── under_attended_burden ─────────────────────────────────────────────────────
-
-test_that("under_attended_burden sums dalys for under-attended conditions", {
-  dalys <- c(100, 200, 300)
-  bs    <- c(0.5, 0.3, 0.2)
-  as_   <- c(0.2, 0.4, 0.4)   # only condition 1 is under-attended
-  expect_equal(under_attended_burden(dalys, bs, as_), 100)
-})
-
-# ── zero_attention_burden ─────────────────────────────────────────────────────
-
-test_that("zero_attention_burden sums dalys where attention_score is zero", {
-  dalys  <- c(100, 200, 300)
-  scores <- c(0, 500, 0)
-  expect_equal(zero_attention_burden(dalys, scores), 400)
-})
-
-test_that("zero_attention_burden is zero when no zero-attention conditions", {
-  expect_equal(zero_attention_burden(c(100, 200), c(10, 20)), 0)
-})
-
 # ── country_summary ───────────────────────────────────────────────────────────
 
-test_that("country_summary total_dalys matches sum of dalys", {
+test_that("country_summary strips absolute DALY metrics", {
   df <- data.frame(
     dalys           = c(100, 200, 300),
     burden_share    = c(1/6, 2/6, 3/6),
@@ -136,7 +115,9 @@ test_that("country_summary total_dalys matches sum of dalys", {
     attention_score = c(0, 0, 100)
   )
   s <- country_summary(df)
-  expect_equal(s$total_dalys, 600)
+  expect_false("total_dalys" %in% names(s))
+  expect_false("under_attended_burden" %in% names(s))
+  expect_false("zero_attention_burden" %in% names(s))
 })
 
 test_that("country_summary n_conditions counts all rows", {
@@ -156,5 +137,5 @@ test_that("country_summary handles all-zero attention gracefully", {
   )
   s <- country_summary(df)
   expect_false(is.nan(s$share_alignment))
-  expect_equal(s$zero_attention_burden, 300)
+  expect_equal(s$under_attended_burden_share, 1)
 })

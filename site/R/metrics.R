@@ -46,33 +46,16 @@ under_attended_burden_share <- function(dalys, burden_share, attention_share) {
   sum(dalys[ua], na.rm = TRUE) / total
 }
 
-# Absolute DALYs in under-attended conditions.
-under_attended_burden <- function(dalys, burden_share, attention_share) {
-  ua <- is_under_attended(burden_share, attention_share)
-  sum(dalys[ua], na.rm = TRUE)
-}
-
-# Absolute DALYs in zero-attention conditions.
-zero_attention_burden <- function(dalys, attention_score) {
-  sum(dalys[!is.na(attention_score) & attention_score == 0], na.rm = TRUE)
-}
-
 # Country-level summary from a per-condition data frame.
 # Required columns: dalys, burden_share, attention_share, attention_score.
 # Returns a named list.
 country_summary <- function(df) {
-  total_dalys <- sum(df$dalys, na.rm = TRUE)
   list(
-    total_dalys             = total_dalys,
     n_conditions            = nrow(df),
     share_alignment         = share_alignment(df$burden_share, df$attention_share),
     under_attended_burden_share = under_attended_burden_share(
       df$dalys, df$burden_share, df$attention_share
     ),
-    under_attended_burden   = under_attended_burden(
-      df$dalys, df$burden_share, df$attention_share
-    ),
-    zero_attention_burden   = zero_attention_burden(df$dalys, df$attention_score),
     n_under_attended        = sum(is_under_attended(df$burden_share, df$attention_share)),
     n_eligible              = sum(is_eligible(df$burden_share, df$attention_share))
   )

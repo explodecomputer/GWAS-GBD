@@ -95,3 +95,45 @@ test_that("site artifact contract fails when metadata years are missing", {
     "metadata years"
   )
 })
+
+test_that("site artifact contract rejects stripped DALY fields", {
+  root <- make_site_artifact_fixture()
+  write_json_file(
+    data.frame(
+      location_id = 1,
+      cause_id = 2,
+      year = 2023,
+      mismatch_share = 0.1,
+      dalys = 100
+    ),
+    file.path(root, "opportunities.json")
+  )
+  write_json_file(
+    data.frame(
+      location_id = c(1, 1, 2, 2),
+      location_name = c("A", "A", "B", "B"),
+      year = c(1990, 2023, 1990, 2023),
+      total_dalys = c(10, 20, 30, 40)
+    ),
+    file.path(root, "country_summaries.json")
+  )
+  write_json_file(
+    list(
+      location_id = 1,
+      location_name = "A",
+      y1990 = list(list(cause_id = 1, cause_name = "Condition A", dalys = 10)),
+      y2023 = list(list(cause_id = 1, cause_name = "Condition A", dalys = 20))
+    ),
+    file.path(root, "country", "1.json")
+  )
+
+  expect_error(
+    validate_site_artifact_files(
+      data_dir = root,
+      expected_years = c(1990L, 2023L),
+      min_countries = 2L,
+      min_conditions = 2L
+    ),
+    "stripped column"
+  )
+})

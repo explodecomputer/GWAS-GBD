@@ -61,18 +61,6 @@
             </div>
             <div class="card-hint">Share of burden in under-attended conditions</div>
           </div>
-          <div class="summary-card">
-            <div class="card-label">Under-attended DALYs</div>
-            <div class="card-value" data-testid="under-attended-burden">
-              {{ fmtDalys(summary?.under_attended_burden) }}
-            </div>
-            <div class="card-hint">Absolute burden, under-attended conditions</div>
-          </div>
-          <div class="summary-card">
-            <div class="card-label">Total DALYs</div>
-            <div class="card-value">{{ fmtDalys(summary?.total_dalys) }}</div>
-            <div class="card-hint">All conditions, all ages, both sexes</div>
-          </div>
         </div>
 
         <p class="global-note">
@@ -115,7 +103,7 @@
 import { ref, computed, watch } from 'vue'
 import ScatterPlot from './ScatterPlot.vue'
 import ConditionTable from './ConditionTable.vue'
-import { fmtPct, fmtDalys } from '../lib/fmt.js'
+import { fmtPct } from '../lib/fmt.js'
 
 const props = defineProps({
   locationId:        { type: Number, default: null },
